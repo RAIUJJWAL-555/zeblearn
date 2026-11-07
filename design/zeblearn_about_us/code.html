@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Anton&amp;family=Bricolage+Grotesque:opsz,wght@12..96,400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-secondary-container": "#7a4821", "on-primary-fixed-variant": "#703700", "secondary-container": "#ffbb8a", "on-tertiary-fixed-variant": "#004c6a", "tertiary-container": "#00a1da", "secondary-fixed": "#ffdcc5", "surface-tint": "#944b00", "error-container": "#ffdad6", "on-secondary-fixed-variant": "#6a3b15", "on-primary-container": "#4c2300", "on-secondary": "#ffffff", "primary-fixed": "#ffdcc5", "on-primary-fixed": "#301400", "outline": "#8a7263", "surface-container-highest": "#f3dfd2", "inverse-surface": "#3a2e26", "surface-container-low": "#fff1e9", "surface-container-lowest": "#ffffff", "on-secondary-fixed": "#301400", "inverse-primary": "#ffb783", "surface-container": "#ffeade", "on-surface-variant": "#564335", "surface-bright": "#fff8f5", "on-surface": "#241912", "tertiary-fixed-dim": "#7ed0ff", "primary-container": "#e77801", "on-primary": "#ffffff", "inverse-on-surface": "#ffede3", "primary": "#944b00", "surface-container-high": "#f9e4d8", "tertiary-fixed": "#c5e7ff", "background": "#fff8f5", "error": "ba1a1a", "secondary": "#86522a", "on-background": "#241912", "tertiary": "#00658b", "surface-dim": "#ead6ca", "surface": "#fff8f5", "primary-fixed-dim": "#ffb783", "on-tertiary": "#ffffff", "on-error": "#ffffff", "surface-variant": "#f3dfd2", "outline-variant": "#ddc1b0", "on-tertiary-fixed": "#001e2d", "on-error-container": "#93000a", "secondary-fixed-dim": "#fcb887", "on-tertiary-container": "#003348" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "gutter": "1.5rem", "space-3xl": "6rem", "space-2xl": "4rem", "margin-mobile": "1.25rem", "space-xs": "0.25rem", "margin": "3rem", "gutter-sm": "1rem", "space-lg": "1.5rem", "space-xl": "2.5rem", "space-sm": "0.5rem", "space-md": "1rem" }, "fontFamily": { "headline-xl-mobile": [ "Anton" ], "label-mono": [ "Inter" ], "headline-xl": [ "Anton" ], "headline-lg": [ "Anton" ], "body-lg": [ "Bricolage Grotesque" ], "display-xl": [ "Anton" ], "display-xl-mobile": [ "Anton" ], "display-lg": [ "Anton" ], "label-sm": [ "Inter" ], "body-md": [ "Bricolage Grotesque" ], "headline-sm": [ "Anton" ], "display-lg-mobile": [ "Anton" ], "body-xl": [ "Bricolage Grotesque" ] }, "fontSize": { "headline-xl-mobile": [ "32px", { "lineHeight": "36px", "letterSpacing": "0em", "fontWeight": "400" } ], "label-mono": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" } ], "headline-xl": [ "44px", { "lineHeight": "48px", "letterSpacing": "0em", "fontWeight": "400" } ], "headline-lg": [ "32px", { "lineHeight": "36px", "letterSpacing": "0em", "fontWeight": "400" } ], "body-lg": [ "16px", { "lineHeight": "26px", "letterSpacing": "0em", "fontWeight": "400" } ], "display-xl": [ "96px", { "lineHeight": "96px", "letterSpacing": "-0.02em", "fontWeight": "400" } ], "display-xl-mobile": [ "52px", { "lineHeight": "52px", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "display-lg": [ "64px", { "lineHeight": "68px", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "label-sm": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" } ], "body-md": [ "14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" } ], "headline-sm": [ "22px", { "lineHeight": "26px", "letterSpacing": "0.02em", "fontWeight": "400" } ], "display-lg-mobile": [ "40px", { "lineHeight": "44px", "letterSpacing": "0em", "fontWeight": "400" } ], "body-xl": [ "20px", { "lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "400" } ] } } } }</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-surface/90 backdrop-blur-md border-b border-outline-variant/30"><div class="h-20 max-w-[1440px] mx-auto px-margin-mobile lg:px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-xl"><a class="flex items-center gap-space-xs group" data-path="courses" href="#"><span class="w-3 h-3 bg-primary-container rounded-none"></span><span class="font-headline-sm text-headline-sm tracking-tight uppercase text-on-surface font-bold">ZEBLEARN</span><span class="font-label-mono text-label-mono text-primary font-semibold tracking-wider ml-1 px-1.5 py-0.5 bg-surface-container rounded">SAP</span></a><nav class="hidden lg:flex items-center gap-space-xs" data-active-classes="bg-inverse-surface text-inverse-on-surface font-semibold relative after:content-[''] after:inline-block after:w-1.5 after:h-1.5 after:rounded-full after:bg-primary-container after:ml-2"><a class="px-space-md py-space-sm rounded-full font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors flex items-center" data-path="courses" href="#">Courses</a><a class="px-space-md py-space-sm rounded-full font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors flex items-center" data-path="placements" href="#">Placements</a><a class="px-space-md py-space-sm rounded-full font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors flex items-center" data-path="stories" href="#">Stories</a><a class="px-space-md py-space-sm rounded-full font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors flex items-center" data-path="blogs" href="#">Blogs</a><a aria-current="page" class="px-space-md py-space-sm rounded-full transition-colors flex items-center bg-inverse-surface text-inverse-on-surface font-semibold relative after:content-[''] after:inline-block after:w-1.5 after:h-1.5 after:rounded-full after:bg-primary-container after:ml-2" data-path="about" href="#">About</a><a class="px-space-md py-space-sm rounded-full font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors flex items-center" data-path="contact" href="#">Contact</a></nav></div><div class="flex items-center gap-space-md"><div class="hidden sm:flex items-center gap-space-xs px-space-sm py-space-xs border border-outline-variant/40 rounded-full bg-surface-container-lowest text-on-surface font-label-sm text-label-sm"><span class="material-symbols-outlined text-outline text-[16px]">language</span><span class="font-semibold">Eng</span><span class="material-symbols-outlined text-outline text-[14px]">expand_more</span></div><a class="hidden sm:inline-flex items-center justify-center bg-primary-container text-on-primary font-label-sm text-label-sm font-semibold px-space-xl py-space-sm rounded-full transition-transform hover:scale-[1.02] shadow-sm" data-path="book-a-demo" href="#">Book a Demo</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><button class="lg:hidden p-space-xs text-on-surface"><span class="material-symbols-outlined">menu</span></button></div></div></header><main class="w-full pt-20 bg-surface"><div class="flex flex-col w-full bg-[#E4E6E9] text-on-surface antialiased overflow-hidden">
+<!-- Ambient Substrate Glow -->
+<div class="w-full relative px-margin-mobile lg:px-margin max-w-[1440px] mx-auto py-space-xl">
+<!-- ========================================== -->
+<!-- 1. HERO SECTION -->
+<!-- ========================================== -->
+<section class="flex flex-col w-full pt-space-md pb-space-2xl relative">
+<div class="flex items-center gap-2 mb-space-sm">
+<span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
+<span class="font-label-mono text-label-mono uppercase tracking-widest text-on-surface-variant font-semibold">About</span>
+</div>
+<!-- Edge-to-Edge Condensed Typography -->
+<div class="flex flex-col select-none uppercase tracking-tighter leading-[0.84] text-[#0A0A0A]">
+<h1 class="font-headline-xl text-[100px] sm:text-[150px] lg:text-[210px] m-0 p-0 font-normal">
+          WE TRAIN FOR
+        </h1>
+<div class="flex flex-wrap items-baseline justify-between -mt-4 lg:-mt-10">
+<span class="font-headline-xl text-[100px] sm:text-[150px] lg:text-[210px] font-normal text-[#0A0A0A]">
+            SAP JOBS.
+          </span>
+<span class="font-label-mono text-xs lg:text-sm text-on-surface-variant max-w-xs font-semibold tracking-wide lowercase pb-4 hidden xl:block">
+            [ live s/4hana enterprise deployment sandbox · 0% fluff ]
+          </span>
+</div>
+</div>
+<!-- Hero 3D Centerpiece & Subline Narrative Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center mt-space-lg lg:mt-space-xl">
+<!-- Left Statement -->
+<div class="lg:col-span-4 flex flex-col justify-center">
+<p class="font-body-xl text-body-xl text-on-surface font-semibold max-w-sm tracking-tight">
+            We stay with every student until the first offer letter.
+          </p>
+<div class="flex items-center gap-space-xs mt-space-md">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-surface text-on-surface font-label-mono text-label-mono font-medium shadow-sm">
+              • 100% Guaranteed Referrals
+            </span>
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-surface text-on-surface font-label-mono text-label-mono font-medium shadow-sm">
+              • Unmetered GUI
+            </span>
+</div>
+</div>
+<!-- Center Tactile 3D Element -->
+<div class="lg:col-span-4 flex items-center justify-center relative my-space-md lg:my-0">
+<div class="relative w-48 h-48 lg:w-56 lg:h-56 rounded-[28px] bg-gradient-to-b from-[#F0F1F3] to-[#D3D6DA] p-3 shadow-xl flex items-center justify-center group transition-transform duration-300 hover:scale-105">
+<!-- Provided user inspiration image (Keycap Tactile 3D) -->
+<img class="w-full h-full object-cover rounded-[20px] shadow-inner" data-alt="Tactile glossy vivid orange keycap with embossed ZL monogram set on industrial dark brushed titanium switch plate with razor precision studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBob7m2HlGLlh7awAJgifnEQk957GYadNkVjj6SAoYyyn2bffDRVNuvxfvoWit8m2nbAyBvYUPwAbZ-9yNmG4-jHUKgy2NUy92R1IN5RfY71GNL66knrJNKkXXia1sL3Rfmipl-fQ-GeCGxERfQEDozRODcefSmJoxN8B6JCJ8l6FSa_l2FWkp9djGFXzODyICxkXc5KHf2-vgVmIkDo9PWUdIvfiH_MxoRm0z4G4w"/>
+<div class="absolute -bottom-3 px-3 py-1 bg-[#0A0A0A] text-white rounded-full font-label-mono text-[10px] uppercase tracking-wider font-semibold">
+              Live S/4 Server GUI
+            </div>
+</div>
+</div>
+<!-- Right Side Video Story Pill -->
+<div class="lg:col-span-4 flex lg:justify-end items-center">
+<div class="p-3 bg-white rounded-[24px] shadow-sm flex items-center gap-space-md hover:shadow-md transition-shadow cursor-pointer border-0">
+<div class="relative w-24 h-24 rounded-[18px] overflow-hidden shrink-0 bg-neutral-900">
+<img class="w-full h-full object-cover" data-alt="Indian enterprise technology specialist in clean modern tech hub smiling looking directly into lens" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBF2EmHsL81qWOY9Zj2fwgJQt7FUov2jrFy-BwOzqVWQues2x5OLbE0vpIrOEUf3uA23NZz9ZzaTrkhD06HG1odt232kZ8ZsmRdBzwaZmNzx4ZwHYjauTpmjxWCpPK90LItge94Yn2IDjs0fPM0iwz-5Wdb3fv88XFO1itHjQZsoJu5dPkHTI1EfACwWwhsKgMAbcT9sz6Y6i6vfn7LBcLHmGxfgUp9gKb09FeUEKg"/>
+<div class="absolute inset-0 bg-black/30 flex items-center justify-center">
+<div class="w-8 h-8 rounded-full bg-[#FB6221] text-white flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col pr-space-md">
+<span class="font-label-mono text-label-mono uppercase tracking-wider text-on-surface-variant font-bold">Watch Our Story</span>
+<span class="font-body-md text-body-md font-semibold text-[#0A0A0A]">How ZebLearn Works</span>
+<span class="font-label-mono text-[11px] text-[#FB6221] font-semibold mt-1">2:15 min runtime</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- 2. STORY BENTO (12-COL GRID) -->
+<!-- ========================================== -->
+<section class="flex flex-col w-full py-space-xl">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+<!-- Card 1: 7 Cols Crisp White -->
+<div class="lg:col-span-7 bg-[#FFFFFF] rounded-[24px] p-8 lg:p-10 flex flex-col justify-between shadow-sm">
+<div>
+<div class="flex items-center gap-2 mb-space-sm">
+<span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
+<span class="font-label-mono text-label-mono uppercase tracking-wider text-on-surface-variant font-semibold">Our Story</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-[#0A0A0A] font-normal leading-tight mb-space-md">
+              Most institutes teach SAP theory from outdated PPT slides. We built an autonomous deployment sandbox where students configure real company codes on live S/4HANA servers from day one.
+            </h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg pt-space-md text-on-surface-variant font-body-md text-body-md">
+<p>
+              Founded by veteran enterprise architects weary of seeing candidates fail technical interviews despite holding certifications, ZebLearn dismantles classroom abstractions. We replaced slides with 24/7 root console access.
+            </p>
+<p>
+              Every cohort is treated as an active SAP implementation project. With placement pipelines directly integrated into PlacementBaba and top tier consulting firms, our engineers step onto enterprise desks fully pre-calibrated.
+            </p>
+</div>
+</div>
+<!-- Card 2: 5 Cols Photo Card -->
+<div class="lg:col-span-5 relative rounded-[24px] overflow-hidden min-h-[340px] shadow-sm flex flex-col justify-end p-6">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="Modern collaborative corporate tech classroom in India where an enterprise trainer and adult students analyze live enterprise S4HANA ERP telemetry dashboards on wide monitors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgyjyi0QbD5qIZ_V0I7RuhgZlQNkHy-niqXUkItpUpEZ3VMDY3NzcBxH_rrWYBviM7Nhmqk4pPziDr4jIYiJ50a3l4tu4LpFv2xz8OTKfaEITg2yT_BL9Jb8_zaHoFwpqL-b8qcrlMTBgM-MBVzATlpBxMMSQTXFVRbBmOrskfFbU_3fR1UAEpLubGA1ClKMEETpCt-S7g8rskFA4XJLSBh50Y8gA0wfLNUq3o888"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="relative z-10 flex items-center justify-between">
+<span class="inline-flex items-center px-4 py-1.5 rounded-full bg-white text-[#0A0A0A] font-label-mono text-label-mono font-semibold shadow-md">
+<span class="w-1.5 h-1.5 rounded-full bg-[#FB6221] mr-2"></span>
+              Live S/4HANA batch · Noida Center
+            </span>
+<span class="font-label-mono text-xs text-white/80 font-medium">Lab Rack #04</span>
+</div>
+</div>
+<!-- Card 3: 4 Cols Vivid Orange (#FB6221) -->
+<div class="lg:col-span-4 bg-[#FB6221] text-white rounded-[24px] p-8 lg:p-10 flex flex-col justify-between shadow-sm">
+<span class="font-label-mono text-label-mono uppercase tracking-widest text-[#0A0A0A] font-bold">Placed Alumni</span>
+<div class="my-space-md">
+<span class="font-headline-xl text-[72px] lg:text-[88px] leading-none block font-normal tracking-tight text-white">
+              2,500+
+            </span>
+</div>
+<p class="font-body-md text-body-md text-[#0A0A0A] font-semibold">
+            candidates placed across Big 4 &amp; Fortune 500 MNCs with verifiable credential IDs.
+          </p>
+</div>
+<!-- Card 4: 4 Cols Deep Black (#0A0A0A) -->
+<div class="lg:col-span-4 bg-[#0A0A0A] text-white rounded-[24px] p-8 lg:p-10 flex flex-col justify-between shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-mono text-label-mono uppercase tracking-widest text-neutral-400 font-bold">Industry Rank</span>
+<span class="material-symbols-outlined text-[#FB6221] text-[24px]">workspace_premium</span>
+</div>
+<div class="my-space-md">
+<span class="font-headline-xl text-[72px] lg:text-[88px] leading-none block font-normal tracking-tight text-white">
+              No.1
+            </span>
+</div>
+<p class="font-body-md text-body-md text-neutral-300">
+            ranked SAP practical training partner by India Enterprise ERP Academic Survey 2024.
+          </p>
+</div>
+<!-- Card 5: 4 Cols Soft Gray (#D3D6DA) -->
+<div class="lg:col-span-4 bg-[#D3D6DA] text-[#0A0A0A] rounded-[24px] p-8 lg:p-10 flex flex-col justify-between shadow-sm">
+<span class="font-label-mono text-label-mono uppercase tracking-widest text-[#0A0A0A] font-bold">Flagship Specialization</span>
+<div class="my-space-md">
+<span class="font-headline-xl text-[72px] lg:text-[88px] leading-none block font-normal tracking-tight text-[#0A0A0A]">
+              04
+            </span>
+</div>
+<p class="font-body-md text-body-md text-[#0A0A0A] font-semibold">
+            core enterprise modules: S/4 FICO · MM Logistics · SD Sales · ABAP on HANA.
+          </p>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- 3. HOW WE TEACH (METHODOLOGY) -->
+<!-- ========================================== -->
+<section class="flex flex-col w-full py-space-2xl">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl">
+<div>
+<div class="flex items-center gap-2 mb-space-sm">
+<span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
+<span class="font-label-mono text-label-mono uppercase tracking-wider text-on-surface-variant font-semibold">Methodology</span>
+</div>
+<h2 class="font-headline-xl text-headline-xl text-[#0A0A0A] uppercase font-normal leading-none">
+            HOW WE TEACH
+          </h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mt-4 md:mt-0">
+          The curriculum runs strictly on real S/4HANA GUI instances with Zero PPT philosophy.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Step 01: Crisp White -->
+<div class="bg-[#FFFFFF] rounded-[24px] p-8 flex flex-col justify-between shadow-sm hover:-translate-y-1 transition-transform">
+<div>
+<span class="font-headline-lg text-headline-lg text-[#FB6221] block mb-space-sm font-normal">01</span>
+<h3 class="font-headline-sm text-headline-sm text-[#0A0A0A] uppercase mb-space-sm font-normal">Live GUI Instances</h3>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Classes unfold on real SAP GUI server instances. No prerecorded monologues or simulated slideshows.
+          </p>
+</div>
+<!-- Step 02: Soft Gray -->
+<div class="bg-[#D3D6DA] rounded-[24px] p-8 flex flex-col justify-between shadow-sm hover:-translate-y-1 transition-transform">
+<div>
+<span class="font-headline-lg text-headline-lg text-[#0A0A0A] block mb-space-sm font-normal">02</span>
+<h3 class="font-headline-sm text-headline-sm text-[#0A0A0A] uppercase mb-space-sm font-normal">Company Code Builds</h3>
+</div>
+<p class="font-body-md text-body-md text-[#0A0A0A]">
+            Mandatory real-world business blueprints: build multi-company charts of accounts, P2P, and O2C cycles.
+          </p>
+</div>
+<!-- Step 03: Vivid Orange -->
+<div class="bg-[#FB6221] rounded-[24px] p-8 flex flex-col justify-between shadow-sm hover:-translate-y-1 transition-transform">
+<div>
+<span class="font-headline-lg text-headline-lg text-white block mb-space-sm font-normal">03</span>
+<h3 class="font-headline-sm text-headline-sm text-white uppercase mb-space-sm font-normal">Executive Mocks</h3>
+</div>
+<p class="font-body-md text-body-md text-[#0A0A0A] font-semibold">
+            One-on-one scenario interviews conducted by practicing enterprise SAP delivery leads and solution architects.
+          </p>
+</div>
+<!-- Step 04: Deep Black -->
+<div class="bg-[#0A0A0A] rounded-[24px] p-8 flex flex-col justify-between shadow-sm hover:-translate-y-1 transition-transform">
+<div>
+<span class="font-headline-lg text-headline-lg text-[#FB6221] block mb-space-sm font-normal">04</span>
+<h3 class="font-headline-sm text-headline-sm text-white uppercase mb-space-sm font-normal">Placement Pipeline</h3>
+</div>
+<p class="font-body-md text-body-md text-neutral-300">
+            Dedicated recruitment funnel through PlacementBaba with vetted client interview scheduling until signed.
+          </p>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- 4. THE TRAINERS (FACULTY) -->
+<!-- ========================================== -->
+<section class="flex flex-col w-full py-space-2xl">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl">
+<div>
+<div class="flex items-center gap-2 mb-space-sm">
+<span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
+<span class="font-label-mono text-label-mono uppercase tracking-wider text-on-surface-variant font-semibold">Faculty</span>
+</div>
+<h2 class="font-headline-xl text-headline-xl text-[#0A0A0A] uppercase font-normal leading-none">
+            THE TRAINERS
+          </h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm mt-4 md:mt-0 font-medium">
+          Learn directly from architects who run multi-million dollar cutovers.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+<!-- Trainer A (Vikram Mehta) -->
+<div class="bg-white rounded-[24px] overflow-hidden shadow-sm flex flex-col group">
+<div class="relative aspect-square overflow-hidden bg-neutral-900">
+<img alt="Vikram Mehta - Lead SAP FICO Architect" class="w-full h-full object-cover filter grayscale contrast-125 group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida/AEtjO1Xb3JQTgtau6DFrLrojcsso1-orbO15qyNLdI70rEROL2tZzj5a3gelGcOJR_8BaoFuusDwcGbpBPSj2tg1bwHjbomJ4JIlqqtKSs8nJcwqzv-gtK58uYsH3JVfsSeHhKe4SjKc2N3Ppyj8o4Me5R9ufhHmBzXz3oGFdux19BpmE92pkd8Znfl3ogbw8P5YON6zQ7nwRh0wAUxdLxNjakOuHjDwQRJpXkYiTvVATTCv"/>
+<div class="absolute bottom-3 left-3 bg-[#FB6221] text-white px-3 py-1 rounded-full font-label-mono text-label-mono font-semibold">
+              Vikram Mehta
+            </div>
+</div>
+<div class="p-6 flex flex-col justify-between flex-grow bg-white">
+<div>
+<span class="font-headline-sm text-headline-sm uppercase text-[#0A0A0A] block">Lead SAP FICO Architect</span>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">14+ yrs exp · Ex-Deloitte &amp; PwC</p>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between text-on-surface-variant">
+<span class="font-label-mono text-[11px] font-bold uppercase tracking-wider">12 Global Implementations</span>
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+</div>
+</div>
+<!-- Trainer B (Rahul Verma) -->
+<div class="bg-white rounded-[24px] overflow-hidden shadow-sm flex flex-col group">
+<div class="relative aspect-square overflow-hidden bg-neutral-900">
+<img class="w-full h-full object-cover filter grayscale contrast-125 group-hover:scale-105 transition-transform duration-500" data-alt="Moody authentic black and white portrait of an Indian male enterprise supply chain and SAP MM consultant with crisp collared shirt and confident gaze" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlgGZwfN2zPEQ2ZRWU9V3UFe-gdAYoL3Mi6Ku7sln-PyrtTdh_3GLk1twG3LDhnLaQzKdSJdwhuxqLw9NTTJAc86lOt2I8sJFGYxuZEVsl7zkiGdyFkcmT1lbXjhofXKECvYC-O59J3LhKvsJgbHdK8oZSePFs_16JZGf-e9QhopWkktzfetTZm883jhvcwLJu80SVmba-Nb--4cXnusjfHzhQJjSyZl8aqQZ9mcY"/>
+<div class="absolute bottom-3 left-3 bg-[#FB6221] text-white px-3 py-1 rounded-full font-label-mono text-label-mono font-semibold">
+              Rahul Verma
+            </div>
+</div>
+<div class="p-6 flex flex-col justify-between flex-grow bg-white">
+<div>
+<span class="font-headline-sm text-headline-sm uppercase text-[#0A0A0A] block">Senior SAP MM / SCM Lead</span>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">12+ yrs exp · Ex-Accenture</p>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between text-on-surface-variant">
+<span class="font-label-mono text-[11px] font-bold uppercase tracking-wider">Supply Chain Specialist</span>
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+</div>
+</div>
+<!-- Trainer C (Priya Nair) -->
+<div class="bg-white rounded-[24px] overflow-hidden shadow-sm flex flex-col group">
+<div class="relative aspect-square overflow-hidden bg-neutral-900">
+<img class="w-full h-full object-cover filter grayscale contrast-125 group-hover:scale-105 transition-transform duration-500" data-alt="Moody black and white portrait of an Indian female SAP SD and BTP Enterprise solution architect looking confident in business attire against architectural background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5KuQyRf-I28QDRhJ5qpN3pPJSDcZl2p0dQInKKJGMalzO9bdkxWy3ansz1g3Qe2sU6IEMUJ9rK5fR8YQaLWpqFIK3ADzJWHul_3cJJP23LFgdY1lQExB5sC5PcwJDKI13Wmov5q4hFpVUf5f1n_NhubwE8hIdRnYF6Rs3k3XhaWthpD1JY_2wtUS2dghNFKMkBj0_VkIOMOyuXVA8nPpG4SFwVoBBNuiYiys8F6c"/>
+<div class="absolute bottom-3 left-3 bg-[#FB6221] text-white px-3 py-1 rounded-full font-label-mono text-label-mono font-semibold">
+              Priya Nair
+            </div>
+</div>
+<div class="p-6 flex flex-col justify-between flex-grow bg-white">
+<div>
+<span class="font-headline-sm text-headline-sm uppercase text-[#0A0A0A] block">SAP SD / BTP Solution Lead</span>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">10+ yrs exp · Ex-IBM</p>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between text-on-surface-variant">
+<span class="font-label-mono text-[11px] font-bold uppercase tracking-wider">Integration Expert</span>
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+</div>
+</div>
+<!-- Trainer D (Recruitment Card - Vivid Orange) -->
+<div class="bg-[#FB6221] rounded-[24px] p-8 flex flex-col justify-between shadow-sm group cursor-pointer hover:bg-[#e65518] transition-colors">
+<div class="flex items-center justify-between">
+<span class="font-label-mono text-label-mono uppercase tracking-widest text-[#0A0A0A] font-bold">Faculty Outreach</span>
+<div class="w-10 h-10 rounded-full bg-white text-[#0A0A0A] flex items-center justify-center group-hover:rotate-45 transition-transform">
+<span class="material-symbols-outlined text-[20px]">arrow_outward</span>
+</div>
+</div>
+<div class="my-space-md">
+<h3 class="font-headline-lg text-headline-lg uppercase text-white font-normal leading-tight">
+              JOIN AS A TRAINER
+            </h3>
+</div>
+<p class="font-body-md text-body-md text-[#0A0A0A] font-semibold">
+            We hire active SAP solution architects for weekend cohort mentorship. Teach real implementations.
+          </p>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- 5. AWARDS AND RECOGNITION (MONOLITH CONTAINER) -->
+<!-- ========================================== -->
+<section class="flex flex-col w-full py-space-xl">
+<div class="bg-[#0A0A0A] text-white rounded-[24px] p-8 lg:p-14 shadow-2xl relative overflow-hidden">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center relative z-10">
+<!-- Left: High contrast medallion render -->
+<div class="lg:col-span-5 flex flex-col items-center justify-center">
+<div class="relative w-64 h-64 lg:w-80 lg:h-80 rounded-[28px] bg-neutral-900/80 p-4 shadow-2xl flex items-center justify-center">
+<!-- Radial Rim Glow -->
+<div class="absolute inset-0 rounded-[28px] bg-gradient-to-tr from-[#FB6221]/20 via-transparent to-transparent pointer-events-none"></div>
+<img alt="Enterprise Certification Seal Medallion in polished orange and brushed metal" class="w-full h-full object-contain drop-shadow-[0_20px_35px_rgba(251,98,33,0.3)]" src="https://lh3.googleusercontent.com/aida/AEtjO1W5TUevPXwTvYiLPLTgwRkGj96UzsDU2S0-Aij3zMmJkZWQNCIjCy1gL-AydTD6JPQlcC8jHPTt9NeDCi3HM_HKSvdfezTlY33svWkYqMQbuiT0RSb9wmXDsTDfTqRG8K-vsed_vinLs7KJzgxwcOpqprn9ocW7oZw8L9B5izYguOuCi7vcKG00KPs-BiP8JoQJtystWyaphi50WzXznyVHPCKmDWzOxida9sQZGLza"/>
+<div class="absolute -bottom-3 bg-neutral-800 text-white px-4 py-1.5 rounded-full font-label-mono text-[11px] uppercase tracking-wider font-semibold border-0">
+                Official Enterprise Recognition 2024
+              </div>
+</div>
+</div>
+<!-- Right: Recognition Rows -->
+<div class="lg:col-span-7 flex flex-col justify-between mt-space-lg lg:mt-0">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
+<span class="font-label-mono text-label-mono uppercase tracking-widest text-neutral-400 font-semibold">Industry Credentials</span>
+</div>
+<h2 class="font-headline-xl text-headline-xl uppercase text-white font-normal leading-none mb-space-lg">
+                AWARDS &amp; RECOGNITION
+              </h2>
+</div>
+<!-- Recognition Rows with Hairline Separators -->
+<div class="flex flex-col">
+<div class="py-4 bg-neutral-900/60 rounded-xl px-5 mb-2 flex items-center justify-between">
+<div>
+<h4 class="font-headline-sm text-headline-sm uppercase text-white">Best Enterprise ERP Training Institute 2024</h4>
+<span class="font-label-mono text-xs text-neutral-400">National Tech Education Summit · New Delhi</span>
+</div>
+<span class="material-symbols-outlined text-[#FB6221] text-[24px]">verified</span>
+</div>
+<div class="py-4 bg-neutral-900/60 rounded-xl px-5 mb-2 flex items-center justify-between">
+<div>
+<h4 class="font-headline-sm text-headline-sm uppercase text-white">98.4% First-Attempt Pass Rate</h4>
+<span class="font-label-mono text-xs text-neutral-400">S/4HANA Credential Audit · Independent Cohort Metric</span>
+</div>
+<span class="material-symbols-outlined text-[#FB6221] text-[24px]">star</span>
+</div>
+<div class="py-4 bg-neutral-900/60 rounded-xl px-5 mb-space-md flex items-center justify-between">
+<div>
+<h4 class="font-headline-sm text-headline-sm uppercase text-white">Top Placement Partner Award</h4>
+<span class="font-label-mono text-xs text-neutral-400">PlacementBaba Corporate Consortium</span>
+</div>
+<span class="material-symbols-outlined text-[#FB6221] text-[24px]">military_tech</span>
+</div>
+</div>
+<!-- Keynote Video Pill CTA -->
+<div class="flex items-center">
+<div class="inline-flex items-center gap-3 p-2 pr-5 rounded-full bg-neutral-900 hover:bg-neutral-800 transition-colors cursor-pointer">
+<div class="w-8 h-8 rounded-full bg-[#FB6221] flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+<span class="font-label-mono text-label-mono font-semibold uppercase text-neutral-300">Watch Award Keynote · 1:40</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- 6. STUDENT OUTCOMES (STUDENT STORIES) -->
+<!-- ========================================== -->
+<section class="flex flex-col w-full py-space-2xl">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl">
+<div>
+<div class="flex items-center gap-2 mb-space-sm">
+<span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
+<span class="font-label-mono text-label-mono uppercase tracking-wider text-on-surface-variant font-semibold">Alumni Matrix</span>
+</div>
+<h2 class="font-headline-xl text-headline-xl text-[#0A0A0A] uppercase font-normal leading-none">
+            STUDENT STORIES
+          </h2>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm mt-4 md:mt-0">
+          Real career pivots verified via employment credentials and LinkedIn milestones.
+        </p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+<!-- Left Featured Testimonial (7 cols Crisp White) -->
+<div class="lg:col-span-7 bg-[#FFFFFF] rounded-[24px] p-8 lg:p-12 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-[#FB6221]/10 text-[#FB6221] font-label-mono text-label-mono font-bold">
+                VERIFIED 140% CTC HIKE
+              </span>
+<span class="font-label-mono text-label-mono text-on-surface-variant">Batch '24 Alumni</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-[#0A0A0A] font-normal leading-relaxed uppercase">
+              "Switching from traditional statutory accounting to SAP FICO doubled my compensation in 90 days. The real-server practice made the client interviews effortless."
+            </p>
+</div>
+<div class="flex items-center gap-space-md mt-space-lg pt-space-md">
+<div class="w-14 h-14 rounded-full overflow-hidden bg-neutral-200 shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close-up professional headshot of young Indian tech executive Sumit Singh in crisp business blazer smiling outdoors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPOTriFlFhOlcmu4NrWMs-JSK9IWPucE_a_p5z0_yXbby3aXmK6LErVOR4SvTYWVHFwCbkbIlXzPjfFgpNbSKAT6Lb7txYvpWzl9o4PvcKrGnmjJ-3HPctC91mnj067c5idAp1F_Y5KHw5EJpV0TZqskkhQipVElDJUr_e5XtZ8jwh8kpWopoFmrbjwrE2v4lCqu0249aXg7Nb0a4qf_Dwu9B8n3zzZP3Hjlc6vbc"/>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-lg text-[#0A0A0A] uppercase font-normal">Sumit Singh</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Associate Consultant at Accenture</span>
+<span class="font-label-mono text-[11px] text-neutral-400 mt-0.5">SAP S/4HANA Finance Track</span>
+</div>
+</div>
+</div>
+<!-- Right Side Stack (5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-4">
+<!-- Card 1: Soft Gray -->
+<div class="bg-[#D3D6DA] rounded-[24px] p-6 shadow-sm flex flex-col justify-between">
+<p class="font-body-md text-body-md text-[#0A0A0A] font-medium leading-relaxed">
+              "Configuring live P2P cycles in SAP MM gave me the confidence to crack Deloitte on my first attempt."
+            </p>
+<div class="mt-4 flex items-center justify-between">
+<div>
+<span class="font-headline-sm text-base text-[#0A0A0A] uppercase block">Deeksha Sharma</span>
+<span class="font-label-mono text-[11px] text-neutral-600">SAP MM Specialist · Deloitte</span>
+</div>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-white text-[#0A0A0A] font-label-mono text-[10px] font-bold">
+                MM Cohort
+              </span>
+</div>
+</div>
+<!-- Card 2: Crisp White -->
+<div class="bg-[#FFFFFF] rounded-[24px] p-6 shadow-sm flex flex-col justify-between">
+<p class="font-body-md text-body-md text-[#0A0A0A] font-medium leading-relaxed">
+              "Direct mentor code reviews deconstructed real cutover errors textbooks never teach."
+            </p>
+<div class="mt-4 flex items-center justify-between">
+<div>
+<span class="font-headline-sm text-base text-[#0A0A0A] uppercase block">Shyam Singh</span>
+<span class="font-label-mono text-[11px] text-on-surface-variant">SAP SD Consultant · Tata Tech</span>
+</div>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-neutral-100 text-[#0A0A0A] font-label-mono text-[10px] font-bold">
+                SD Logistics
+              </span>
+</div>
+</div>
+<!-- Card 3: Deep Black Video Story -->
+<div class="bg-[#0A0A0A] text-white rounded-[24px] p-4 shadow-sm flex items-center justify-between cursor-pointer hover:bg-neutral-900 transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-xl bg-[#FB6221] text-white flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+<div>
+<span class="font-headline-sm text-base text-white uppercase block leading-tight">Rohit's EY Transition</span>
+<span class="font-label-mono text-[11px] text-neutral-400">From Support to S/4HANA Track in 8 weeks</span>
+</div>
+</div>
+<span class="font-label-mono text-[11px] text-[#FB6221] font-semibold pr-2">Watch</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- 7. OUR CODE (CORE VALUES) -->
+<!-- ========================================== -->
+<section class="flex flex-col w-full py-space-2xl">
+<div class="flex items-center gap-2 mb-space-sm">
+<span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
+<span class="font-label-mono text-label-mono uppercase tracking-wider text-on-surface-variant font-semibold">Principles</span>
+</div>
+<h2 class="font-headline-xl text-headline-xl text-[#0A0A0A] uppercase font-normal leading-none mb-space-xl">
+        OUR CODE
+      </h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Value 1: Crisp White -->
+<div class="bg-[#FFFFFF] rounded-[24px] p-8 lg:p-10 flex flex-col justify-between shadow-sm min-h-[320px]">
+<span class="font-headline-lg text-headline-lg text-[#FB6221] font-normal">01</span>
+<div>
+<h3 class="font-headline-lg text-headline-lg text-[#0A0A0A] uppercase mb-space-sm font-normal">
+              TEACH WHAT THE JOB USES
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Zero theoretical fluff. Every session happens inside live GUI transaction codes and Universal Journal tables.
+            </p>
+</div>
+</div>
+<!-- Value 2: Soft Gray -->
+<div class="bg-[#D3D6DA] rounded-[24px] p-8 lg:p-10 flex flex-col justify-between shadow-sm min-h-[320px]">
+<span class="font-headline-lg text-headline-lg text-[#0A0A0A] font-normal">02</span>
+<div>
+<h3 class="font-headline-lg text-headline-lg text-[#0A0A0A] uppercase mb-space-sm font-normal">
+              NO INFLATED PROMISES
+            </h3>
+<p class="font-body-md text-body-md text-[#0A0A0A] font-semibold leading-relaxed">
+              We do not sell magic shortcuts. Enterprise ERP requires 60+ hours of deliberate server configuration.
+            </p>
+</div>
+</div>
+<!-- Value 3: Vivid Orange -->
+<div class="bg-[#FB6221] rounded-[24px] p-8 lg:p-10 flex flex-col justify-between shadow-sm min-h-[320px]">
+<span class="font-headline-lg text-headline-lg text-white font-normal">03</span>
+<div>
+<h3 class="font-headline-lg text-headline-lg text-white uppercase mb-space-sm font-normal">
+              SUPPORT AFTER THE COURSE ENDS
+            </h3>
+<p class="font-body-md text-body-md text-[#0A0A0A] font-semibold leading-relaxed">
+              Alumni keep sandbox server access for 180 days and unlimited mock interview clinics until hired.
+            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- 8. CORPORATE PARTNERS STRIP -->
+<!-- ========================================== -->
+<section class="flex flex-col w-full py-space-md">
+<div class="bg-[#D3D6DA] rounded-[24px] p-6 lg:p-8 shadow-sm flex flex-col lg:flex-row items-center justify-between gap-space-lg">
+<div class="flex flex-wrap items-center gap-space-lg lg:gap-space-xl">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-[#FB6221] rounded-none"></span>
+<span class="font-headline-sm text-headline-sm uppercase text-[#0A0A0A]">PLACEMENTBABA</span>
+</div>
+<div class="h-6 w-[1px] bg-neutral-400 hidden sm:block"></div>
+<div class="flex items-center gap-2">
+<span class="font-label-mono text-label-mono font-bold tracking-widest text-neutral-700 uppercase">
+              SAP POWER USER ALLIANCE
+            </span>
+</div>
+<div class="h-6 w-[1px] bg-neutral-400 hidden sm:block"></div>
+<div class="flex items-center gap-space-md text-neutral-800 font-label-mono text-xs font-semibold uppercase">
+<span>• Accenture</span>
+<span>• Deloitte</span>
+<span>• PwC</span>
+<span>• EY</span>
+</div>
+</div>
+<a class="shrink-0 bg-[#0A0A0A] text-white px-8 py-3.5 rounded-full font-label-mono text-label-mono uppercase tracking-wider font-semibold hover:bg-neutral-800 transition-colors shadow-sm" data-path="placements" href="#">
+          View Open SAP Jobs →
+        </a>
+</div>
+</section>
+<!-- ========================================== -->
+<!-- 9. FINAL CTA (COME SIT IN A CLASS) -->
+<!-- ========================================== -->
+<section class="flex flex-col w-full pt-space-2xl pb-space-3xl items-center text-center">
+<div class="flex items-center gap-2 mb-space-sm justify-center">
+<span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
+<span class="font-label-mono text-label-mono uppercase tracking-widest text-on-surface-variant font-semibold">Campus Visit &amp; Remote Access</span>
+</div>
+<!-- Oversized Final Headline -->
+<h2 class="font-headline-xl text-[64px] sm:text-[100px] lg:text-[140px] uppercase text-[#0A0A0A] leading-[0.88] tracking-tighter m-0 font-normal">
+        COME SIT IN A CLASS
+      </h2>
+<p class="font-body-xl text-body-xl text-on-surface max-w-xl font-medium mt-space-md mb-space-xl">
+        Inspect our live S/4HANA server instances before committing. No credit card required.
+      </p>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row items-center gap-4">
+<a class="w-full sm:w-auto bg-[#FB6221] text-white font-label-mono text-sm uppercase tracking-wider font-bold px-10 py-5 rounded-full hover:scale-[1.02] transition-transform shadow-md" data-path="book-a-demo" href="#">
+          Book a Free Live Demo
+        </a>
+<a class="w-full sm:w-auto bg-[#FFFFFF] text-[#0A0A0A] font-label-mono text-sm uppercase tracking-wider font-bold px-8 py-5 rounded-full hover:bg-neutral-100 transition-colors shadow-sm flex items-center justify-center gap-2" href="https://wa.me/918506888288">
+<span class="material-symbols-outlined text-[20px] text-[#FB6221]">chat</span>
+<span>+91 8506 888 288</span>
+</a>
+</div>
+<!-- Campus Indicators -->
+<div class="flex flex-wrap items-center justify-center gap-space-sm mt-space-xl">
+<span class="px-4 py-1.5 rounded-full bg-white text-[#0A0A0A] font-label-mono text-label-mono font-medium shadow-sm">
+          • Noida Sec 62 Campus
+        </span>
+<span class="px-4 py-1.5 rounded-full bg-white text-[#0A0A0A] font-label-mono text-label-mono font-medium shadow-sm">
+          • Bengaluru HSR Layout Hub
+        </span>
+<span class="px-4 py-1.5 rounded-full bg-white text-[#0A0A0A] font-label-mono text-label-mono font-medium shadow-sm">
+          • Live Hybrid Remote (Cloud VPN)
+        </span>
+</div>
+</section>
+</div>
+</div></main><footer class="w-full bg-inverse-surface text-inverse-on-surface relative overflow-hidden border-t border-outline/20"><div class="max-w-[1440px] mx-auto px-margin-mobile lg:px-margin pt-space-2xl pb-space-3xl relative z-10"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-gutter pb-space-2xl border-b border-outline/20"><div class="lg:col-span-4 flex flex-col gap-space-md"><div class="flex items-center gap-space-xs"><span class="w-3 h-3 bg-primary-container"></span><span class="font-headline-sm text-headline-sm uppercase text-inverse-on-surface tracking-tight font-bold">ZEBLEARN</span></div><p class="font-body-md text-body-md text-surface-variant/80 max-w-sm">Premier authorized enterprise SAP specialization engine. Accelerating corporate readiness through live server infrastructure and mentor-led deployments.</p><div class="flex flex-col gap-space-xs mt-space-sm"><div class="flex items-center gap-space-sm text-surface-variant"><span class="material-symbols-outlined text-primary-container text-[18px]">call</span><span class="font-label-mono text-label-mono text-inverse-on-surface">+91 8506 888 288</span></div><div class="flex items-center gap-space-sm text-surface-variant"><span class="material-symbols-outlined text-primary-container text-[18px]">mail</span><span class="font-label-mono text-label-mono text-inverse-on-surface">enquiry@zeblearn.com</span></div></div></div><div class="lg:col-span-3 flex flex-col gap-space-md"><span class="font-label-mono text-label-mono uppercase text-primary-container tracking-wider font-semibold">Campuses</span><div class="flex flex-col gap-space-md"><div class="p-space-md bg-inverse-surface border border-outline/30 rounded"><div class="flex items-center gap-space-xs mb-1"><span class="material-symbols-outlined text-secondary-fixed-dim text-[16px]">domain</span><span class="font-label-sm text-label-sm font-semibold text-inverse-on-surface">Noida Corporate Campus</span></div><p class="font-body-md text-body-md text-surface-variant/80 text-xs">Sector 62, Electronic City, Institutional Area, Noida 201309</p></div><div class="p-space-md bg-inverse-surface border border-outline/30 rounded"><div class="flex items-center gap-space-xs mb-1"><span class="material-symbols-outlined text-secondary-fixed-dim text-[16px]">domain</span><span class="font-label-sm text-label-sm font-semibold text-inverse-on-surface">Bengaluru Innovation Hub</span></div><p class="font-body-md text-body-md text-surface-variant/80 text-xs">Sector 6, HSR Layout, Tech Corridor, Bengaluru 560102</p></div></div></div><div class="lg:col-span-3 flex flex-col gap-space-md"><span class="font-label-mono text-label-mono uppercase text-primary-container tracking-wider font-semibold">Curricula</span><ul class="flex flex-col gap-space-xs font-body-md text-body-md text-surface-variant/80"><li class="hover:text-inverse-on-surface transition-colors"><a data-path="courses" href="#">• SAP S/4HANA Finance (FI/CO)</a></li><li class="hover:text-inverse-on-surface transition-colors"><a data-path="courses" href="#">• SAP MM / Supply Chain</a></li><li class="hover:text-inverse-on-surface transition-colors"><a data-path="courses" href="#">• SAP ABAP on HANA</a></li><li class="hover:text-inverse-on-surface transition-colors"><a data-path="courses" href="#">• SAP SuccessFactors HCM</a></li><li class="hover:text-inverse-on-surface transition-colors"><a data-path="courses" href="#">• SAP SD / Logistics</a></li></ul></div><div class="lg:col-span-2 flex flex-col gap-space-md"><span class="font-label-mono text-label-mono uppercase text-primary-container tracking-wider font-semibold">Platform</span><ul class="flex flex-col gap-space-xs font-body-md text-body-md text-surface-variant/80"><li class="hover:text-inverse-on-surface transition-colors"><a data-path="about" href="#">About ZebLearn</a></li><li class="hover:text-inverse-on-surface transition-colors"><a data-path="placements" href="#">Placement Cell</a></li><li class="hover:text-inverse-on-surface transition-colors"><a data-path="stories" href="#">Alumni Stories</a></li><li class="hover:text-inverse-on-surface transition-colors"><a data-path="blogs" href="#">Technical Articles</a></li><li class="hover:text-inverse-on-surface transition-colors"><a data-path="contact" href="#">Enterprise Hiring</a></li></ul><div class="mt-space-md"><span class="font-label-mono text-label-mono text-surface-variant/60 uppercase block mb-space-xs">Security Badges</span><div class="flex items-center gap-space-xs text-outline"><span class="material-symbols-outlined text-[20px] text-tertiary-fixed-dim" title="ISO 27001 Certified">verified_user</span><span class="material-symbols-outlined text-[20px] text-tertiary-fixed-dim" title="SAP Accredited Training">workspace_premium</span><span class="material-symbols-outlined text-[20px] text-tertiary-fixed-dim" title="Enterprise Cloud Lab">cloud_done</span></div></div></div></div><div class="flex flex-col sm:flex-row items-center justify-between pt-space-lg font-label-mono text-label-mono text-surface-variant/60 gap-space-md"><span>© 2025 ZEBLEARN ACADEMY LLP. ALL RIGHTS RESERVED.</span><div class="flex gap-space-lg"><span>TERMS OF SERVICE</span><span>PRIVACY POLICY</span><span>SECURITY DISCLOSURES</span></div></div></div><div class="absolute bottom-0 left-0 right-0 pointer-events-none select-none overflow-hidden opacity-5 flex items-center justify-center"><span class="font-display-xl text-display-xl uppercase tracking-widest text-surface whitespace-nowrap -mb-8">ZEBLEARN</span></div></footer></body></html>

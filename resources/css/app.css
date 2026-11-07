@@ -1,0 +1,55 @@
+@import "tailwindcss";
+@config "../../tailwind.config.cjs";
+@source "../views";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.font-display-xl { font-family:'Anton',Impact,sans-serif; font-size:96px; line-height:96px; letter-spacing:-0.02em; font-weight:400; }
+.font-headline-xl { font-family:'Anton',Impact,sans-serif; font-size:44px; line-height:48px; font-weight:400; }
+.font-body-md { font-family:'Bricolage Grotesque','Inter',sans-serif; font-size:14px; line-height:22px; font-weight:400; }
+@layer base {
+  html { font-family: 'Bricolage Grotesque', 'Inter', system-ui, sans-serif; }
+  body { background: #E4E6E9; color: #0A0A0A; -webkit-font-smoothing: antialiased; }
+}
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  line-height: 1;
+}
+
+@layer utilities {
+  .px-margin-mobile { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .px-margin { padding-left: 3rem; padding-right: 3rem; }
+  .gutter-sm { gap: 1rem; }
+}
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+@layer utilities {
+  /* Alias utilities for design token class names */
+  .pt-space-xl { @apply pt-[2.5rem]; }
+  .pb-space-3xl { @apply pb-[6rem]; }
+  .mb-space-md { @apply mb-[1rem]; }
+  .pb-space-sm { @apply pb-[0.5rem]; }
+  .mt-space-xl { @apply mt-[2.5rem]; }
+  .gap-space-sm { @apply gap-[0.5rem]; }
+  .gap-space-md { @apply gap-[1rem]; }
+  .gap-space-lg { @apply gap-[1.5rem]; }
+  .space-xl { @apply space-x-[2.5rem]; }
+  .space-2xl { @apply space-x-[4rem]; }
+  .space-3xl { @apply space-x-[6rem]; }
+  .space-sm { @apply space-x-[0.5rem]; }
+  .space-md { @apply space-x-[1rem]; }
+  .space-lg { @apply space-x-[1.5rem]; }
+  .space-xs { @apply space-x-[0.25rem]; }
+  .font-display-xl { font-family: Anton, sans-serif; font-size: 64px; line-height: 0.84; text-transform: uppercase; }
+
+}

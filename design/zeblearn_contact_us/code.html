@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Anton:wght@400;500;700&amp;family=Bricolage+Grotesque:wght@400;500;700&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode: "class", theme: {extend: {colors: {"surface": "#fff8f5", "on-primary-container": "#4c2300", "surface-container-low": "#fff1e9", "inverse-surface": "#3a2e26", "surface-container-high": "#f9e4d8", "on-surface-variant": "#564335", "secondary": "#86522a", "error-container": "#ffdad6", "background": "#fff8f5", "primary-container": "#e77801", "on-error-container": "#93000a", "on-background": "#241912", "primary-fixed-dim": "#ffb783", "on-tertiary-fixed": "#001e2d", "surface-bright": "#fff8f5", "tertiary": "#00658b", "surface-container-highest": "#f3dfd2", "on-primary": "#ffffff", "on-error": "#ffffff", "on-primary-fixed": "#301400", "surface-dim": "#ead6ca", "secondary-container": "#ffbb8a", "inverse-primary": "#ffb783", "on-tertiary-container": "#003348", "tertiary-fixed": "#c5e7ff", "secondary-fixed-dim": "#fcb887", "on-secondary-fixed-variant": "#6a3b15", "error": "#ba1a1a", "tertiary-container": "#00a1da", "primary": "#944b00", "on-secondary-container": "#7a4821", "surface-variant": "#f3dfd2", "surface-container": "#ffeade", "primary-fixed": "#ffdcc5", "surface-tint": "#944b00", "secondary-fixed": "#ffdcc5", "on-secondary-fixed": "#301400", "outline": "#8a7263", "outline-variant": "#ddc1b0", "on-tertiary-fixed-variant": "#004c6a", "inverse-on-surface": "#ffede3", "on-surface": "#241912", "on-tertiary": "#ffffff", "tertiary-fixed-dim": "#7ed0ff", "on-primary-fixed-variant": "#703700", "on-secondary": "#ffffff", "surface-container-lowest": "#ffffff"}, borderRadius: {DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem"}, spacing: {"space-md": "1rem", "space-sm": "0.5rem", "space-2xl": "4rem", "space-xs": "0.25rem", "margin": "3rem", "space-lg": "1.5rem", "margin-mobile": "1.25rem", "space-3xl": "6rem", "gutter-sm": "1rem", "gutter": "1.5rem", "space-xl": "2.5rem"}, fontFamily: {"headline-xl": ["Anton"], "headline-lg": ["Anton"], "body-xl": ["Bricolage Grotesque"], "body-md": ["Bricolage Grotesque"], "label-mono": ["Inter"], "display-xl": ["Anton"], "headline-xl-mobile": ["Anton"], "display-lg-mobile": ["Anton"], "headline-sm": ["Anton"], "display-lg": ["Anton"], "body-lg": ["Bricolage Grotesque"], "display-xl-mobile": ["Anton"], "label-sm": ["Inter"]}, fontSize: {"headline-xl": ["44px", {lineHeight: "48px", letterSpacing: "0em", fontWeight: "400"}], "headline-lg": ["32px", {lineHeight: "36px", letterSpacing: "0em", fontWeight: "400"}], "body-xl": ["20px", {lineHeight: "30px", letterSpacing: "-0.01em", fontWeight: "400"}], "body-md": ["14px", {lineHeight: "22px", letterSpacing: "0em", fontWeight: "400"}], "label-mono": ["11px", {lineHeight: "14px", letterSpacing: "0.08em", fontWeight: "600"}], "display-xl": ["96px", {lineHeight: "96px", letterSpacing: "-0.02em", fontWeight: "400"}], "headline-xl-mobile": ["32px", {lineHeight: "36px", letterSpacing: "0em", fontWeight: "400"}], "display-lg-mobile": ["40px", {lineHeight: "44px", letterSpacing: "0em", fontWeight: "400"}], "headline-sm": ["22px", {lineHeight: "26px", letterSpacing: "0.02em", fontWeight: "400"}], "display-lg": ["64px", {lineHeight: "68px", letterSpacing: "-0.01em", fontWeight: "400"}], "body-lg": ["16px", {lineHeight: "26px", letterSpacing: "0em", fontWeight: "400"}], "display-xl-mobile": ["52px", {lineHeight: "52px", letterSpacing: "-0.01em", fontWeight: "400"}], "label-sm": ["12px", {lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "500"}]}}}};</script></head><body class="bg-surface text-on-surface font-body-md text-body-md antialiased min-h-screen selection:bg-primary-container selection:text-on-primary"><header class="fixed top-0 inset-x-0 z-50 bg-surface-container-lowest/90 backdrop-blur-xl border-b border-outline-variant/30"><div class="h-20 max-w-[1440px] mx-auto px-margin-mobile md:px-margin flex items-center justify-between"><a class="flex items-center gap-space-md cursor-pointer" data-path="courses" href="#"><img alt="ZebLearn Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAaC4K-MMEWB5omf2L6n_4XfoRsn4b1X2ySISqt2EvGqLzsvId8Ayw6yc_LgE90v7_sDQjd0xJufIfld77pnbhK2-KREUcGdaHJgeoDxpdlbtFV5QxMouoSF2-p9PkPaKY1ABJtIcVsW8ZfqoCdgrisvHBd_3pRJAf-VTkEMUsJkxwN7UJ7dhgf3bx4GXx6uCDb5Wjy5rzsEBZHYf6tuwpfQOo9nhlc9cE5fDLtjnGQvVlY4DzRdQWFnqK31P8cQo6"/><span class="font-headline-sm text-headline-sm uppercase tracking-wider text-inverse-surface">ZEBLEARN</span></a><nav class="hidden lg:flex items-center p-space-xs bg-surface-container-low rounded-full border border-outline-variant/40" data-active-classes="bg-inverse-surface text-on-primary font-body-md text-body-md rounded-full shadow-sm"><a class="px-space-md py-space-xs rounded-full font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-lowest transition-all" data-path="courses" href="#">Courses</a><a class="px-space-md py-space-xs rounded-full font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-lowest transition-all" data-path="placements" href="#">Placements</a><a class="px-space-md py-space-xs rounded-full font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-lowest transition-all" data-path="stories" href="#">Stories</a><a class="px-space-md py-space-xs rounded-full font-body-md text-body-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-lowest transition-all" data-path="blogs" href="#">Blogs</a><a aria-current="page" class="px-space-md py-space-xs transition-all bg-inverse-surface text-on-primary font-body-md text-body-md rounded-full shadow-sm" data-path="contact" href="#">Contact</a></nav><div class="flex items-center gap-space-md"><button class="flex items-center gap-space-xs px-space-md py-space-xs rounded-full border border-outline-variant/40 bg-surface-container-lowest font-label-sm text-label-sm text-inverse-surface hover:border-outline transition-colors" type="button"><span class="font-label-mono text-label-mono uppercase tracking-widest text-on-surface-variant">LOC</span><span>Eng</span><span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span></button><a class="hidden sm:inline-flex items-center justify-center bg-[#FB6221] text-on-primary font-body-md text-body-md font-semibold px-space-xl py-space-md rounded-full transition-transform hover:scale-[1.02] shadow-[0_8px_24px_rgba(251,98,33,0.28)]" data-path="contact" href="#">Book a Demo</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface min-h-screen"><div class="flex flex-col w-full bg-[#E4E6E9] text-[#0A0A0A]">
+<!-- TOP HERO & TACTILE CENTERPIECE -->
+<section class="w-full max-w-[1440px] mx-auto px-margin-mobile md:px-margin pt-space-xl pb-space-3xl relative overflow-hidden">
+<!-- Micro Meta Bar -->
+<div class="flex items-center justify-between pb-space-md mb-space-lg border-b border-[#0A0A0A]/10">
+<div class="flex items-center gap-space-xs font-label-mono text-label-mono uppercase tracking-wider text-[#0A0A0A]">
+<span class="w-2 h-2 rounded-full bg-[#FB6221] animate-pulse"></span>
+<span>Contact // Terminal Dispatch</span>
+</div>
+<div class="hidden sm:flex items-center gap-space-lg font-label-mono text-label-mono text-[#0A0A0A]/60 uppercase">
+<span>Average Response: 14 Mins</span>
+<span>Status: Operational (Noida &amp; BLR)</span>
+</div>
+</div>
+<!-- Editorial Giant Headline & 3D Centerpiece Stack -->
+<div class="relative w-full">
+<div class="flex flex-col select-none">
+<h1 class="font-headline-xl text-[100px] sm:text-[140px] lg:text-[185px] leading-[0.88] tracking-[-0.03em] uppercase text-[#0A0A0A] m-0 p-0 font-normal">
+          TALK TO A
+        </h1>
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-lg">
+<h1 class="font-headline-xl text-[100px] sm:text-[140px] lg:text-[185px] leading-[0.88] tracking-[-0.03em] uppercase text-[#0A0A0A] m-0 p-0 font-normal">
+            REAL PERSON.
+          </h1>
+<div class="max-w-md pb-space-xs">
+<p class="font-body-xl text-body-xl text-[#0A0A0A]/80 font-normal leading-snug">
+              Call, message or visit. We usually reply within a few hours. Direct access to practicing SAP Solution Architects.
+            </p>
+</div>
+</div>
+</div>
+<!-- Tactile Centerpiece Composition Overlay -->
+<div class="relative mt-space-xl lg:-mt-14 flex items-center justify-center pointer-events-none">
+<div class="relative w-72 sm:w-88 md:w-96 aspect-square flex items-center justify-center">
+<!-- Radial studio ambient aura -->
+<div class="absolute inset-0 bg-gradient-to-tr from-[#FB6221]/20 via-[#FB6221]/5 to-transparent blur-3xl rounded-full scale-125"></div>
+<!-- Base 3D Phone Button Render -->
+<div class="relative z-10 w-full h-full p-2 flex items-center justify-center">
+<img alt="High-end glossy 3D render of a vivid electric orange push button on brushed titanium bevel base" class="w-full h-full object-contain filter drop-shadow-[0_28px_40px_rgba(10,10,10,0.18)]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZU0VwwOKv1Vnyocl5sKstvyAOl-0JYZlFYzxZYXC6AnwlkAXcZuAmXvg046KOGBE1voER0h6l-PX2b2kvONSreUduv1Eqve8KGtVn2Hyj4IGpH-jpvb_ZMDHM_uaD_JNGMVpr8k1QNt9crj6F7fgB0GjQ7i3-6Ja39oZWxgz3y80A026pWQn0-FcnjIGrNKta_baQu39j3FgUVvIoMnJZNf2-7J2ngfwEQPbp64s"/>
+</div>
+<!-- Human Hand Cut-out Reaching Down to Press -->
+<div class="absolute -top-16 sm:-top-20 z-20 w-44 sm:w-56 h-56 sm:h-72 pointer-events-none opacity-95 transition-transform duration-500 ease-out hover:translate-y-2">
+<img class="w-full h-full object-contain filter drop-shadow-[0_18px_25px_rgba(10,10,10,0.22)]" data-alt="Hyper-realistic crisp isolated cut-out of a natural human hand reaching downwards with pointer finger extended touching mechanical button, clean studio rim lighting, transparent pure cut aesthetic against gray background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcBNbi5yVE2_q5uYxx8ryG6JZhb7X5ZyJOU_hIOt4cV6Uck38QvdWbIauZd2JeVnrjSJFntSTXjemrB-CB-d8eJSUTRxTgMVeQnpQcz2OPPg-9H6n-ZXfuC24PDsoHlbP3j92mU3d8taqnOlIlMqG-7mjJA3eUMopx6A2Hv851srsWGOXNBSzwSBaOmc54MVE8_-LB_gsm4hguRROZTEX7wtqafWT0-OvuxAnMkZE"/>
+</div>
+<!-- Floating Micro Badge -->
+<div class="absolute -bottom-2 sm:bottom-2 bg-[#FFFFFF] px-space-md py-space-xs rounded-full shadow-[0_8px_24px_rgba(10,10,10,0.08)] border border-[#0A0A0A]/10 flex items-center gap-space-xs z-30">
+<span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
+<span class="font-label-mono text-label-mono text-[#0A0A0A] uppercase tracking-wider">Instant Dispatch Hotline</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 12-COLUMN BENTO CONTACT GRID -->
+<section class="w-full max-w-[1440px] mx-auto px-margin-mobile md:px-margin pb-space-3xl">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+<!-- Card 1: Orange Card (4 Columns) -->
+<div class="md:col-span-4 bg-[#FB6221] rounded-[24px] p-8 flex flex-col justify-between min-h-[340px] text-white transition-transform duration-300 hover:-translate-y-1 shadow-[0_12px_32px_rgba(251,98,33,0.25)] relative overflow-hidden group">
+<div class="absolute -right-10 -bottom-10 w-48 h-48 rounded-full bg-white/10 pointer-events-none blur-xl"></div>
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="font-label-mono text-label-mono uppercase tracking-widest text-[#0A0A0A] font-semibold bg-white/20 px-3 py-1 rounded-full">
+              Direct Line
+            </span>
+<span class="material-symbols-outlined text-white text-[22px]">call</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg uppercase text-white tracking-tight mb-2">CALL US</h2>
+<div class="font-headline-xl text-3xl sm:text-4xl text-white tracking-tight font-normal my-2">
+            +91 8506 888 288
+          </div>
+<p class="font-body-md text-body-md text-[#0A0A0A] font-medium mt-1">
+            Advisors available Mon–Sat (10 AM – 7 PM IST)
+          </p>
+</div>
+<div class="pt-6 mt-4 border-t border-white/20 flex items-center justify-between">
+<a class="inline-flex items-center justify-center bg-[#0A0A0A] text-white px-8 py-3.5 rounded-full font-label-mono text-label-mono uppercase tracking-wider font-semibold transition-transform hover:scale-[1.03]" href="tel:+918506888288">
+            Call now
+          </a>
+<span class="font-label-mono text-label-mono text-[#0A0A0A]/80 font-medium">Toll Free Sync</span>
+</div>
+</div>
+<!-- Card 2: Black Card (4 Columns) -->
+<div class="md:col-span-4 bg-[#0A0A0A] rounded-[24px] p-8 flex flex-col justify-between min-h-[340px] text-white transition-transform duration-300 hover:-translate-y-1 shadow-[0_16px_36px_rgba(10,10,10,0.18)] border border-white/10 relative overflow-hidden">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="font-label-mono text-label-mono uppercase tracking-widest text-white/70 bg-white/10 px-3 py-1 rounded-full">
+              Instant Messaging
+            </span>
+<span class="material-symbols-outlined text-[#FB6221] text-[22px]">chat</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg uppercase text-white tracking-tight mb-2">WHATSAPP</h2>
+<div class="font-headline-xl text-3xl sm:text-4xl text-white tracking-tight font-normal my-2">
+            +91 72778 77778
+          </div>
+<p class="font-body-md text-body-md text-[#D3D6DA]/70 mt-1">
+            Typical response time &lt; 5 mins • Verified Corporate Chat
+          </p>
+</div>
+<div class="pt-6 mt-4 border-t border-white/10 flex items-center justify-between">
+<a class="inline-flex items-center justify-center bg-[#FB6221] text-white px-8 py-3.5 rounded-full font-label-mono text-label-mono uppercase tracking-wider font-semibold transition-transform hover:scale-[1.03] shadow-[0_6px_20px_rgba(251,98,33,0.35)]" href="https://wa.me/917277877778" rel="noopener noreferrer" target="_blank">
+            Start chat
+          </a>
+<span class="font-label-mono text-label-mono text-white/50">Online 24/7</span>
+</div>
+</div>
+<!-- Card 3: Soft Gray Card (4 Columns) -->
+<div class="md:col-span-4 bg-[#D3D6DA] rounded-[24px] p-8 flex flex-col justify-between min-h-[340px] text-[#0A0A0A] transition-transform duration-300 hover:-translate-y-1 border border-[#0A0A0A]/5">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="font-label-mono text-label-mono uppercase tracking-widest text-[#0A0A0A]/80 bg-[#FFFFFF]/60 px-3 py-1 rounded-full">
+              Written Enquiries
+            </span>
+<span class="material-symbols-outlined text-[#0A0A0A] text-[22px]">alternate_email</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg uppercase text-[#0A0A0A] tracking-tight mb-2">EMAIL</h2>
+<div class="font-headline-sm text-2xl sm:text-[26px] text-[#0A0A0A] tracking-tight font-normal my-2 break-all">
+            enquiry@zeblearn.com
+          </div>
+<p class="font-body-md text-body-md text-[#0A0A0A]/70 mt-1">
+            Detailed syllabi, fee receipts &amp; corporate training proposals.
+          </p>
+</div>
+<div class="pt-6 mt-4 border-t border-[#0A0A0A]/10 flex items-center justify-between">
+<button class="inline-flex items-center justify-center bg-[#FFFFFF] text-[#0A0A0A] border border-[#0A0A0A]/15 px-8 py-3.5 rounded-full font-label-mono text-label-mono uppercase tracking-wider font-semibold transition-all hover:bg-[#0A0A0A] hover:text-white cursor-pointer" id="copy-email-btn" onclick="navigator.clipboard.writeText('enquiry@zeblearn.com'); this.innerText='COPIED!';">
+            Copy email
+          </button>
+<span class="font-label-mono text-label-mono text-[#0A0A0A]/60">SLA: 2 Hours</span>
+</div>
+</div>
+<!-- Card 4: Office Hours (4 Columns White) -->
+<div class="md:col-span-4 bg-[#FFFFFF] rounded-[24px] p-8 flex flex-col justify-between min-h-[300px] text-[#0A0A0A] border border-[#0A0A0A]/5 shadow-[0_4px_16px_rgba(10,10,10,0.03)]">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<span class="font-label-mono text-label-mono uppercase tracking-widest text-[#0A0A0A]/70 bg-[#E4E6E9] px-3 py-1 rounded-full">
+              Timings
+            </span>
+<span class="material-symbols-outlined text-[#FB6221] text-[22px]">schedule</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg uppercase text-[#0A0A0A] tracking-tight mb-2">OFFICE HOURS</h2>
+<div class="font-body-xl text-body-xl font-medium text-[#0A0A0A] mt-2">
+            Mon to Sat, 10 AM to 7 PM
+          </div>
+<p class="font-body-md text-body-md text-[#0A0A0A]/70 mt-3 leading-relaxed">
+            In-person lab access open until 9 PM for active cohort students with sandbox server access.
+          </p>
+</div>
+<div class="pt-6 border-t border-[#0A0A0A]/10 flex items-center gap-2 font-label-mono text-label-mono text-[#0A0A0A]/60">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span>CAMPUS LAB ACTIVE TODAY</span>
+</div>
+</div>
+<!-- Card 5: Wide White Card (8 Columns) Noida + Map Preview -->
+<div class="md:col-span-8 bg-[#FFFFFF] rounded-[24px] p-8 flex flex-col lg:flex-row gap-6 border border-[#0A0A0A]/5 shadow-[0_4px_16px_rgba(10,10,10,0.03)] justify-between">
+<!-- Left info -->
+<div class="flex flex-col justify-between lg:w-1/2">
+<div>
+<div class="flex items-center gap-2 mb-space-md">
+<span class="font-label-mono text-label-mono uppercase tracking-widest text-[#0A0A0A]/70 bg-[#E4E6E9] px-3 py-1 rounded-full">
+                Headquarters &amp; Lab
+              </span>
+<span class="font-label-mono text-label-mono uppercase text-[#FB6221] font-semibold">• Noida Sector 62</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg uppercase text-[#0A0A0A] tracking-tight mb-2">
+              PHYSICAL CAMPUS
+            </h2>
+<p class="font-body-md text-body-md text-[#0A0A0A]/90 mt-2 font-medium">
+              Noida Campus: Sector 62, Electronic City, Institutional Area, Noida, Uttar Pradesh 201309
+            </p>
+<p class="font-body-md text-body-md text-[#0A0A0A]/60 mt-2">
+              Secondary Hub: Bengaluru Innovation Hub, Outer Ring Road, Bellandur, Bengaluru 560103
+            </p>
+</div>
+<div class="pt-6 mt-4 border-t border-[#0A0A0A]/10 flex items-center gap-4">
+<a class="inline-flex items-center justify-center bg-[#0A0A0A] text-white px-8 py-3.5 rounded-full font-label-mono text-label-mono uppercase tracking-wider font-semibold transition-transform hover:scale-[1.03]" href="https://maps.google.com" rel="noopener noreferrer" target="_blank">
+              Get directions
+            </a>
+<span class="font-label-mono text-label-mono text-[#0A0A0A]/60">5 Mins from Metro</span>
+</div>
+</div>
+<!-- Right: Sleek technical map preview -->
+<div class="lg:w-1/2 min-h-[220px] rounded-[18px] bg-[#E4E6E9] relative overflow-hidden flex flex-col justify-end p-4 border border-[#0A0A0A]/10">
+<div class="absolute inset-0 bg-cover bg-center filter grayscale contrast-125" data-location="Noida Sector 62, Electronic City, India" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDK2hiLFEm0dL8g2T3pVxlq1v7Z7alCphj_V7asVdSMoMQyuJoIAHX1nFLs0uSrymChlnwSnUW5nk5QYhmKSTuJJow_lGl5SX8Yy1o698-VToyJtd-tkmLIP1028OQg3J965yCRb8HJ15oVcv69FGDiqf1-H4tLODqYpralqSFgPL3ZxTHEe5BV9Ccpzw1E8EdBuwbglMP6O7YhEj5a_JFq9ByCt-yQQnG-ou9fKZk')"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/80 via-transparent to-transparent pointer-events-none"></div>
+<!-- Custom vivid orange pin marker badge -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+<div class="relative flex items-center justify-center">
+<span class="animate-ping absolute inline-flex h-10 w-10 rounded-full bg-[#FB6221] opacity-60"></span>
+<div class="w-8 h-8 rounded-full bg-[#FB6221] text-white flex items-center justify-center shadow-lg border-2 border-white">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+</div>
+</div>
+<span class="bg-[#0A0A0A] text-white font-label-mono text-[10px] px-2 py-0.5 rounded-md mt-1 shadow tracking-wider uppercase">
+              ZEBLEARN SECTOR 62
+            </span>
+</div>
+<div class="relative z-10 flex items-center justify-between text-white font-label-mono text-label-mono">
+<span class="uppercase">GEO: 28.6280° N, 77.3649° E</span>
+<span class="bg-white/20 backdrop-blur-sm px-2 py-0.5 rounded">VAL-LAT: OK</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FORM CARD SECTION -->
+<section class="w-full max-w-[1440px] mx-auto px-margin-mobile md:px-margin pb-space-3xl">
+<div class="bg-[#FFFFFF] rounded-[24px] p-8 md:p-12 border border-[#0A0A0A]/5 shadow-[0_8px_30px_rgba(10,10,10,0.04)] grid grid-cols-1 lg:grid-cols-12 gap-10">
+<!-- Left Column: Title & Reassurance list -->
+<div class="lg:col-span-5 flex flex-col justify-between">
+<div>
+<div class="inline-flex items-center gap-2 mb-space-md">
+<span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
+<span class="font-label-mono text-label-mono uppercase tracking-widest text-[#0A0A0A]/70">
+              Interactive Dispatch
+            </span>
+</div>
+<h2 class="font-headline-xl text-4xl sm:text-5xl lg:text-6xl uppercase tracking-tight text-[#0A0A0A] leading-none mb-space-md">
+            SEND US A<br/>MESSAGE
+          </h2>
+<p class="font-body-lg text-body-lg text-[#0A0A0A]/75 mb-space-xl leading-relaxed">
+            Fill out your details and an enterprise SAP advisor will connect with you within 30 minutes to structure your learning pathway.
+          </p>
+<!-- Reassurance check lines -->
+<div class="space-y-space-md pt-space-md border-t border-[#0A0A0A]/10">
+<div class="flex items-start gap-3">
+<div class="w-5 h-5 rounded-full bg-[#FB6221]/15 text-[#FB6221] flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[14px] font-bold">check</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-[#0A0A0A]">Real architects, not pushy telecallers</p>
+<p class="font-label-mono text-label-mono text-[#0A0A0A]/60">Speak directly with SAP-certified senior practitioners.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-5 h-5 rounded-full bg-[#FB6221]/15 text-[#FB6221] flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[14px] font-bold">check</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-[#0A0A0A]">Verified syllabus &amp; fee transparency</p>
+<p class="font-label-mono text-label-mono text-[#0A0A0A]/60">Strictly fixed institutional rates without surprise charges.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-5 h-5 rounded-full bg-[#FB6221]/15 text-[#FB6221] flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[14px] font-bold">check</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-semibold text-[#0A0A0A]">Direct demo access credentials</p>
+<p class="font-label-mono text-label-mono text-[#0A0A0A]/60">Immediate guest portal invitation for upcoming weekend live class.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="hidden lg:block pt-space-xl">
+<div class="p-4 rounded-xl bg-[#E4E6E9]/60 border border-[#0A0A0A]/5 flex items-center gap-3">
+<span class="material-symbols-outlined text-[#FB6221]">security</span>
+<span class="font-label-mono text-label-mono text-[#0A0A0A]/70 uppercase">256-Bit SSL Encrypted Enterprise Transmission</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Interactive Form -->
+<div class="lg:col-span-7">
+<form class="space-y-5" onsubmit="event.preventDefault(); alert('Message dispatched. An advisor will contact you shortly.');">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+<!-- Full Name -->
+<div class="space-y-1.5">
+<label class="font-label-mono text-label-mono uppercase text-[#0A0A0A] tracking-wider block">Full Name *</label>
+<input class="w-full bg-[#FFFFFF] border border-[#0A0A0A]/15 rounded-xl px-5 py-4 text-[#0A0A0A] font-body-md text-body-md placeholder-[#0A0A0A]/40 focus:outline-none focus:border-[#FB6221] focus:ring-1 focus:ring-[#FB6221] transition-all" placeholder="e.g. Rohan Sharma" required="" type="text"/>
+</div>
+<!-- Phone (+91) -->
+<div class="space-y-1.5">
+<label class="font-label-mono text-label-mono uppercase text-[#0A0A0A] tracking-wider block">Phone Number (+91) *</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 font-label-mono text-label-mono text-[#0A0A0A]/60">+91</span>
+<input class="w-full bg-[#FFFFFF] border border-[#0A0A0A]/15 rounded-xl pl-14 pr-5 py-4 text-[#0A0A0A] font-body-md text-body-md placeholder-[#0A0A0A]/40 focus:outline-none focus:border-[#FB6221] focus:ring-1 focus:ring-[#FB6221] transition-all" pattern="[0-9]{10}" placeholder="98765 43210" required="" type="tel"/>
+</div>
+<span class="font-label-mono text-[10px] text-red-600 block">Required for SMS instant login credentials</span>
+</div>
+</div>
+<!-- Email Address -->
+<div class="space-y-1.5">
+<label class="font-label-mono text-label-mono uppercase text-[#0A0A0A] tracking-wider block">Corporate or Personal Email *</label>
+<input class="w-full bg-[#FFFFFF] border border-[#0A0A0A]/15 rounded-xl px-5 py-4 text-[#0A0A0A] font-body-md text-body-md placeholder-[#0A0A0A]/40 focus:outline-none focus:border-[#FB6221] focus:ring-1 focus:ring-[#FB6221] transition-all" placeholder="rohan.s@enterprise.com" required="" type="email"/>
+</div>
+<!-- Dropdown Course -->
+<div class="space-y-1.5">
+<label class="font-label-mono text-label-mono uppercase text-[#0A0A0A] tracking-wider block">Course Interested In *</label>
+<div class="relative">
+<select class="w-full bg-[#FFFFFF] border border-[#0A0A0A]/15 rounded-xl px-5 py-4 text-[#0A0A0A] font-body-md text-body-md focus:outline-none focus:border-[#FB6221] focus:ring-1 focus:ring-[#FB6221] appearance-none transition-all cursor-pointer" required="">
+<option disabled="" selected="" value="">Select an enterprise track...</option>
+<option value="fico">SAP FICO (Financial Accounting &amp; Controlling)</option>
+<option value="mm">SAP MM (Materials Management &amp; Sourcing)</option>
+<option value="sd">SAP SD (Sales &amp; Distribution)</option>
+<option value="pp">SAP PP (Production Planning)</option>
+<option value="ewm">SAP EWM (Extended Warehouse Management)</option>
+<option value="btp">SAP BTP &amp; ABAP Cloud Integration</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-[#0A0A0A]/60">
+                unfold_more
+              </span>
+</div>
+</div>
+<!-- Message -->
+<div class="space-y-1.5">
+<label class="font-label-mono text-label-mono uppercase text-[#0A0A0A] tracking-wider block">Your Background &amp; Query (Optional)</label>
+<textarea class="w-full bg-[#FFFFFF] border border-[#0A0A0A]/15 rounded-xl px-5 py-4 text-[#0A0A0A] font-body-md text-body-md placeholder-[#0A0A0A]/40 focus:outline-none focus:border-[#FB6221] focus:ring-1 focus:ring-[#FB6221] transition-all resize-none" placeholder="Tell us about your current role, years of experience, or preferred cohort timing..." rows="3"></textarea>
+</div>
+<!-- Submit Bar -->
+<div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+<button class="w-full sm:w-auto inline-flex items-center justify-center bg-[#0A0A0A] text-white px-10 py-4 rounded-full font-label-mono text-label-mono uppercase tracking-wider font-semibold transition-all hover:bg-[#FB6221] hover:scale-[1.02] cursor-pointer shadow-md" type="submit">
+              Send message
+            </button>
+<span class="font-label-mono text-label-mono text-[#0A0A0A]/50 text-center sm:text-right">
+              By submitting, you agree to ZebLearn admission confidentiality terms.
+            </span>
+</div>
+</form>
+</div>
+</div>
+</section>
+<!-- QUICK ANSWERS ACCORDION -->
+<section class="w-full max-w-[1440px] mx-auto px-margin-mobile md:px-margin pb-space-3xl">
+<div class="mb-space-lg flex items-center justify-between">
+<div>
+<span class="font-label-mono text-label-mono uppercase text-[#FB6221] tracking-widest block mb-1">Knowledge Vault</span>
+<h2 class="font-headline-xl text-4xl sm:text-5xl uppercase tracking-tight text-[#0A0A0A]">
+          QUICK ANSWERS
+        </h2>
+</div>
+<div class="hidden sm:block font-label-mono text-label-mono text-[#0A0A0A]/60 uppercase">
+        4 Core Questions // Updated Weekly
+      </div>
+</div>
+<!-- Accordion Wrapper Card -->
+<div class="bg-[#FFFFFF] rounded-[24px] border border-[#0A0A0A]/5 shadow-[0_4px_20px_rgba(10,10,10,0.03)] overflow-hidden">
+<!-- Row 1: Expanded -->
+<div class="border-b border-[#0A0A0A]/10 p-6 sm:p-8 transition-colors">
+<details class="group" open="">
+<summary class="flex items-center justify-between cursor-pointer list-none select-none">
+<div class="flex items-center gap-4">
+<span class="font-label-mono text-label-mono text-[#0A0A0A]/40 font-semibold">01</span>
+<h3 class="font-body-xl text-body-xl font-semibold text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors">
+                What are the course fees and installment options?
+              </h3>
+</div>
+<div class="w-9 h-9 rounded-full bg-[#FB6221] text-white flex items-center justify-center shrink-0 transition-transform group-open:rotate-45">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</div>
+</summary>
+<div class="mt-4 pt-4 border-t border-[#0A0A0A]/5 pl-8 sm:pl-10 max-w-4xl text-[#0A0A0A]/80 font-body-md text-body-md leading-relaxed">
+<p>
+              We provide clear institutional pricing: Flat <strong>₹25,000 + GST</strong> for individual core modules (SAP FICO, MM, SD, PP). We partner with major NBFCs to offer <strong>0% interest EMI options</strong> spanning 3, 6, and 9-month plans with no credit card requirement for verified professionals.
+            </p>
+</div>
+</details>
+</div>
+<!-- Row 2 -->
+<div class="border-b border-[#0A0A0A]/10 p-6 sm:p-8 transition-colors">
+<details class="group">
+<summary class="flex items-center justify-between cursor-pointer list-none select-none">
+<div class="flex items-center gap-4">
+<span class="font-label-mono text-label-mono text-[#0A0A0A]/40 font-semibold">02</span>
+<h3 class="font-body-xl text-body-xl font-semibold text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors">
+                Can I attend a free demo session before paying?
+              </h3>
+</div>
+<div class="w-9 h-9 rounded-full bg-[#FB6221] text-white flex items-center justify-center shrink-0 transition-transform group-open:rotate-45">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</div>
+</summary>
+<div class="mt-4 pt-4 border-t border-[#0A0A0A]/5 pl-8 sm:pl-10 max-w-4xl text-[#0A0A0A]/80 font-body-md text-body-md leading-relaxed">
+<p>
+              Yes. Every prospective candidate receives guest credentials to a live weekend session with the module lead architect. You evaluate the methodology, real-time S/4HANA GUI interface, and instructor pedagogy before committing fees.
+            </p>
+</div>
+</details>
+</div>
+<!-- Row 3 -->
+<div class="border-b border-[#0A0A0A]/10 p-6 sm:p-8 transition-colors">
+<details class="group">
+<summary class="flex items-center justify-between cursor-pointer list-none select-none">
+<div class="flex items-center gap-4">
+<span class="font-label-mono text-label-mono text-[#0A0A0A]/40 font-semibold">03</span>
+<h3 class="font-body-xl text-body-xl font-semibold text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors">
+                What are the live batch timings for working professionals?
+              </h3>
+</div>
+<div class="w-9 h-9 rounded-full bg-[#FB6221] text-white flex items-center justify-center shrink-0 transition-transform group-open:rotate-45">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</div>
+</summary>
+<div class="mt-4 pt-4 border-t border-[#0A0A0A]/5 pl-8 sm:pl-10 max-w-4xl text-[#0A0A0A]/80 font-body-md text-body-md leading-relaxed">
+<p>
+              Our batches are engineered specifically around corporate hours: Weekend cohorts run Saturdays &amp; Sundays (10:00 AM – 1:00 PM or 3:00 PM – 6:00 PM IST). Weekday night batches run Tuesday &amp; Thursday (8:30 PM – 10:30 PM IST). All sessions are recorded in 1080p and synced to your portal.
+            </p>
+</div>
+</details>
+</div>
+<!-- Row 4 -->
+<div class="p-6 sm:p-8 transition-colors">
+<details class="group">
+<summary class="flex items-center justify-between cursor-pointer list-none select-none">
+<div class="flex items-center gap-4">
+<span class="font-label-mono text-label-mono text-[#0A0A0A]/40 font-semibold">04</span>
+<h3 class="font-body-xl text-body-xl font-semibold text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors">
+                What payment methods are supported?
+              </h3>
+</div>
+<div class="w-9 h-9 rounded-full bg-[#FB6221] text-white flex items-center justify-center shrink-0 transition-transform group-open:rotate-45">
+<span class="material-symbols-outlined text-[20px]">add</span>
+</div>
+</summary>
+<div class="mt-4 pt-4 border-t border-[#0A0A0A]/5 pl-8 sm:pl-10 max-w-4xl text-[#0A0A0A]/80 font-body-md text-body-md leading-relaxed">
+<p>
+              We accept all domestic &amp; international Credit/Debit cards (Visa, MasterCard, Amex), UPI (Google Pay, PhonePe, Paytm), NetBanking across 50+ banks, Corporate Wire Transfers (NEFT/RTGS), and direct institutional purchase orders with immediate GST invoice issuance.
+            </p>
+</div>
+</details>
+</div>
+</div>
+</section>
+<!-- PAYMENT & SECURITY STRIP -->
+<section class="w-full max-w-[1440px] mx-auto px-margin-mobile md:px-margin pb-space-3xl">
+<div class="bg-[#D3D6DA] rounded-[24px] p-6 sm:p-8 border border-[#0A0A0A]/5 flex flex-col lg:flex-row items-center justify-between gap-6">
+<!-- Badges Stack -->
+<div class="flex flex-wrap items-center gap-4 sm:gap-6 justify-center lg:justify-start">
+<div class="flex items-center gap-2 bg-[#FFFFFF]/70 px-3.5 py-2 rounded-xl border border-[#0A0A0A]/10">
+<span class="material-symbols-outlined text-[18px] text-[#0A0A0A]">account_balance_wallet</span>
+<span class="font-label-mono text-label-mono uppercase text-[#0A0A0A] tracking-wider font-semibold">UPI &amp; QR Direct</span>
+</div>
+<div class="flex items-center gap-2 bg-[#FFFFFF]/70 px-3.5 py-2 rounded-xl border border-[#0A0A0A]/10">
+<span class="material-symbols-outlined text-[18px] text-[#0A0A0A]">credit_card</span>
+<span class="font-label-mono text-label-mono uppercase text-[#0A0A0A] tracking-wider font-semibold">All Major Cards</span>
+</div>
+<div class="flex items-center gap-2 bg-[#FFFFFF]/70 px-3.5 py-2 rounded-xl border border-[#0A0A0A]/10">
+<span class="material-symbols-outlined text-[18px] text-[#0A0A0A]">account_balance</span>
+<span class="font-label-mono text-label-mono uppercase text-[#0A0A0A] tracking-wider font-semibold">NetBanking 50+</span>
+</div>
+<div class="flex items-center gap-2 bg-[#FFFFFF]/70 px-3.5 py-2 rounded-xl border border-[#0A0A0A]/10">
+<span class="material-symbols-outlined text-[18px] text-[#0A0A0A]">verified_user</span>
+<span class="font-label-mono text-label-mono uppercase text-[#0A0A0A] tracking-wider font-semibold">Razorpay Secure</span>
+</div>
+<div class="flex items-center gap-2 bg-[#FFFFFF]/70 px-3.5 py-2 rounded-xl border border-[#0A0A0A]/10">
+<span class="material-symbols-outlined text-[18px] text-[#FB6221]">receipt_long</span>
+<span class="font-label-mono text-label-mono uppercase text-[#0A0A0A] tracking-wider font-semibold">GST Invoice Ready</span>
+</div>
+</div>
+<!-- Legal Links -->
+<div class="flex items-center gap-6 font-label-mono text-label-mono uppercase text-[#0A0A0A]/70">
+<a class="hover:text-[#0A0A0A] transition-colors underline decoration-[#0A0A0A]/30 underline-offset-4" href="#">Refund Policy</a>
+<a class="hover:text-[#0A0A0A] transition-colors underline decoration-[#0A0A0A]/30 underline-offset-4" href="#">Terms of Service</a>
+<a class="hover:text-[#0A0A0A] transition-colors underline decoration-[#0A0A0A]/30 underline-offset-4" href="#">Security Protocols</a>
+</div>
+</div>
+</section>
+</div></main><footer class="w-full bg-[#0A0A0A] text-on-primary rounded-t-[2.5rem] overflow-hidden relative border-t border-outline-variant/20"><div class="pointer-events-none select-none absolute right-[-5%] bottom-[-8%] font-display-xl text-[140px] md:text-[220px] text-surface-container-lowest/[0.03] uppercase tracking-tighter leading-none">ZEBLEARN</div><div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin pt-space-3xl pb-space-2xl relative z-10"><div class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-space-3xl"><div class="md:col-span-4 flex flex-col justify-between space-y-space-xl"><div class="space-y-space-md"><span class="font-headline-lg text-headline-lg uppercase text-surface-container-lowest tracking-tight">ZEBLEARN STUDIO</span><p class="font-body-md text-body-md text-outline-variant max-w-md">Next-generation enterprise technology accelerator for elite SAP engineering, architectural rigor, and corporate deployment systems.</p></div><div class="space-y-space-xs"><div class="font-label-mono text-label-mono uppercase tracking-wider text-outline-variant">Autonomous Hubs</div><div class="font-body-md text-body-md text-surface-container-high">Campus 01 // Berlin Tech Arc</div><div class="font-body-md text-body-md text-surface-container-high">Campus 02 // Bengaluru Enterprise Park</div><div class="font-body-md text-body-md text-surface-container-high">Campus 03 // Singapore Financial Grid</div></div></div><div class="md:col-span-3 md:col-start-6 space-y-space-md"><div class="font-label-mono text-label-mono uppercase tracking-wider text-outline-variant">Curricula</div><ul class="space-y-space-sm font-body-md text-body-md text-surface-container-high"><li><a class="hover:text-surface-container-lowest transition-colors" data-path="courses" href="#">SAP S/4HANA Finance &amp; Controlling</a></li><li><a class="hover:text-surface-container-lowest transition-colors" data-path="courses" href="#">SAP BTP Core &amp; Integration Suite</a></li><li><a class="hover:text-surface-container-lowest transition-colors" data-path="courses" href="#">Advanced ABAP Cloud on HANA</a></li><li><a class="hover:text-surface-container-lowest transition-colors" data-path="courses" href="#">SAP Fiori &amp; Enterprise UX</a></li><li><a class="hover:text-surface-container-lowest transition-colors" data-path="courses" href="#">SAP Supply Chain &amp; Extended MM</a></li></ul></div><div class="md:col-span-2 space-y-space-md"><div class="font-label-mono text-label-mono uppercase tracking-wider text-outline-variant">Platform</div><ul class="space-y-space-sm font-body-md text-body-md text-surface-container-high"><li><a class="hover:text-surface-container-lowest transition-colors" data-path="courses" href="#">Courses Catalog</a></li><li><a class="hover:text-surface-container-lowest transition-colors" data-path="placements" href="#">Hiring Partners</a></li><li><a class="hover:text-surface-container-lowest transition-colors" data-path="stories" href="#">Alumni Matrix</a></li><li><a class="hover:text-surface-container-lowest transition-colors" data-path="blogs" href="#">Monographs &amp; Blogs</a></li><li><a class="hover:text-surface-container-lowest transition-colors" data-path="contact" href="#">Contact &amp; Admissions</a></li></ul></div><div class="md:col-span-2 space-y-space-md"><div class="font-label-mono text-label-mono uppercase tracking-wider text-outline-variant">Terminal Status</div><div class="font-label-mono text-label-mono text-outline-variant space-y-space-xs"><div>CLUSTER: PROD-EU-CENTRAL</div><div>DISPATCH: AUTONOMOUS</div><div>PIPELINE: VERIFIED 2025</div><div>SYS LATENCY: 9MS</div></div></div></div><div class="pt-space-xl border-t border-outline-variant/20 flex flex-col sm:flex-row items-center justify-between gap-space-md font-label-mono text-label-mono uppercase text-outline-variant"><div>© 2025 ZEBLEARN CORP. ARCHITECTURAL RIGOR RESERVED.</div><div class="flex items-center gap-space-lg"><span class="hover:text-surface-container-lowest transition-colors cursor-pointer">LEGAL DISCLOSURE</span><span class="hover:text-surface-container-lowest transition-colors cursor-pointer">SECURITY PROTOCOLS</span><span class="hover:text-surface-container-lowest transition-colors cursor-pointer">CAMPUS DISPATCH</span></div></div></div></footer></body></html>
