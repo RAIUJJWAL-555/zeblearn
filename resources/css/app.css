@@ -1,17 +1,5 @@
 @import "tailwindcss";
 
-@font-face {
-  font-family: 'Maves';
-  src: url('/fonts/maves.woff2') format('woff2'),
-       url('/fonts/maves.woff') format('woff'),
-       url('/fonts/maves.ttf') format('truetype'),
-       url('/fonts/Maves.ttf') format('truetype'),
-       url('/fonts/Maves-Regular.ttf') format('truetype');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
 @theme {
   --color-on-secondary-fixed-variant: #6a3b15;
   --color-on-surface: #241912;
@@ -69,20 +57,20 @@
   --color-canvas-glow: #F0F1F3;
   --color-on-tertiary: #ffffff;
   --color-on-error-container: #93000a;
-  --font-heading: "Maves", "Mohave", "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-display: "Maves", "Mohave", "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Syne", "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Syne", "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  --font-display-xl: "Maves", "Mohave", "Manrope", system-ui, -apple-system, sans-serif;
-  --font-display-lg: "Maves", "Mohave", "Manrope", system-ui, -apple-system, sans-serif;
-  --font-display-lg-mobile: "Maves", "Mohave", "Manrope", system-ui, -apple-system, sans-serif;
-  --font-display-xl-mobile: "Maves", "Mohave", "Manrope", system-ui, -apple-system, sans-serif;
-  --font-headline-xl: "Maves", "Mohave", "Manrope", system-ui, -apple-system, sans-serif;
-  --font-headline-xl-mobile: "Maves", "Mohave", "Manrope", system-ui, -apple-system, sans-serif;
-  --font-headline-lg: "Maves", "Mohave", "Manrope", system-ui, -apple-system, sans-serif;
-  --font-headline-sm: "Maves", "Mohave", "Manrope", system-ui, -apple-system, sans-serif;
-  --font-headline: "Maves", "Mohave", "Manrope", system-ui, -apple-system, sans-serif;
+  --font-display-xl: "Syne", "Manrope", system-ui, -apple-system, sans-serif;
+  --font-display-lg: "Syne", "Manrope", system-ui, -apple-system, sans-serif;
+  --font-display-lg-mobile: "Syne", "Manrope", system-ui, -apple-system, sans-serif;
+  --font-display-xl-mobile: "Syne", "Manrope", system-ui, -apple-system, sans-serif;
+  --font-headline-xl: "Syne", "Manrope", system-ui, -apple-system, sans-serif;
+  --font-headline-xl-mobile: "Syne", "Manrope", system-ui, -apple-system, sans-serif;
+  --font-headline-lg: "Syne", "Manrope", system-ui, -apple-system, sans-serif;
+  --font-headline-sm: "Syne", "Manrope", system-ui, -apple-system, sans-serif;
+  --font-headline: "Syne", "Manrope", system-ui, -apple-system, sans-serif;
   --font-body-xl: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-body-lg: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-body-md: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -155,20 +143,20 @@
     font-feature-settings: 'liga';
   }
 
-  /* Typography System: Maves / Mohave headings + Inter body + IBM Plex Mono labels */
+  /* Typography System: Syne (Fancy Display Headings) + Inter (Body) + IBM Plex Mono (Labels) */
   h1, h2, h3, h4, h5, h6,
   .font-heading,
   .font-display,
+  .font-\[\'Syne\'\],
+  [class*="font-['Syne']"],
   .font-\[\'Maves\'\],
   [class*="font-['Maves']"],
-  .font-\[\'Mohave\'\],
-  [class*="font-['Mohave']"],
   .font-\[\'Anton\'\],
   [class*="font-['Anton']"],
   .font-\[\'Manrope\'\],
   [class*="font-['Manrope']"] {
-    font-family: "Maves", "Mohave", "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-    letter-spacing: -0.02em;
+    font-family: "Syne", "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    letter-spacing: -0.015em;
   }
 
   p, li, input, textarea, select, button,
