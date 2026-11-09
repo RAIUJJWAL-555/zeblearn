@@ -1,0 +1,204 @@
+/* Premium Visual Layer */
+/* --------------------------------------------------- */
+/* Color Palette */
+:root {
+  --color-brand-orange: #FB6221;
+  --color-canvas: #E4E6E9;
+  --color-ink: #0A0A0A;
+  --color-soft-gray: #D3D6DA;
+  --color-white: #ffffff;
+  /* Glass fallback */
+  --glass-bg: rgba(255,255,255,.92);
+}
+
+/* Hide all images globally */
+img { display:none !important; }
+
+/* Utility: .glass (light) */
+.glass {
+  background: rgba(255,255,255,.55);
+  backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255,255,255,.7);
+  box-shadow: 0 8px 32px rgba(10,10,10,.08), inset 0 1px 0 rgba(255,255,255,.8);
+}
+/* Utility: .glass-dark (for dark sections) */
+.glass-dark {
+  background: rgba(255,255,255,.06);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,.12);
+}
+
+/* Fallback for browsers without backdrop-filter */
+@supports not (backdrop-filter: blur(1px)) {
+  .glass, .glass-dark {
+    background: var(--glass-bg);
+    border: 1px solid rgba(255,255,255,.7);
+    box-shadow: 0 8px 32px rgba(10,10,10,.08);
+  }
+}
+
+/* Glass application */
+/* Sticky filter bar on blog pages */
+.blog-filter-bar { @apply sticky top-0 z-10 glass; }
+/* Floating badges/chips on images */
+.badge-chip { @apply glass; }
+/* Form card on book-demo page */
+.book-demo-form { @apply glass; }
+/* Small stat chips in hero */
+.hero-stat-chip { @apply glass; }
+
+/* Card inner highlight */
+.card {
+  box-shadow: 0 1px 2px rgba(10,10,10,.06), 0 12px 32px rgba(10,10,10,.06);
+  inset: 0 1px 0 rgba(255,255,255,.7);
+  border-radius: 24px;
+  position: relative;
+}
+.card::after {
+  content: '';
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.7);
+}
+
+/* Button styling */
+.btn-primary {
+  @apply px-6 py-2 rounded-full font-medium transition-all duration-200;
+  background: linear-gradient(to bottom, #FF7A3D, #FB6221);
+  color: var(--color-white);
+  box-shadow: 0 4px 12px rgba(251,98,33,.30);
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(255,255,255,.2), transparent);
+  opacity: 0.5;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(251,98,33,.40);
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid var(--color-brand-orange);
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: var(--color-brand-orange);
+  color: var(--color-white);
+}
+
+/* Noise overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="200"%3E%3Cfilter id="noise"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" result="turb"/%3E%3CfeColorMatrix type="saturate" values="0" in="turb" result="desat"/%3E%3CfeComponentTransfer%3E%3CfeFuncA type="linear" slope="0.035"/%3E%3C/componentTransfer%3E%3C/filter%3E%3Crect width="200" height="200" filter="url(%23noise)" fill="black"/%3E%3C/svg%3E');
+  opacity: .035;
+  z-index: -1;
+}
+
+/* Hero background blobs */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(251,98,33,.18) 0%, transparent 70%);
+  z-index: -2;
+}
+.hero-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 70% 70%, rgba(200,200,200,.12) 0%, transparent 70%);
+  z-index: -2;
+}
+
+/* Scroll-reveal placeholder – actual logic in JS */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 600ms cubic-bezier(.2,.7,.2,1), transform 600ms cubic-bezier(.2,.7,.2,1);
+}
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Card hover lift */
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(10,10,10,.12), 0 1px 4px rgba(10,10,10,.08);
+}
+.card:hover .arrow-icon {
+  transform: translateX(4px);
+}
+
+/* Nav link underline slide */
+.nav-link {
+  position: relative;
+  display: inline-block;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 2px;
+  width: 100%;
+  background: var(--color-brand-orange);
+  transform: scaleX(0);
+  transition: transform 250ms ease;
+}
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Parallax on hero image */
+.parallax-hero {
+  will-change: transform;
+  transition: transform 0.2s ease-out;
+}
+
+/* Responsive blur reduction */
+@media (max-width: 640px) {
+  .glass { backdrop-filter: blur(10px) saturate(140%); }
+}
+
+/* Accessibility: ensure sufficient contrast on glass text */
+.glass * {
+  color: var(--color-ink);
+}
+
+/* Misc utilities */
+.rounded-img {
+  border-radius: 12px;
+  border: 1px solid rgba(10,10,10,.06);
+}
+
+/* Divider with orange tick */
+.section-divider {
+  border-top: 1px solid var(--color-soft-gray);
+  position: relative;
+  margin: 2rem 0;
+}
+.section-divider::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -6px;
+  width: 12px;
+  height: 12px;
+  background: var(--color-brand-orange);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+/* Hand‑drawn SVG underline – injected via JS */

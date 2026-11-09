@@ -1,27 +1,128 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $title ?? 'ZebLearn' }}</title>
-    <meta name="description" content="{{ $description ?? '' }}">
-    <link rel="canonical" href="{{ url()->current() }}">
-    <!-- Open Graph tags -->
-    <meta property="og:title" content="{{ $title ?? 'ZebLearn' }}">
-    <meta property="og:description" content="{{ $description ?? '' }}">
-    <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:type" content="website">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bricolage+Grotesque:opsz,wght@12..96,400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#f7f7f5">
+
+    {{-- SEO: Title and Description --}}
+    <title>@yield('title', 'SAP Course Online: FICO, MM, SD, PP Training | ZebLearn')</title>
+
+    <meta
+        name="description"
+        content="@yield('description', 'Learn SAP online with live classes, real system practice and placement support. Explore SAP FICO, MM, SD and PP courses at ZebLearn.')"
+    >
+
+    <meta
+        name="robots"
+        content="@yield('robots', 'index, follow, max-image-preview:large')"
+    >
+
+    <link
+        rel="canonical"
+        href="@yield('canonical', url()->current())"
+    >
+
+    {{-- Open Graph SEO --}}
+    <meta property="og:type" content="@yield('og_type', 'website')">
+    <meta property="og:site_name" content="ZebLearn">
+    <meta property="og:locale" content="en_IN">
+
+    <meta
+        property="og:title"
+        content="@yield('og_title', 'SAP Training Courses | ZebLearn')"
+    >
+
+    <meta
+        property="og:description"
+        content="@yield('og_description', 'Learn SAP with live online training, practical system experience and placement support.')"
+    >
+
+    <meta property="og:url" content="{{ url()->current() }}">
+
+    <meta
+        property="og:image"
+        content="@yield('og_image', asset('images/zeblearn-home-og.webp'))"
+    >
+
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    {{-- Twitter Card --}}
+    <meta name="twitter:card" content="summary_large_image">
+
+    <meta
+        name="twitter:title"
+        content="@yield('twitter_title', 'SAP Training Courses | ZebLearn')"
+    >
+
+    <meta
+        name="twitter:description"
+        content="@yield('twitter_description', 'Learn SAP with ZebLearn through live online training and practical learning.')"
+    >
+
+    <meta
+        name="twitter:image"
+        content="@yield('og_image', asset('images/zeblearn-home-og.webp'))"
+    >
+
+    {{-- Google Fonts --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Bricolage+Grotesque:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    {{-- Material Symbols --}}
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
+        rel="stylesheet"
+    >
+
+    {{-- Vite: Tailwind CSS 4 + JavaScript --}}
+    @vite([
+        'resources/css/app.css',
+        'resources/js/app.js'
+    ])
+
+    {{-- Page-specific head content --}}
+    @stack('head')
+    @stack('schema')
+
 </head>
-<body class="bg-canvas-base text-on-surface font-body-md antialiased min-h-screen">
-    @include('components.layouts.header')
-    <main class="container mx-auto py-8">
+
+<body class="@yield('body-class', 'bg-surface text-on-surface font-body-md antialiased min-h-screen')">
+
+    {{-- Skip Navigation: Accessibility --}}
+    <a
+        href="#main-content"
+        class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-white focus:px-5 focus:py-3 focus:text-black focus:shadow-lg"
+    >
+        Skip to main content
+    </a>
+
+    {{-- Shared Header --}}
+    <x-layout.header />
+
+    {{-- Main Content --}}
+    <main id="main-content">
         @yield('content')
     </main>
-    @include('components.layouts.footer')
+
+    {{-- Shared Footer --}}
+    <x-layout.footer />
+
+    {{-- Page-specific JavaScript --}}
+    @stack('scripts')
+
 </body>
 </html>

@@ -13,17 +13,18 @@ class StitchService
     public function callMcp(string $tool, array $payload = []): array
     {
         $body = [
-            'server'    => 'stitch',
-            'tool'      => $tool,
+            'server' => 'stitch',
+            'tool' => $tool,
             'arguments' => $payload,
         ];
 
         $response = Http::withHeaders([
-                'Authorization' => 'Bearer ' . env('STITCH_API_TOKEN'),
-            ])
+            'Authorization' => 'Bearer '.env('STITCH_API_TOKEN'),
+        ])
             ->post($this->gateway, $body);
 
         $response->throw();
+
         return $response->json();
     }
 
@@ -34,6 +35,7 @@ class StitchService
         if ($title !== null) {
             $payload['title'] = $title;
         }
+
         return $this->callMcp('create_project', $payload);
     }
 
@@ -48,7 +50,7 @@ class StitchService
     {
         return $this->callMcp('upload_design_md', [
             'project_id' => $projectId,
-            'design_md'  => $designMd,
+            'design_md' => $designMd,
         ]);
     }
 
@@ -57,7 +59,7 @@ class StitchService
     {
         return $this->callMcp('generate_screen_from_text', [
             'project_id' => $projectId,
-            'prompt'     => $prompt,
+            'prompt' => $prompt,
         ]);
     }
 
@@ -66,7 +68,7 @@ class StitchService
     {
         return $this->callMcp('download_file', [
             'project_id' => $projectId,
-            'path'       => $path,
+            'path' => $path,
         ]);
     }
 }
