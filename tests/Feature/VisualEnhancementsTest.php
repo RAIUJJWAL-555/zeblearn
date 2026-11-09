@@ -1,0 +1,115 @@
+<?php
+
+test('homepage renders interactive DitherVeil in hero and preserves left headlines and ctas', function () {
+    $response = $this->get('/');
+
+    $response->assertStatus(200);
+
+    // 1. Hero DitherVeil WebGL2 Component (Pure floating element without background box or surrounding text tags)
+    $response->assertSee('id="ditherveil-wrapper"', false);
+    $response->assertSee('id="ditherveil-container"', false);
+    $response->assertDontSee('INTERACTIVE VEIL • HOVER TO REVEAL');
+
+    // 2. Preserved Left Hero Headlines & CTAs
+    $response->assertSee('LEARN SAP ONLINE.');
+    $response->assertSee('GET HIRED.');
+    $response->assertSee('Book a Free Demo');
+    $response->assertSee('Explore Courses');
+    $response->assertSee('2,500+ LEARNERS TRAINED');
+    $response->assertSee('24/7 S/4HANA Sandbox Access');
+
+    // 3. Complete absence of obsolete dashboard remnants
+    $response->assertDontSee('T-CODE: FB03');
+    $response->assertDontSee('F110 Payment Run');
+    $response->assertDontSee('ACDOCA Ledger');
+    $response->assertDontSee('Cash / Bank Clearing');
+});
+
+test('homepage and courses index render 2.5D isometric pathway illustrations', function (string $route) {
+    $response = $this->get($route);
+
+    $response->assertStatus(200);
+
+    // Pathway 01 (Freshers / Cap & Laptop)
+    $response->assertSee('Start Your SAP Career');
+
+    // Pathway 02 (Domain / Growth Chart & Briefcase)
+    $response->assertSee('Upgrade Your Career');
+
+    // Pathway 03 (IT / Server Rack & ABAP Tag)
+    $response->assertSee('Transition Into SAP');
+
+    // Pathway illustrations present with aria-hidden
+    $response->assertSee('zeb-illustration-art', false);
+    $response->assertSee('aria-hidden="true"', false);
+})->with([
+    'home' => ['/'],
+    'courses.index' => ['/courses'],
+]);
+
+test('homepage and catalog cards render module-specific visual artwork badges', function () {
+    $response = $this->get('/');
+    $response->assertStatus(200);
+
+    // FICO, MM, SD, PP artwork badges rendered on homepage
+    $response->assertSee('SAP FICO COURSE');
+    $response->assertSee('SAP MM COURSE');
+    $response->assertSee('SAP SD COURSE');
+    $response->assertSee('SAP PP COURSE');
+
+    $coursesResponse = $this->get('/courses');
+    $coursesResponse->assertStatus(200);
+    $coursesResponse->assertSee('zeb-illustration-art', false);
+});
+
+test('homepage renders interactive 4-stage learning journey with progress indicator and step art', function () {
+    $response = $this->get('/');
+
+    $response->assertStatus(200);
+
+    // 4-Stage Pathway Indicator & Track
+    $response->assertSee('id="journey-progress-line"', false);
+    $response->assertSee('01. LEARN');
+    $response->assertSee('02. PRACTICE');
+    $response->assertSee('03. BUILD SKILLS');
+    $response->assertSee('04. CAREER');
+
+    // 4 Step cards with data-step hooks
+    $response->assertSee('data-step="1"', false);
+    $response->assertSee('data-step="2"', false);
+    $response->assertSee('data-step="3"', false);
+    $response->assertSee('data-step="4"', false);
+    $response->assertSee('01/04', false);
+    $response->assertSee('02/04', false);
+    $response->assertSee('03/04', false);
+    $response->assertSee('04/04', false);
+});
+
+test('compiled css includes 3D perspective and ambient keyframes with prefers-reduced-motion overrides', function () {
+    $manifestPath = public_path('build/manifest.json');
+    $manifest = json_decode(file_get_contents($manifestPath), true);
+    $cssFile = public_path('build/'.$manifest['resources/css/app.css']['file']);
+    $cssContent = file_get_contents($cssFile);
+
+    expect($cssContent)->toContain('perspective-1000');
+    expect($cssContent)->toContain('preserve-3d');
+    expect($cssContent)->toContain('zeb-ambient-float-1');
+    expect($cssContent)->toContain('zeb-ambient-float-2');
+    expect($cssContent)->toContain('zeb-ambient-float-3');
+    expect($cssContent)->toContain('animate-ambient-1');
+    expect($cssContent)->toContain('animate-ambient-2');
+    expect($cssContent)->toContain('animate-ambient-3');
+});
+
+test('typography system configures Maves display font for all headings across pages', function () {
+    $manifestPath = public_path('build/manifest.json');
+    $manifest = json_decode(file_get_contents($manifestPath), true);
+    $cssFile = public_path('build/'.$manifest['resources/css/app.css']['file']);
+    $cssContent = file_get_contents($cssFile);
+
+    expect($cssContent)->toContain('Maves');
+
+    $response = $this->get('/');
+    $response->assertStatus(200);
+    $response->assertSee('Mohave', false);
+});

@@ -12,9 +12,15 @@
 <header class="fixed inset-x-0 top-3 sm:top-4 z-50 px-3 sm:px-5">
     <div class="mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-full border border-white/70 bg-white/80 px-4 py-2.5 shadow-[0_8px_32px_rgba(10,10,10,0.08)] backdrop-blur-xl sm:px-6">
         
-        <a href="{{ url('/') }}" aria-label="ZebLearn home" class="flex shrink-0 items-center gap-2 text-xl font-bold tracking-tight text-[#0A0A0A]">
-            <span class="font-['Anton'] uppercase">ZebLearn</span>
-            <span class="rounded bg-[#0A0A0A] px-2 py-1 text-[10px] font-semibold tracking-widest text-white">SAP</span>
+        <a href="{{ url('/') }}" aria-label="ZebLearn home" class="flex shrink-0 items-center h-8 sm:h-9 w-[102px] sm:w-[114px] overflow-hidden group">
+            <picture class="dark:hidden">
+                <source srcset="{{ asset('logo/logo1-400.webp') }}" type="image/webp">
+                <img src="{{ asset('logo/logo1.png') }}" alt="ZebLearn" width="400" height="126" fetchpriority="high" decoding="sync" style="aspect-ratio: 1000/315;" class="h-8 sm:h-9 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]" />
+            </picture>
+            <picture class="hidden dark:block">
+                <source srcset="{{ asset('logo/logo2-400.webp') }}" type="image/webp">
+                <img src="{{ asset('logo/logo2.png') }}" alt="ZebLearn" width="400" height="126" decoding="async" style="aspect-ratio: 1000/315;" class="h-8 sm:h-9 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]" />
+            </picture>
         </a>
 
         <nav aria-label="Main navigation" class="hidden items-center gap-1 lg:flex">

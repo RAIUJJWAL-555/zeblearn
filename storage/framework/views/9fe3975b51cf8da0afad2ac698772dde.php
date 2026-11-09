@@ -11,584 +11,1209 @@
 
 <?php $__env->startPush('head'); ?>
 <style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{width:10px;}::-webkit-scrollbar-thumb{background:#b9bec5;border-radius:999px;}</style>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"EducationalOrganization","name":"ZebLearn","url":"https://sap.zeblearn.com","description":"Online SAP training institute offering FICO, MM, SD and PP courses with placement support.","telephone":"+918506888288","email":"enquiry@zeblearn.com"}</script>
-<?php $__env->stopPush(); ?>
 
-<?php $__env->startPush('scripts'); ?>
-<script>
-document.getElementById('menu-btn').addEventListener('click', function () {
-  var menu = document.getElementById('mobile-menu');
-  var isOpen = !menu.classList.contains('hidden');
-  menu.classList.toggle('hidden');
-  this.setAttribute('aria-expanded', String(!isOpen));
-});
-document.querySelectorAll('#mobile-menu a').forEach(function (a) {
-  a.addEventListener('click', function () { document.getElementById('mobile-menu').classList.add('hidden');
-    document.getElementById('menu-btn').setAttribute('aria-expanded', 'false'); });
-});
-document.addEventListener('keydown', function (event) {
-  if (event.key === 'Escape') {
-    document.getElementById('mobile-menu').classList.add('hidden');
-    document.getElementById('menu-btn').setAttribute('aria-expanded', 'false');
-  }
-});
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "ZebLearn",
+  "url": "https://sap.zeblearn.com",
+  "description": "Online SAP training institute offering FICO, MM, SD and PP courses with placement support.",
+  "telephone": "+918506888288",
+  "email": "enquiry@zeblearn.com"
+}
 </script>
+
 <?php $__env->stopPush(); ?>
 
 <?php $__env->startSection('content'); ?>
-<div class="flex flex-col w-full">
-<!-- =========================================================================
-       HERO SECTION: MONOLITHIC EDITORIAL TYPOGRAPHY & TACTILE 3D FOCAL ASSEMBLY
-       ========================================================================= -->
-<section class="relative w-full overflow-hidden px-margin-mobile md:px-margin pt-24 md:pt-28 pb-space-3xl">
-<div class="max-w-[1440px] mx-auto relative">
-<!-- Top Meta Track Bar -->
-<div class="flex items-center justify-between gap-space-sm mb-space-md border-b border-hairline-border pb-space-sm">
-<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-white text-ink-primary font-label-mono text-label-mono uppercase shadow-sm">
-<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
-            2,500+ LEARNERS TRAINED
-          </span>
-<span class="font-label-mono text-label-mono uppercase text-ink-muted hidden sm:inline">LIVE SAP TRAINING WITH PLACEMENT SUPPORT</span>
-</div>
-<!-- Massive Condensed Display Headlines -->
-<div class="relative select-none text-center leading-none">
-<h1 class="font-display-xl text-[64px] sm:text-[110px] md:text-[170px] lg:text-[230px] tracking-tighter uppercase text-ink-primary block leading-[0.84]">LEARN SAP ONLINE.</h1>
-<h2 class="font-display-xl text-[64px] sm:text-[110px] md:text-[170px] lg:text-[230px] tracking-tighter uppercase text-ink-primary block leading-[0.84]">GET HIRED.</h2>
-<!-- TACTILE HERO COMPOSITION (Overlapping Finger & Glossy Enroll Keycap) -->
-<div class="absolute inset-0 pointer-events-none flex flex-col items-center justify-center">
-<div class="relative pointer-events-auto flex flex-col items-center">
-<!-- Reaching Hand (Anchored with precise negative margin overlap) -->
-<div class="w-36 sm:w-48 md:w-60 lg:w-72 -mb-16 sm:-mb-24 md:-mb-32 z-20 transform -translate-y-8 select-none drop-shadow-2xl">
+<div class="flex flex-col w-full bg-[#FAFAF8] text-[#0A0A0A]">
 
-</div>
-<!-- Tactile 3D Electric Cobalt Keycap Button Module -->
-<a class="group relative z-30 inline-block focus:outline-none focus:ring-4 focus:ring-primary-container/40 rounded-3xl" href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20book%20a%20free%20demo." target="_blank" rel="noopener" title="Click to Enroll">
-<div class="w-32 sm:w-40 md:w-48 aspect-square relative transform transition-all duration-300 group-hover:scale-105 group-active:scale-95 group-active:translate-y-2">
-
-<!-- Subtle pulsing interactive beacon badge -->
-
-</div>
-</a>
-</div>
-</div>
-</div>
-<!-- Flanking Editorial Meta Blocks (Positioned under the headline rhythm) -->
-<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter mt-space-xl pt-24 md:pt-28 items-end relative z-10">
-<!-- Left: Mission Statement -->
-<div class="md:col-span-4 bg-surface-white/80 backdrop-blur-sm p-space-lg rounded-[24px] shadow-sm">
-<div class="flex items-center gap-2 mb-space-sm">
-<span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span>
-<span class="font-label-mono text-label-mono uppercase tracking-widest text-ink-primary font-bold">About ZebLearn</span>
-</div>
-<p class="font-body-lg text-body-lg text-on-surface leading-snug font-medium mb-space-sm">Live SAP training in FICO, MM, SD and PP with real system practice, mock interviews and placement support. Trusted by 2,500+ learners.</p>
-<div class="flex flex-wrap items-center gap-2 pt-2"><a href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20book%20a%20free%20demo." target="_blank" rel="noopener" data-path="contact" class="px-4 py-2 rounded-full text-white font-body-md font-semibold text-[13px] shadow-sm hover:scale-[1.02] transition-transform" style="background-color: #FB6221;">Book a Free Demo</a><a href="#course-deck" class="px-4 py-2 rounded-full border border-hairline-border bg-surface-white font-body-md font-semibold text-[13px] text-ink-primary hover:bg-canvas-glow transition-colors">Explore SAP Courses</a></div>
-</div>
-<!-- Center Spacer for visual breathing of the keycap anchor -->
-<div class="hidden md:block md:col-span-4 h-1"></div>
-<!-- right spacer -->
-<div class="hidden md:block md:col-span-4"></div>
-</div>
-</div>
-</section>
 <!-- =========================================================================
-       SECTION 2: ASYMMETRIC BENTO GRID (12-COL MODULAR ARCHITECTURE)
-       ========================================================================= -->
-<section class="w-full px-margin-mobile md:px-margin py-space-2xl">
-<div class="max-w-[1440px] mx-auto">
-<div class="mb-space-lg"><div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-white text-ink-primary font-label-mono text-label-mono uppercase shadow-sm mb-space-xs"><span class="w-2 h-2 rounded-full bg-primary-container"></span>PROVEN TRACK RECORD</div><h2 class="font-display-lg text-display-lg uppercase text-ink-primary tracking-tight">WHY LEARNERS CHOOSE ZEBLEARN FOR SAP TRAINING</h2></div><div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
-<!-- Card A (Col 1-4): Electric Cobalt Hero Advisor Card -->
-<div class="md:col-span-4 bg-primary-container text-on-primary rounded-[24px] p-space-xl flex flex-col justify-between relative overflow-hidden shadow-lg min-h-[480px]">
-<!-- Decorative geometric grid pattern -->
-<div class="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-on-primary/10 blur-2xl pointer-events-none"></div>
-<div class="relative z-10 space-y-space-md">
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-on-primary/15 text-on-primary font-label-mono text-label-mono uppercase">
-<span class="w-2 h-2 rounded-full bg-surface-white"></span>
-              DIRECT ARCHITECT DIALOGUE
-            </div>
-<h3 class="font-headline-lg text-headline-lg uppercase tracking-tight text-on-primary">
-              HAVE A QUESTION?
-            </h3>
-<p class="font-body-md text-body-md text-on-primary/85 leading-relaxed">
-              Speak directly with our team and placement counselors. Get clarity on which SAP module suits your background.
-            </p>
-</div>
-<!-- Trainer Portrait duotone container -->
-<div class="relative z-10 my-space-md rounded-[18px] overflow-hidden bg-surface-dark/20 p-2">
-<div class="relative h-44 rounded-xl overflow-hidden">
-
-<div class="absolute bottom-2 left-2 right-2 bg-surface-dark/80 backdrop-blur-md px-3 py-1.5 rounded-lg flex items-center justify-between text-on-primary font-label-mono text-label-mono">
-<span class="">ZEBLEARN TRAINER</span>
-<span class="text-primary-fixed">LIVE SAP CLASSES</span>
-</div>
-</div>
-</div>
-<div class="relative z-10 pt-space-xs">
-<a class="w-full inline-flex items-center justify-between px-space-lg py-space-md rounded-full bg-surface-white text-ink-primary font-body-md font-semibold hover:bg-canvas-glow transition-transform hover:scale-[1.01] shadow-md" href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20book%20a%20free%20demo." target="_blank" rel="noopener">
-<span class="">Get in touch with us</span>
-<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-</a>
-</div>
-</div>
-<!-- Card B (Col 5-9): Soft Gray Placement Metric Engine -->
-<div class="md:col-span-5 bg-surface-soft text-on-surface rounded-[24px] p-space-xl flex flex-col justify-between relative shadow-sm">
-<div>
-<div class="flex items-center justify-between mb-space-md">
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-white text-ink-primary font-label-mono text-label-mono uppercase shadow-sm">
-<span class="w-2 h-2 rounded-full bg-primary-container"></span>
-                PLACEMENTS RADAR
-              </div>
-
-</div>
-<h3 class="font-headline-lg text-headline-lg uppercase tracking-tight text-ink-primary leading-none mb-space-sm">2,500+ CANDIDATES TRAINED. ONE CALL FROM YOUR FIRST INTERVIEW.</h3>
-<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
-              Live SAP training with real system practice, mock interviews and placement support through our partner PlacementBaba.
-            </p>
-</div>
-<!-- Circular Metric Gauge Visualization & Company Badges -->
-<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md my-space-lg items-center">
-<div class="bg-surface-white p-space-md rounded-2xl flex flex-col justify-center shadow-sm">
-<span class="font-label-mono text-label-mono uppercase text-ink-muted block">Learners</span>
-<span class="font-headline-lg text-headline-lg text-ink-primary leading-none block">2,500+</span>
-<span class="font-label-mono text-[10px] text-primary-container">SUCCESSFULLY TRAINED</span>
-</div>
-<!-- Stats Card Pill -->
-<div class="bg-surface-white p-space-md rounded-2xl flex flex-col justify-center shadow-sm space-y-1"><span class="text-ink-muted font-label-mono text-label-mono">PLACEMENT PARTNER:</span><span class="px-2.5 py-1 bg-surface-white rounded-full font-bold text-primary-container">PlacementBaba</span></div>
-</div>
-</div>
-<!-- Card C (Col 10-12): White Clean Institutional Authority Card -->
-<div class="md:col-span-3 bg-surface-white text-on-surface rounded-[24px] p-space-xl flex flex-col justify-between shadow-sm">
-<div>
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container text-ink-primary font-label-mono text-label-mono uppercase mb-space-lg">
-<span class="material-symbols-outlined text-[16px] text-primary-container" style="font-variation-settings: &quot;FILL&quot; 1;">military_tech</span>
-              RECOGNITION
-            </div>
-<div class="w-14 h-14 rounded-2xl bg-canvas-glow flex items-center justify-center text-ink-primary mb-space-md">
-<span class="material-symbols-outlined text-[32px] text-primary-container">workspace_premium</span>
-</div>
-<h3 class="font-headline-lg text-headline-lg uppercase tracking-tight text-ink-primary mb-space-sm">RANKED NO.1 SAP TRAINING PARTNER</h3>
-<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-              Live SAP training in FICO, MM, SD and PP with real system practice and placement support.
-            </p>
-</div>
-<div class="pt-space-lg border-t border-hairline-border space-y-space-sm">
-<div class="flex items-center justify-between text-body-md">
-<span class="text-ink-muted font-label-mono text-label-mono">LEARNERS TRAINED</span>
-<span class="font-headline-sm text-headline-sm text-ink-primary">2,500+</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- =========================================================================
-       SECTION 3: COURSES DIRECTORY (INTERACTIVE STACKED MODULE CARDS)
-       ========================================================================= -->
-<section class="w-full px-margin-mobile md:px-margin py-space-3xl bg-surface-white/60">
-<div class="max-w-[1440px] mx-auto">
-<!-- Section Header -->
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-2xl">
-<div>
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-white text-ink-primary font-label-mono text-label-mono uppercase shadow-sm mb-space-sm">
-<span class="w-2 h-2 rounded-full bg-primary-container"></span>
-            CURRICULUM SPECIFICATIONS
-          </div>
-<h2 class="font-display-lg text-display-lg uppercase text-ink-primary tracking-tight">SAP COURSES ONLINE: PICK YOUR MODULE</h2>
-</div>
-<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
-          Live online classes, real system practice, assignments and interview preparation, in a 3-month batch.
-        </p>
-</div>
-<!-- Course Stack Cards -->
-<div class="space-y-space-md" id="course-deck">
-<!-- Module 1: SAP FICO -->
-<div class="group relative bg-surface-white rounded-[24px] p-space-xl transition-all duration-300 shadow-sm hover:shadow-xl hover:bg-primary-container hover:text-on-primary"><div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center"><div class="lg:col-span-5 space-y-space-xs"><div class="flex items-center gap-space-sm"><span class="font-label-mono text-label-mono font-bold tracking-widest text-primary-container group-hover:text-surface-white">01 // FINANCIALS</span><span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-canvas-glow text-ink-primary group-hover:bg-surface-white group-hover:text-primary-container font-label-mono text-label-mono">MOST CHOSEN</span></div><h3 class="font-headline-xl text-headline-xl uppercase text-ink-primary group-hover:text-on-primary transition-colors">SAP FICO COURSE</h3><p class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-primary/90 transition-colors">Finance &amp; Controlling: General Ledger, AP, AR, Asset Accounting, Cost Center &amp; Profit Center Analysis with S/4HANA Finance integration.</p></div><div class="lg:col-span-3 space-y-1 font-label-mono text-label-mono text-on-surface-variant group-hover:text-on-primary/80"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">group</span><span class="">1,850+ LEARNERS</span></div><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">schedule</span><span class="">3 MONTHS, LIVE ONLINE</span></div><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">terminal</span><span class="">REAL SAP SYSTEM PRACTICE</span></div></div><div class="lg:col-span-2"><span class="font-label-mono text-label-mono text-ink-muted group-hover:text-on-primary/70 block">TUITION (3 MONTHS)</span><div class="font-headline-lg text-headline-lg uppercase text-ink-primary group-hover:text-on-primary">₹25,000<span class="text-body-md font-body-md lowercase font-normal opacity-80">+ GST</span></div></div><div class="lg:col-span-2 flex justify-start lg:justify-end"><a class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-canvas-glow group-hover:bg-surface-white text-ink-primary group-hover:text-primary-container font-body-md text-[13px] font-semibold transition-all duration-300 shadow-sm" href="/courses/sap-fico-training" title="View SAP FICO course details"><span class="">View SAP FICO course details</span><span class="material-symbols-outlined text-[18px]">arrow_outward</span></a></div></div></div>
-<!-- Module 2: SAP MM -->
-<div class="group relative bg-surface-white rounded-[24px] p-space-xl transition-all duration-300 shadow-sm hover:shadow-xl hover:bg-primary-container hover:text-on-primary"><div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center"><div class="lg:col-span-5 space-y-space-xs"><div class="flex items-center gap-space-sm"><span class="font-label-mono text-label-mono font-bold tracking-widest text-primary-container group-hover:text-surface-white">02 // SOURCING</span><span class="font-label-mono text-label-mono text-ink-muted group-hover:text-on-primary/70">SUPPLY CHAIN ARCHITECTURE</span></div><h3 class="font-headline-xl text-headline-xl uppercase text-ink-primary group-hover:text-on-primary transition-colors">SAP MM COURSE</h3><p class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-primary/90 transition-colors">Materials Management: Master Data, Purchasing Life Cycle, Inventory Management, Physical Inventory &amp; Logistics Invoice Verification (LIV).</p></div><div class="lg:col-span-3 space-y-1 font-label-mono text-label-mono text-on-surface-variant group-hover:text-on-primary/80"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">group</span><span class="">1,650+ LEARNERS</span></div><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">schedule</span><span class="">3 MONTHS, LIVE ONLINE</span></div><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">warehouse</span><span class="">INVENTORY SANDBOX LABS</span></div></div><div class="lg:col-span-2"><span class="font-label-mono text-label-mono text-ink-muted group-hover:text-on-primary/70 block">TUITION (3 MONTHS)</span><div class="font-headline-lg text-headline-lg uppercase text-ink-primary group-hover:text-on-primary">₹25,000<span class="text-body-md font-body-md lowercase font-normal opacity-80">+ GST</span></div></div><div class="lg:col-span-2 flex justify-start lg:justify-end"><a class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-canvas-glow group-hover:bg-surface-white text-ink-primary group-hover:text-primary-container font-body-md text-[13px] font-semibold transition-all duration-300 shadow-sm" href="#course-deck" title="View SAP MM course details"><span class="">View SAP MM course details</span><span class="material-symbols-outlined text-[18px]">arrow_outward</span></a></div></div></div>
-<!-- Module 3: SAP SD -->
-<div class="group relative bg-surface-white rounded-[24px] p-space-xl transition-all duration-300 shadow-sm hover:shadow-xl hover:bg-primary-container hover:text-on-primary"><div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center"><div class="lg:col-span-5 space-y-space-xs"><div class="flex items-center gap-space-sm"><span class="font-label-mono text-label-mono font-bold tracking-widest text-primary-container group-hover:text-surface-white">03 // COMMERCE</span><span class="font-label-mono text-label-mono text-ink-muted group-hover:text-on-primary/70">ORDER-TO-CASH (O2C)</span></div><h3 class="font-headline-xl text-headline-xl uppercase text-ink-primary group-hover:text-on-primary transition-colors">SAP SD COURSE</h3><p class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-primary/90 transition-colors">Sales &amp; Distribution: Enterprise Structure, Pricing Procedures, Credit Management, Billing, Shipping, and Availability Check (ATP).</p></div><div class="lg:col-span-3 space-y-1 font-label-mono text-label-mono text-on-surface-variant group-hover:text-on-primary/80"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">group</span><span class="">1,057+ LEARNERS</span></div><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">schedule</span><span class="">3 MONTHS, LIVE ONLINE</span></div><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">local_shipping</span><span class="">LOGISTICS SIMULATION LAB</span></div></div><div class="lg:col-span-2"><span class="font-label-mono text-label-mono text-ink-muted group-hover:text-on-primary/70 block">TUITION (3 MONTHS)</span><div class="font-headline-lg text-headline-lg uppercase text-ink-primary group-hover:text-on-primary">₹25,000<span class="text-body-md font-body-md lowercase font-normal opacity-80">+ GST</span></div></div><div class="lg:col-span-2 flex justify-start lg:justify-end"><a class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-canvas-glow group-hover:bg-surface-white text-ink-primary group-hover:text-primary-container font-body-md text-[13px] font-semibold transition-all duration-300 shadow-sm" href="#course-deck" title="View SAP SD course details"><span class="">View SAP SD course details</span><span class="material-symbols-outlined text-[18px]">arrow_outward</span></a></div></div></div>
-<!-- Module 4: SAP PP -->
-<div class="group relative bg-surface-white rounded-[24px] p-space-xl transition-all duration-300 shadow-sm hover:shadow-xl hover:bg-primary-container hover:text-on-primary"><div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center"><div class="lg:col-span-5 space-y-space-xs"><div class="flex items-center gap-space-sm"><span class="font-label-mono text-label-mono font-bold tracking-widest text-primary-container group-hover:text-surface-white">04 // MANUFACTURING</span><span class="font-label-mono text-label-mono text-ink-muted group-hover:text-on-primary/70">PLAN-TO-PRODUCE (P2P)</span></div><h3 class="font-headline-xl text-headline-xl uppercase text-ink-primary group-hover:text-on-primary transition-colors">SAP PP COURSE</h3><p class="font-body-md text-body-md text-on-surface-variant group-hover:text-on-primary/90 transition-colors">Production Planning: BOM, Work Centers, Routing, Material Requirement Planning (MRP-II), Capacity Planning and Shop Floor Execution.</p></div><div class="lg:col-span-3 space-y-1 font-label-mono text-label-mono text-on-surface-variant group-hover:text-on-primary/80"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">group</span><span class="">974+ LEARNERS</span></div><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">schedule</span><span class="">3 MONTHS, LIVE ONLINE</span></div><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[16px]">precision_manufacturing</span><span class="">MRP EXECUTION ENGINE</span></div></div><div class="lg:col-span-2"><span class="font-label-mono text-label-mono text-ink-muted group-hover:text-on-primary/70 block">TUITION (3 MONTHS)</span><div class="font-headline-lg text-headline-lg uppercase text-ink-primary group-hover:text-on-primary">₹25,000<span class="text-body-md font-body-md lowercase font-normal opacity-80">+ GST</span></div></div><div class="lg:col-span-2 flex justify-start lg:justify-end"><a class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-canvas-glow group-hover:bg-surface-white text-ink-primary group-hover:text-primary-container font-body-md text-[13px] font-semibold transition-all duration-300 shadow-sm" href="#course-deck" title="View SAP PP course details"><span class="">View SAP PP course details</span><span class="material-symbols-outlined text-[18px]">arrow_outward</span></a></div></div></div>
-</div>
-</div>
-</section>
-<!-- =========================================================================
-       SECTION 4: POWER USER MONOLITH (BLACK CONTRAST INVERTED BLOCK)
-       ========================================================================= -->
-<section class="w-full px-margin-mobile md:px-margin py-space-2xl">
-<div class="max-w-[1440px] mx-auto bg-surface-dark text-on-primary rounded-[24px] p-space-xl md:p-space-2xl relative overflow-hidden shadow-2xl">
-<!-- Subtle architectural backdrop gradient line -->
-<div class="absolute -top-32 -left-32 w-96 h-96 bg-primary-container/20 rounded-full blur-3xl pointer-events-none"></div>
-<div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
-<div class="lg:col-span-7 space-y-space-md">
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-white/10 text-primary-fixed font-label-mono text-label-mono uppercase border border-hairline-dark">
-<span class="w-2 h-2 rounded-full bg-primary-container"></span>
-            ADVANCED ENTERPRISE TRACK
-          </div>
-<h2 class="font-headline-xl text-headline-xl uppercase text-surface-white tracking-tight">SAP POWER USER CERTIFICATION COURSE</h2>
-<p class="font-body-xl text-body-xl text-outline-variant max-w-xl font-normal">80 hours of self-paced training by SAP, 3 months access, ₹40,000 + GST. Available for FICO, MM, SD and PP.</p>
-<!-- Module Pill Badges -->
-<div class="flex flex-wrap gap-2 pt-space-xs">
-<span class="px-4 py-1.5 rounded-full bg-surface-white/10 text-surface-white font-label-mono text-label-mono border border-hairline-dark">
-              • SAP FICO
-            </span>
-<span class="px-4 py-1.5 rounded-full bg-surface-white/10 text-surface-white font-label-mono text-label-mono border border-hairline-dark">
-              • SAP MM
-            </span>
-<span class="px-4 py-1.5 rounded-full bg-surface-white/10 text-surface-white font-label-mono text-label-mono border border-hairline-dark">
-              • SAP SD
-            </span>
-<span class="px-4 py-1.5 rounded-full bg-surface-white/10 text-surface-white font-label-mono text-label-mono border border-hairline-dark">
-              • SAP PP
-            </span>
-</div>
-<div class="pt-space-md flex flex-col sm:flex-row sm:items-center gap-space-lg">
-<a class="inline-flex items-center justify-center px-space-xl py-space-md rounded-full bg-primary-container text-on-primary font-body-md font-semibold hover:scale-[1.02] transition-transform shadow-[0_8px_24px_rgba(251,98,33,0.4)]" href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20book%20a%20free%20demo." target="_blank" rel="noopener">
-              Enroll in Power User Course
-            </a>
-<div class="font-label-mono text-label-mono text-outline-variant uppercase">
-<span class="text-surface-white font-semibold">TUITION: ₹40,000 + GST</span> • 80 HOURS, SELF-PACED
-            </div>
-</div>
-</div>
-<!-- Right Side: Official Certification Badge Representation -->
-<div class="lg:col-span-5 flex justify-center lg:justify-end">
-<div class="relative w-64 h-64 sm:w-80 sm:h-80 rounded-[32px] bg-gradient-to-br from-surface-white/10 to-surface-white/5 border border-hairline-dark p-space-lg flex flex-col items-center justify-between text-center backdrop-blur-md">
-<div class="w-full flex items-center justify-between font-label-mono text-label-mono text-outline-variant">
-<span class="">80 HOURS</span>
-<span class="text-primary-fixed">SAP VERIFIED</span>
-</div>
-<!-- Stylized SAP Certification Insignia -->
-<div class="relative flex flex-col items-center justify-center">
-<div class="w-24 h-24 rounded-full bg-primary-container/20 border border-primary-container flex items-center justify-center text-primary-fixed shadow-[0_0_40px_rgba(251,98,33,0.3)]">
-<span class="material-symbols-outlined text-[48px]">verified</span>
-</div>
-<span class="font-headline-sm text-headline-sm uppercase text-surface-white tracking-wider mt-3">SAP POWER USER</span>
-<span class="font-label-mono text-[10px] text-outline-variant tracking-widest mt-1">SELF-PACED TRAINING BY SAP</span>
-</div>
-<div class="w-full py-2 bg-surface-white/5 rounded-xl font-label-mono text-label-mono text-surface-container-high">
-              3 MONTHS ACCESS · ₹40,000 + GST
-            </div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- =========================================================================
-       SECTION 5: WHY ZEBLEARN (THE INDUSTRY METHOD)
-       ========================================================================= -->
-<section id="stories" class="w-full px-margin-mobile md:px-margin py-space-3xl">
-<div class="max-w-[1440px] mx-auto">
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-2xl">
-<div>
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-white text-ink-primary font-label-mono text-label-mono uppercase shadow-sm mb-space-sm">
-<span class="w-2 h-2 rounded-full bg-primary-container"></span>
-            THE ZEBLEARN METHOD
-          </div>
-<h2 class="font-display-lg text-display-lg uppercase text-ink-primary tracking-tight">WHAT YOU GET WITH OUR SAP TRAINING</h2>
-</div>
-<p class="font-body-md text-body-md text-on-surface-variant max-w-md">
-          Built to bridge the gap between textbook theory and what SAP projects need on the job.
-        </p>
-</div>
-<!-- 4 Bento Cards of Varied Tonal Surfaces -->
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter">
-<!-- Pillar 01: White surface -->
-<div class="bg-surface-white text-on-surface rounded-[24px] p-space-xl flex flex-col justify-between shadow-sm min-h-[320px] transition-transform hover:-translate-y-1">
-<div>
-<div class="flex items-center justify-between mb-space-lg">
-<span class="font-label-mono text-label-mono uppercase text-ink-muted">01 // PEDAGOGY</span>
-<span class="material-symbols-outlined text-[24px] text-ink-primary">desktop_windows</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm uppercase text-ink-primary mb-space-xs">LIVE CLASSES ON A REAL SAP SYSTEM</h3>
-<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-              Interactive live sessions on a real SAP system, with doubts solved as you practise.
-            </p>
-</div>
-<div class="pt-space-md border-t border-hairline-border font-label-mono text-label-mono text-ink-muted">
-            NO RECORDED MONOLOGUES
-          </div>
-</div>
-<!-- Pillar 02: Soft Gray surface -->
-<div class="bg-surface-soft text-on-surface rounded-[24px] p-space-xl flex flex-col justify-between shadow-sm min-h-[320px] transition-transform hover:-translate-y-1">
-<div>
-<div class="flex items-center justify-between mb-space-lg">
-<span class="font-label-mono text-label-mono uppercase text-ink-muted">02 // LABS</span>
-<span class="material-symbols-outlined text-[24px] text-ink-primary">dns</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm uppercase text-ink-primary mb-space-xs">ASSIGNMENTS AFTER EVERY MODULE</h3>
-<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-              Practice assignments after every module so you apply each topic straight away.
-            </p>
-</div>
-<div class="pt-space-md border-t border-hairline-border font-label-mono text-label-mono text-ink-muted">
-            HANDS-ON PRACTICE
-          </div>
-</div>
-<!-- Pillar 03: Electric Cobalt surface -->
-<div class="bg-primary-container text-on-primary rounded-[24px] p-space-xl flex flex-col justify-between shadow-md min-h-[320px] transition-transform hover:-translate-y-1">
-<div>
-<div class="flex items-center justify-between mb-space-lg">
-<span class="font-label-mono text-label-mono uppercase text-on-primary/70">03 // SIMULATION</span>
-<span class="material-symbols-outlined text-[24px] text-on-primary">record_voice_over</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm uppercase text-on-primary mb-space-xs">MOCK INTERVIEWS AND RESUME SUPPORT</h3>
-<p class="font-body-md text-body-md text-on-primary/85 leading-relaxed">
-              Interview preparation and resume support to get you ready for the real SAP interview.
-            </p>
-</div>
-<div class="pt-space-md border-t border-on-primary/20 font-label-mono text-label-mono text-on-primary/70">
-            MOCK INTERVIEWS
-          </div>
-</div>
-<!-- Pillar 04: Black surface -->
-<div class="bg-surface-dark text-on-primary rounded-[24px] p-space-xl flex flex-col justify-between shadow-md min-h-[320px] transition-transform hover:-translate-y-1">
-<div>
-<div class="flex items-center justify-between mb-space-lg">
-<span class="font-label-mono text-label-mono uppercase text-outline-variant">04 // OUTCOMES</span>
-<span class="material-symbols-outlined text-[24px] text-surface-white">handshake</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm uppercase text-surface-white mb-space-xs">PLACEMENT SUPPORT THROUGH PLACEMENTBABA</h3>
-<p class="font-body-md text-body-md text-outline-variant leading-relaxed">
-              Job support through our placement partner PlacementBaba.
-            </p>
-</div>
-<div class="pt-space-md border-t border-hairline-dark font-label-mono text-label-mono text-outline-variant">
-            JOB SUPPORT
-          </div>
-</div>
-</div>
-</div>
-</section>
-<!-- =========================================================================
-       SECTION 6: STORIES (ALUMNI VERIFIED METRICS & TESTIMONIALS)
-       ========================================================================= -->
-<section id="placements" class="w-full px-margin-mobile md:px-margin py-space-2xl">
-<div class="max-w-[1440px] mx-auto">
-<div class="flex items-center gap-2 mb-space-sm">
-<span class="w-2.5 h-2.5 rounded-full bg-primary-container"></span>
-<span class="font-label-mono text-label-mono uppercase tracking-widest text-ink-primary font-bold">ALUMNI MATRIX</span>
-</div>
-<h2 class="font-display-lg text-display-lg uppercase text-ink-primary tracking-tight mb-space-2xl">SAP STUDENT SUCCESS STORIES</h2>
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
-<!-- Large Featured Quote Card (Col 1-7) -->
-<div class="lg:col-span-7 bg-surface-white rounded-[24px] p-space-xl flex flex-col justify-between shadow-sm">
-<div>
-<div class="flex items-center justify-between mb-space-lg">
-<div class="flex items-center gap-2">
-<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container font-label-mono text-label-mono text-ink-primary">
-<span class="material-symbols-outlined text-[14px] text-primary-container" style="font-variation-settings: &quot;FILL&quot; 1;">check_circle</span>
-                  PLACED
-                </span>
-<span class="font-label-mono text-label-mono text-ink-muted">SAP TRAINING</span>
-</div>
-<span class="material-symbols-outlined text-[32px] text-surface-soft">format_quote</span>
-</div>
-<p class="font-headline-sm text-headline-sm text-ink-primary uppercase leading-snug mb-space-lg">
-              "IT IS DUE TO THE QUALITY TRAINING PROVIDED HERE THAT I GOT PLACED IN ACCENTURE. THE ATMOSPHERE IS BRILLIANT AND EVERYONE IS STUDYING HARD."
-            </p>
-</div>
-<div class="pt-space-md border-t border-hairline-border flex items-center justify-between">
-<div class="flex items-center gap-space-md">
-<div class="w-12 h-12 rounded-full bg-surface-soft flex items-center justify-center font-headline-sm text-headline-sm text-ink-primary">
-                SS
-              </div>
-<div>
-<h4 class="font-body-md text-body-md font-bold text-ink-primary">Sumit Singh</h4>
-<p class="font-label-mono text-label-mono text-ink-muted">Placed at Accenture</p>
-</div>
-</div>
-
-</div>
-</div>
-<!-- Video Testimonial Preview Card (Col 8-12) -->
-<div class="lg:col-span-5 bg-surface-dark text-on-primary rounded-[24px] p-space-xl relative overflow-hidden shadow-lg flex flex-col justify-between">
-<div class="relative z-10">
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-white/10 text-on-primary font-label-mono text-label-mono uppercase mb-space-md border border-hairline-dark">
-<span class="">STUDENT VIDEO</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm uppercase text-surface-white">
-              HEAR FROM OUR STUDENTS
-            </h3>
-<p class="font-body-md text-body-md text-outline-variant mt-2">
-              Watch what our learners say about training at ZebLearn.
-            </p>
-</div>
-<!-- Video Play Box Container -->
-<div class="relative z-10 my-space-md h-36 rounded-xl overflow-hidden bg-surface-white/5 border border-hairline-dark group cursor-pointer flex items-center justify-center">
-<div class="w-12 h-12 rounded-full bg-primary-container text-on-primary flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: &quot;FILL&quot; 1;">play_arrow</span>
-</div>
-<span class="absolute bottom-2 right-3 font-label-mono text-label-mono text-outline-variant">WATCH STUDENT VIDEO</span>
-</div>
-<div class="relative z-10 font-label-mono text-label-mono text-outline-variant flex items-center justify-between">
-<span class="">STUDENT TESTIMONIAL</span>
-<span class="text-primary-fixed">ZEBLEARN</span>
-</div>
-</div>
-</div>
-<!-- Supplementary 2 Testimonials Row -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter mt-gutter">
-<div class="bg-surface-white rounded-[24px] p-space-lg shadow-sm flex flex-col justify-between">
-<p class="font-body-lg text-body-lg text-ink-primary font-medium mb-space-md">
-            "I have recently joined ZebLearn and I found it the best place if you are searching for jobs. The trainers are very supportive and you will get ample opportunities here."
-          </p>
-<div class="flex items-center justify-between pt-space-sm border-t border-hairline-border font-label-mono text-label-mono">
-<div>
-<span class="font-bold text-ink-primary block">Deeksha</span>
-<span class="text-ink-muted">Fast Track Online Training, SAP FICO</span>
-</div>
-
-</div>
-</div>
-<div class="bg-surface-white rounded-[24px] p-space-lg shadow-sm flex flex-col justify-between">
-<p class="font-body-lg text-body-lg text-ink-primary font-medium mb-space-md">
-            "I joined ZebLearn to pursue my ERP &amp; Servers. The technical sessions were given in a very simplified manner. Thanks ZebLearn."
-          </p>
-<div class="flex items-center justify-between pt-space-sm border-t border-hairline-border font-label-mono text-label-mono">
-<div>
-<span class="font-bold text-ink-primary block">Shyam Singh</span>
-<span class="text-ink-muted">ERP &amp; Servers</span>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- =========================================================================
-       SECTION 7: PLACEMENT PARTNER BANNER (PLACEMENTBABA SYNERGY)
-       ========================================================================= -->
-<section id="blog" class="w-full px-margin-mobile md:px-margin py-space-xl">
-<div class="max-w-[1440px] mx-auto bg-surface-soft text-on-surface rounded-[24px] p-space-xl md:p-space-2xl shadow-sm">
-<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-xl">
-<div class="space-y-space-xs max-w-2xl">
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-white text-ink-primary font-label-mono text-label-mono uppercase shadow-sm">
-<span class="w-2 h-2 rounded-full bg-primary-container"></span>
-            PLACEMENT PARTNER
-          </div>
-<h3 class="font-headline-xl text-headline-xl uppercase text-ink-primary tracking-tight">
-            PLACEMENTBABA: SAP JOBS, ONE CLICK AWAY
-          </h3>
-<p class="font-body-lg text-body-lg text-on-surface-variant">
-            Looking for SAP jobs? Browse openings on our placement partner's job portal.
-          </p>
-</div>
-<div class="shrink-0 flex flex-col sm:flex-row items-center gap-space-md">
-<div class="text-center sm:text-right font-label-mono text-label-mono text-ink-muted">
-<span class="text-ink-primary font-bold block text-body-md">SAP JOBS</span>
-            VIA PLACEMENTBABA
-          </div>
-<a class="px-space-xl py-space-md rounded-full bg-ink-primary text-surface-white font-body-md font-semibold hover:bg-primary-container transition-colors shadow-md inline-flex items-center gap-2" href="https://www.placementbaba.com/" target="_blank" rel="noopener">
-<span class="">View SAP Openings</span>
-<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-</a>
-</div>
-</div>
-</div>
-</section>
-<!-- =========================================================================
-       SECTION 8: FROM THE BLOG / INSIGHTS
-       ========================================================================= -->
-<section id="faq" class="w-full px-margin-mobile md:px-margin py-space-3xl">
-<div class="max-w-[1440px] mx-auto">
-<div class="flex items-center justify-between mb-space-2xl">
-<div>
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-white text-ink-primary font-label-mono text-label-mono uppercase shadow-sm mb-space-sm">
-<span class="w-2 h-2 rounded-full bg-primary-container"></span>
-            SAP BLOG
-          </div>
-<h2 class="font-display-lg text-display-lg uppercase text-ink-primary tracking-tight">LATEST SAP INTERVIEW QUESTIONS AND CAREER GUIDES</h2>
-</div>
-<a class="hidden sm:inline-flex items-center gap-1 font-body-md font-semibold text-primary-container hover:text-ink-primary transition-colors" href="/blogs">
-<span class="">All Articles</span>
-<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
-</a>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-<!-- Blog 1 -->
-<article onclick="window.open('https://sap.zeblearn.com/top-interview-question-answer-on-sap-basic/','_blank')" class="bg-surface-white rounded-[24px] p-space-xl flex flex-col justify-between shadow-sm group cursor-pointer hover:shadow-lg transition-all">
-<div>
-<div class="flex items-center justify-between mb-space-md font-label-mono text-label-mono">
-<span class="px-2.5 py-0.5 rounded-full bg-canvas-glow text-ink-primary font-bold">INTERVIEW PREP</span>
-<span class="text-ink-muted">5 MIN READ</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm uppercase text-ink-primary group-hover:text-primary-container transition-colors leading-snug mb-space-sm">
-              TOP INTERVIEW QUESTION ANSWER ON SAP BASIC
-            </h3>
-<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
-              Performing a system copy in SAP involves duplicating an existing SAP system to create a new system. Read the interview questions and answers.
-            </p>
-</div>
-<div class="pt-space-md border-t border-hairline-border flex items-center justify-between font-label-mono text-label-mono text-ink-muted">
-<span class="">BY ZEBLEARN</span>
-<span class="material-symbols-outlined text-[18px] text-ink-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
-</div>
-</article>
-<!-- Blog 2 -->
-<article onclick="window.open('https://sap.zeblearn.com/top-50-question-answer-on-sap-ecchana-sap-power-user/','_blank')" class="bg-surface-white rounded-[24px] p-space-xl flex flex-col justify-between shadow-sm group cursor-pointer hover:shadow-lg transition-all">
-<div>
-<div class="flex items-center justify-between mb-space-md font-label-mono text-label-mono">
-<span class="px-2.5 py-0.5 rounded-full bg-canvas-glow text-ink-primary font-bold">INTERVIEW PREP</span>
-<span class="text-ink-muted">5 MIN READ</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm uppercase text-ink-primary group-hover:text-primary-container transition-colors leading-snug mb-space-sm">
-              TOP 20 QUESTION ANSWER ON SAP ECC+HANA + SAP POWER USER
-            </h3>
-<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
-              Interview questions and answers on SAP ECC, HANA and the SAP Power User certification.
-            </p>
-</div>
-<div class="pt-space-md border-t border-hairline-border flex items-center justify-between font-label-mono text-label-mono text-ink-muted">
-<span class="">BY ZEBLEARN</span>
-<span class="material-symbols-outlined text-[18px] text-ink-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
-</div>
-</article>
-<!-- Blog 3 -->
-<article onclick="window.open('https://sap.zeblearn.com/top-50-sap-ewm-interview-question-answer/','_blank')" class="bg-surface-white rounded-[24px] p-space-xl flex flex-col justify-between shadow-sm group cursor-pointer hover:shadow-lg transition-all">
-<div>
-<div class="flex items-center justify-between mb-space-md font-label-mono text-label-mono">
-<span class="px-2.5 py-0.5 rounded-full bg-canvas-glow text-ink-primary font-bold">INTERVIEW PREP</span>
-<span class="text-ink-muted">5 MIN READ</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm uppercase text-ink-primary group-hover:text-primary-container transition-colors leading-snug mb-space-sm">
-              TOP 50 SAP EWM INTERVIEW QUESTION ANSWER
-            </h3>
-<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
-              Answers to the top 50 SAP EWM (Extended Warehouse Management) interview questions.
-            </p>
-</div>
-<div class="pt-space-md border-t border-hairline-border flex items-center justify-between font-label-mono text-label-mono text-ink-muted">
-<span class="">BY ZEBLEARN</span>
-<span class="material-symbols-outlined text-[18px] text-ink-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
-</div>
-</article>
-</div>
-</div>
-</section>
-<!-- =========================================================================
-       SECTION 9: FINAL MASSIVE CALL TO ACTION
-       ========================================================================= -->
-<section class="w-full px-margin-mobile md:px-margin py-space-3xl"><div class="max-w-[1440px] mx-auto"><div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-2xl"><div><div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-white text-ink-primary font-label-mono text-label-mono uppercase shadow-sm mb-space-sm"><span class="w-2 h-2 rounded-full bg-primary-container"></span>FREQUENTLY ASKED</div><h2 class="font-display-lg text-display-lg uppercase text-ink-primary tracking-tight">SAP COURSE FAQS</h2></div><p class="font-body-md text-body-md text-on-surface-variant max-w-md">Got questions about fees, duration, modules or placement support? Here are the answers.</p></div><div class="grid grid-cols-1 md:grid-cols-2 gap-space-md"><div class="bg-surface-white rounded-[24px] p-space-xl shadow-sm space-y-2"><h3 class="font-headline-sm text-headline-sm uppercase text-ink-primary">HOW LONG IS THE SAP COURSE?</h3><p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">The instructor-led SAP FICO, MM, SD and PP courses run for 3 months with live online classes.</p></div><div class="bg-surface-white rounded-[24px] p-space-xl shadow-sm space-y-2"><h3 class="font-headline-sm text-headline-sm uppercase text-ink-primary">WHAT IS THE FEE FOR THE SAP COURSE?</h3><p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">The instructor-led course is ₹25,000 + GST. The SAP Power User Certification course (80 hours, self-paced, by SAP) is ₹40,000 + GST.</p></div><div class="bg-surface-white rounded-[24px] p-space-xl shadow-sm space-y-2"><h3 class="font-headline-sm text-headline-sm uppercase text-ink-primary">WHICH SAP MODULE SHOULD I LEARN FIRST?</h3><p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">If you come from finance, choose FICO. For procurement or inventory, choose MM. For sales and billing, choose SD. For manufacturing, choose PP.</p></div><div class="bg-surface-white rounded-[24px] p-space-xl shadow-sm space-y-2"><h3 class="font-headline-sm text-headline-sm uppercase text-ink-primary">DO I NEED PRIOR CODING KNOWLEDGE TO LEARN SAP?</h3><p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Functional modules like SAP FICO, MM, SD and PP do not need programming knowledge. A basic understanding of finance, supply chain, commerce or manufacturing helps.</p></div><div class="bg-surface-white rounded-[24px] p-space-xl shadow-sm space-y-2"><h3 class="font-headline-sm text-headline-sm uppercase text-ink-primary">DO YOU PROVIDE PLACEMENT SUPPORT?</h3><p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Yes. Placement support is available through our partner PlacementBaba, along with interview preparation.</p></div><div class="bg-surface-white rounded-[24px] p-space-xl shadow-sm space-y-2"><h3 class="font-headline-sm text-headline-sm uppercase text-ink-primary">CAN I ATTEND A DEMO CLASS FIRST?</h3><p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">Yes. Tap "Book a Free Demo" or call +91 8506 888 288 to ask about the next demo session.</p></div></div></div></section><section class="w-full px-margin-mobile md:px-margin py-space-3xl">
-<div class="max-w-[1440px] mx-auto bg-surface-white rounded-[32px] p-space-xl md:p-space-3xl text-center shadow-lg relative overflow-hidden">
-<div class="max-w-4xl mx-auto space-y-space-lg relative z-10">
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container text-ink-primary font-label-mono text-label-mono uppercase">
-<span class="w-2 h-2 rounded-full bg-primary-container"></span>
-          LIVE ONLINE SAP TRAINING
+     1. HERO SECTION: COMMANDING ENTERPRISE EDUCATION HEADLINE & CREDIBILITY
+     ========================================================================= -->
+<section class="relative w-full pt-28 sm:pt-32 pb-16 lg:pb-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto overflow-hidden">
+    <!-- Top Telemetry Track -->
+    <div class="flex flex-wrap items-center justify-between gap-3 pb-6 mb-8 border-b border-slate-200 animate-hero-badge">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-xs">
+            <span class="w-2 h-2 rounded-full bg-[#FB6221] animate-pulse"></span>
+            <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-[#0A0A0A]">2,500+ LEARNERS TRAINED</span>
         </div>
-<h2 class="font-display-xl text-[48px] sm:text-[80px] md:text-[110px] uppercase text-ink-primary tracking-tighter leading-none">START YOUR SAP CAREER WITH A FREE DEMO CLASS</h2>
-<p class="font-body-xl text-body-xl text-on-surface-variant max-w-2xl mx-auto">
-          Book your free demo or speak with our team to find the right SAP module for your career.
+        <div class="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+            <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+            <span>LIVE INSTRUCTOR-LED SAP CLASSES WITH PLACEMENT SUPPORT</span>
+        </div>
+    </div>
+
+    <!-- Editorial Hero Headlines, Narrative & Premium Abstract 3D Hero Sculpture -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center mb-12 lg:mb-16">
+        <div class="lg:col-span-7 flex flex-col justify-center space-y-6">
+            <h1 class="font-heading text-5xl sm:text-7xl lg:text-[76px] font-extrabold uppercase tracking-tight text-[#0A0A0A] leading-[0.98] select-none animate-hero-title">
+                LEARN SAP ONLINE.
+                <span class="block text-[#FB6221]">GET HIRED.</span>
+            </h1>
+            <p class="font-sans text-base sm:text-lg text-slate-700 leading-relaxed font-normal animate-hero-desc max-w-xl">
+                Live SAP training in <strong>FICO, MM, SD, and PP</strong> with real system access, module-wise practical assignments, mock interviews, and dedicated placement support.
+            </p>
+            <div class="flex flex-wrap items-center gap-3 pt-1 animate-hero-cta">
+                <a href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20book%20a%20free%20demo." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#FB6221] hover:bg-[#e05214] text-white font-sans text-xs font-semibold uppercase tracking-wider shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02] zeb-btn-cta">
+                    <span>Book a Free Demo</span>
+                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </a>
+                <a href="#course-deck" class="inline-flex items-center gap-2 px-5 py-3.5 rounded-full bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-sans text-xs font-semibold uppercase tracking-wider transition-colors shadow-xs zeb-btn-cta">
+                    <span>Explore Courses</span>
+                    <span class="material-symbols-outlined text-[16px]">expand_more</span>
+                </a>
+            </div>
+            <!-- Live Confidence Markers -->
+            <div class="pt-1 flex flex-wrap items-center gap-4 text-xs font-mono text-slate-500">
+                <span class="inline-flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    <span>24/7 S/4HANA Sandbox Access</span>
+                </span>
+                <span class="inline-flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#FB6221]"></span>
+                    <span>Live 1-on-1 Faculty Mentorship</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="lg:col-span-5 flex justify-center lg:justify-end animate-hero-assembly">
+            <?php if (isset($component)) { $__componentOriginalc667269910f584e32ccd93e3e8514917 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalc667269910f584e32ccd93e3e8514917 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.home.ditherveil-hero','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('home.ditherveil-hero'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalc667269910f584e32ccd93e3e8514917)): ?>
+<?php $attributes = $__attributesOriginalc667269910f584e32ccd93e3e8514917; ?>
+<?php unset($__attributesOriginalc667269910f584e32ccd93e3e8514917); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalc667269910f584e32ccd93e3e8514917)): ?>
+<?php $component = $__componentOriginalc667269910f584e32ccd93e3e8514917; ?>
+<?php unset($__componentOriginalc667269910f584e32ccd93e3e8514917); ?>
+<?php endif; ?>
+        </div>
+    </div>
+
+    <!-- Hero Credibility Matrix (4 Precision Pillars) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 animate-hero-assembly">
+        <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between zeb-card-interactive">
+            <div class="flex items-center justify-between mb-4">
+                <span class="font-mono text-[10px] font-semibold uppercase tracking-widest text-[#FB6221]">01 // PEDAGOGY</span>
+                <span class="material-symbols-outlined text-slate-400 text-[20px]">laptop_mac</span>
+            </div>
+            <div>
+                <span class="font-heading text-xl font-bold uppercase tracking-tight text-[#0A0A0A] block mb-1">Live Online Batches</span>
+                <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">Instructor-led interactive sessions with real-time doubt clearing and session recordings.</p>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between zeb-card-interactive">
+            <div class="flex items-center justify-between mb-4">
+                <span class="font-mono text-[10px] font-semibold uppercase tracking-widest text-[#FB6221]">02 // HANDS-ON</span>
+                <span class="material-symbols-outlined text-slate-400 text-[20px]">terminal</span>
+            </div>
+            <div>
+                <span class="font-heading text-xl font-bold uppercase tracking-tight text-[#0A0A0A] block mb-1">Real SAP System Practice</span>
+                <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">Direct sandbox access to configure enterprise structures, transactions, and end-to-end flows.</p>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between zeb-card-interactive">
+            <div class="flex items-center justify-between mb-4">
+                <span class="font-mono text-[10px] font-semibold uppercase tracking-widest text-[#FB6221]">03 // CAREER</span>
+                <span class="material-symbols-outlined text-slate-400 text-[20px]">record_voice_over</span>
+            </div>
+            <div>
+                <span class="font-heading text-xl font-bold uppercase tracking-tight text-[#0A0A0A] block mb-1">Mock Interviews</span>
+                <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">Resume preparation, scenario questions, and technical interview simulations with feedback.</p>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between zeb-card-interactive">
+            <div class="flex items-center justify-between mb-4">
+                <span class="font-mono text-[10px] font-semibold uppercase tracking-widest text-[#FB6221]">04 // OUTCOMES</span>
+                <span class="material-symbols-outlined text-slate-400 text-[20px]">handshake</span>
+            </div>
+            <div>
+                <span class="font-heading text-xl font-bold uppercase tracking-tight text-[#0A0A0A] block mb-1">Placement Partner</span>
+                <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">Job portal referrals and openings via our placement partner <strong>PlacementBaba</strong>.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================================
+     2. SECTION 2: PROVEN TRACK RECORD / WHY LEARNERS CHOOSE ZEBLEARN
+     ========================================================================= -->
+<section class="w-full py-16 lg:py-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto border-t border-slate-200">
+    <div class="mb-12" data-reveal>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 text-[#0A0A0A] font-mono text-[10px] font-semibold uppercase tracking-widest shadow-xs mb-3">
+            <span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
+            PROVEN TRACK RECORD
+        </div>
+        <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-[#0A0A0A] tracking-tight leading-tight">
+            WHY LEARNERS CHOOSE ZEBLEARN FOR SAP TRAINING
+        </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+        <!-- Card A (Col 1-4): Direct Architect Dialogue -->
+        <div class="md:col-span-4 bg-[#0A0A0A] text-white rounded-3xl p-8 sm:p-10 flex flex-col justify-between shadow-xl relative overflow-hidden zeb-card-interactive" data-reveal data-reveal-delay="1">
+            <div class="relative z-10 space-y-4">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white font-mono text-[10px] font-semibold uppercase tracking-widest border border-white/10">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#FB6221]"></span>
+                    DIRECT CONSULTANT DIALOGUE
+                </div>
+                <h3 class="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-tight text-white leading-snug">
+                    HAVE A QUESTION?
+                </h3>
+                <p class="font-sans text-sm text-slate-300 leading-relaxed font-normal">
+                    Speak directly with our instructors and placement counselors. Get clarity on which SAP module suits your professional background.
+                </p>
+            </div>
+
+            <div class="relative z-10 pt-8 mt-6 border-t border-white/10">
+                <a class="w-full inline-flex items-center justify-between px-6 py-3.5 rounded-full bg-white text-[#0A0A0A] hover:bg-[#FB6221] hover:text-white font-sans text-xs font-semibold uppercase tracking-wider transition-all duration-200 shadow-md group" href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20book%20a%20free%20demo." target="_blank" rel="noopener">
+                    <span>Speak with Counselors</span>
+                    <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Card B (Col 5-8): Soft Gray Placement Metric Engine -->
+        <div class="md:col-span-5 bg-white border border-slate-200 rounded-3xl p-8 sm:p-10 flex flex-col justify-between shadow-xs zeb-card-interactive" data-reveal data-reveal-delay="2">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-[#0A0A0A] font-mono text-[10px] font-semibold uppercase tracking-widest mb-6">
+                    <span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
+                    PLACEMENTS RADAR
+                </div>
+                <h3 class="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-tight text-[#0A0A0A] leading-snug mb-4">
+                    2,500+ CANDIDATES TRAINED. ONE CALL FROM YOUR FIRST INTERVIEW.
+                </h3>
+                <p class="font-sans text-sm text-slate-600 leading-relaxed font-normal">
+                    Live SAP training with real system practice, mock interviews and placement support through our partner <strong>PlacementBaba</strong>.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 pt-8 mt-6 border-t border-slate-100">
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                    <span class="font-mono text-[10px] text-slate-500 uppercase tracking-widest block mb-1">Learners Trained</span>
+                    <span class="font-heading text-2xl sm:text-3xl font-extrabold text-[#0A0A0A] leading-none block">2,500+</span>
+                    <span class="font-mono text-[9px] text-[#FB6221] font-bold uppercase tracking-wider mt-1 block">Successfully Placed</span>
+                </div>
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-100">
+                    <span class="font-mono text-[10px] text-slate-500 uppercase tracking-widest block mb-1">Placement Partner</span>
+                    <span class="font-heading text-xl sm:text-2xl font-bold text-[#0A0A0A] leading-none block">PlacementBaba</span>
+                    <span class="font-mono text-[9px] text-emerald-600 font-bold uppercase tracking-wider mt-1 block">Active Hiring Portal</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card C (Col 9-12): White Clean Institutional Authority Card -->
+        <div class="md:col-span-3 bg-white border border-slate-200 rounded-3xl p-8 flex flex-col justify-between shadow-xs zeb-card-interactive" data-reveal data-reveal-delay="3">
+            <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-[#0A0A0A] font-mono text-[10px] font-semibold uppercase tracking-widest mb-6">
+                    <span class="material-symbols-outlined text-[14px] text-[#FB6221]" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+                    RECOGNITION
+                </div>
+                <div class="w-12 h-12 rounded-xl bg-orange-50 border border-orange-100 flex items-center justify-center text-[#FB6221] mb-6">
+                    <span class="material-symbols-outlined text-[28px]">workspace_premium</span>
+                </div>
+                <h3 class="font-heading text-xl sm:text-2xl font-bold uppercase tracking-tight text-[#0A0A0A] mb-3 leading-snug">
+                    RANKED NO.1 SAP TRAINING PARTNER
+                </h3>
+                <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">
+                    Live SAP training in FICO, MM, SD and PP with hands-on system practice and interview support.
+                </p>
+            </div>
+            <div class="pt-6 mt-6 border-t border-slate-100">
+                <div class="flex items-center justify-between text-xs">
+                    <span class="text-slate-500 font-mono uppercase tracking-wider">LEARNERS TRAINED</span>
+                    <span class="font-heading text-xl font-bold text-[#0A0A0A]">2,500+</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================================
+     ACADEMY AUDIENCE PATHWAYS: 3 TAILORED PATHWAYS TO SAP EXCELLENCE
+     ========================================================================= -->
+<section class="w-full py-16 lg:py-20 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto border-t border-slate-200">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12" data-reveal>
+        <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 text-[#0A0A0A] font-mono text-[10px] font-semibold uppercase tracking-widest shadow-xs mb-3">
+                <span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
+                ACADEMY PATHWAYS
+            </div>
+            <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-[#0A0A0A] tracking-tight leading-tight">
+                STRUCTURED TRAINING FOR EVERY CAREER STAGE
+            </h2>
+        </div>
+        <p class="font-sans text-sm text-slate-600 max-w-md font-normal leading-relaxed">
+            Whether entering the job market, upgrading domain expertise, or transitioning from legacy IT into enterprise ERP, our live cohorts provide targeted learning and verified placement assistance.
         </p>
-<!-- Action Bar: Pill Demo Button + Circular WhatsApp Quick-Dial -->
-<div class="pt-space-md flex flex-col sm:flex-row items-center justify-center gap-space-md">
-<a class="w-full sm:w-auto px-space-2xl py-space-md rounded-full bg-primary-container text-on-primary font-body-md font-semibold hover:scale-105 transition-all shadow-[0_12px_32px_rgba(251,98,33,0.35)] text-center" href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20book%20a%20free%20demo." target="_blank" rel="noopener">Book a Free Demo</a>
-<a class="w-full sm:w-auto inline-flex items-center justify-center gap-space-sm px-space-xl py-space-md rounded-full border border-hairline-border bg-surface-white hover:bg-canvas-glow font-body-md font-semibold text-ink-primary transition-colors shadow-sm" href="tel:+918506888288">
-<span class="material-symbols-outlined text-[20px] text-ink-primary">call</span>
-<span class="">+91 8506 888 288</span>
-</a>
-</div>
-</div>
-</div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Pathway 1: Freshers -->
+        <div class="bg-white rounded-3xl p-8 border border-slate-200/90 hover:border-[#FB6221] transition-all duration-300 shadow-xs hover:shadow-xl flex flex-col justify-between group zeb-card-interactive" data-reveal data-reveal-delay="1">
+            <div>
+                <div class="flex items-center justify-between mb-4">
+                    <span class="font-mono text-[10px] font-semibold uppercase tracking-widest text-[#FB6221]">PATHWAY 01 // ENTRY</span>
+                    <span class="w-8 h-8 rounded-full bg-orange-50 border border-orange-100 flex items-center justify-center text-[#FB6221]">
+                        <span class="material-symbols-outlined text-[18px]">school</span>
+                    </span>
+                </div>
+                <div class="inline-block px-2.5 py-0.5 rounded-full bg-slate-100 font-mono text-[10px] font-semibold uppercase text-slate-700 tracking-wider mb-2">
+                    Freshers &amp; College Graduates
+                </div>
+                
+                <!-- Bespoke Isometric Artwork -->
+                <?php if (isset($component)) { $__componentOriginald3a9ba9f3e20762e045f6d727ad1ddf0 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginald3a9ba9f3e20762e045f6d727ad1ddf0 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.visual.pathway-art','data' => ['pathway' => 'entry']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('visual.pathway-art'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['pathway' => 'entry']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginald3a9ba9f3e20762e045f6d727ad1ddf0)): ?>
+<?php $attributes = $__attributesOriginald3a9ba9f3e20762e045f6d727ad1ddf0; ?>
+<?php unset($__attributesOriginald3a9ba9f3e20762e045f6d727ad1ddf0); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald3a9ba9f3e20762e045f6d727ad1ddf0)): ?>
+<?php $component = $__componentOriginald3a9ba9f3e20762e045f6d727ad1ddf0; ?>
+<?php unset($__componentOriginald3a9ba9f3e20762e045f6d727ad1ddf0); ?>
+<?php endif; ?>
+
+                <h3 class="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-tight text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors mb-3 leading-snug">
+                    Start Your SAP Career
+                </h3>
+                <p class="font-sans text-xs sm:text-sm text-slate-600 leading-relaxed mb-6 font-normal">
+                    Break into high-paying enterprise IT roles with no prior ERP experience required. Learn end-to-end business flows, build professional portfolios, and prepare for entry-level consulting interviews.
+                </p>
+                <div class="space-y-2 pt-4 border-t border-slate-100 font-mono text-[11px] text-slate-600">
+                    <div class="flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                        <span>Zero SAP prior experience required</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                        <span>Recommended: SAP FICO, MM, SD</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                        <span>Mock interviews &amp; placement referrals</span>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-6 mt-6 border-t border-slate-100">
+                <a href="<?php echo e(route('courses.index')); ?>" class="w-full inline-flex items-center justify-between px-5 py-3 rounded-full bg-slate-100 hover:bg-[#0A0A0A] hover:text-white font-sans text-xs font-semibold uppercase tracking-wider text-slate-900 transition-colors">
+                    <span>View Beginner Track</span>
+                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Pathway 2: Working Professionals -->
+        <div class="bg-white rounded-3xl p-8 border border-slate-200/90 hover:border-[#FB6221] transition-all duration-300 shadow-xs hover:shadow-xl flex flex-col justify-between group zeb-card-interactive" data-reveal data-reveal-delay="2">
+            <div>
+                <div class="flex items-center justify-between mb-4">
+                    <span class="font-mono text-[10px] font-semibold uppercase tracking-widest text-[#FB6221]">PATHWAY 02 // ACCELERATION</span>
+                    <span class="w-8 h-8 rounded-full bg-orange-50 border border-orange-100 flex items-center justify-center text-[#FB6221]">
+                        <span class="material-symbols-outlined text-[18px]">trending_up</span>
+                    </span>
+                </div>
+                <div class="inline-block px-2.5 py-0.5 rounded-full bg-slate-100 font-mono text-[10px] font-semibold uppercase text-slate-700 tracking-wider mb-2">
+                    Domain &amp; Finance Professionals
+                </div>
+
+                <!-- Bespoke Isometric Artwork -->
+                <?php if (isset($component)) { $__componentOriginald3a9ba9f3e20762e045f6d727ad1ddf0 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginald3a9ba9f3e20762e045f6d727ad1ddf0 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.visual.pathway-art','data' => ['pathway' => 'acceleration']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('visual.pathway-art'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['pathway' => 'acceleration']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginald3a9ba9f3e20762e045f6d727ad1ddf0)): ?>
+<?php $attributes = $__attributesOriginald3a9ba9f3e20762e045f6d727ad1ddf0; ?>
+<?php unset($__attributesOriginald3a9ba9f3e20762e045f6d727ad1ddf0); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald3a9ba9f3e20762e045f6d727ad1ddf0)): ?>
+<?php $component = $__componentOriginald3a9ba9f3e20762e045f6d727ad1ddf0; ?>
+<?php unset($__componentOriginald3a9ba9f3e20762e045f6d727ad1ddf0); ?>
+<?php endif; ?>
+
+                <h3 class="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-tight text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors mb-3 leading-snug">
+                    Upgrade Your Career
+                </h3>
+                <p class="font-sans text-xs sm:text-sm text-slate-600 leading-relaxed mb-6 font-normal">
+                    Turn your accounting, supply chain, procurement, or plant operations experience into functional SAP consulting expertise. Target 40%–70% compensation leaps with verified certification skills.
+                </p>
+                <div class="space-y-2 pt-4 border-t border-slate-100 font-mono text-[11px] text-slate-600">
+                    <div class="flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#FB6221]"></span>
+                        <span>Leverage domain expertise in consulting</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#FB6221]"></span>
+                        <span>Recommended: SAP FICO, MM, PP, SD</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-[#FB6221]"></span>
+                        <span>Real enterprise configuration labs</span>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-6 mt-6 border-t border-slate-100">
+                <a href="<?php echo e(route('courses.index')); ?>" class="w-full inline-flex items-center justify-between px-5 py-3 rounded-full bg-slate-100 hover:bg-[#0A0A0A] hover:text-white font-sans text-xs font-semibold uppercase tracking-wider text-slate-900 transition-colors">
+                    <span>View Functional Track</span>
+                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Pathway 3: IT Professionals -->
+        <div class="bg-white rounded-3xl p-8 border border-slate-200/90 hover:border-[#FB6221] transition-all duration-300 shadow-xs hover:shadow-xl flex flex-col justify-between group zeb-card-interactive" data-reveal data-reveal-delay="3">
+            <div>
+                <div class="flex items-center justify-between mb-4">
+                    <span class="font-mono text-[10px] font-semibold uppercase tracking-widest text-[#FB6221]">PATHWAY 03 // TRANSITION</span>
+                    <span class="w-8 h-8 rounded-full bg-orange-50 border border-orange-100 flex items-center justify-center text-[#FB6221]">
+                        <span class="material-symbols-outlined text-[18px]">terminal</span>
+                    </span>
+                </div>
+                <div class="inline-block px-2.5 py-0.5 rounded-full bg-slate-100 font-mono text-[10px] font-semibold uppercase text-slate-700 tracking-wider mb-2">
+                    Developers, DBAs &amp; Sysadmins
+                </div>
+
+                <!-- Bespoke Isometric Artwork -->
+                <?php if (isset($component)) { $__componentOriginald3a9ba9f3e20762e045f6d727ad1ddf0 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginald3a9ba9f3e20762e045f6d727ad1ddf0 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.visual.pathway-art','data' => ['pathway' => 'transition']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('visual.pathway-art'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['pathway' => 'transition']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginald3a9ba9f3e20762e045f6d727ad1ddf0)): ?>
+<?php $attributes = $__attributesOriginald3a9ba9f3e20762e045f6d727ad1ddf0; ?>
+<?php unset($__attributesOriginald3a9ba9f3e20762e045f6d727ad1ddf0); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald3a9ba9f3e20762e045f6d727ad1ddf0)): ?>
+<?php $component = $__componentOriginald3a9ba9f3e20762e045f6d727ad1ddf0; ?>
+<?php unset($__componentOriginald3a9ba9f3e20762e045f6d727ad1ddf0); ?>
+<?php endif; ?>
+
+                <h3 class="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-tight text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors mb-3 leading-snug">
+                    Transition Into SAP
+                </h3>
+                <p class="font-sans text-xs sm:text-sm text-slate-600 leading-relaxed mb-6 font-normal">
+                    Shift from legacy tech stacks or generic development to enterprise ERP architecture. Master modern SAP ABAP on HANA, Basis administration, and SAP BTP cloud integrations.
+                </p>
+                <div class="space-y-2 pt-4 border-t border-slate-100 font-mono text-[11px] text-slate-600">
+                    <div class="flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+                        <span>Enterprise architecture &amp; CDS views</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+                        <span>Recommended: ABAP on HANA, Basis, BTP</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+                        <span>Direct path to SAP Technical Consultant</span>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-6 mt-6 border-t border-slate-100">
+                <a href="<?php echo e(route('courses.index')); ?>" class="w-full inline-flex items-center justify-between px-5 py-3 rounded-full bg-slate-100 hover:bg-[#0A0A0A] hover:text-white font-sans text-xs font-semibold uppercase tracking-wider text-slate-900 transition-colors">
+                    <span>View Technical Track</span>
+                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================================
+     3. SECTION 3: COURSES DIRECTORY (INTERACTIVE STACKED MODULE CARDS)
+     ========================================================================= -->
+<section id="course-deck" class="w-full py-16 lg:py-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto border-t border-slate-200">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12" data-reveal>
+        <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 text-[#0A0A0A] font-mono text-[10px] font-semibold uppercase tracking-widest shadow-xs mb-3">
+                <span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
+                ACADEMY CURRICULUM
+            </div>
+            <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-[#0A0A0A] tracking-tight leading-tight">
+                SAP COURSES: FEATURED &amp; UPCOMING COHORTS
+            </h2>
+        </div>
+        <div class="flex flex-col items-start md:items-end gap-2">
+            <p class="font-sans text-sm text-slate-600 max-w-md font-normal leading-relaxed text-left md:text-right">
+                Live online classes, real system practice, module assignments and interview preparation in structured 3-month batches.
+            </p>
+            <a href="<?php echo e(route('courses.index')); ?>" class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#FB6221] hover:underline">
+                <span>View All 11 Academy Modules</span>
+                <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="space-y-4">
+        <!-- Module 1: SAP FICO (Confirmed Available) -->
+        <div class="group bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border-2 border-[#FB6221]/30 hover:border-[#FB6221] transition-all duration-300 shadow-sm hover:shadow-xl relative overflow-hidden zeb-card-interactive" data-reveal>
+            <div class="absolute top-0 right-0 w-32 h-32 bg-[#FB6221]/5 rounded-bl-full pointer-events-none"></div>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                <div class="lg:col-span-5 flex items-start gap-4">
+                    <?php if (isset($component)) { $__componentOriginal590733e6c7107f06feece8fd8c92c087 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal590733e6c7107f06feece8fd8c92c087 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.course.module-art','data' => ['module' => 'fico','class' => 'w-14 h-14 hidden sm:flex shrink-0 mt-1']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('course.module-art'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['module' => 'fico','class' => 'w-14 h-14 hidden sm:flex shrink-0 mt-1']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal590733e6c7107f06feece8fd8c92c087)): ?>
+<?php $attributes = $__attributesOriginal590733e6c7107f06feece8fd8c92c087; ?>
+<?php unset($__attributesOriginal590733e6c7107f06feece8fd8c92c087); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal590733e6c7107f06feece8fd8c92c087)): ?>
+<?php $component = $__componentOriginal590733e6c7107f06feece8fd8c92c087; ?>
+<?php unset($__componentOriginal590733e6c7107f06feece8fd8c92c087); ?>
+<?php endif; ?>
+                    <div class="space-y-2">
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <span class="font-mono text-[11px] font-semibold uppercase tracking-widest text-[#FB6221]">01 // FINANCIALS</span>
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-mono text-[10px] font-semibold uppercase tracking-wider border border-emerald-200">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                AVAILABLE · ENROLLING NOW
+                            </span>
+                            <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-orange-100 text-[#FB6221] font-mono text-[10px] font-semibold uppercase tracking-wider">FLAGSHIP</span>
+                        </div>
+                        <h3 class="font-heading text-2xl sm:text-3xl font-bold uppercase text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors leading-snug">
+                            SAP FICO COURSE
+                        </h3>
+                        <p class="font-sans text-sm text-slate-600 leading-relaxed font-normal">
+                            Finance &amp; Controlling: General Ledger, AP, AR, Asset Accounting, Cost Center &amp; Profit Center Analysis with direct S/4HANA Finance system practice.
+                        </p>
+                    </div>
+                </div>
+                <div class="lg:col-span-3 space-y-2 font-mono text-xs text-slate-600">
+                    <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-[#FB6221]">group</span><span>1,850+ LEARNERS</span></div>
+                    <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-[#FB6221]">schedule</span><span>3 MONTHS, LIVE ONLINE</span></div>
+                    <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-[#FB6221]">terminal</span><span>REAL SAP SYSTEM PRACTICE</span></div>
+                </div>
+                <div class="lg:col-span-2">
+                    <span class="font-mono text-[10px] text-slate-500 uppercase tracking-widest block mb-0.5">TUITION (3 MONTHS)</span>
+                    <div class="font-heading text-2xl sm:text-3xl font-extrabold text-[#0A0A0A]">₹25,000<span class="text-xs font-mono font-normal lowercase opacity-80"> + GST</span></div>
+                    <span class="font-mono text-[10px] text-emerald-600 block mt-0.5 font-semibold">● Immediate Enrollment</span>
+                </div>
+                <div class="lg:col-span-2 flex flex-col sm:flex-row lg:flex-col gap-2 justify-start lg:justify-end">
+                    <a class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#FB6221] hover:bg-[#e05214] text-white font-sans text-xs font-semibold uppercase tracking-wider transition-all duration-200 shadow-sm zeb-btn-cta" href="<?php echo e(route('courses.fico')); ?>" title="View SAP FICO course details">
+                        <span>Course Details</span>
+                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                    </a>
+                    <a class="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-sans text-xs font-semibold uppercase tracking-wider transition-colors" href="<?php echo e(route('book-demo', ['course' => 'sap-fico'])); ?>">
+                        <span>Book Demo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 2: SAP MM (Upcoming Batch) -->
+        <div class="group bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 hover:border-amber-400 transition-all duration-300 shadow-xs hover:shadow-xl zeb-card-interactive" data-reveal>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                <div class="lg:col-span-5 flex items-start gap-4">
+                    <?php if (isset($component)) { $__componentOriginal590733e6c7107f06feece8fd8c92c087 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal590733e6c7107f06feece8fd8c92c087 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.course.module-art','data' => ['module' => 'mm','class' => 'w-14 h-14 hidden sm:flex shrink-0 mt-1']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('course.module-art'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['module' => 'mm','class' => 'w-14 h-14 hidden sm:flex shrink-0 mt-1']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal590733e6c7107f06feece8fd8c92c087)): ?>
+<?php $attributes = $__attributesOriginal590733e6c7107f06feece8fd8c92c087; ?>
+<?php unset($__attributesOriginal590733e6c7107f06feece8fd8c92c087); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal590733e6c7107f06feece8fd8c92c087)): ?>
+<?php $component = $__componentOriginal590733e6c7107f06feece8fd8c92c087; ?>
+<?php unset($__componentOriginal590733e6c7107f06feece8fd8c92c087); ?>
+<?php endif; ?>
+                    <div class="space-y-2">
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <span class="font-mono text-[11px] font-semibold uppercase tracking-widest text-[#FB6221]">02 // SOURCING</span>
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 font-mono text-[10px] font-semibold uppercase tracking-wider border border-amber-200">
+                                <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                                UPCOMING COHORT
+                            </span>
+                            <span class="font-mono text-[10px] text-slate-500 uppercase tracking-wider">SUPPLY CHAIN</span>
+                        </div>
+                        <h3 class="font-heading text-2xl sm:text-3xl font-bold uppercase text-[#0A0A0A] group-hover:text-amber-600 transition-colors leading-snug">
+                            SAP MM COURSE
+                        </h3>
+                        <p class="font-sans text-sm text-slate-600 leading-relaxed font-normal">
+                            Materials Management: Master Data, Purchasing Life Cycle, Inventory Management, Physical Inventory &amp; Logistics Invoice Verification (LIV).
+                        </p>
+                    </div>
+                </div>
+                <div class="lg:col-span-3 space-y-2 font-mono text-xs text-slate-600">
+                    <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-amber-500">group</span><span>1,650+ ALUMNI</span></div>
+                    <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-amber-500">event</span><span>NEXT COHORT STARTING SOON</span></div>
+                    <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-amber-500">warehouse</span><span>INVENTORY SANDBOX LABS</span></div>
+                </div>
+                <div class="lg:col-span-2">
+                    <span class="font-mono text-[10px] text-slate-500 uppercase tracking-widest block mb-0.5">STATUS</span>
+                    <div class="font-heading text-xl sm:text-2xl font-bold uppercase text-[#0A0A0A]">UPCOMING BATCH</div>
+                    <span class="font-mono text-[10px] text-amber-600 block mt-0.5 font-semibold">● Pre-Registration Open</span>
+                </div>
+                <div class="lg:col-span-2 flex flex-col sm:flex-row lg:flex-col gap-2 justify-start lg:justify-end">
+                    <a class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#0A0A0A] hover:bg-[#FB6221] text-white font-sans text-xs font-semibold uppercase tracking-wider transition-all duration-200 shadow-sm zeb-btn-cta" href="<?php echo e(route('book-demo', ['course' => 'sap-mm'])); ?>" title="Pre-register for SAP MM batch">
+                        <span>Pre-Register Demo</span>
+                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                    </a>
+                    <a class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-slate-200 hover:border-slate-400 text-slate-700 font-sans text-xs font-medium tracking-wider transition-colors" href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20know%20more%20about%20the%20upcoming%20SAP%20MM%20training%20batch." target="_blank" rel="noopener">
+                        <span>Inquire on WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 3: SAP SD (Upcoming Batch) -->
+        <div class="group bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 hover:border-amber-400 transition-all duration-300 shadow-xs hover:shadow-xl zeb-card-interactive" data-reveal>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                <div class="lg:col-span-5 flex items-start gap-4">
+                    <?php if (isset($component)) { $__componentOriginal590733e6c7107f06feece8fd8c92c087 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal590733e6c7107f06feece8fd8c92c087 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.course.module-art','data' => ['module' => 'sd','class' => 'w-14 h-14 hidden sm:flex shrink-0 mt-1']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('course.module-art'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['module' => 'sd','class' => 'w-14 h-14 hidden sm:flex shrink-0 mt-1']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal590733e6c7107f06feece8fd8c92c087)): ?>
+<?php $attributes = $__attributesOriginal590733e6c7107f06feece8fd8c92c087; ?>
+<?php unset($__attributesOriginal590733e6c7107f06feece8fd8c92c087); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal590733e6c7107f06feece8fd8c92c087)): ?>
+<?php $component = $__componentOriginal590733e6c7107f06feece8fd8c92c087; ?>
+<?php unset($__componentOriginal590733e6c7107f06feece8fd8c92c087); ?>
+<?php endif; ?>
+                    <div class="space-y-2">
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <span class="font-mono text-[11px] font-semibold uppercase tracking-widest text-[#FB6221]">03 // COMMERCE</span>
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 font-mono text-[10px] font-semibold uppercase tracking-wider border border-amber-200">
+                                <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                                UPCOMING COHORT
+                            </span>
+                            <span class="font-mono text-[10px] text-slate-500 uppercase tracking-wider">ORDER-TO-CASH</span>
+                        </div>
+                        <h3 class="font-heading text-2xl sm:text-3xl font-bold uppercase text-[#0A0A0A] group-hover:text-amber-600 transition-colors leading-snug">
+                            SAP SD COURSE
+                        </h3>
+                        <p class="font-sans text-sm text-slate-600 leading-relaxed font-normal">
+                            Sales &amp; Distribution: Enterprise Structure, Pricing Procedures, Credit Management, Billing, Shipping, and Availability Check (ATP).
+                        </p>
+                    </div>
+                </div>
+                <div class="lg:col-span-3 space-y-2 font-mono text-xs text-slate-600">
+                    <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-amber-500">group</span><span>1,057+ ALUMNI</span></div>
+                    <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-amber-500">event</span><span>NEXT COHORT STARTING SOON</span></div>
+                    <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-amber-500">local_shipping</span><span>LOGISTICS SIMULATION LAB</span></div>
+                </div>
+                <div class="lg:col-span-2">
+                    <span class="font-mono text-[10px] text-slate-500 uppercase tracking-widest block mb-0.5">STATUS</span>
+                    <div class="font-heading text-xl sm:text-2xl font-bold uppercase text-[#0A0A0A]">UPCOMING BATCH</div>
+                    <span class="font-mono text-[10px] text-amber-600 block mt-0.5 font-semibold">● Pre-Registration Open</span>
+                </div>
+                <div class="lg:col-span-2 flex flex-col sm:flex-row lg:flex-col gap-2 justify-start lg:justify-end">
+                    <a class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#0A0A0A] hover:bg-[#FB6221] text-white font-sans text-xs font-semibold uppercase tracking-wider transition-all duration-200 shadow-sm zeb-btn-cta" href="<?php echo e(route('book-demo', ['course' => 'sap-sd'])); ?>" title="Pre-register for SAP SD batch">
+                        <span>Pre-Register Demo</span>
+                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                    </a>
+                    <a class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-slate-200 hover:border-slate-400 text-slate-700 font-sans text-xs font-medium tracking-wider transition-colors" href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20know%20more%20about%20the%20upcoming%20SAP%20SD%20training%20batch." target="_blank" rel="noopener">
+                        <span>Inquire on WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Module 4: SAP PP (Upcoming Batch) -->
+        <div class="group bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 hover:border-amber-400 transition-all duration-300 shadow-xs hover:shadow-xl zeb-card-interactive" data-reveal>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                <div class="lg:col-span-5 flex items-start gap-4">
+                    <?php if (isset($component)) { $__componentOriginal590733e6c7107f06feece8fd8c92c087 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal590733e6c7107f06feece8fd8c92c087 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.course.module-art','data' => ['module' => 'pp','class' => 'w-14 h-14 hidden sm:flex shrink-0 mt-1']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('course.module-art'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['module' => 'pp','class' => 'w-14 h-14 hidden sm:flex shrink-0 mt-1']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal590733e6c7107f06feece8fd8c92c087)): ?>
+<?php $attributes = $__attributesOriginal590733e6c7107f06feece8fd8c92c087; ?>
+<?php unset($__attributesOriginal590733e6c7107f06feece8fd8c92c087); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal590733e6c7107f06feece8fd8c92c087)): ?>
+<?php $component = $__componentOriginal590733e6c7107f06feece8fd8c92c087; ?>
+<?php unset($__componentOriginal590733e6c7107f06feece8fd8c92c087); ?>
+<?php endif; ?>
+                    <div class="space-y-2">
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <span class="font-mono text-[11px] font-semibold uppercase tracking-widest text-[#FB6221]">04 // MANUFACTURING</span>
+                            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 font-mono text-[10px] font-semibold uppercase tracking-wider border border-amber-200">
+                                <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                                UPCOMING COHORT
+                            </span>
+                            <span class="font-mono text-[10px] text-slate-500 uppercase tracking-wider">PLAN-TO-PRODUCE</span>
+                        </div>
+                        <h3 class="font-heading text-2xl sm:text-3xl font-bold uppercase text-[#0A0A0A] group-hover:text-amber-600 transition-colors leading-snug">
+                            SAP PP COURSE
+                        </h3>
+                        <p class="font-sans text-sm text-slate-600 leading-relaxed font-normal">
+                            Production Planning: BOM, Work Centers, Routing, Material Requirement Planning (MRP-II), Capacity Planning and Shop Floor Execution.
+                        </p>
+                    </div>
+                </div>
+                <div class="lg:col-span-3 space-y-2 font-mono text-xs text-slate-600">
+                    <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-amber-500">group</span><span>974+ ALUMNI</span></div>
+                    <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-amber-500">event</span><span>NEXT COHORT STARTING SOON</span></div>
+                    <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-amber-500">precision_manufacturing</span><span>MRP EXECUTION ENGINE</span></div>
+                </div>
+                <div class="lg:col-span-2">
+                    <span class="font-mono text-[10px] text-slate-500 uppercase tracking-widest block mb-0.5">STATUS</span>
+                    <div class="font-heading text-xl sm:text-2xl font-bold uppercase text-[#0A0A0A]">UPCOMING BATCH</div>
+                    <span class="font-mono text-[10px] text-amber-600 block mt-0.5 font-semibold">● Pre-Registration Open</span>
+                </div>
+                <div class="lg:col-span-2 flex flex-col sm:flex-row lg:flex-col gap-2 justify-start lg:justify-end">
+                    <a class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#0A0A0A] hover:bg-[#FB6221] text-white font-sans text-xs font-semibold uppercase tracking-wider transition-all duration-200 shadow-sm zeb-btn-cta" href="<?php echo e(route('book-demo', ['course' => 'sap-pp'])); ?>" title="Pre-register for SAP PP batch">
+                        <span>Pre-Register Demo</span>
+                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                    </a>
+                    <a class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-slate-200 hover:border-slate-400 text-slate-700 font-sans text-xs font-medium tracking-wider transition-colors" href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20know%20more%20about%20the%20upcoming%20SAP%20PP%20training%20batch." target="_blank" rel="noopener">
+                        <span>Inquire on WhatsApp</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Academy Catalog Exploration Monolith Banner -->
+    <div class="mt-8 p-6 sm:p-8 lg:p-10 rounded-3xl bg-[#0A0A0A] text-white border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden" data-reveal>
+        <div class="absolute -right-16 -top-16 w-48 h-48 bg-[#FB6221]/10 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="space-y-2 text-center md:text-left relative z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white font-mono text-[10px] font-semibold uppercase tracking-widest border border-white/10">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#FB6221]"></span>
+                COMPLETE ACADEMY DIRECTORY
+            </div>
+            <h3 class="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold uppercase tracking-tight text-white leading-tight">
+                EXPLORE ALL 11 SAP ACADEMY MODULES
+            </h3>
+            <p class="font-sans text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed font-normal">
+                Browse our full curriculum across <strong>Functional</strong> (FICO, MM, SD, PP, SuccessFactors, PM/QM), <strong>Technical</strong> (ABAP on HANA, Basis, BTP), and <strong>Cloud Specializations</strong> (EWM, Ariba). Filter by availability, career pathway, or domain.
+            </p>
+        </div>
+        <div class="flex shrink-0 relative z-10">
+            <a href="<?php echo e(route('courses.index')); ?>" class="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-[#FB6221] hover:bg-[#e05214] text-white font-sans text-xs font-semibold uppercase tracking-wider shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-[1.02] zeb-btn-cta">
+                <span>Browse All Academy Courses</span>
+                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================================
+     4. SECTION 4: POWER USER MONOLITH (BLACK CONTRAST INVERTED BLOCK)
+     ========================================================================= -->
+<section class="w-full py-16 lg:py-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto" data-reveal>
+    <div class="bg-[#0A0A0A] text-white rounded-3xl p-8 sm:p-12 lg:p-16 relative overflow-hidden shadow-2xl">
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-7 space-y-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-white font-mono text-[10px] font-semibold uppercase tracking-widest border border-white/10">
+                    <span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
+                    OFFICIAL SAP SELF-PACED TRACK · 80 HOURS
+                </div>
+                <h2 class="font-heading text-3xl sm:text-5xl font-bold uppercase text-white tracking-tight leading-tight">
+                    SAP POWER USER CERTIFICATION COURSE
+                </h2>
+                <p class="font-sans text-base sm:text-lg text-slate-300 max-w-xl font-normal leading-relaxed">
+                    80 hours of self-paced certification training directly by SAP, 3 months platform access, ₹40,000 + GST. (Distinct from our 3-month live instructor-led functional courses at ₹25,000 + GST). Available for FICO, MM, SD and PP tracks.
+                </p>
+
+                <!-- Module Badges -->
+                <div class="flex flex-wrap gap-2 pt-2">
+                    <span class="px-3.5 py-1.5 rounded-full bg-white/10 text-white font-mono text-xs border border-white/10">• SAP FICO</span>
+                    <span class="px-3.5 py-1.5 rounded-full bg-white/10 text-white font-mono text-xs border border-white/10">• SAP MM</span>
+                    <span class="px-3.5 py-1.5 rounded-full bg-white/10 text-white font-mono text-xs border border-white/10">• SAP SD</span>
+                    <span class="px-3.5 py-1.5 rounded-full bg-white/10 text-white font-mono text-xs border border-white/10">• SAP PP</span>
+                </div>
+
+                <div class="pt-4 flex flex-col sm:flex-row sm:items-center gap-4">
+                    <a class="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[#FB6221] hover:bg-[#e05214] text-white font-sans text-xs font-semibold uppercase tracking-wider shadow-lg transition-transform hover:scale-[1.02] zeb-btn-cta" href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20enroll%20in%20the%20SAP%20Power%20User%20course." target="_blank" rel="noopener noreferrer">
+                        <span>Enroll in Power User Course</span>
+                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                    </a>
+                    <div class="font-mono text-xs text-slate-400 uppercase tracking-wider">
+                        <span class="text-white font-bold">TUITION: ₹40,000 + GST</span> • 80 HOURS, SELF-PACED
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certification Insignia -->
+            <div class="lg:col-span-5 flex justify-center lg:justify-end">
+                <div class="w-full max-w-xs rounded-2xl bg-white/5 border border-white/10 p-8 flex flex-col items-center justify-between text-center backdrop-blur-md space-y-6">
+                    <div class="w-full flex items-center justify-between font-mono text-[10px] text-slate-400 uppercase tracking-widest">
+                        <span>80 HOURS</span>
+                        <span class="text-[#FB6221] font-bold">SAP VERIFIED</span>
+                    </div>
+                    <div class="w-20 h-20 rounded-full bg-[#FB6221]/20 border border-[#FB6221] flex items-center justify-center text-[#FB6221] shadow-[0_0_40px_rgba(251,98,33,0.3)]">
+                        <span class="material-symbols-outlined text-[42px]">verified</span>
+                    </div>
+                    <div>
+                        <span class="font-heading text-xl sm:text-2xl font-bold uppercase text-white tracking-wide block">SAP POWER USER</span>
+                        <span class="font-mono text-[10px] text-slate-400 tracking-widest block mt-1">SELF-PACED TRAINING BY SAP</span>
+                    </div>
+                    <div class="w-full py-2 bg-white/10 rounded-xl font-mono text-xs font-semibold text-slate-200">
+                        3 MONTHS ACCESS · ₹40,000 + GST
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================================
+     5. SECTION 5: WHY ZEBLEARN (THE INDUSTRY METHOD / LEARNING JOURNEY)
+     ========================================================================= -->
+<section id="method" class="w-full py-16 lg:py-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto border-t border-slate-200">
+    <div id="stories" class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8" data-reveal>
+        <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 text-[#0A0A0A] font-mono text-[10px] font-semibold uppercase tracking-widest shadow-xs mb-3">
+                <span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
+                THE ZEBLEARN METHOD
+            </div>
+            <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-[#0A0A0A] tracking-tight leading-tight">
+                WHAT YOU GET WITH OUR SAP TRAINING
+            </h2>
+        </div>
+        <p class="font-sans text-sm text-slate-600 max-w-md font-normal leading-relaxed">
+            Built to bridge the gap between textbook theory and what SAP enterprise projects actually demand on the job.
+        </p>
+    </div>
+
+    <!-- 4-Stage Connected Interactive Learning Pathway Indicator -->
+    <div class="hidden md:block mb-10 pb-2" data-reveal>
+        <div class="relative flex items-center justify-between max-w-4xl mx-auto px-6">
+            <!-- Connecting Pipeline Track -->
+            <div class="absolute left-12 right-12 top-5 -translate-y-1/2 h-1 bg-slate-200 rounded-full -z-0 overflow-hidden">
+                <div id="journey-progress-line" class="h-full bg-gradient-to-r from-[#FB6221] via-[#FB6221] to-emerald-500 w-1/4 transition-all duration-500"></div>
+            </div>
+
+            <!-- Step 1 Node -->
+            <div class="journey-node active relative z-10 flex flex-col items-center group cursor-pointer" data-step="1">
+                <div class="w-10 h-10 rounded-full bg-[#FB6221] text-white flex items-center justify-center font-mono text-xs font-bold shadow-md ring-4 ring-orange-100 transition-all duration-300 group-hover:scale-110">
+                    01
+                </div>
+                <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-[#0A0A0A] mt-2">01. LEARN</span>
+                <span class="font-sans text-[10px] text-slate-500">Live Online Classes</span>
+            </div>
+
+            <!-- Step 2 Node -->
+            <div class="journey-node relative z-10 flex flex-col items-center group cursor-pointer" data-step="2">
+                <div class="w-10 h-10 rounded-full bg-white border-2 border-slate-300 text-slate-700 flex items-center justify-center font-mono text-xs font-bold transition-all duration-300 group-hover:border-[#FB6221] group-hover:text-[#FB6221] group-hover:scale-110">
+                    02
+                </div>
+                <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-600 mt-2">02. PRACTICE</span>
+                <span class="font-sans text-[10px] text-slate-500">SAP Sandbox Labs</span>
+            </div>
+
+            <!-- Step 3 Node -->
+            <div class="journey-node relative z-10 flex flex-col items-center group cursor-pointer" data-step="3">
+                <div class="w-10 h-10 rounded-full bg-white border-2 border-slate-300 text-slate-700 flex items-center justify-center font-mono text-xs font-bold transition-all duration-300 group-hover:border-[#FB6221] group-hover:text-[#FB6221] group-hover:scale-110">
+                    03
+                </div>
+                <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-600 mt-2">03. BUILD SKILLS</span>
+                <span class="font-sans text-[10px] text-slate-500">Mock Simulations</span>
+            </div>
+
+            <!-- Step 4 Node -->
+            <div class="journey-node relative z-10 flex flex-col items-center group cursor-pointer" data-step="4">
+                <div class="w-10 h-10 rounded-full bg-white border-2 border-slate-300 text-slate-700 flex items-center justify-center font-mono text-xs font-bold transition-all duration-300 group-hover:border-emerald-500 group-hover:text-emerald-600 group-hover:scale-110">
+                    04
+                </div>
+                <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-600 mt-2">04. CAREER</span>
+                <span class="font-sans text-[10px] text-slate-500">PlacementBaba</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Pillar 01 -->
+        <div class="journey-card bg-white rounded-3xl p-8 border border-slate-200 shadow-xs flex flex-col justify-between min-h-[340px] group zeb-card-interactive" data-step="1" data-reveal data-reveal-delay="1">
+            <div>
+                <div class="flex items-center justify-between mb-4">
+                    <span class="font-mono text-[10px] font-semibold uppercase tracking-widest text-[#FB6221]">01 // PEDAGOGY</span>
+                    <span class="material-symbols-outlined text-[22px] text-slate-500 group-hover:text-[#FB6221] transition-colors">desktop_windows</span>
+                </div>
+
+                <!-- 2.5D Step Illustration -->
+                <?php if (isset($component)) { $__componentOriginaleff7523fdd0953a70c2fee15ea3e2b6f = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginaleff7523fdd0953a70c2fee15ea3e2b6f = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.visual.journey-step-art','data' => ['step' => '1']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('visual.journey-step-art'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['step' => '1']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginaleff7523fdd0953a70c2fee15ea3e2b6f)): ?>
+<?php $attributes = $__attributesOriginaleff7523fdd0953a70c2fee15ea3e2b6f; ?>
+<?php unset($__attributesOriginaleff7523fdd0953a70c2fee15ea3e2b6f); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginaleff7523fdd0953a70c2fee15ea3e2b6f)): ?>
+<?php $component = $__componentOriginaleff7523fdd0953a70c2fee15ea3e2b6f; ?>
+<?php unset($__componentOriginaleff7523fdd0953a70c2fee15ea3e2b6f); ?>
+<?php endif; ?>
+
+                <h3 class="font-heading text-lg sm:text-xl font-bold uppercase text-[#0A0A0A] mb-2 leading-snug">LIVE CLASSES ON A REAL SAP SYSTEM</h3>
+                <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">Interactive live sessions on a real SAP system, with doubts solved as you practise.</p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 font-mono text-[10px] text-slate-400 uppercase tracking-widest flex items-center justify-between">
+                <span>NO RECORDED MONOLOGUES</span>
+                <span class="font-bold text-[#FB6221]">01/04</span>
+            </div>
+        </div>
+
+        <!-- Pillar 02 -->
+        <div class="journey-card bg-white rounded-3xl p-8 border border-slate-200 shadow-xs flex flex-col justify-between min-h-[340px] group zeb-card-interactive" data-step="2" data-reveal data-reveal-delay="2">
+            <div>
+                <div class="flex items-center justify-between mb-4">
+                    <span class="font-mono text-[10px] font-semibold uppercase tracking-widest text-[#FB6221]">02 // LABS</span>
+                    <span class="material-symbols-outlined text-[22px] text-slate-500 group-hover:text-[#FB6221] transition-colors">dns</span>
+                </div>
+
+                <!-- 2.5D Step Illustration -->
+                <?php if (isset($component)) { $__componentOriginaleff7523fdd0953a70c2fee15ea3e2b6f = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginaleff7523fdd0953a70c2fee15ea3e2b6f = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.visual.journey-step-art','data' => ['step' => '2']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('visual.journey-step-art'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['step' => '2']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginaleff7523fdd0953a70c2fee15ea3e2b6f)): ?>
+<?php $attributes = $__attributesOriginaleff7523fdd0953a70c2fee15ea3e2b6f; ?>
+<?php unset($__attributesOriginaleff7523fdd0953a70c2fee15ea3e2b6f); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginaleff7523fdd0953a70c2fee15ea3e2b6f)): ?>
+<?php $component = $__componentOriginaleff7523fdd0953a70c2fee15ea3e2b6f; ?>
+<?php unset($__componentOriginaleff7523fdd0953a70c2fee15ea3e2b6f); ?>
+<?php endif; ?>
+
+                <h3 class="font-heading text-lg sm:text-xl font-bold uppercase text-[#0A0A0A] mb-2 leading-snug">ASSIGNMENTS AFTER EVERY MODULE</h3>
+                <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">Practice assignments after every module so you apply each topic straight away.</p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 font-mono text-[10px] text-slate-400 uppercase tracking-widest flex items-center justify-between">
+                <span>HANDS-ON PRACTICE</span>
+                <span class="font-bold text-[#FB6221]">02/04</span>
+            </div>
+        </div>
+
+        <!-- Pillar 03 -->
+        <div class="journey-card bg-white rounded-3xl p-8 border border-slate-200 shadow-xs flex flex-col justify-between min-h-[340px] group zeb-card-interactive" data-step="3" data-reveal data-reveal-delay="3">
+            <div>
+                <div class="flex items-center justify-between mb-4">
+                    <span class="font-mono text-[10px] font-semibold uppercase tracking-widest text-[#FB6221]">03 // SIMULATION</span>
+                    <span class="material-symbols-outlined text-[22px] text-slate-500 group-hover:text-[#FB6221] transition-colors">record_voice_over</span>
+                </div>
+
+                <!-- 2.5D Step Illustration -->
+                <?php if (isset($component)) { $__componentOriginaleff7523fdd0953a70c2fee15ea3e2b6f = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginaleff7523fdd0953a70c2fee15ea3e2b6f = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.visual.journey-step-art','data' => ['step' => '3']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('visual.journey-step-art'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['step' => '3']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginaleff7523fdd0953a70c2fee15ea3e2b6f)): ?>
+<?php $attributes = $__attributesOriginaleff7523fdd0953a70c2fee15ea3e2b6f; ?>
+<?php unset($__attributesOriginaleff7523fdd0953a70c2fee15ea3e2b6f); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginaleff7523fdd0953a70c2fee15ea3e2b6f)): ?>
+<?php $component = $__componentOriginaleff7523fdd0953a70c2fee15ea3e2b6f; ?>
+<?php unset($__componentOriginaleff7523fdd0953a70c2fee15ea3e2b6f); ?>
+<?php endif; ?>
+
+                <h3 class="font-heading text-lg sm:text-xl font-bold uppercase text-[#0A0A0A] mb-2 leading-snug">MOCK INTERVIEWS AND RESUME SUPPORT</h3>
+                <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">Interview preparation and resume support to get you ready for the real SAP interview.</p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 font-mono text-[10px] text-slate-400 uppercase tracking-widest flex items-center justify-between">
+                <span>INTERVIEW READINESS</span>
+                <span class="font-bold text-[#FB6221]">03/04</span>
+            </div>
+        </div>
+
+        <!-- Pillar 04 -->
+        <div class="journey-card bg-white rounded-3xl p-8 border border-slate-200 shadow-xs flex flex-col justify-between min-h-[340px] group zeb-card-interactive" data-step="4" data-reveal data-reveal-delay="4">
+            <div>
+                <div class="flex items-center justify-between mb-4">
+                    <span class="font-mono text-[10px] font-semibold uppercase tracking-widest text-[#FB6221]">04 // OUTCOMES</span>
+                    <span class="material-symbols-outlined text-[22px] text-slate-500 group-hover:text-emerald-600 transition-colors">handshake</span>
+                </div>
+
+                <!-- 2.5D Step Illustration -->
+                <?php if (isset($component)) { $__componentOriginaleff7523fdd0953a70c2fee15ea3e2b6f = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginaleff7523fdd0953a70c2fee15ea3e2b6f = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.visual.journey-step-art','data' => ['step' => '4']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('visual.journey-step-art'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['step' => '4']); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginaleff7523fdd0953a70c2fee15ea3e2b6f)): ?>
+<?php $attributes = $__attributesOriginaleff7523fdd0953a70c2fee15ea3e2b6f; ?>
+<?php unset($__attributesOriginaleff7523fdd0953a70c2fee15ea3e2b6f); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginaleff7523fdd0953a70c2fee15ea3e2b6f)): ?>
+<?php $component = $__componentOriginaleff7523fdd0953a70c2fee15ea3e2b6f; ?>
+<?php unset($__componentOriginaleff7523fdd0953a70c2fee15ea3e2b6f); ?>
+<?php endif; ?>
+
+                <h3 class="font-heading text-lg sm:text-xl font-bold uppercase text-[#0A0A0A] mb-2 leading-snug">PLACEMENT SUPPORT THROUGH PLACEMENTBABA</h3>
+                <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">Job support through our placement partner PlacementBaba.</p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 font-mono text-[10px] text-slate-400 uppercase tracking-widest flex items-center justify-between">
+                <span>JOB PIPELINE SUPPORT</span>
+                <span class="font-bold text-emerald-600">04/04</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================================
+     6. SECTION 6: STUDENT VIDEO TESTIMONIALS (HEAR FROM OUR STUDENTS)
+     ========================================================================= -->
+<?php echo $__env->make('components.home.video-testimonials', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
+<!-- =========================================================================
+     7. SECTION 7: STUDENT PLACEMENTS & HIRING PARTNERS (REAL LEARNERS. REAL CAREERS.)
+     ========================================================================= -->
+<?php echo $__env->make('components.home.placements-and-partners', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+
+<!-- =========================================================================
+     8. SECTION 8: FROM THE BLOG / INSIGHTS
+     ========================================================================= -->
+<section id="blog" class="w-full py-16 lg:py-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto border-t border-slate-200">
+    <div class="flex items-center justify-between mb-12" data-reveal>
+        <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 text-[#0A0A0A] font-mono text-[10px] font-semibold uppercase tracking-widest shadow-xs mb-3">
+                <span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
+                SAP BLOG
+            </div>
+            <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-[#0A0A0A] tracking-tight leading-tight">
+                LATEST SAP INTERVIEW QUESTIONS AND CAREER GUIDES
+            </h2>
+        </div>
+        <a class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-slate-200 font-sans text-xs font-semibold uppercase tracking-wider text-[#0A0A0A] hover:text-[#FB6221] transition-colors zeb-btn-cta" href="/blogs">
+            <span>All Articles</span>
+            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+        </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Blog 1 -->
+        <article onclick="window.open('https://sap.zeblearn.com/top-interview-question-answer-on-sap-basic/','_blank')" class="bg-white rounded-3xl p-8 border border-slate-200 shadow-xs flex flex-col justify-between group cursor-pointer hover:shadow-xl hover:border-[#FB6221] transition-all zeb-card-interactive" data-reveal data-reveal-delay="1">
+            <div>
+                <div class="flex items-center justify-between mb-4 font-mono text-[10px]">
+                    <span class="px-2.5 py-1 rounded-full bg-orange-50 text-[#FB6221] font-semibold uppercase tracking-wider">INTERVIEW PREP</span>
+                    <span class="text-slate-400">5 MIN READ</span>
+                </div>
+                <h3 class="font-heading text-xl sm:text-2xl font-bold uppercase text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors leading-snug mb-3">
+                    TOP INTERVIEW QUESTION ANSWER ON SAP BASIC
+                </h3>
+                <p class="font-sans text-xs text-slate-600 line-clamp-3 leading-relaxed font-normal">
+                    Performing a system copy in SAP involves duplicating an existing SAP system to create a new system. Read the interview questions and answers.
+                </p>
+            </div>
+            <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between font-mono text-[11px] text-slate-500">
+                <span>BY ZEBLEARN</span>
+                <span class="material-symbols-outlined text-[18px] text-[#0A0A0A] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </div>
+        </article>
+
+        <!-- Blog 2 -->
+        <article onclick="window.open('https://sap.zeblearn.com/top-50-question-answer-on-sap-ecchana-sap-power-user/','_blank')" class="bg-white rounded-3xl p-8 border border-slate-200 shadow-xs flex flex-col justify-between group cursor-pointer hover:shadow-xl hover:border-[#FB6221] transition-all zeb-card-interactive" data-reveal data-reveal-delay="2">
+            <div>
+                <div class="flex items-center justify-between mb-4 font-mono text-[10px]">
+                    <span class="px-2.5 py-1 rounded-full bg-orange-50 text-[#FB6221] font-semibold uppercase tracking-wider">INTERVIEW PREP</span>
+                    <span class="text-slate-400">5 MIN READ</span>
+                </div>
+                <h3 class="font-heading text-xl sm:text-2xl font-bold uppercase text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors leading-snug mb-3">
+                    TOP 20 QUESTION ANSWER ON SAP ECC+HANA + SAP POWER USER
+                </h3>
+                <p class="font-sans text-xs text-slate-600 line-clamp-3 leading-relaxed font-normal">
+                    Interview questions and answers on SAP ECC, HANA and the SAP Power User certification.
+                </p>
+            </div>
+            <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between font-mono text-[11px] text-slate-500">
+                <span>BY ZEBLEARN</span>
+                <span class="material-symbols-outlined text-[18px] text-[#0A0A0A] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </div>
+        </article>
+
+        <!-- Blog 3 -->
+        <article onclick="location.href='/blogs/top-50-sap-ewm-interview-question-answer'" class="bg-white rounded-3xl p-8 border border-slate-200 shadow-xs flex flex-col justify-between group cursor-pointer hover:shadow-xl hover:border-[#FB6221] transition-all zeb-card-interactive" data-reveal data-reveal-delay="3">
+            <div>
+                <div class="flex items-center justify-between mb-4 font-mono text-[10px]">
+                    <span class="px-2.5 py-1 rounded-full bg-orange-50 text-[#FB6221] font-semibold uppercase tracking-wider">INTERVIEW PREP</span>
+                    <span class="text-slate-400">5 MIN READ</span>
+                </div>
+                <h3 class="font-heading text-xl sm:text-2xl font-bold uppercase text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors leading-snug mb-3">
+                    TOP 50 SAP EWM INTERVIEW QUESTION ANSWER
+                </h3>
+                <p class="font-sans text-xs text-slate-600 line-clamp-3 leading-relaxed font-normal">
+                    Answers to the top 50 SAP EWM (Extended Warehouse Management) interview questions.
+                </p>
+            </div>
+            <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between font-mono text-[11px] text-slate-500">
+                <span>BY ZEBLEARN</span>
+                <span class="material-symbols-outlined text-[18px] text-[#0A0A0A] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- =========================================================================
+     9. SECTION 9: SAP COURSE FAQS
+     ========================================================================= -->
+<section id="faq" class="w-full py-16 lg:py-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto border-t border-slate-200">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12" data-reveal>
+        <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 text-[#0A0A0A] font-mono text-[10px] font-semibold uppercase tracking-widest shadow-xs mb-3">
+                <span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
+                FREQUENTLY ASKED
+            </div>
+            <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-[#0A0A0A] tracking-tight leading-tight">
+                SAP COURSE FAQS
+            </h2>
+        </div>
+        <p class="font-sans text-sm text-slate-600 max-w-md font-normal leading-relaxed">
+            Got questions about fees, duration, modules or placement support? Here are the direct answers.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-xs space-y-2 zeb-card-interactive" data-reveal data-reveal-delay="1">
+            <h3 class="font-heading text-lg font-bold uppercase text-[#0A0A0A]">HOW LONG IS THE SAP COURSE?</h3>
+            <p class="font-sans text-sm text-slate-600 leading-relaxed font-normal">The instructor-led SAP FICO, MM, SD and PP courses run for 3 months with live online classes.</p>
+        </div>
+        <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-xs space-y-2 zeb-card-interactive" data-reveal data-reveal-delay="2">
+            <h3 class="font-heading text-lg font-bold uppercase text-[#0A0A0A]">WHAT IS THE FEE FOR THE SAP COURSE?</h3>
+            <p class="font-sans text-sm text-slate-600 leading-relaxed font-normal">The instructor-led course is ₹25,000 + GST. The SAP Power User Certification course (80 hours, self-paced, by SAP) is ₹40,000 + GST.</p>
+        </div>
+        <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-xs space-y-2 zeb-card-interactive" data-reveal data-reveal-delay="1">
+            <h3 class="font-heading text-lg font-bold uppercase text-[#0A0A0A]">WHICH SAP MODULE SHOULD I LEARN FIRST?</h3>
+            <p class="font-sans text-sm text-slate-600 leading-relaxed font-normal">If you come from finance, choose FICO. For procurement or inventory, choose MM. For sales and billing, choose SD. For manufacturing, choose PP.</p>
+        </div>
+        <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-xs space-y-2 zeb-card-interactive" data-reveal data-reveal-delay="2">
+            <h3 class="font-heading text-lg font-bold uppercase text-[#0A0A0A]">DO I NEED PRIOR CODING KNOWLEDGE TO LEARN SAP?</h3>
+            <p class="font-sans text-sm text-slate-600 leading-relaxed font-normal">Functional modules like SAP FICO, MM, SD and PP do not need programming knowledge. A basic understanding of finance, supply chain, commerce or manufacturing helps.</p>
+        </div>
+        <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-xs space-y-2 zeb-card-interactive" data-reveal data-reveal-delay="1">
+            <h3 class="font-heading text-lg font-bold uppercase text-[#0A0A0A]">DO YOU PROVIDE PLACEMENT SUPPORT?</h3>
+            <p class="font-sans text-sm text-slate-600 leading-relaxed font-normal">Yes. Placement support is available through our partner PlacementBaba, along with interview preparation.</p>
+        </div>
+        <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-xs space-y-2 zeb-card-interactive" data-reveal data-reveal-delay="2">
+            <h3 class="font-heading text-lg font-bold uppercase text-[#0A0A0A]">CAN I ATTEND A DEMO CLASS FIRST?</h3>
+            <p class="font-sans text-sm text-slate-600 leading-relaxed font-normal">Yes. Tap "Book a Free Demo" or call +91 8506 888 288 to ask about the next demo session.</p>
+        </div>
+    </div>
+</section>
+
+<!-- =========================================================================
+     10. SECTION 10: FINAL MASSIVE CALL TO ACTION
+     ========================================================================= -->
+<section class="w-full py-16 lg:py-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto" data-reveal>
+    <div class="bg-white border border-slate-200 rounded-3xl p-8 sm:p-14 lg:p-20 text-center shadow-lg relative overflow-hidden zeb-card-interactive">
+        <div class="max-w-3xl mx-auto space-y-6 relative z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 text-[#FB6221] border border-orange-200 font-mono text-[10px] font-semibold uppercase tracking-widest">
+                <span class="w-2 h-2 rounded-full bg-[#FB6221] animate-pulse"></span>
+                LIVE ONLINE SAP TRAINING
+            </div>
+            <h2 class="font-heading text-3xl sm:text-5xl lg:text-6xl font-bold uppercase text-[#0A0A0A] tracking-tight leading-tight">
+                START YOUR SAP CAREER WITH A FREE DEMO CLASS
+            </h2>
+            <p class="font-sans text-sm sm:text-base text-slate-600 max-w-xl mx-auto leading-relaxed font-normal">
+                Book your free demo or speak directly with our training counselors to identify the right SAP module for your profile.
+            </p>
+            <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+                <a class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-[#FB6221] hover:bg-[#e05214] text-white font-sans text-xs font-semibold uppercase tracking-wider shadow-md hover:shadow-lg transition-all hover:scale-[1.02] zeb-btn-cta" href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20book%20a%20free%20demo." target="_blank" rel="noopener noreferrer">
+                    <span>Book a Free Demo</span>
+                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </a>
+                <a class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full border border-slate-200 bg-white hover:bg-slate-50 font-sans text-xs font-semibold uppercase tracking-wider text-[#0A0A0A] transition-colors shadow-xs zeb-btn-cta" href="tel:+918506888288">
+                    <span class="material-symbols-outlined text-[18px] text-[#FB6221]">call</span>
+                    <span>+91 8506 888 288</span>
+                </a>
+            </div>
+        </div>
+    </div>
 </section>
 
 </div>

@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\CourseController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'pages.home')->name('home');
+Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
 Route::view('/courses/sap-fico-training', 'pages.courses.sap-fico')->name('courses.fico');
 Route::view('/blogs', 'pages.blog.index')->name('blogs');
 Route::view('/blogs/top-50-sap-ewm-interview-question-answer', 'pages.blog.ewm-interview-questions')->name('blogs.ewm');

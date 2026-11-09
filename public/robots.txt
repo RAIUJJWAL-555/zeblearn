@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /book-demo/thank-you
 
 Sitemap: https://sap.zeblearn.com/sitemap.xml
+

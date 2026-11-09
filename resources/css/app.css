@@ -1,5 +1,17 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Maves';
+  src: url('/fonts/maves.woff2') format('woff2'),
+       url('/fonts/maves.woff') format('woff'),
+       url('/fonts/maves.ttf') format('truetype'),
+       url('/fonts/Maves.ttf') format('truetype'),
+       url('/fonts/Maves-Regular.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   --color-on-secondary-fixed-variant: #6a3b15;
   --color-on-surface: #241912;
@@ -57,23 +69,26 @@
   --color-canvas-glow: #F0F1F3;
   --color-on-tertiary: #ffffff;
   --color-on-error-container: #93000a;
-  --font-display-xl: "Anton", sans-serif;
-  --font-display-lg: "Anton", sans-serif;
-  --font-display-lg-mobile: "Anton", sans-serif;
-  --font-display-xl-mobile: "Anton", sans-serif;
-  --font-headline-xl: "Anton", sans-serif;
-  --font-headline-xl-mobile: "Anton", sans-serif;
-  --font-headline-lg: "Anton", sans-serif;
-  --font-headline-sm: "Anton", sans-serif;
-  --font-headline: "Anton", sans-serif;
-  --font-display: "Anton", sans-serif;
-  --font-body: "Bricolage Grotesque", sans-serif;
-  --font-body-xl: "Inter", sans-serif;
-  --font-body-lg: "Inter", sans-serif;
-  --font-body-md: "Inter", sans-serif;
-  --font-label: "Inter", sans-serif;
-  --font-label-sm: "Inter", sans-serif;
-  --font-label-mono: "Inter", sans-serif;
+  --font-heading: "Maves", "Mohave", "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Maves", "Mohave", "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-display-xl: "Maves", "Mohave", "Manrope", system-ui, -apple-system, sans-serif;
+  --font-display-lg: "Maves", "Mohave", "Manrope", system-ui, -apple-system, sans-serif;
+  --font-display-lg-mobile: "Maves", "Mohave", "Manrope", system-ui, -apple-system, sans-serif;
+  --font-display-xl-mobile: "Maves", "Mohave", "Manrope", system-ui, -apple-system, sans-serif;
+  --font-headline-xl: "Maves", "Mohave", "Manrope", system-ui, -apple-system, sans-serif;
+  --font-headline-xl-mobile: "Maves", "Mohave", "Manrope", system-ui, -apple-system, sans-serif;
+  --font-headline-lg: "Maves", "Mohave", "Manrope", system-ui, -apple-system, sans-serif;
+  --font-headline-sm: "Maves", "Mohave", "Manrope", system-ui, -apple-system, sans-serif;
+  --font-headline: "Maves", "Mohave", "Manrope", system-ui, -apple-system, sans-serif;
+  --font-body-xl: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body-lg: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body-md: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-label: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-label-sm: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-label-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   --text-display-xl: 96px;
   --text-display-lg: 64px;
   --text-display-lg-mobile: 40px;
@@ -106,12 +121,355 @@
 }
 
 @layer base {
-  html { scroll-behavior: smooth; }
-  body { margin: 0; min-width: 320px; font-family: "Bricolage Grotesque", sans-serif; }
-  img { max-width: 100%; }
+  html {
+    scroll-behavior: smooth;
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  body {
+    margin: 0;
+    min-width: 320px;
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #0A0A0A;
+    background-color: #FAFAF8;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  img { max-width: 100%; height: auto; }
   a:focus-visible, button:focus-visible { outline: 3px solid #FB6221; outline-offset: 3px; }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  }
+
+  /* Prevent CLS during font-display: swap for Material Symbols */
+  .material-symbols-outlined {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: middle;
+    font-variant-ligatures: contextual;
+    -webkit-font-feature-settings: 'liga';
+    font-feature-settings: 'liga';
+  }
+
+  /* Typography System: Maves / Mohave headings + Inter body + IBM Plex Mono labels */
+  h1, h2, h3, h4, h5, h6,
+  .font-heading,
+  .font-display,
+  .font-\[\'Maves\'\],
+  [class*="font-['Maves']"],
+  .font-\[\'Mohave\'\],
+  [class*="font-['Mohave']"],
+  .font-\[\'Anton\'\],
+  [class*="font-['Anton']"],
+  .font-\[\'Manrope\'\],
+  [class*="font-['Manrope']"] {
+    font-family: "Maves", "Mohave", "Manrope", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    letter-spacing: -0.02em;
+  }
+
+  p, li, input, textarea, select, button,
+  .font-body,
+  .font-sans,
+  .font-\[\'Inter\'\],
+  [class*="font-['Inter']"] {
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  code, kbd, samp, pre,
+  .font-mono,
+  .font-\[\'IBM_Plex_Mono\'\],
+  [class*="font-mono"] {
+    font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+  }
+}
+
+/* ==========================================================================
+   ZEBLEARN MOTION DESIGN & TRANSITION SYSTEM
+   ========================================================================== */
+
+:root {
+  --zeb-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --zeb-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --zeb-dur-micro: 180ms;
+  --zeb-dur-button: 220ms;
+  --zeb-dur-card: 280ms;
+  --zeb-dur-section: 450ms;
+  --zeb-dur-page: 220ms;
+}
+
+/* 1. Native Cross-Document View Transitions (Progressive Enhancement) */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-group(root) {
+  animation-duration: 260ms;
+}
+
+::view-transition-image-pair(root) {
+  isolation: isolate;
+}
+
+::view-transition-old(root) {
+  animation: 200ms cubic-bezier(0.16, 1, 0.3, 1) both zeb-view-out;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+  animation: 250ms cubic-bezier(0.16, 1, 0.3, 1) both zeb-view-in;
+  mix-blend-mode: normal;
+}
+
+@keyframes zeb-view-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes zeb-view-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 2. Keyframed Hero Entrance Sequence */
+@keyframes zeb-hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-badge {
+  animation: zeb-hero-fade-up 420ms var(--zeb-ease-out) 60ms backwards;
+}
+
+.animate-hero-title {
+  animation: zeb-hero-fade-up 540ms var(--zeb-ease-out) 140ms backwards;
+}
+
+.animate-hero-desc {
+  animation: zeb-hero-fade-up 480ms var(--zeb-ease-out) 220ms backwards;
+}
+
+.animate-hero-cta {
+  animation: zeb-hero-fade-up 450ms var(--zeb-ease-out) 300ms backwards;
+}
+
+.animate-hero-assembly {
+  animation: zeb-hero-fade-up 520ms var(--zeb-ease-out) 380ms backwards;
+}
+
+/* 3. Lightweight Progressive Scroll Reveal System */
+/* Content is 100% visible by default in SSR / No-JS */
+[data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Activated only when JavaScript verifies IntersectionObserver is active */
+html.js-reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 440ms var(--zeb-ease-out), transform 440ms var(--zeb-ease-out);
+}
+
+html.js-reveal-ready [data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger delays for sibling grid cards */
+html.js-reveal-ready [data-reveal-delay="1"] { transition-delay: 70ms; }
+html.js-reveal-ready [data-reveal-delay="2"] { transition-delay: 140ms; }
+html.js-reveal-ready [data-reveal-delay="3"] { transition-delay: 210ms; }
+html.js-reveal-ready [data-reveal-delay="4"] { transition-delay: 280ms; }
+
+/* 4. Micro-Interactions: Cards, Buttons, Navigation, Accordions */
+.zeb-card-interactive {
+  transition: transform var(--zeb-dur-card) var(--zeb-ease-out),
+              box-shadow var(--zeb-dur-card) var(--zeb-ease-out),
+              border-color var(--zeb-dur-card) ease;
+}
+
+.zeb-card-interactive:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(10, 10, 10, 0.08);
+}
+
+.zeb-btn-cta {
+  transition: transform var(--zeb-dur-button) var(--zeb-ease-out),
+              box-shadow var(--zeb-dur-button) var(--zeb-ease-out),
+              background-color var(--zeb-dur-button) ease;
+}
+
+.zeb-btn-cta:hover {
+  transform: translateY(-1.5px) scale(1.01);
+}
+
+.zeb-btn-cta:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.zeb-btn-cta:hover .material-symbols-outlined {
+  transform: translateX(3px);
+}
+
+.zeb-partner-card {
+  transition: transform var(--zeb-dur-card) var(--zeb-ease-out),
+              box-shadow var(--zeb-dur-card) var(--zeb-ease-out),
+              border-color var(--zeb-dur-card) ease,
+              background-color var(--zeb-dur-card) ease;
+}
+
+.zeb-partner-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(10, 10, 10, 0.06);
+}
+
+/* Accordion Smooth Chevron Rotation */
+details summary .material-symbols-outlined {
+  transition: transform 240ms var(--zeb-ease-out);
+}
+
+details[open] summary .material-symbols-outlined {
+  transform: rotate(180deg);
+}
+
+/* 4b. 2D/3D Interactive Visual & Ambient Float Animations */
+@keyframes zeb-ambient-float-1 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.5deg);
+  }
+}
+
+@keyframes zeb-ambient-float-2 {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(7px) rotate(-0.5deg);
+  }
+}
+
+@keyframes zeb-ambient-float-3 {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.015);
+  }
+}
+
+@keyframes zeb-sculpture-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(-9px) rotate(0.6deg) scale(1.012);
+  }
+}
+
+.animate-sculpture-float {
+  animation: zeb-sculpture-float 6.4s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-ambient-1 {
+  animation: zeb-ambient-float-1 5.4s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-ambient-2 {
+  animation: zeb-ambient-float-2 6.6s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-ambient-3 {
+  animation: zeb-ambient-float-3 4.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-1200 {
+  perspective: 1200px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.zeb-illustration-art {
+  transition: transform 380ms var(--zeb-ease-out), filter 380ms var(--zeb-ease-out);
+}
+
+.group:hover .zeb-illustration-art {
+  transform: translateY(-3px) scale(1.02);
+}
+
+/* 5. Reduced-Motion Accessibility Override */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-image-pair(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+
+  html.js-reveal-ready [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .zeb-card-interactive:hover,
+  .zeb-btn-cta:hover,
+  .zeb-partner-card:hover,
+  .group:hover .zeb-illustration-art {
+    transform: none !important;
+  }
+
+  .animate-ambient-1,
+  .animate-ambient-2,
+  .animate-ambient-3,
+  .animate-sculpture-float {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .zeb-btn-cta:hover .material-symbols-outlined {
+    transform: none !important;
   }
 }
 

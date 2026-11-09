@@ -7,12 +7,19 @@
 
     <meta name="theme-color" content="#f7f7f5">
 
+    <?php
+        $pageTitle = trim($__env->yieldContent('title', 'SAP Course Online: FICO, MM, SD, PP Training | ZebLearn'));
+        $pageDesc = trim($__env->yieldContent('description', 'Learn SAP online with live classes, real system practice and placement support. Explore SAP FICO, MM, SD and PP courses at ZebLearn.'));
+        $canonicalPath = request()->getPathInfo();
+        $defaultCanonical = 'https://sap.zeblearn.com' . ($canonicalPath === '/' ? '/' : rtrim($canonicalPath, '/'));
+    ?>
+
     
-    <title><?php echo $__env->yieldContent('title', 'SAP Course Online: FICO, MM, SD, PP Training | ZebLearn'); ?></title>
+    <title><?php echo e($pageTitle); ?></title>
 
     <meta
         name="description"
-        content="<?php echo $__env->yieldContent('description', 'Learn SAP online with live classes, real system practice and placement support. Explore SAP FICO, MM, SD and PP courses at ZebLearn.'); ?>"
+        content="<?php echo e($pageDesc); ?>"
     >
 
     <meta
@@ -22,7 +29,7 @@
 
     <link
         rel="canonical"
-        href="<?php echo $__env->yieldContent('canonical', url()->current()); ?>"
+        href="<?php echo $__env->yieldContent('canonical', $defaultCanonical); ?>"
     >
 
     
@@ -32,19 +39,19 @@
 
     <meta
         property="og:title"
-        content="<?php echo $__env->yieldContent('og_title', 'SAP Training Courses | ZebLearn'); ?>"
+        content="<?php echo $__env->yieldContent('og_title', $pageTitle); ?>"
     >
 
     <meta
         property="og:description"
-        content="<?php echo $__env->yieldContent('og_description', 'Learn SAP with live online training, practical system experience and placement support.'); ?>"
+        content="<?php echo $__env->yieldContent('og_description', $pageDesc); ?>"
     >
 
-    <meta property="og:url" content="<?php echo e(url()->current()); ?>">
+    <meta property="og:url" content="<?php echo $__env->yieldContent('canonical', $defaultCanonical); ?>">
 
     <meta
         property="og:image"
-        content="<?php echo $__env->yieldContent('og_image', asset('images/zeblearn-home-og.webp')); ?>"
+        content="<?php echo $__env->yieldContent('og_image', 'https://sap.zeblearn.com/images/zeblearn-home-og.webp'); ?>"
     >
 
     <meta property="og:image:width" content="1200">
@@ -55,38 +62,27 @@
 
     <meta
         name="twitter:title"
-        content="<?php echo $__env->yieldContent('twitter_title', 'SAP Training Courses | ZebLearn'); ?>"
+        content="<?php echo $__env->yieldContent('twitter_title', $pageTitle); ?>"
     >
 
     <meta
         name="twitter:description"
-        content="<?php echo $__env->yieldContent('twitter_description', 'Learn SAP with ZebLearn through live online training and practical learning.'); ?>"
+        content="<?php echo $__env->yieldContent('twitter_description', $pageDesc); ?>"
     >
 
     <meta
         name="twitter:image"
-        content="<?php echo $__env->yieldContent('og_image', asset('images/zeblearn-home-og.webp')); ?>"
+        content="<?php echo $__env->yieldContent('og_image', 'https://sap.zeblearn.com/images/zeblearn-home-og.webp'); ?>"
     >
 
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Anton&family=Bricolage+Grotesque:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
-
-    
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap"
-        rel="stylesheet"
-    >
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Mohave:wght@600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Mohave:wght@600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Mohave:wght@600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
+    </noscript>
 
     
     <?php echo app('Illuminate\Foundation\Vite')([

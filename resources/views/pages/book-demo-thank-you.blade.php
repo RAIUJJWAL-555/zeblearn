@@ -2,7 +2,7 @@
 
 @section('title', 'Demo Request | ZebLearn')
 @section('description', 'Complete your free SAP demo request with ZebLearn.')
-@section('body-class', 'bg-surface text-on-surface font-body-md text-body-md antialiased min-h-screen selection:bg-primary-container selection:text-on-primary zeb-page')
+@section('body-class', "bg-[#FAFAF8] text-[#0A0A0A] font-['Inter'] antialiased min-h-screen selection:bg-[#FB6221]/20 selection:text-[#FB6221]")
 @section('og_type', 'website')
 @section('og_title', 'Demo Request | ZebLearn')
 @section('og_description', 'Complete your free SAP demo request with ZebLearn.')
@@ -13,211 +13,144 @@
 
 @push('scripts')
 <script>
-(function(){var q=new URLSearchParams(location.search),m=q.get('module'),d=q.get('date'),t=q.get('time');
-if(m)document.getElementById('t-module').textContent=m;
-if(d)document.getElementById('t-when').textContent=d+(t?' · '+t:'');})();
+(function(){
+  var q = new URLSearchParams(location.search),
+      m = q.get('module'),
+      d = q.get('date'),
+      t = q.get('time');
+  if (m) document.getElementById('t-module').textContent = m;
+  if (d) document.getElementById('t-when').textContent = d + (t ? ' · ' + t : '');
+})();
 </script>
-<script>document.addEventListener('DOMContentLoaded', function () {
-  const menuButton = document.getElementById('menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
-  if (!menuButton || !mobileMenu) return;
-  const closeMenu = () => {
-    mobileMenu.classList.add('hidden');
-    menuButton.setAttribute('aria-expanded', 'false');
-    menuButton.setAttribute('aria-label', 'Open navigation menu');
-  };
-  menuButton.addEventListener('click', () => {
-    const isOpen = !mobileMenu.classList.contains('hidden');
-    mobileMenu.classList.toggle('hidden');
-    menuButton.setAttribute('aria-expanded', String(!isOpen));
-    menuButton.setAttribute('aria-label', isOpen ? 'Open navigation menu' : 'Close navigation menu');
-  });
-  mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
-  document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMenu(); });
-  document.addEventListener('click', event => {
-    if (!mobileMenu.contains(event.target) && !menuButton.contains(event.target)) closeMenu();
-  });
-});</script>
 @endpush
 
 @section('content')
-<div class="flex flex-col w-full">
-<!-- Visual Ambient Substrate Overlay -->
-<section class="relative w-full py-space-3xl px-margin-mobile md:px-margin flex flex-col items-center justify-center overflow-hidden">
-<!-- Editorial Architectural Micro-Watermark in Background -->
-<div class="pointer-events-none select-none absolute top-10 left-1/2 -translate-x-1/2 font-display-xl text-[160px] md:text-[240px] text-outline-variant/10 uppercase tracking-tighter leading-none whitespace-nowrap z-0">
-      ZEBLEARN
-    </div>
-<!-- Live Telemetry Capsule Above Modal -->
-<div class="relative z-10 flex items-center gap-space-sm px-space-md py-1.5 rounded-full bg-surface-container-lowest/80 backdrop-blur-md shadow-sm mb-space-lg">
-<span class="inline-block w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
-<span class="font-label-mono text-label-mono uppercase tracking-widest text-on-surface-variant">FREE DEMO REQUEST</span>
-</div>
-<!-- Centered Modal / Focus Card Layout (~760px wide) -->
-<div class="relative z-10 w-full max-w-[760px] bg-surface-container-lowest rounded-[2rem] p-8 md:p-12 shadow-[0_24px_64px_rgba(36,25,18,0.08),0_2px_6px_rgba(36,25,18,0.04)] flex flex-col items-center text-center">
-<!-- Top Visual: Glossy 3D Vivid Orange Checkmark Seal Medallion -->
-<div class="relative mb-space-md flex items-center justify-center">
-<!-- Diffuse radial amber bloom behind badge -->
-<div class="absolute inset-0 bg-primary-container/20 rounded-full blur-2xl transform scale-125"></div>
-<div class="relative w-28 h-28 md:w-32 md:h-32 flex items-center justify-center transition-transform hover:scale-105 duration-300">
-<div class="w-full h-full rounded-full bg-[#FB6221] text-white flex items-center justify-center drop-shadow-[0_16px_24px_rgba(231,120,1,0.3)]"><span class="material-symbols-outlined text-[56px]" style="font-variation-settings: 'FILL' 1;">check</span></div>
-</div>
-</div>
-<!-- Dot Label Category Chip -->
-<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-surface-container-low mb-space-md">
-<span class="w-2 h-2 rounded-full bg-primary-container"></span>
-<span class="font-label-mono text-label-mono uppercase tracking-widest text-on-surface font-semibold">Next Step</span>
-</div>
-<!-- Giant Condensed Headline -->
-<h1 class="font-display-xl text-[54px] md:text-[80px] leading-[0.92] tracking-tight text-inverse-surface uppercase mb-space-md">
-        ALMOST THERE.
-      </h1>
-<!-- Subtitle Description -->
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-[580px] mb-space-xl">
-        Send your details to our team on WhatsApp so they can confirm your free demo class. If WhatsApp did not open, use the button below.
-      </p>
-<!-- Summary Bento Box (Inner Muted Surface Card) -->
-<div class="w-full bg-surface-container-low rounded-2xl p-6 text-left mb-space-xl">
-<!-- 3-Column Data Grid -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-<!-- Col 1 -->
-<div class="flex flex-col space-y-1">
-<span class="font-label-mono text-label-mono uppercase tracking-wider text-outline font-semibold">MODULE</span>
-<span class="font-body-md text-body-md font-bold text-inverse-surface leading-tight">
-<span id="t-module">Your chosen course</span>
-</span>
-</div>
-<!-- Col 2 -->
-<div class="flex flex-col space-y-1">
-<span class="font-label-mono text-label-mono uppercase tracking-wider text-outline font-semibold">PREFERRED DATE &amp; TIME</span>
-<span class="font-body-md text-body-md font-bold text-inverse-surface leading-tight">
-<span id="t-when">To be confirmed</span>
-</span>
-</div>
-<!-- Col 3 -->
-<div class="flex flex-col space-y-1">
-<span class="font-label-mono text-label-mono uppercase tracking-wider text-outline font-semibold">MODE</span>
-<span class="font-body-md text-body-md font-bold text-inverse-surface leading-tight">
-              Live online
-            </span>
-</div>
-</div>
-<!-- Terminal Code Badge / Telemetry Footer -->
-<div class="pt-4 bg-surface-container-highest/60 -mx-6 -mb-6 px-6 pb-4 rounded-b-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-<div class="font-label-mono text-label-mono text-on-surface-variant flex items-center gap-2">
-<span class="material-symbols-outlined text-[15px] text-primary">schedule</span>
-<span>Our team will confirm the final slot with you</span>
-</div>
-<span class="inline-flex items-center gap-1 font-label-mono text-[10px] uppercase tracking-wider text-primary font-bold bg-primary-fixed px-2 py-0.5 rounded">
-            PENDING CONFIRMATION
-          </span>
-</div>
-</div>
-<!-- Next Steps Checklist Container -->
-<div class="w-full text-left mb-space-xl">
-<div class="flex items-center justify-between mb-space-md">
-<span class="font-label-mono text-label-mono uppercase tracking-widest text-outline font-semibold">
-            WHAT HAPPENS NEXT
-          </span>
-<span class="font-label-mono text-label-mono text-primary font-semibold">3 STEPS</span>
-</div>
-<div class="flex flex-col space-y-3">
-<!-- Step 1 -->
-<div class="flex items-start gap-4 p-4 rounded-xl bg-surface-container/50 hover:bg-surface-container transition-colors">
-<div class="w-7 h-7 rounded-full bg-inverse-surface text-on-primary font-label-mono text-label-mono flex items-center justify-center shrink-0 mt-0.5">
-              01
+<div class="flex flex-col w-full bg-[#FAFAF8] text-[#0A0A0A]">
+
+    <section class="relative w-full pt-28 sm:pt-32 pb-20 px-4 sm:px-6 lg:px-12 flex flex-col items-center justify-center overflow-hidden">
+        
+        <!-- Live Telemetry Capsule -->
+        <div class="relative z-10 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-xs mb-8 animate-hero-badge">
+            <span class="inline-block w-2 h-2 rounded-full bg-[#FB6221] animate-pulse"></span>
+            <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-[#0A0A0A]">DEMO REQUEST RECEIVED</span>
+        </div>
+
+        <!-- Main Confirmation Card (Max ~760px) -->
+        <div class="relative z-10 w-full max-w-[760px] bg-white rounded-3xl p-6 sm:p-12 border border-slate-200/80 shadow-lg flex flex-col items-center text-center animate-hero-assembly">
+            
+            <!-- Checkmark Icon -->
+            <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-orange-50 border border-orange-200 flex items-center justify-center text-[#FB6221] mb-6 shadow-sm animate-hero-badge">
+                <span class="material-symbols-outlined text-[42px] sm:text-[48px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
             </div>
-<div class="flex-1">
-<p class="font-body-md text-body-md font-medium text-inverse-surface">
-                Send your details on WhatsApp.
-              </p>
-<p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">
-                Our team will confirm your demo slot after they receive your message.
-              </p>
-</div>
-<span class="material-symbols-outlined text-outline-variant text-[20px] shrink-0 mt-1">chat</span>
-</div>
-<!-- Step 2 -->
-<div class="flex items-start gap-4 p-4 rounded-xl bg-surface-container/50 hover:bg-surface-container transition-colors">
-<div class="w-7 h-7 rounded-full bg-inverse-surface text-on-primary font-label-mono text-label-mono flex items-center justify-center shrink-0 mt-0.5">
-              02
+
+            <!-- Category Chip -->
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-700 font-mono text-[10px] font-bold uppercase tracking-widest mb-4">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#FB6221]"></span>
+                FINAL STEP
             </div>
-<div class="flex-1">
-<p class="font-body-md text-body-md font-medium text-inverse-surface">
-                Keep your phone handy.
-              </p>
-<p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">
-                Our team may call you to confirm the details.
-              </p>
-</div>
-<span class="material-symbols-outlined text-outline-variant text-[20px] shrink-0 mt-1">call</span>
-</div>
-<!-- Step 3 -->
-<div class="flex items-start gap-4 p-4 rounded-xl bg-surface-container/50 hover:bg-surface-container transition-colors">
-<div class="w-7 h-7 rounded-full bg-inverse-surface text-on-primary font-label-mono text-label-mono flex items-center justify-center shrink-0 mt-0.5">
-              03
+
+            <!-- Headline -->
+            <h1 class="font-heading text-4xl sm:text-6xl font-extrabold uppercase tracking-tight text-[#0A0A0A] leading-tight mb-4 animate-hero-title">
+                ALMOST THERE.
+            </h1>
+
+            <p class="font-sans text-sm sm:text-base text-slate-600 max-w-lg mb-8 leading-relaxed animate-hero-desc">
+                Send your details to our team on WhatsApp so they can confirm your free demo class slot. If WhatsApp did not open automatically, click the button below.
+            </p>
+
+            <!-- Summary Bento Box -->
+            <div class="w-full bg-slate-50 border border-slate-200/80 rounded-2xl p-6 text-left mb-8 animate-hero-cta">
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+                    <div>
+                        <span class="font-mono text-[10px] uppercase tracking-wider text-slate-400 font-bold block mb-1">MODULE</span>
+                        <span class="font-['Inter'] text-xs sm:text-sm font-bold text-[#0A0A0A]" id="t-module">Your chosen course</span>
+                    </div>
+                    <div>
+                        <span class="font-mono text-[10px] uppercase tracking-wider text-slate-400 font-bold block mb-1">PREFERRED DATE &amp; TIME</span>
+                        <span class="font-['Inter'] text-xs sm:text-sm font-bold text-[#0A0A0A]" id="t-when">To be confirmed</span>
+                    </div>
+                    <div>
+                        <span class="font-mono text-[10px] uppercase tracking-wider text-slate-400 font-bold block mb-1">MODE</span>
+                        <span class="font-['Inter'] text-xs sm:text-sm font-bold text-[#0A0A0A]">Live Online + SAP GUI</span>
+                    </div>
+                </div>
+
+                <div class="pt-3 border-t border-slate-200/60 flex items-center justify-between flex-wrap gap-2">
+                    <div class="flex items-center gap-1.5 font-mono text-[11px] text-slate-500">
+                        <span class="material-symbols-outlined text-[15px] text-[#FB6221]">schedule</span>
+                        <span>Our team will confirm the final slot with you</span>
+                    </div>
+                    <span class="px-2 py-0.5 rounded bg-orange-100 text-[#FB6221] font-mono text-[10px] font-bold uppercase tracking-wider">
+                        PENDING WHATSAPP CONFIRMATION
+                    </span>
+                </div>
             </div>
-<div class="flex-1">
-<p class="font-body-md text-body-md font-medium text-inverse-surface">
-                Prepare your questions.
-              </p>
-<p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5">
-                Note down your doubts about SAP modules, fees and placements to ask in the demo.
-              </p>
-</div>
-<span class="material-symbols-outlined text-outline-variant text-[20px] shrink-0 mt-1">help</span>
-</div>
-</div>
-</div>
-<!-- Action Button Pills -->
-<div class="w-full flex flex-col sm:flex-row items-center justify-center gap-space-md mb-space-lg">
-<!-- Primary Solid Pill: Add to Calendar -->
-<a class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-inverse-surface text-on-primary font-body-md text-body-md font-semibold px-8 py-3.5 rounded-full hover:bg-on-surface transition-all duration-200 hover:scale-[1.02] shadow-sm" href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20book%20a%20free%20demo." rel="noopener" target="_blank"><span class="material-symbols-outlined text-[18px]">chat</span><span>Chat on WhatsApp</span></a>
-<!-- Secondary Pill: Chat on WhatsApp -->
-<a class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-surface-container-lowest text-inverse-surface font-body-md text-body-md font-semibold px-7 py-3.5 rounded-full hover:bg-surface-container transition-all duration-200 shadow-sm" href="tel:+918506888288"><span class="material-symbols-outlined text-[20px] text-primary">call</span><span>Call +91 8506 888 288</span></a>
-</div>
-<!-- Tertiary Navigation Links -->
-<div class="flex items-center justify-center gap-space-lg pt-2 text-on-surface-variant font-body-md text-body-md">
-<a class="hover:text-primary transition-colors flex items-center gap-1 group" href="/">
-<span class="material-symbols-outlined text-[16px] group-hover:-translate-x-0.5 transition-transform">arrow_back</span>
-<span>Return to Homepage</span>
-</a>
-<span class="text-outline-variant">/</span>
-<a class="hover:text-primary transition-colors flex items-center gap-1 group" href="/courses/sap-fico-training">
-<span>Explore SAP FICO Course</span>
-<span class="material-symbols-outlined text-[16px] group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
-</a>
-</div>
-</div>
-<!-- Secondary Context Bento Section (Architect & Live System Preview) -->
-<div class="relative z-10 w-full max-w-[760px] grid grid-cols-1 sm:grid-cols-2 gap-space-md mt-space-lg">
-<!-- Session Lead Preview Card -->
-<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm flex items-center gap-4">
-<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center text-primary shrink-0 relative overflow-hidden">
-<span class="material-symbols-outlined text-[28px]">engineering</span>
-</div>
-<div class="flex flex-col min-w-0">
-<span class="font-label-mono text-label-mono uppercase tracking-wider text-outline">NEED HELP?</span>
-<span class="font-body-md text-body-md font-bold text-inverse-surface truncate">Call our team</span>
-<span class="font-label-sm text-label-sm text-on-surface-variant truncate">+91 8506 888 288</span>
-</div>
-</div>
-<!-- System Diagnostic Readiness Card -->
-<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm flex items-center justify-between">
-<div class="flex flex-col min-w-0">
-<span class="font-label-mono text-label-mono uppercase tracking-wider text-outline">FORMAT</span>
-<span class="font-body-md text-body-md font-bold text-inverse-surface">Live Online Classes</span>
-<span class="font-label-sm text-label-sm text-primary flex items-center gap-1 mt-0.5">
-<span class="w-1.5 h-1.5 rounded-full bg-primary-container"></span>
-            FICO · MM · SD · PP
-          </span>
-</div>
-<div class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-inverse-surface shrink-0">
-<span class="material-symbols-outlined text-[20px]">videocam</span>
-</div>
-</div>
-</div>
-</section>
+
+            <!-- Next Steps 3-Row Checklist -->
+            <div class="w-full text-left mb-8 space-y-2.5" data-reveal>
+                <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-400 block mb-2">
+                    WHAT HAPPENS NEXT
+                </span>
+
+                <div class="flex items-start gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200/60">
+                    <div class="w-6 h-6 rounded-full bg-[#0A0A0A] text-white font-mono text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">
+                        01
+                    </div>
+                    <div>
+                        <p class="font-['Inter'] text-xs font-bold text-[#0A0A0A]">Send your details on WhatsApp</p>
+                        <p class="font-['Inter'] text-xs text-slate-500 mt-0.5">Our academic team will confirm your demo schedule once they receive your WhatsApp message.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200/60">
+                    <div class="w-6 h-6 rounded-full bg-[#0A0A0A] text-white font-mono text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">
+                        02
+                    </div>
+                    <div>
+                        <p class="font-['Inter'] text-xs font-bold text-[#0A0A0A]">Keep your phone handy</p>
+                        <p class="font-['Inter'] text-xs text-slate-500 mt-0.5">Our senior academic counselor may call you to verify your background and preferred batch timings.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start gap-3 p-3.5 rounded-xl bg-slate-50 border border-slate-200/60">
+                    <div class="w-6 h-6 rounded-full bg-[#0A0A0A] text-white font-mono text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5">
+                        03
+                    </div>
+                    <div>
+                        <p class="font-['Inter'] text-xs font-bold text-[#0A0A0A]">Prepare your questions</p>
+                        <p class="font-['Inter'] text-xs text-slate-500 mt-0.5">Jot down questions regarding certification, real-system assignments, and placement opportunities.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="w-full flex flex-col sm:flex-row items-center justify-center gap-3 mb-6">
+                <a class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#FB6221] hover:bg-[#e05214] text-white font-['Inter'] text-xs font-bold uppercase tracking-wider px-8 py-3.5 rounded-full shadow-md transition-all hover:scale-[1.02] zeb-btn-cta" href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20book%20a%20free%20demo." rel="noopener" target="_blank">
+                    <span class="material-symbols-outlined text-[18px]">chat</span>
+                    <span>Confirm on WhatsApp</span>
+                </a>
+                <a class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-[#0A0A0A] font-['Inter'] text-xs font-bold uppercase tracking-wider px-6 py-3.5 rounded-full transition-colors active:scale-95" href="tel:+918506888288">
+                    <span class="material-symbols-outlined text-[18px] text-emerald-600">call</span>
+                    <span>Call +91 8506 888 288</span>
+                </a>
+            </div>
+
+            <!-- Return Navigation Links -->
+            <div class="flex items-center justify-center gap-4 text-xs font-mono text-slate-500">
+                <a class="hover:text-[#FB6221] transition-colors flex items-center gap-1" href="/">
+                    <span class="material-symbols-outlined text-[14px]">arrow_back</span>
+                    <span>Return to Home</span>
+                </a>
+                <span class="text-slate-300">/</span>
+                <a class="hover:text-[#FB6221] transition-colors flex items-center gap-1" href="/courses/sap-fico-training">
+                    <span>Explore SAP FICO</span>
+                    <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                </a>
+            </div>
+
+        </div>
+
+    </section>
 
 </div>
 @endsection
