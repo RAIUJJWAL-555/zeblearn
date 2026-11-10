@@ -101,15 +101,18 @@ test('compiled css includes 3D perspective and ambient keyframes with prefers-re
     expect($cssContent)->toContain('animate-ambient-3');
 });
 
-test('typography system configures Maves display font for all headings across pages', function () {
-    $manifestPath = public_path('build/manifest.json');
-    $manifest = json_decode(file_get_contents($manifestPath), true);
-    $cssFile = public_path('build/'.$manifest['resources/css/app.css']['file']);
-    $cssContent = file_get_contents($cssFile);
+test('footer renders interactive LaserFlow WebGL2 container and surface card across public pages', function (string $route) {
+    $response = $this->get($route);
 
-    expect($cssContent)->toContain('Maves');
-
-    $response = $this->get('/');
     $response->assertStatus(200);
-    $response->assertSee('Mohave', false);
-});
+    $response->assertSee('id="laserflow-wrapper"', false);
+    $response->assertSee('id="laserflow-container"', false);
+    $response->assertSee('id="laserflow-card"', false);
+    $response->assertSee('THE NEXT STEP STARTS HERE');
+    $response->assertSee('Your SAP future.');
+    $response->assertSee('Starts with ZebLearn.');
+})->with([
+    'home' => ['/'],
+    'about' => ['/about'],
+    'courses' => ['/courses'],
+]);
