@@ -101,15 +101,15 @@ test('compiled css includes 3D perspective and ambient keyframes with prefers-re
     expect($cssContent)->toContain('animate-ambient-3');
 });
 
-test('typography system configures Syne fancy display font for all headings across pages', function () {
+test('typography system configures Maves display font for all headings across pages', function () {
     $manifestPath = public_path('build/manifest.json');
     $manifest = json_decode(file_get_contents($manifestPath), true);
     $cssFile = public_path('build/'.$manifest['resources/css/app.css']['file']);
     $cssContent = file_get_contents($cssFile);
 
-    expect($cssContent)->toContain('Syne');
+    expect($cssContent)->toContain('Maves');
 
     $response = $this->get('/');
     $response->assertStatus(200);
-    $response->assertSee('Syne', false);
+    $response->assertSee('Mohave', false);
 });
