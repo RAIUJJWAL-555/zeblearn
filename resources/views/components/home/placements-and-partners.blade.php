@@ -95,7 +95,7 @@
                     <span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
                     <span>CAREER TRAJECTORY &amp; OUTCOMES</span>
                 </div>
-                <h2 id="placements-heading" class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-[#0A0A0A] tracking-tight leading-tight">
+                <h2 id="placements-heading" class="font-heading text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-[#0A0A0A] tracking-tight leading-tight">
                     REAL LEARNERS. REAL CAREERS.
                 </h2>
                 <p class="text-sm sm:text-base text-slate-600 max-w-xl font-normal leading-relaxed mt-2">
@@ -184,7 +184,7 @@
                     <span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
                     <span>CAREER OUTCOMES &amp; INDUSTRY LANDSCAPE</span>
                 </div>
-                <h3 class="font-heading text-2xl sm:text-3xl font-bold uppercase text-[#0A0A0A] tracking-tight">
+                <h3 class="font-heading text-2xl sm:text-3xl font-black uppercase text-[#0A0A0A] tracking-tight">
                     EMPLOYERS &amp; INDUSTRY PARTNERS
                 </h3>
                 <p class="text-xs sm:text-sm text-slate-600 max-w-2xl mt-1 leading-relaxed">

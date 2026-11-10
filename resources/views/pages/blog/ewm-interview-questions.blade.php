@@ -82,7 +82,7 @@
 
         <!-- Article Headline Header -->
         <div class="max-w-4xl mb-8">
-            <h1 class="font-heading text-4xl sm:text-6xl md:text-7xl font-extrabold uppercase tracking-tight text-[#0A0A0A] leading-tight select-none mb-6 animate-hero-title">
+            <h1 class="font-heading text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight text-[#0A0A0A] leading-tight select-none mb-6 animate-hero-title">
                 TOP 50 SAP EWM INTERVIEW QUESTION ANSWER
             </h1>
             <p class="font-sans text-base sm:text-lg text-slate-600 leading-relaxed font-normal animate-hero-desc">

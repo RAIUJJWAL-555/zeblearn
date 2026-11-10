@@ -94,7 +94,7 @@ details summary::-webkit-details-marker { display: none; }
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end mb-10">
             <div class="lg:col-span-8">
                 <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#FB6221] block mb-2 animate-hero-badge">3-MONTH LIVE PROFESSIONAL TRACK</span>
-                <h1 class="font-heading text-5xl sm:text-7xl md:text-8xl lg:text-[96px] font-extrabold uppercase tracking-tight text-[#0A0A0A] leading-[0.95] select-none animate-hero-title">
+                <h1 class="font-heading text-5xl sm:text-7xl md:text-8xl lg:text-[96px] font-black uppercase tracking-tight text-[#0A0A0A] leading-[0.95] select-none animate-hero-title">
                     SAP FICO
                 </h1>
                 <p class="font-heading text-xl sm:text-2xl text-slate-800 font-bold uppercase mt-4 leading-snug animate-hero-desc tracking-tight">

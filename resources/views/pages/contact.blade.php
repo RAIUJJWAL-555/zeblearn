@@ -71,11 +71,11 @@
 
         <!-- Big Display Headline -->
         <div class="mb-8">
-            <h1 class="font-heading text-5xl sm:text-7xl md:text-8xl lg:text-[96px] font-extrabold uppercase tracking-tight leading-[0.95] text-[#0A0A0A] select-none animate-hero-title">
+            <h1 class="font-heading text-5xl sm:text-7xl md:text-8xl lg:text-[96px] font-black uppercase tracking-tight leading-[0.95] text-[#0A0A0A] select-none animate-hero-title">
                 TALK TO A <span class="sr-only">REAL PERSON</span>
             </h1>
             <div class="flex flex-wrap items-baseline justify-between -mt-2 sm:-mt-4">
-                <span class="font-heading text-5xl sm:text-7xl md:text-8xl lg:text-[96px] font-extrabold uppercase tracking-tight leading-[0.95] text-[#FB6221] select-none" aria-hidden="true">
+                <span class="font-heading text-5xl sm:text-7xl md:text-8xl lg:text-[96px] font-black uppercase tracking-tight leading-[0.95] text-[#FB6221] select-none" aria-hidden="true">
                     REAL PERSON.
                 </span>
                 <span class="font-mono text-xs sm:text-sm text-slate-500 uppercase tracking-widest hidden md:block">

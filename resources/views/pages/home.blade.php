@@ -50,7 +50,7 @@
     <!-- Editorial Hero Headlines, Narrative & Premium Abstract 3D Hero Sculpture -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center mb-12 lg:mb-16">
         <div class="lg:col-span-7 flex flex-col justify-center space-y-6">
-            <h1 class="font-heading text-5xl sm:text-7xl lg:text-[76px] font-extrabold uppercase tracking-tight text-[#0A0A0A] leading-[0.98] select-none animate-hero-title">
+            <h1 class="font-heading text-5xl sm:text-7xl lg:text-[76px] font-black uppercase tracking-tight text-[#0A0A0A] leading-[0.98] select-none animate-hero-title">
                 LEARN SAP ONLINE.
                 <span class="block text-[#FB6221]">GET HIRED.</span>
             </h1>
@@ -81,7 +81,7 @@
         </div>
 
         <div class="lg:col-span-5 flex justify-center lg:justify-end animate-hero-assembly">
-            <x-home.ditherveil-hero />
+            <x-home.hero-lead-form />
         </div>
     </div>
 
@@ -824,6 +824,11 @@
      6. SECTION 6: STUDENT VIDEO TESTIMONIALS (HEAR FROM OUR STUDENTS)
      ========================================================================= -->
 @include('components.home.video-testimonials')
+
+<!-- =========================================================================
+     6B. SECTION 6B: ACADEMIC AWARDS & LEADERSHIP RECOGNITION (VERIFIED EXCELLENCE)
+     ========================================================================= -->
+<x-home.certificate-showcase />
 
 <!-- =========================================================================
      7. SECTION 7: STUDENT PLACEMENTS & HIRING PARTNERS (REAL LEARNERS. REAL CAREERS.)

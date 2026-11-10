@@ -159,7 +159,7 @@
                         <span class="text-white/40">FICO • MM • SD • PP</span>
                     </div>
 
-                    <h2 class="font-heading text-2xl sm:text-3xl lg:text-4xl font-extrabold uppercase leading-[1.05] tracking-tight text-white">
+                    <h2 class="font-heading text-2xl sm:text-3xl lg:text-4xl font-black uppercase leading-[1.05] tracking-tight text-white">
                         Your SAP future.
                         <span class="block text-[#FB6221]">Starts with ZebLearn.</span>
                     </h2>

@@ -35,7 +35,7 @@
         <div class="flex items-start gap-3.5 mb-3">
             <x-course.module-art :module="$course->slug" :status="$course->status" class="w-12 h-12 shrink-0 mt-0.5" />
             <div class="flex-1 min-w-0">
-                <h3 class="font-heading text-xl sm:text-2xl font-bold uppercase tracking-tight text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors leading-snug">
+                <h3 class="font-heading text-xl sm:text-2xl font-black uppercase tracking-tight text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors leading-snug">
                     {{ $course->name }}
                 </h3>
             </div>
@@ -71,7 +71,7 @@
             <div>
                 @if($isAvailable && $course->fee)
                     <span class="font-mono text-[10px] text-slate-400 uppercase tracking-wider block">TUITION FEE</span>
-                    <span class="font-heading text-2xl font-extrabold text-[#0A0A0A] leading-none">{{ $course->formatted_fee }}</span>
+                    <span class="font-heading text-2xl font-black text-[#0A0A0A] leading-none">{{ $course->formatted_fee }}</span>
                 @elseif($isUpcoming)
                     <span class="font-mono text-[10px] text-slate-400 uppercase tracking-wider block">BATCH STATUS</span>
                     <span class="font-mono text-xs font-bold text-orange-600 uppercase">Upcoming Batch · Enrol Open</span>

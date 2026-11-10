@@ -122,7 +122,7 @@
 
         <!-- Headline & Editorial Lead -->
         <div class="mb-10">
-            <h1 class="font-heading text-4xl sm:text-6xl lg:text-7xl font-extrabold uppercase tracking-tight leading-[0.98] text-[#0A0A0A] select-none animate-hero-title">
+            <h1 class="font-heading text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight leading-[0.98] text-[#0A0A0A] select-none animate-hero-title">
                 PRACTICAL SAP ACADEMY. <br/>
                 <span class="text-[#FB6221]">BUILT FOR CONSULTANTS.</span>
             </h1>

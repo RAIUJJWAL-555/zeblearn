@@ -26,12 +26,14 @@
 </div>
 <!-- Centered Modal / Focus Card Layout (~760px wide) -->
 <div class="relative z-10 w-full max-w-[760px] bg-surface-container-lowest rounded-[2rem] p-8 md:p-12 shadow-[0_24px_64px_rgba(36,25,18,0.08),0_2px_6px_rgba(36,25,18,0.04)] flex flex-col items-center text-center">
-<!-- Top Visual: Glossy 3D Vivid Orange Checkmark Seal Medallion -->
-<div class="relative mb-space-md flex items-center justify-center">
-<!-- Diffuse radial amber bloom behind badge -->
-<div class="absolute inset-0 bg-primary-container/20 rounded-full blur-2xl transform scale-125"></div>
-<div class="relative w-28 h-28 md:w-32 md:h-32 flex items-center justify-center transition-transform hover:scale-105 duration-300">
-<div class="w-full h-full rounded-full bg-[#FB6221] text-white flex items-center justify-center drop-shadow-[0_16px_24px_rgba(231,120,1,0.3)]"><span class="material-symbols-outlined text-[56px]" style="font-variation-settings: 'FILL' 1;">check</span></div>
+<!-- Top Visual: 3D Welcoming Mentor Greeting Character -->
+<div class="relative mb-space-md flex flex-col items-center justify-center">
+<div class="relative w-36 h-36 md:w-44 md:h-44 flex items-center justify-center transition-transform hover:scale-105 duration-300">
+<img src="{{ asset('images/thank-you-greeting-trans.webp') }}" alt="ZebLearn Academic Mentor Greeting and Thanking You" class="w-full h-full object-contain drop-shadow-[0_16px_28px_rgba(251,98,33,0.22)] select-none animate-ambient-1" loading="eager" fetchpriority="high" />
+</div>
+<div class="mt-2 px-4 py-1.5 rounded-full bg-primary-container/10 border border-primary-container/20 shadow-xs inline-flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-[#FB6221] animate-pulse"></span>
+<span class="font-mono text-[11px] font-bold text-[#FB6221] uppercase tracking-wider">"THANK YOU! WE'RE EXCITED TO MEET YOU."</span>
 </div>
 </div>
 <!-- Dot Label Category Chip -->

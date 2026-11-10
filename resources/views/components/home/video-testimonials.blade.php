@@ -99,7 +99,7 @@
                     <span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
                     <span>ALUMNI VOICES · VERIFIED EXPERIENCES</span>
                 </div>
-                <h2 id="video-testimonials-heading" class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-white tracking-tight leading-tight">
+                <h2 id="video-testimonials-heading" class="font-heading text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-white tracking-tight leading-tight">
                     HEAR FROM OUR STUDENTS
                 </h2>
                 <p class="text-sm sm:text-base text-slate-300 max-w-xl font-normal leading-relaxed mt-2">

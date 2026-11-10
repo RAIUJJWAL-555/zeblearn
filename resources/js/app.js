@@ -1,6 +1,7 @@
 
 import { initLaserFlow } from './laserflow';
 import { initDitherVeil } from './ditherveil';
+import { initCertificateShowcase } from './certificate-showcase';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Mobile navigation
@@ -71,6 +72,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 `https://wa.me/917277877778?text=${encodeURIComponent(enquiry)}`;
 
             window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+        });
+    }
+
+    // Hero Student Demo Registration Form
+    const heroStudentForm = document.getElementById('hero-student-form');
+    if (heroStudentForm) {
+        heroStudentForm.addEventListener('submit', event => {
+            event.preventDefault();
+            const name = document.getElementById('hero-name')?.value.trim() || '';
+            const phone = document.getElementById('hero-phone')?.value.trim() || '';
+            const course = document.getElementById('hero-course')?.value || 'SAP Training';
+
+            const enquiry = [
+                'Hello ZebLearn, I want to book a free live demo class.',
+                `Name: ${name}`,
+                `Phone: +91 ${phone}`,
+                `Course: ${course}`
+            ].join('\n');
+
+            const whatsappURL = `https://wa.me/917277877778?text=${encodeURIComponent(enquiry)}`;
+            window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+
+            setTimeout(() => {
+                window.location.href = `/book-demo/thank-you?module=${encodeURIComponent(course)}`;
+            }, 600);
         });
     }
 
@@ -244,7 +270,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 7. DitherVeil WebGL2 Hero Simulation
+    // 7. Awards & Recognition Certificate Showcase
+    initCertificateShowcase();
+
+    // 8. DitherVeil WebGL2 Simulation (if container present)
     const ditherveilContainer = document.getElementById('ditherveil-container');
 
     if (ditherveilContainer) {

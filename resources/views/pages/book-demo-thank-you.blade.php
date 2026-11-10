@@ -38,9 +38,30 @@
         <!-- Main Confirmation Card (Max ~760px) -->
         <div class="relative z-10 w-full max-w-[760px] bg-white rounded-3xl p-6 sm:p-12 border border-slate-200/80 shadow-lg flex flex-col items-center text-center animate-hero-assembly">
             
-            <!-- Checkmark Icon -->
-            <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-orange-50 border border-orange-200 flex items-center justify-center text-[#FB6221] mb-6 shadow-sm animate-hero-badge">
-                <span class="material-symbols-outlined text-[42px] sm:text-[48px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+            <!-- 3D Welcoming Mentor Greeting Character -->
+            <div class="relative mb-6 flex flex-col items-center animate-hero-badge">
+                <div class="relative w-36 h-36 sm:w-44 sm:h-44 flex items-center justify-center">
+                    <img
+                        src="{{ asset('images/thank-you-greeting-trans.webp') }}"
+                        alt="ZebLearn Academic Mentor Greeting and Thanking You"
+                        class="w-full h-full object-contain drop-shadow-[0_16px_28px_rgba(251,98,33,0.22)] select-none animate-ambient-1"
+                        loading="eager"
+                        fetchpriority="high"
+                    />
+                    <!-- Verified Status Pill -->
+                    <span class="absolute -bottom-1 right-2 sm:right-4 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-slate-200 shadow-md font-mono text-[10px] font-bold text-emerald-600">
+                        <span class="material-symbols-outlined text-[13px]">check_circle</span>
+                        <span>VERIFIED</span>
+                    </span>
+                </div>
+
+                <!-- Warm Greeting Speech Bubble -->
+                <div class="mt-3 px-4 py-1.5 rounded-full bg-orange-50 border border-orange-200/80 shadow-xs inline-flex items-center gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#FB6221] animate-pulse"></span>
+                    <span class="font-mono text-[11px] font-bold text-[#FB6221] uppercase tracking-wider">
+                        "THANK YOU! WE'RE EXCITED TO MEET YOU."
+                    </span>
+                </div>
             </div>
 
             <!-- Category Chip -->

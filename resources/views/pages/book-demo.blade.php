@@ -70,7 +70,7 @@
 
         <!-- Huge Display Headline -->
         <div class="mb-8">
-            <h1 class="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-[80px] font-extrabold uppercase tracking-tight text-[#0A0A0A] leading-[0.98] select-none animate-hero-title">
+            <h1 class="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-[80px] font-black uppercase tracking-tight text-[#0A0A0A] leading-[0.98] select-none animate-hero-title">
                 SIT IN ON A LIVE CLASS. <span class="text-[#FB6221]">FREE.</span>
             </h1>
         </div>

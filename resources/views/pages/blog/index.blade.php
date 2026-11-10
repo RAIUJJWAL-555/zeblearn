@@ -64,7 +64,7 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
             <div class="lg:col-span-8">
-                <h1 class="font-heading text-5xl sm:text-7xl md:text-8xl lg:text-[96px] font-extrabold uppercase tracking-tight leading-[0.95] text-[#0A0A0A] select-none animate-hero-title">
+                <h1 class="font-heading text-5xl sm:text-7xl md:text-8xl lg:text-[96px] font-black uppercase tracking-tight leading-[0.95] text-[#0A0A0A] select-none animate-hero-title">
                     SAP NOTES.<br/>
                     <span class="text-[#FB6221]">INTERVIEW PREP.</span>
                 </h1>

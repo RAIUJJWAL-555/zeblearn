@@ -1,16 +1,28 @@
 <?php
 
-test('homepage renders interactive DitherVeil in hero and preserves left headlines and ctas', function () {
+test('homepage renders simple demo form in hero, awards certificates after testimonials, and preserves headlines', function () {
     $response = $this->get('/');
 
     $response->assertStatus(200);
 
-    // 1. Hero DitherVeil WebGL2 Component (Pure floating element without background box or surrounding text tags)
-    $response->assertSee('id="ditherveil-wrapper"', false);
-    $response->assertSee('id="ditherveil-container"', false);
-    $response->assertDontSee('INTERACTIVE VEIL • HOVER TO REVEAL');
+    // 1. Hero Simple Demo Registration Form
+    $response->assertSee('id="hero-lead-form-wrapper"', false);
+    $response->assertSee('id="hero-student-form"', false);
+    $response->assertSee('BOOK YOUR FREE LIVE DEMO');
+    $response->assertSee('CLAIM FREE DEMO SEAT');
+    $response->assertSee('id="hero-name"', false);
+    $response->assertSee('id="hero-phone"', false);
+    $response->assertSee('id="hero-course"', false);
 
-    // 2. Preserved Left Hero Headlines & CTAs
+    // 2. Academic Awards & Recognition Section Placed After Testimonials
+    $response->assertSee('id="awards-and-recognition"', false);
+    $response->assertSee('AWARDS &amp; RECOGNITION', false);
+    $response->assertSee('VERIFIED SAP ACADEMY EXCELLENCE');
+    $response->assertSee('certificate-1.webp');
+    $response->assertSee('certificate-2.webp');
+    $response->assertSee('certificate-3.webp');
+
+    // 3. Preserved Left Hero Headlines & CTAs
     $response->assertSee('LEARN SAP ONLINE.');
     $response->assertSee('GET HIRED.');
     $response->assertSee('Book a Free Demo');
@@ -18,11 +30,21 @@ test('homepage renders interactive DitherVeil in hero and preserves left headlin
     $response->assertSee('2,500+ LEARNERS TRAINED');
     $response->assertSee('24/7 S/4HANA Sandbox Access');
 
-    // 3. Complete absence of obsolete dashboard remnants
+    // 4. Complete absence of obsolete elements
     $response->assertDontSee('T-CODE: FB03');
     $response->assertDontSee('F110 Payment Run');
     $response->assertDontSee('ACDOCA Ledger');
     $response->assertDontSee('Cash / Bank Clearing');
+});
+
+test('book demo thank you page displays 3D welcoming mentor greeting character and message', function () {
+    $response = $this->get('/book-demo/thank-you?module=SAP%20FICO');
+
+    $response->assertStatus(200);
+    $response->assertSee('thank-you-greeting-trans.webp');
+    $response->assertSeeText("THANK YOU! WE'RE EXCITED TO MEET YOU.");
+    $response->assertSee('DEMO REQUEST RECEIVED');
+    $response->assertSee('Confirm on WhatsApp');
 });
 
 test('homepage and courses index render 2.5D isometric pathway illustrations', function (string $route) {
