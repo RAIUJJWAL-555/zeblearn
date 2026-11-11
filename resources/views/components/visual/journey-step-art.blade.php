@@ -30,13 +30,13 @@
         <!-- Interactive Chat Stream Panel on Right of Screen -->
         <rect x="110" y="20" width="24" height="44" rx="2" fill="#0F172A" />
         <rect x="113" y="24" width="18" height="2" rx="1" fill="#FB6221" />
-        <rect x="113" y="29" width="14" height="2" rx="1" fill="#38BDF8" />
-        <rect x="113" y="34" width="16" height="2" rx="1" fill="#10B981" />
+        <rect x="113" y="29" width="14" height="2" rx="1" fill="#FDBA74" />
+        <rect x="113" y="34" width="16" height="2" rx="1" fill="#FB6221" />
         <rect x="113" y="39" width="12" height="2" rx="1" fill="#94A3B8" />
         <!-- Live Badge -->
-        <rect x="46" y="34" width="28" height="8" rx="2" fill="#EF4444" fill-opacity="0.2" stroke="#EF4444" stroke-width="0.8" />
-        <circle cx="50" cy="38" r="1.5" fill="#EF4444" />
-        <text x="54" y="40.5" font-family="'IBM Plex Mono', monospace" font-size="5" font-weight="700" fill="#EF4444">LIVE</text>
+        <rect x="46" y="34" width="28" height="8" rx="2" fill="#FB6221" fill-opacity="0.15" stroke="#FB6221" stroke-width="0.8" />
+        <circle cx="50" cy="38" r="1.5" fill="#FB6221" />
+        <text x="54" y="40.5" font-family="'IBM Plex Mono', monospace" font-size="5" font-weight="700" fill="#FB6221">LIVE</text>
         <!-- Stand Base -->
         <path d="M84 68 L96 68 L98 74 L82 74 Z" fill="#475569" />
     </svg>
@@ -55,16 +55,16 @@
         <rect x="50" y="16" width="80" height="52" rx="6" fill="url(#j2-rack)" stroke="#334155" stroke-width="1.2" />
         <!-- Bay 1 (Active Sandbox Terminal) -->
         <rect x="56" y="22" width="68" height="11" rx="2" fill="#0A0A0A" stroke="#475569" stroke-width="0.8" />
-        <circle cx="62" cy="27.5" r="1.5" fill="#10B981" />
-        <text x="68" y="29.5" font-family="'IBM Plex Mono', monospace" font-size="5.5" font-weight="700" fill="#38BDF8">GUI: /nFB01 POST</text>
+        <circle cx="62" cy="27.5" r="1.5" fill="#FB6221" />
+        <text x="68" y="29.5" font-family="'IBM Plex Mono', monospace" font-size="5.5" font-weight="700" fill="#FFFFFF">GUI: /nFB01 POST</text>
         <!-- Bay 2 (Configuration Sandbox) -->
         <rect x="56" y="36" width="68" height="11" rx="2" fill="#0A0A0A" stroke="#475569" stroke-width="0.8" />
         <circle cx="62" cy="41.5" r="1.5" fill="#FB6221" />
         <text x="68" y="43.5" font-family="'IBM Plex Mono', monospace" font-size="5.5" font-weight="700" fill="#FDBA74">SPRO: S/4HANA ORG</text>
         <!-- Bay 3 (Testing & Status) -->
         <rect x="56" y="50" width="68" height="11" rx="2" fill="#0A0A0A" stroke="#475569" stroke-width="0.8" />
-        <circle cx="62" cy="55.5" r="1.5" fill="#10B981" />
-        <text x="68" y="57.5" font-family="'IBM Plex Mono', monospace" font-size="5.5" font-weight="700" fill="#4ADE80">100% RECONCILED</text>
+        <circle cx="62" cy="55.5" r="1.5" fill="#FB6221" />
+        <text x="68" y="57.5" font-family="'IBM Plex Mono', monospace" font-size="5.5" font-weight="700" fill="#FB6221">100% RECONCILED</text>
     </svg>
 
 @elseif($s === '3' || $s === 'skills')
@@ -77,8 +77,8 @@
         <rect x="54" y="28" width="34" height="2" rx="1" fill="#94A3B8" />
         <rect x="54" y="33" width="28" height="2" rx="1" fill="#CBD5E1" />
         <rect x="54" y="38" width="32" height="2" rx="1" fill="#CBD5E1" />
-        <circle cx="58" cy="48" r="3" fill="#10B981" />
-        <rect x="64" y="47" width="20" height="2" rx="1" fill="#10B981" />
+        <circle cx="58" cy="48" r="3" fill="#FB6221" />
+        <rect x="64" y="47" width="20" height="2" rx="1" fill="#94A3B8" />
         <circle cx="58" cy="56" r="3" fill="#FB6221" />
         <rect x="64" y="55" width="22" height="2" rx="1" fill="#FB6221" />
 
@@ -116,8 +116,8 @@
 
         <!-- Hiring Partner Verification Pill -->
         <g transform="translate(98, 48)">
-            <rect x="0" y="0" width="38" height="15" rx="4" fill="#0A0A0A" stroke="#10B981" stroke-width="0.8" />
-            <circle cx="6" cy="7.5" r="2" fill="#10B981" />
+            <rect x="0" y="0" width="38" height="15" rx="4" fill="#0A0A0A" stroke="#FB6221" stroke-width="0.8" />
+            <circle cx="6" cy="7.5" r="2" fill="#FB6221" />
             <text x="11" y="10.5" font-family="'IBM Plex Mono', monospace" font-size="5" font-weight="700" fill="#FFFFFF">HIRED</text>
         </g>
     </svg>

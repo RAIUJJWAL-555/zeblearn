@@ -51,8 +51,8 @@
         <rect x="78" y="44" width="23" height="2" rx="1" fill="#FB6221" />
         <rect x="78" y="49" width="18" height="1.8" rx="0.9" fill="#94A3B8" />
         <rect x="78" y="53" width="21" height="1.8" rx="0.9" fill="#64748B" />
-        <rect x="78" y="57" width="14" height="1.8" rx="0.9" fill="#38BDF8" />
-        <circle cx="98" cy="45" r="1.5" fill="#10B981" />
+        <rect x="78" y="57" width="14" height="1.8" rx="0.9" fill="#FB6221" />
+        <circle cx="98" cy="45" r="1.5" fill="#FB6221" />
 
         <!-- Floating Isometric Graduation Cap -->
         <g class="transform-gpu transition-transform duration-300 group-hover:-translate-y-1">
@@ -204,10 +204,10 @@
         <path d="M120 114 L120 120 L192 96 L192 90 Z" fill="#0A0A0A" />
 
         <!-- Enterprise Circuit / Bus Connection Lines -->
-        <path d="M70 82 L120 98 L170 82" stroke="#38BDF8" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="2 3" />
-        <circle cx="70" cy="82" r="2.5" fill="#38BDF8" />
+        <path d="M70 82 L120 98 L170 82" stroke="#FB6221" stroke-width="1.2" stroke-linecap="round" stroke-dasharray="2 3" />
+        <circle cx="70" cy="82" r="2.5" fill="#FB6221" />
         <circle cx="120" cy="98" r="2.5" fill="#FB6221" />
-        <circle cx="170" cy="82" r="2.5" fill="#10B981" />
+        <circle cx="170" cy="82" r="2.5" fill="#FB6221" />
 
         <!-- Tiered S/4HANA Database Server Stack (Isometric Rack) -->
         <g class="transform-gpu transition-transform duration-300 group-hover:-translate-y-1">
@@ -215,14 +215,14 @@
             <path d="M92 78 L126 89 L148 81 L114 70 Z" fill="#1E293B" stroke="#334155" stroke-width="1" />
             <path d="M92 78 L92 84 L126 95 L126 89 Z" fill="#0F172A" />
             <path d="M126 89 L126 95 L148 87 L148 81 Z" fill="#020617" />
-            <circle cx="100" cy="82" r="1.2" fill="#10B981" />
-            <circle cx="104" cy="83.5" r="1.2" fill="#38BDF8" />
+            <circle cx="100" cy="82" r="1.2" fill="#FB6221" />
+            <circle cx="104" cy="83.5" r="1.2" fill="#94A3B8" />
 
             <!-- Unit 2 (Mid Tier - In-Memory Engine) -->
             <path d="M92 68 L126 79 L148 71 L114 60 Z" fill="#1E293B" stroke="#334155" stroke-width="1" />
             <path d="M92 68 L92 74 L126 85 L126 79 Z" fill="#0F172A" />
             <path d="M126 79 L126 85 L148 77 L148 71 Z" fill="#020617" />
-            <circle cx="100" cy="72" r="1.2" fill="#10B981" />
+            <circle cx="100" cy="72" r="1.2" fill="#FB6221" />
             <circle cx="104" cy="73.5" r="1.2" fill="#FB6221" />
 
             <!-- Unit 3 (Top Tier - HANA DB Core) -->
@@ -236,10 +236,10 @@
         <!-- Floating Code Console Badge (<ABAP/>) -->
         <g class="transform-gpu transition-transform duration-300 group-hover:scale-105">
             <rect x="42" y="32" width="62" height="26" rx="6" fill="#0A0A0A" stroke="#334155" stroke-width="1" />
-            <circle cx="50" cy="39" r="1.5" fill="#EF4444" />
-            <circle cx="55" cy="39" r="1.5" fill="#F59E0B" />
-            <circle cx="60" cy="39" r="1.5" fill="#10B981" />
-            <text x="50" y="52" font-family="'IBM Plex Mono', monospace" font-size="8.5" font-weight="700" fill="#38BDF8">&lt;ABAP/&gt;</text>
+            <circle cx="50" cy="39" r="1.5" fill="#FB6221" />
+            <circle cx="55" cy="39" r="1.5" fill="#94A3B8" />
+            <circle cx="60" cy="39" r="1.5" fill="#475569" />
+            <text x="50" y="52" font-family="'IBM Plex Mono', monospace" font-size="8.5" font-weight="700" fill="#FB6221">&lt;ABAP/&gt;</text>
         </g>
 
         <!-- Floating Cloud Integration Hexagon / SAP BTP Node -->

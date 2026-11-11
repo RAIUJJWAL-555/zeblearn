@@ -27,7 +27,7 @@
 @section('content')
 <div class="flex flex-col w-full bg-[#FAFAF8] text-[#0A0A0A]">
 
-    <section class="relative w-full pt-28 sm:pt-32 pb-20 px-4 sm:px-6 lg:px-12 flex flex-col items-center justify-center overflow-hidden">
+    <section class="relative w-full pt-36 sm:pt-40 lg:pt-44 pb-20 px-4 sm:px-6 lg:px-12 flex flex-col items-center justify-center overflow-hidden">
         
         <!-- Live Telemetry Capsule -->
         <div class="relative z-10 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-slate-200 shadow-xs mb-8 animate-hero-badge">
@@ -49,8 +49,8 @@
                         fetchpriority="high"
                     />
                     <!-- Verified Status Pill -->
-                    <span class="absolute -bottom-1 right-2 sm:right-4 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-slate-200 shadow-md font-mono text-[10px] font-bold text-emerald-600">
-                        <span class="material-symbols-outlined text-[13px]">check_circle</span>
+                    <span class="absolute -bottom-1 right-2 sm:right-4 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white border border-orange-200 shadow-md font-mono text-[10px] font-bold text-[#FB6221]">
+                        <span class="material-symbols-outlined text-[13px] text-[#FB6221]">check_circle</span>
                         <span>VERIFIED</span>
                     </span>
                 </div>

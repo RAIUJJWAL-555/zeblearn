@@ -11,7 +11,7 @@
 @endphp
 
 <header class="fixed inset-x-0 top-4 sm:top-5 z-50 px-4 sm:px-6 pointer-events-none">
-    <div class="max-w-6xl mx-auto pointer-events-auto rounded-full px-4 py-2 sm:px-6 sm:py-2.5 flex items-center justify-between transition-all duration-300 border border-white/60 shadow-[0_8px_32px_rgba(10,10,10,0.08),inset_0_1px_1px_rgba(255,255,255,0.9)]" style="background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(20px) saturate(190%); -webkit-backdrop-filter: blur(20px) saturate(190%);">
+    <div class="max-w-7xl mx-auto pointer-events-auto rounded-full px-5 py-2 sm:px-7 sm:py-2.5 flex items-center justify-between transition-all duration-300 border border-white/60 shadow-[0_8px_32px_rgba(10,10,10,0.08),inset_0_1px_1px_rgba(255,255,255,0.9)]" style="background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(20px) saturate(190%); -webkit-backdrop-filter: blur(20px) saturate(190%);">
         <!-- Brand Logo with Reserved Bounding Dimensions for Zero CLS -->
         <a href="{{ url('/') }}" aria-label="ZebLearn Home" class="flex shrink-0 items-center h-8 sm:h-9 w-[102px] sm:w-[114px] overflow-hidden group">
             <picture class="dark:hidden">

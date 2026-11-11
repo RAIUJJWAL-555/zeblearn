@@ -55,7 +55,7 @@
 <div class="flex flex-col w-full bg-[#FAFAF8] text-[#0A0A0A]">
 
     <!-- HERO SECTION -->
-    <section class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 pt-28 sm:pt-32 pb-8 sm:pb-12 w-full">
+    <section class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 pt-36 sm:pt-40 lg:pt-44 pb-8 sm:pb-12 w-full">
         <!-- Breadcrumb & Telemetry -->
         <div class="flex flex-wrap items-center justify-between gap-3 pb-6 mb-8 border-b border-slate-200 animate-hero-badge">
             <nav aria-label="Breadcrumb" class="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-wider text-slate-500">
@@ -185,9 +185,7 @@
             <!-- Left Column: Reassurance & Program Summary (5 cols) -->
             <div class="lg:col-span-5 space-y-6">
                 <div>
-                    <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#FB6221] block mb-2">
-                        GET IN TOUCH DIRECTLY
-                    </span>
+                   
                     <h2 class="font-heading text-3xl sm:text-4xl font-bold uppercase tracking-tight text-[#0A0A0A] leading-tight mb-4">
                         SEND US A MESSAGE
                     </h2>
@@ -250,7 +248,7 @@
                         <!-- Full Name -->
                         <div class="flex flex-col gap-1.5">
                             <label class="font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold">
-                                Full Name <span class="text-[#FB6221]">*</span>
+                                Full Name 
                             </label>
                             <input autocomplete="name" class="w-full bg-slate-50 focus:bg-white text-[#0A0A0A] font-['Inter'] text-xs px-4 py-3 rounded-xl border border-slate-200 focus:border-[#FB6221] outline-none transition-all placeholder-slate-400" name="name" placeholder="Your name" required type="text"/>
                         </div>

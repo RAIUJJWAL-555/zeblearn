@@ -51,7 +51,7 @@
 <div class="flex flex-col w-full bg-[#FAFAF8] text-[#0A0A0A]">
 
     <!-- HERO SECTION -->
-    <section class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 pt-28 sm:pt-32 pb-12 sm:pb-16 w-full">
+    <section class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 pt-36 sm:pt-40 lg:pt-44 pb-12 sm:pb-16 w-full">
         <!-- Breadcrumb & Telemetry -->
         <div class="flex flex-wrap items-center justify-between gap-3 pb-6 mb-8 border-b border-slate-200 animate-hero-badge">
             <nav aria-label="Breadcrumb" class="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-wider text-slate-500">
@@ -59,10 +59,7 @@
                 <span class="text-slate-300">/</span>
                 <span class="text-[#0A0A0A] font-bold">About</span>
             </nav>
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-xs">
-                <span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
-                <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-[#0A0A0A]">ONLINE SAP INSTITUTE</span>
-            </div>
+          
         </div>
 
         <!-- Big Display Headline -->
@@ -124,9 +121,7 @@
             <!-- Card 1: Our Story (7 cols) -->
             <div class="lg:col-span-7 bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-xs flex flex-col justify-between zeb-card-interactive" data-reveal data-reveal-delay="1">
                 <div>
-                    <div class="flex items-center gap-2 mb-3">
-                        <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#FB6221]">01 // OUR STORY</span>
-                    </div>
+                  
                     <h2 class="font-heading text-xl sm:text-2xl font-bold uppercase text-[#0A0A0A] leading-tight mb-4 tracking-tight">
                         ZebLearn is an online SAP training institute. We teach FICO, MM, SD and PP in live classes, with practice on a real SAP system.
                     </h2>
@@ -145,7 +140,7 @@
             <div class="lg:col-span-5 bg-[#0A0A0A] text-white rounded-2xl p-6 sm:p-8 border border-slate-800 shadow-md flex flex-col justify-between relative overflow-hidden zeb-card-interactive" data-reveal data-reveal-delay="2">
                 <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-[#FB6221]/15 rounded-full blur-2xl pointer-events-none"></div>
                 <div class="relative z-10">
-                    <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#FB6221] block mb-2">02 // ALUMNI TRACK RECORD</span>
+
                     <span class="font-heading text-5xl sm:text-6xl text-white block leading-none tracking-tight font-extrabold">
                         5,500+
                     </span>
@@ -161,7 +156,6 @@
 
             <!-- Card 3: 4 Core Modules (4 cols) -->
             <div class="lg:col-span-4 bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between">
-                <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#FB6221]">03 // SPECTRUM</span>
                 <div class="my-3">
                     <span class="font-heading text-4xl text-[#0A0A0A] block leading-none font-extrabold">04</span>
                     <p class="font-heading text-base font-bold text-[#0A0A0A] uppercase mt-1 tracking-tight">Core Modules</p>
@@ -173,7 +167,7 @@
 
             <!-- Card 4: Real System Practice (4 cols) -->
             <div class="lg:col-span-4 bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between">
-                <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#FB6221]">04 // ENVIRONMENT</span>
+
                 <div class="my-3">
                     <span class="font-heading text-4xl text-[#0A0A0A] block leading-none font-extrabold">24/7</span>
                     <p class="font-heading text-base font-bold text-[#0A0A0A] uppercase mt-1 tracking-tight">SAP GUI Server Access</p>
@@ -185,7 +179,7 @@
 
             <!-- Card 5: Placement Pipeline (4 cols) -->
             <div class="lg:col-span-4 bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between">
-                <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#FB6221]">05 // HIRING PARTNER</span>
+
                 <div class="my-3">
                     <span class="font-heading text-4xl text-[#0A0A0A] block leading-none font-extrabold">100%</span>
                     <p class="font-heading text-base font-bold text-[#0A0A0A] uppercase mt-1 tracking-tight">Placement Support</p>
@@ -202,7 +196,7 @@
     <section class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-12 w-full border-t border-slate-200/80">
         <div class="flex flex-wrap items-end justify-between gap-4 mb-8">
             <div>
-                <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#FB6221] block mb-1">06 // PEDAGOGY</span>
+
                 <h2 class="font-heading text-2xl sm:text-3xl font-bold uppercase text-[#0A0A0A] tracking-tight">
                     HOW WE TEACH
                 </h2>
@@ -263,7 +257,7 @@
     <section class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-12 w-full border-t border-slate-200/80">
         <div class="flex flex-wrap items-end justify-between gap-4 mb-8">
             <div>
-                <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#FB6221] block mb-1">07 // CURRICULUM</span>
+
                 <h2 class="font-heading text-2xl sm:text-3xl font-bold uppercase text-[#0A0A0A] tracking-tight">
                     OUR COURSES
                 </h2>
@@ -355,7 +349,6 @@
             <div class="lg:col-span-7 bg-white rounded-2xl p-6 sm:p-10 border border-slate-200/80 shadow-xs flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-4">
-                        <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#FB6221]">ALUMNI PLACEMENT STORY</span>
                         <div class="flex items-center gap-0.5 text-[#FB6221]">
                             <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
                             <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
@@ -383,7 +376,7 @@
             <div class="lg:col-span-5 bg-[#0A0A0A] text-white rounded-2xl p-6 sm:p-8 border border-slate-800 shadow-md flex flex-col justify-between">
                 <div>
                     <div class="flex items-center gap-2 mb-3">
-                        <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#FB6221]">CAREER ECOSYSTEM</span>
+
                     </div>
                     <h3 class="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-tight text-white mb-3">
                         SAP JOBS ON PLACEMENTBABA
@@ -408,17 +401,14 @@
 
     <!-- OUR CODE (CORE PRINCIPLES) -->
     <section class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-12 w-full border-t border-slate-200/80">
-        <div class="flex items-center gap-2 mb-2">
-            <span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
-            <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#FB6221]">08 // OPERATING PRINCIPLES</span>
-        </div>
+    
         <h2 class="font-heading text-2xl sm:text-3xl font-bold uppercase text-[#0A0A0A] tracking-tight mb-8">
             OUR CODE
         </h2>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-xs flex flex-col justify-between">
-                <span class="font-mono text-xs font-bold text-[#FB6221]">01 // CURRICULUM</span>
+
                 <div class="my-4">
                     <h3 class="font-heading text-lg font-bold text-[#0A0A0A] uppercase mb-2 tracking-tight">
                         TEACH WHAT THE JOB USES
@@ -430,7 +420,7 @@
             </div>
 
             <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-xs flex flex-col justify-between">
-                <span class="font-mono text-xs font-bold text-[#FB6221]">02 // INTEGRITY</span>
+
                 <div class="my-4">
                     <h3 class="font-heading text-lg font-bold text-[#0A0A0A] uppercase mb-2 tracking-tight">
                         NO INFLATED PROMISES
@@ -442,7 +432,7 @@
             </div>
 
             <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-xs flex flex-col justify-between">
-                <span class="font-mono text-xs font-bold text-[#FB6221]">03 // OUTCOME</span>
+
                 <div class="my-4">
                     <h3 class="font-heading text-lg font-bold text-[#0A0A0A] uppercase mb-2 tracking-tight">
                         PLACEMENT SUPPORT
@@ -458,9 +448,7 @@
     <!-- FINAL CALL TO ACTION -->
     <section class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 py-16 sm:py-24 text-center border-t border-slate-200/80 w-full">
         <div class="max-w-3xl mx-auto flex flex-col items-center">
-            <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#FB6221] mb-2">
-                09 // FREE DEMO CLASS
-            </span>
+          
             <h2 class="font-heading text-4xl sm:text-6xl lg:text-7xl font-extrabold uppercase text-[#0A0A0A] tracking-tight leading-[0.98] mb-4">
                 COME SIT IN A CLASS
             </h2>

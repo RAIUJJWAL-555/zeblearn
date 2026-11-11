@@ -91,10 +91,6 @@
         <!-- Section Header -->
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12" data-reveal>
             <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 text-[#0A0A0A] font-mono text-[10px] font-bold uppercase tracking-widest shadow-xs mb-3">
-                    <span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
-                    <span>CAREER TRAJECTORY &amp; OUTCOMES</span>
-                </div>
                 <h2 id="placements-heading" class="font-heading text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-[#0A0A0A] tracking-tight leading-tight">
                     REAL LEARNERS. REAL CAREERS.
                 </h2>
@@ -180,10 +176,7 @@
              ========================================================================= -->
         <div class="pt-12 border-t border-slate-200">
             <div class="mb-10">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 text-[#0A0A0A] font-mono text-[10px] font-bold uppercase tracking-widest mb-2">
-                    <span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
-                    <span>CAREER OUTCOMES &amp; INDUSTRY LANDSCAPE</span>
-                </div>
+                
                 <h3 class="font-heading text-2xl sm:text-3xl font-black uppercase text-[#0A0A0A] tracking-tight">
                     EMPLOYERS &amp; INDUSTRY PARTNERS
                 </h3>
@@ -197,13 +190,7 @@
                 <!-- CATEGORY A: Official Dedicated Placement Partner -->
                 <div class="bg-white rounded-3xl p-6 sm:p-8 border border-orange-200 shadow-sm flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-100 text-[#FB6221] font-mono text-[10px] font-bold uppercase tracking-wider">
-                                <span class="w-1.5 h-1.5 rounded-full bg-[#FB6221]"></span>
-                                <span>CATEGORY A · OFFICIAL PLACEMENT PARTNER</span>
-                            </span>
-                            <span class="font-mono text-[10px] text-emerald-600 font-bold uppercase">Active Partnership</span>
-                        </div>
+              
 
                         <!-- Original Colorful PlacementBaba Logo -->
                         <div class="my-4">
@@ -243,13 +230,7 @@
                 <!-- CATEGORY B: Verified Alumni Employer -->
                 <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-50 text-[#A100FF] font-mono text-[10px] font-bold uppercase tracking-wider border border-purple-200">
-                                <span class="w-1.5 h-1.5 rounded-full bg-[#A100FF]"></span>
-                                <span>CATEGORY B · VERIFIED ALUMNI EMPLOYER</span>
-                            </span>
-                            <span class="font-mono text-[10px] text-slate-500 uppercase">Documented Alumni Placement</span>
-                        </div>
+                       
 
                         <!-- Original Colorful Accenture Logo -->
                         <div class="my-4">

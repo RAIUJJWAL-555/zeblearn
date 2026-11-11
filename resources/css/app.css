@@ -424,6 +424,55 @@ details[open] summary .material-symbols-outlined {
   transform: translateY(-3px) scale(1.02);
 }
 
+/* ==========================================================================
+   ZEBLEARN SEAMLESS INFINITE MARQUEE SYSTEM
+   ========================================================================== */
+@keyframes zeb-marquee-scroll-left {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes zeb-marquee-scroll-right {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.zeb-marquee-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%);
+}
+
+.zeb-marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.zeb-marquee-left {
+  animation: zeb-marquee-scroll-left var(--zeb-marquee-duration, 38s) linear infinite;
+}
+
+.zeb-marquee-right {
+  animation: zeb-marquee-scroll-right var(--zeb-marquee-duration, 38s) linear infinite;
+}
+
+.zeb-marquee-container:hover .zeb-marquee-track,
+.zeb-marquee-track:hover,
+.zeb-marquee-track:focus-within {
+  animation-play-state: paused !important;
+}
+
 /* 5. Reduced-Motion Accessibility Override */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -456,7 +505,9 @@ details[open] summary .material-symbols-outlined {
   .animate-ambient-1,
   .animate-ambient-2,
   .animate-ambient-3,
-  .animate-sculpture-float {
+  .animate-sculpture-float,
+  .zeb-marquee-left,
+  .zeb-marquee-right {
     animation: none !important;
     transform: none !important;
   }

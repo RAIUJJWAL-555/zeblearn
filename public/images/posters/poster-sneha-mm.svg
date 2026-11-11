@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E1626"/>
+      <stop offset="50%" stop-color="#080C14"/>
+      <stop offset="100%" stop-color="#04060A"/>
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FB6221"/>
+      <stop offset="100%" stop-color="#E05214"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1A263C" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#0F1726" stop-opacity="0.95"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="24" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="1000" fill="url(#bg)"/>
+
+  <!-- Ambient Glow -->
+  <circle cx="150" cy="200" r="280" fill="#FB6221" opacity="0.15" filter="url(#glow)"/>
+  <circle cx="680" cy="800" r="300" fill="#10B981" opacity="0.08" filter="url(#glow)"/>
+
+  <!-- Subtle Technical Grid -->
+  <g stroke="rgba(255,255,255,0.04)" stroke-width="1">
+    <line x1="100" y1="0" x2="100" y2="1000"/>
+    <line x1="200" y1="0" x2="200" y2="1000"/>
+    <line x1="300" y1="0" x2="300" y2="1000"/>
+    <line x1="400" y1="0" x2="400" y2="1000"/>
+    <line x1="500" y1="0" x2="500" y2="1000"/>
+    <line x1="600" y1="0" x2="600" y2="1000"/>
+    <line x1="700" y1="0" x2="700" y2="1000"/>
+    <line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="400" x2="800" y2="400"/>
+    <line x1="0" y1="600" x2="800" y2="600"/>
+    <line x1="0" y1="800" x2="800" y2="800"/>
+  </g>
+
+  <!-- Border Frame -->
+  <rect x="30" y="30" width="740" height="940" rx="36" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="2"/>
+
+  <!-- Header Badge: ZebLearn Verified -->
+  <g transform="translate(60, 70)">
+    <rect width="250" height="38" rx="19" fill="rgba(251,98,33,0.15)" stroke="rgba(251,98,33,0.4)" stroke-width="1.5"/>
+    <circle cx="20" cy="19" r="5" fill="#FB6221"/>
+    <text x="34" y="24" fill="#FB6221" font-family="'IBM Plex Mono', monospace" font-size="12" font-weight="bold" letter-spacing="2">VERIFIED PLACEMENT</text>
+  </g>
+
+  <!-- YouTube Video Review Badge Top Right -->
+  <g transform="translate(520, 68)">
+    <rect width="210" height="42" rx="21" fill="#FF0000" fill-opacity="0.95"/>
+    <path d="M 28 14 L 38 21 L 28 28 Z" fill="#FFFFFF"/>
+    <text x="48" y="26" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="12" font-weight="bold" letter-spacing="1">YOUTUBE REVIEW</text>
+  </g>
+
+  <!-- Student Avatar / Portrait Badge -->
+  <g transform="translate(400, 290)">
+    <circle cx="0" cy="0" r="105" fill="none" stroke="#10B981" stroke-width="3" stroke-dasharray="8 6" opacity="0.8"/>
+    <circle cx="0" cy="0" r="95" fill="#152136" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+    <text x="0" y="24" text-anchor="middle" fill="#FFFFFF" font-family="'Poppins', sans-serif" font-size="64" font-weight="900">SN</text>
+    <g transform="translate(55, 55)">
+      <circle cx="0" cy="0" r="22" fill="#10B981" stroke="#080C14" stroke-width="4"/>
+      <path d="M -8 0 L -2 6 L 8 -5" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </g>
+
+  <!-- Student Name -->
+  <text x="400" y="445" text-anchor="middle" fill="#FFFFFF" font-family="'Poppins', sans-serif" font-size="38" font-weight="900" letter-spacing="1">SNEHA NAIR</text>
+
+  <!-- Course Badge -->
+  <g transform="translate(270, 465)">
+    <rect width="260" height="32" rx="16" fill="rgba(16,185,129,0.15)" stroke="rgba(16,185,129,0.4)" stroke-width="1"/>
+    <text x="130" y="21" text-anchor="middle" fill="#34D399" font-family="'IBM Plex Mono', monospace" font-size="12" font-weight="bold" letter-spacing="1">SAP MM FUNCTIONAL LEAD</text>
+  </g>
+
+  <!-- Company Callout Card -->
+  <g transform="translate(80, 525)">
+    <rect width="640" height="240" rx="24" fill="url(#cardGrad)" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+
+    <text x="40" y="55" fill="rgba(255,255,255,0.5)" font-family="'IBM Plex Mono', monospace" font-size="11" font-weight="bold" letter-spacing="2">HIRED AT SUPPLY CHAIN ERP</text>
+    <text x="40" y="105" fill="#FFFFFF" font-family="'Poppins', sans-serif" font-size="38" font-weight="900" letter-spacing="1">SUPPLY CHAIN ERP</text>
+
+    <text x="40" y="145" fill="#FB6221" font-family="'Inter', sans-serif" font-size="16" font-weight="bold">SAP MM Functional Consultant</text>
+
+    <text x="40" y="185" fill="#CBD5E1" font-family="'Inter', sans-serif" font-size="13" font-style="italic">
+      "The practical integration scenarios with real vendor master and procurement
+    </text>
+    <text x="40" y="208" fill="#CBD5E1" font-family="'Inter', sans-serif" font-size="13" font-style="italic">
+      workflows prepared me directly for my client projects."
+    </text>
+  </g>
+
+  <!-- Bottom CTA: Watch Student Review on YouTube -->
+  <g transform="translate(80, 800)">
+    <rect width="640" height="70" rx="35" fill="url(#orangeGrad)"/>
+    <circle cx="50" cy="35" r="18" fill="#FFFFFF"/>
+    <polygon points="46,27 58,35 46,43" fill="#FB6221"/>
+    <text x="85" y="42" fill="#FFFFFF" font-family="'Inter', sans-serif" font-size="16" font-weight="bold" letter-spacing="1">WATCH SNEHA'S VIDEO REVIEW ON YOUTUBE</text>
+    <path d="M 590 35 L 575 25 L 575 45 Z" fill="#FFFFFF"/>
+  </g>
+
+  <!-- Verification Ref -->
+  <text x="400" y="920" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-family="'IBM Plex Mono', monospace" font-size="11" letter-spacing="2">
+    OFFICIAL VERIFICATION REF: ZEB-ALUM-MM-2026
+  </text>
+</svg>

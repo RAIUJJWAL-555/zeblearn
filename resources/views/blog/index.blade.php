@@ -100,11 +100,7 @@
 <!-- Right 5 cols: Pitch Black Editorial Container -->
 <div class="lg:col-span-5 bg-[#0A0A0A] p-8 lg:p-12 flex flex-col justify-between text-white border-t lg:border-t-0 lg:border-l border-white/10">
 <div class="space-y-4">
-<div class="flex items-center justify-between">
-<span class="px-3.5 py-1 rounded-full bg-[#D3D6DA]/15 text-[#D3D6DA] border border-[#D3D6DA]/20 text-[11px] font-semibold tracking-widest uppercase">
-                Interview Preparation
-              </span>
-</div>
+
 <h2 class="font-['Anton'] text-[38px] sm:text-[46px] lg:text-[50px] uppercase leading-[0.95] tracking-wide text-white group-hover:text-[#FB6221] transition-colors pt-2">
               TOP 50 SAP EWM INTERVIEW QUESTION ANSWER
             </h2>

@@ -2,8 +2,10 @@
 import { initLaserFlow } from './laserflow';
 import { initDitherVeil } from './ditherveil';
 import { initCertificateShowcase } from './certificate-showcase';
+import { initFlexCarousel } from './flex-carousel';
+import { initInfiniteSpiral } from './infinite-spiral';
 
-document.addEventListener('DOMContentLoaded', () => {
+function initApp() {
     // Mobile navigation
     const menuButton = document.getElementById('menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -271,31 +273,60 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 7. Awards & Recognition Certificate Showcase
-    initCertificateShowcase();
+    try {
+        initCertificateShowcase();
+    } catch (err) {
+        console.error('[CertificateShowcase] Init failed:', err);
+    }
+
+    // 7B. FlexCarousel 3D WebGL Liquid Experience
+    try {
+        initFlexCarousel();
+    } catch (err) {
+        console.error('[FlexCarousel] Init failed:', err);
+    }
+
+    // 7C. InfiniteSpiral 3D Interactive SAP Module Helix
+    try {
+        initInfiniteSpiral();
+    } catch (err) {
+        console.error('[InfiniteSpiral] Init failed:', err);
+    }
 
     // 8. DitherVeil WebGL2 Simulation (if container present)
     const ditherveilContainer = document.getElementById('ditherveil-container');
 
     if (ditherveilContainer) {
-        initDitherVeil(ditherveilContainer, {
-            src: 'https://images.unsplash.com/photo-1737071371043-761e02b1ef95?q=80&w=1400&auto=format&fit=crop',
-            pattern: 'floyd',
-            pixelSize: 2,
-            inkColor: '#FAFAF8',
-            paperColor: '#120f17',
-            revealRadius: 200,
-            softness: 0.6,
-            linger: 1,
-            fit: 'contain',
-            rimColor: '#FB6221',
-            palette: 'duotone',
-            levels: 2,
-            contrast: 1.15,
-            brightness: 0,
-            rim: 0,
-            reverse: false,
-            wander: false,
-            clickBurst: true,
-        });
+        try {
+            initDitherVeil(ditherveilContainer, {
+                src: 'https://images.unsplash.com/photo-1737071371043-761e02b1ef95?q=80&w=1400&auto=format&fit=crop',
+                pattern: 'floyd',
+                pixelSize: 2,
+                inkColor: '#FAFAF8',
+                paperColor: '#120f17',
+                revealRadius: 200,
+                softness: 0.6,
+                linger: 1,
+                fit: 'contain',
+                rimColor: '#FB6221',
+                palette: 'duotone',
+                levels: 2,
+                contrast: 1.15,
+                brightness: 0,
+                rim: 0,
+                reverse: false,
+                wander: false,
+                clickBurst: true,
+            });
+        } catch (err) {
+            console.error('[DitherVeil] Init failed:', err);
+        }
     }
-});
+}
+
+// Ensure execution even if DOMContentLoaded has already fired
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+} else {
+    initApp();
+}

@@ -497,7 +497,7 @@
 
 <div class="space-y-1.5">
 
-<label class="font-label-mono text-label-mono uppercase text-[#0A0A0A] tracking-wider block">Full Name \*</label>
+<label class="font-label-mono text-label-mono uppercase text-[#0A0A0A] tracking-wider block">Full Name</label>
 
 <input autocomplete="name" class="w-full bg-[#FFFFFF] border border-[#0A0A0A]/15 rounded-xl px-5 py-4 text-[#0A0A0A] font-body-md text-body-md placeholder-[#0A0A0A]/40 focus:outline-none focus:border-[#FB6221] focus:ring-1 focus:ring-[#FB6221] transition-all" name="name" placeholder="Your name" required="required" type="text"/>
 

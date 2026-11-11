@@ -63,7 +63,7 @@
         <div class="h-full bg-[#FB6221] w-[20%] transition-all duration-150 ease-out" id="scrollProgress"></div>
     </div>
 
-    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 pt-28 sm:pt-32 pb-20 w-full">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 pt-36 sm:pt-40 lg:pt-44 pb-20 w-full">
 
         <!-- Breadcrumbs & Category Pill -->
         <div class="flex flex-wrap items-center justify-between gap-3 pb-6 mb-8 border-b border-slate-200 animate-hero-badge">

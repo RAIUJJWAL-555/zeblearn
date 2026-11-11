@@ -16,7 +16,6 @@ test('homepage renders simple demo form in hero, awards certificates after testi
 
     // 2. Academic Awards & Recognition Section Placed After Testimonials
     $response->assertSee('id="awards-and-recognition"', false);
-    $response->assertSee('AWARDS &amp; RECOGNITION', false);
     $response->assertSee('VERIFIED SAP ACADEMY EXCELLENCE');
     $response->assertSee('certificate-1.webp');
     $response->assertSee('certificate-2.webp');
@@ -27,8 +26,14 @@ test('homepage renders simple demo form in hero, awards certificates after testi
     $response->assertSee('GET HIRED.');
     $response->assertSee('Book a Free Demo');
     $response->assertSee('Explore Courses');
-    $response->assertSee('2,500+ LEARNERS TRAINED');
-    $response->assertSee('24/7 S/4HANA Sandbox Access');
+
+    // 3b. About ZebLearn India section with 3D Infinite Spiral of SAP module cards
+    $response->assertSee('id="about-institute"', false);
+    $response->assertSee('id="infinite-spiral-root"', false);
+    $response->assertSee('ABOUT ZEBLEARN INDIA');
+    $response->assertSee("INDIA'S", false);
+    $response->assertSee('SAP TRAINING');
+    $response->assertSee('BOOK FREE MASTER CLASS');
 
     // 4. Complete absence of obsolete elements
     $response->assertDontSee('T-CODE: FB03');

@@ -3,6 +3,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Book a Free SAP Demo Class","publisher":{"@type":"EducationalOrganization","name":"ZebLearn","url":"https://sap.zeblearn.com"}}</script>
 @endverbatim
 
+    @viteReactRefresh
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 <meta content="https://sap.zeblearn.com/images/zeblearn-home-og.webp" property="og:image"/><meta content="1200" property="og:image:width"/><meta content="630" property="og:image:height"/><meta content="https://sap.zeblearn.com/images/zeblearn-home-og.webp" name="twitter:image"/><meta content="index,follow,max-image-preview:large" name="robots"/>
     <meta name="theme-color" content="#f7f7f5"/>

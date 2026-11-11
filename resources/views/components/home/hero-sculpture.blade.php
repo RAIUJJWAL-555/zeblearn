@@ -9,7 +9,7 @@
         <picture class="w-full h-full flex items-center justify-center">
             <source srcset="{{ asset('images/hero-3d-sculpture.webp') }}" type="image/webp">
             <img
-                src="{{ asset('images/hero-3d-sculpture.png') }}"
+                src="{{ asset('images/hero-3d-sculpture.webp') }}"
                 alt="ZebLearn SAP Academy 3D Abstract Sculpture"
                 width="713"
                 height="728"

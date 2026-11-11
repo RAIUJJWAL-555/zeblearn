@@ -10,7 +10,7 @@
 @endphp
 
 <header class="fixed inset-x-0 top-3 sm:top-4 z-50 px-3 sm:px-5">
-    <div class="mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-full border border-white/70 bg-white/80 px-4 py-2.5 shadow-[0_8px_32px_rgba(10,10,10,0.08)] backdrop-blur-xl sm:px-6">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-3 rounded-full border border-white/70 bg-white/80 px-5 py-2.5 shadow-[0_8px_32px_rgba(10,10,10,0.08)] backdrop-blur-xl sm:px-7">
         
         <a href="{{ url('/') }}" aria-label="ZebLearn home" class="flex shrink-0 items-center h-8 sm:h-9 w-[102px] sm:w-[114px] overflow-hidden group">
             <picture class="dark:hidden">

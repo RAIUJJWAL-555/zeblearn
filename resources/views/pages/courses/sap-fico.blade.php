@@ -74,7 +74,7 @@ details summary::-webkit-details-marker { display: none; }
 <div class="flex flex-col w-full bg-[#FAFAF8] text-[#0A0A0A]">
 
     <!-- HERO SECTION -->
-    <section class="relative w-full pt-28 sm:pt-32 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto overflow-hidden">
+    <section class="relative w-full pt-36 sm:pt-40 lg:pt-44 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto overflow-hidden">
         <!-- Breadcrumb & Telemetry -->
         <div class="flex flex-wrap items-center justify-between gap-3 pb-6 mb-8 border-b border-slate-200 animate-hero-badge">
             <nav aria-label="Breadcrumb" class="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-wider text-slate-500">

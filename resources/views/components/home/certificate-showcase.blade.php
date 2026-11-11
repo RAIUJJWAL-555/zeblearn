@@ -4,10 +4,6 @@
 <section id="awards-and-recognition" class="w-full py-14 lg:py-20 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto border-t border-slate-200" data-reveal>
     <!-- Minimal Clean Header -->
     <div class="text-center max-w-2xl mx-auto mb-10 lg:mb-12">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 text-[#0A0A0A] font-mono text-[10px] font-semibold uppercase tracking-widest shadow-xs mb-3">
-            <span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
-            AWARDS &amp; RECOGNITION
-        </div>
         <h2 class="font-heading text-2xl sm:text-3xl lg:text-4xl font-bold uppercase text-[#0A0A0A] tracking-tight">
             VERIFIED SAP ACADEMY EXCELLENCE
         </h2>
