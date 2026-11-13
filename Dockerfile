@@ -1,3 +1,5 @@
+
+cat > Dockerfile <<'EOF'
 FROM node:22-alpine AS frontend
 
 WORKDIR /app
@@ -12,10 +14,9 @@ RUN npm run build
 FROM php:8.4-apache
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    libsqlite3-dev \
     libzip-dev \
     unzip \
-    && docker-php-ext-install pdo_sqlite zip \
+    && docker-php-ext-install pdo_mysql zip \
     && a2enmod rewrite headers \
     && rm -rf /var/lib/apt/lists/*
 
@@ -44,4 +45,5 @@ RUN sed -ri 's!/var/www/html!/var/www/html/public!g' \
 
 EXPOSE 10000
 
-CMD ["bash", "-lc", "set -e; PORT=${PORT:-10000}; export DB_CONNECTION=sqlite; export DB_DATABASE=${DB_DATABASE:-/var/www/html/database/database.sqlite}; export SESSION_DRIVER=file; export CACHE_STORE=file; export QUEUE_CONNECTION=sync; mkdir -p \"$(dirname \"$DB_DATABASE\")\"; touch \"$DB_DATABASE\"; php artisan migrate --force --seed; php artisan config:cache; sed -i \"s/Listen 80/Listen ${PORT}/\" /etc/apache2/ports.conf; sed -i \"s/:80>/:${PORT}>/\" /etc/apache2/sites-available/000-default.conf; apache2-foreground"]
+CMD ["bash", "-lc", "set -e; PORT=${PORT:-10000}; sed -i \"s/Listen 80/Listen ${PORT}/\" /etc/apache2/ports.conf; sed -i \"s/:80>/:${PORT}>/\" /etc/apache2/sites-available/000-default.conf; php artisan config:cache; apache2-foreground"]
+EOF
