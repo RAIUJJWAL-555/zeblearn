@@ -1,5 +1,3 @@
-
-cat > Dockerfile <<'EOF'
 FROM node:22-alpine AS frontend
 
 WORKDIR /app
