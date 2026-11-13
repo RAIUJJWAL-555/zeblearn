@@ -71,14 +71,7 @@
         </div>
 
         <div class="flex items-center gap-3">
-            <button
-                type="button"
-                id="toggle-all-proofs-btn"
-                class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white border border-slate-300 hover:border-[#FB6221] hover:text-[#FB6221] font-sans text-xs font-semibold uppercase tracking-wider text-[#0A0A0A] transition-all shadow-xs"
-            >
-                <span class="material-symbols-outlined text-[18px]">visibility</span>
-                <span>View All Proofs</span>
-            </button>
+         
         </div>
     </div>
 

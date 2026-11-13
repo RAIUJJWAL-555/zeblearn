@@ -10,8 +10,6 @@ test('homepage renders all 5 international trust and placement experience sectio
     $response->assertSee('LEARNERS FROM AROUND THE WORLD');
     $response->assertSee('id="international-learners"', false);
     $response->assertSee('id="intl-carousel-track"', false);
-    $response->assertSee('id="intl-prev-btn"', false);
-    $response->assertSee('id="intl-next-btn"', false);
     $response->assertSee('United Arab Emirates');
     $response->assertSee('Saudi Arabia');
     $response->assertSee('South Africa');
@@ -25,15 +23,12 @@ test('homepage renders all 5 international trust and placement experience sectio
     $response->assertSee("DON'T BELIEVE US? VERIFY EVERYTHING.", false);
     $response->assertSee('id="placement-proof"', false);
     $response->assertSee('id="proof-modal"', false);
-    $response->assertSee('id="toggle-all-proofs-btn"', false);
     $response->assertSee('Accenture');
 
     // 3. SECTION 3: OUR PROVEN 7-STEP PLACEMENT PROCESS
     $response->assertSee('OUR PROVEN 7-STEP PLACEMENT PROCESS');
     $response->assertSee('id="placement-process"', false);
     $response->assertSee('id="process-carousel-track"', false);
-    $response->assertSee('id="process-prev-btn"', false);
-    $response->assertSee('id="process-next-btn"', false);
     $response->assertSee('Career Counselling &amp; Profile Evaluation', false);
     $response->assertSee('Expert-Led Live Training');
     $response->assertSee('Real Projects &amp; Sandbox Practice', false);
@@ -47,8 +42,6 @@ test('homepage renders all 5 international trust and placement experience sectio
     $response->assertSee('STUDENTS SAY');
     $response->assertSee('id="verified-reviews"', false);
     $response->assertSee('id="reviews-carousel-track"', false);
-    $response->assertSee('id="reviews-prev-btn"', false);
-    $response->assertSee('id="reviews-next-btn"', false);
     $response->assertSee('4.5');
     $response->assertSee('58,765+ Google reviews');
     $response->assertSee('Sulekha');

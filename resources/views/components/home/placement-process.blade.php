@@ -92,21 +92,22 @@
         </p>
     </div>
 
-    <!-- Stepped Undulating Horizontal Track (Exact Reference Alignment) -->
-    <div class="relative py-2">
+    <!-- Infinite Seamless Marquee of Stepped Undulating Cards -->
+    <div class="zeb-marquee-container -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-12 lg:px-12 py-3 overflow-hidden" id="process-marquee-wrapper">
         <div
             id="process-carousel-track"
-            class="relative flex items-center gap-5 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar pb-6 pt-2 px-4 sm:px-6 lg:px-12 focus:outline-none min-h-[460px]"
-            tabindex="0"
+            class="zeb-marquee-track zeb-marquee-left flex items-center gap-5 sm:gap-6 focus:outline-none min-h-[460px]"
+            style="--zeb-marquee-duration: 48s; padding-right: 1.5rem;"
             role="region"
-            aria-label="7-Step placement process horizontal track"
+            aria-label="7-Step placement process infinite marquee"
         >
+            <!-- Primary Set -->
             @foreach($placementSteps as $index => $item)
                 @php
                     $isTop = ($index % 2 === 0);
                 @endphp
 
-                <div class="snap-start shrink-0 w-[260px] sm:w-[280px] lg:w-[295px] h-[450px] flex flex-col items-center justify-between relative z-10 select-none">
+                <div class="shrink-0 w-[260px] sm:w-[280px] lg:w-[295px] h-[450px] flex flex-col items-center justify-between relative z-10 select-none">
                     @if($isTop)
                         <!-- Card (Top Position) -->
                         <div class="w-full h-[215px] rounded-2xl sm:rounded-3xl p-5 sm:p-6 {{ $item['card_bg'] }} border {{ $item['card_border'] }} shadow-lg flex flex-col justify-between relative overflow-hidden group hover:scale-[1.02] transition-all duration-300">
@@ -190,63 +191,95 @@
                     @endif
                 </div>
             @endforeach
+
+            <!-- Duplicate Set for Seamless Continuous Loop -->
+            @foreach($placementSteps as $index => $item)
+                @php
+                    $isTop = ($index % 2 === 0);
+                @endphp
+
+                <div class="shrink-0 w-[260px] sm:w-[280px] lg:w-[295px] h-[450px] flex flex-col items-center justify-between relative z-10 select-none" aria-hidden="true">
+                    @if($isTop)
+                        <!-- Card (Top Position) -->
+                        <div class="w-full h-[215px] rounded-2xl sm:rounded-3xl p-5 sm:p-6 {{ $item['card_bg'] }} border {{ $item['card_border'] }} shadow-lg flex flex-col justify-between relative overflow-hidden group hover:scale-[1.02] transition-all duration-300">
+                            <!-- Subtle Ambient Glow -->
+                            <div class="absolute -top-10 -right-10 w-28 h-28 rounded-full blur-2xl pointer-events-none opacity-40" style="background-color: {{ $item['glow_color'] }};"></div>
+
+                            <!-- Huge Faint Watermark Number -->
+                            <span class="absolute right-3 -bottom-2 font-heading text-7xl font-black text-white/[0.04] pointer-events-none select-none">
+                                {{ $item['step'] }}
+                            </span>
+
+                            <div class="relative z-10">
+                                <span class="inline-block px-2.5 py-0.5 rounded-md border text-[10px] font-mono font-bold uppercase tracking-wider mb-2.5 {{ $item['badge_bg'] }}">
+                                    STEP {{ $item['step'] }}
+                                </span>
+                                <h3 class="font-heading text-sm sm:text-base font-bold uppercase text-white tracking-wide leading-snug mb-2">
+                                    {{ $item['title'] }}
+                                </h3>
+                                <p class="font-sans text-xs text-slate-300 leading-relaxed font-normal">
+                                    {{ $item['description'] }}
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Connecting Pin Down to Circle -->
+                        <div class="w-px h-9 bg-amber-400/70 my-0.5"></div>
+
+                        <!-- Glowing Amber Circle Node sitting in the lower level -->
+                        <div class="relative flex items-center justify-center my-0.5 group-hover:scale-110 transition-transform">
+                            <div class="absolute w-16 h-16 rounded-full bg-amber-400/25 blur-lg pointer-events-none"></div>
+                            <div class="relative w-11 h-11 rounded-full bg-gradient-to-br from-amber-400 to-amber-500 text-[#0A0A0A] font-mono text-xs font-black flex items-center justify-center shadow-[0_0_20px_rgba(245,158,11,0.5)] ring-2 ring-amber-300/40">
+                                {{ $item['step'] }}
+                            </div>
+                        </div>
+
+                        <!-- Empty Bottom Spacer to balance column height -->
+                        <div class="w-full h-[155px] pointer-events-none"></div>
+
+                    @else
+                        <!-- Empty Top Spacer to position circle vertically centered beside top cards -->
+                        <div class="w-full h-[95px] pointer-events-none"></div>
+
+                        <!-- Glowing Amber Circle Node sitting in the upper level -->
+                        <div class="relative flex items-center justify-center my-0.5 group-hover:scale-110 transition-transform">
+                            <div class="absolute w-16 h-16 rounded-full bg-amber-400/25 blur-lg pointer-events-none"></div>
+                            <div class="relative w-11 h-11 rounded-full bg-gradient-to-br from-amber-400 to-amber-500 text-[#0A0A0A] font-mono text-xs font-black flex items-center justify-center shadow-[0_0_20px_rgba(245,158,11,0.5)] ring-2 ring-amber-300/40">
+                                {{ $item['step'] }}
+                            </div>
+                        </div>
+
+                        <!-- Connecting Pin Down to Card -->
+                        <div class="w-px h-9 bg-amber-400/70 my-0.5"></div>
+
+                        <!-- Card (Bottom Position) -->
+                        <div class="w-full h-[215px] rounded-2xl sm:rounded-3xl p-5 sm:p-6 {{ $item['card_bg'] }} border {{ $item['card_border'] }} shadow-lg flex flex-col justify-between relative overflow-hidden group hover:scale-[1.02] transition-all duration-300">
+                            <!-- Subtle Ambient Glow -->
+                            <div class="absolute -top-10 -right-10 w-28 h-28 rounded-full blur-2xl pointer-events-none opacity-40" style="background-color: {{ $item['glow_color'] }};"></div>
+
+                            <!-- Huge Faint Watermark Number -->
+                            <span class="absolute right-3 -bottom-2 font-heading text-7xl font-black text-white/[0.04] pointer-events-none select-none">
+                                {{ $item['step'] }}
+                            </span>
+
+                            <div class="relative z-10">
+                                <span class="inline-block px-2.5 py-0.5 rounded-md border text-[10px] font-mono font-bold uppercase tracking-wider mb-2.5 {{ $item['badge_bg'] }}">
+                                    STEP {{ $item['step'] }}
+                                </span>
+                                <h3 class="font-heading text-sm sm:text-base font-bold uppercase text-white tracking-wide leading-snug mb-2">
+                                    {{ $item['title'] }}
+                                </h3>
+                                <p class="font-sans text-xs text-slate-300 leading-relaxed font-normal">
+                                    {{ $item['description'] }}
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Empty Bottom Balance Spacer -->
+                        <div class="w-full h-[30px] pointer-events-none"></div>
+                    @endif
+                </div>
+            @endforeach
         </div>
     </div>
-
-    <!-- Centered Scroll Cue with Subtle Controls -->
-    <div class="flex items-center justify-center gap-4 mt-8">
-        <button
-            type="button"
-            id="process-prev-btn"
-            aria-label="Previous placement process step"
-            class="w-8 h-8 rounded-full border border-slate-300 bg-white text-slate-600 hover:text-[#FB6221] hover:border-[#FB6221] flex items-center justify-center transition-all duration-200 shadow-2xs group"
-        >
-            <span class="material-symbols-outlined text-[16px] transition-transform group-hover:-translate-x-0.5">arrow_back</span>
-        </button>
-        <span class="font-mono text-xs uppercase tracking-widest text-slate-500 font-bold">
-            Scroll to Explore &rarr;
-        </span>
-        <button
-            type="button"
-            id="process-next-btn"
-            aria-label="Next placement process step"
-            class="w-8 h-8 rounded-full border border-slate-300 bg-white text-slate-600 hover:text-[#FB6221] hover:border-[#FB6221] flex items-center justify-center transition-all duration-200 shadow-2xs group"
-        >
-            <span class="material-symbols-outlined text-[16px] transition-transform group-hover:translate-x-0.5">arrow_forward</span>
-        </button>
-    </div>
 </section>
-
-@push('scripts')
-<script>
-(function() {
-    const track = document.getElementById('process-carousel-track');
-    const prevBtn = document.getElementById('process-prev-btn');
-    const nextBtn = document.getElementById('process-next-btn');
-
-    if (!track || !prevBtn || !nextBtn) return;
-
-    function getScrollStep() {
-        return track.offsetWidth > 640 ? 320 : 270;
-    }
-
-    prevBtn.addEventListener('click', function() {
-        track.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
-    });
-
-    nextBtn.addEventListener('click', function() {
-        track.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
-    });
-
-    track.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowLeft') {
-            track.scrollBy({ left: -getScrollStep(), behavior: 'smooth' });
-            e.preventDefault();
-        } else if (e.key === 'ArrowRight') {
-            track.scrollBy({ left: getScrollStep(), behavior: 'smooth' });
-            e.preventDefault();
-        }
-    });
-})();
-</script>
-@endpush

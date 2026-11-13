@@ -247,39 +247,39 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <!-- Full Name -->
                         <div class="flex flex-col gap-1.5">
-                            <label class="font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold">
+                            <label for="contact_name" class="font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold">
                                 Full Name 
                             </label>
-                            <input autocomplete="name" class="w-full bg-slate-50 focus:bg-white text-[#0A0A0A] font-['Inter'] text-xs px-4 py-3 rounded-xl border border-slate-200 focus:border-[#FB6221] outline-none transition-all placeholder-slate-400" name="name" placeholder="Your name" required type="text"/>
+                            <input id="contact_name" autocomplete="name" class="w-full bg-slate-50 focus:bg-white text-[#0A0A0A] font-['Inter'] text-xs px-4 py-3 rounded-xl border border-slate-200 focus:border-[#FB6221] outline-none transition-all placeholder-slate-400" name="name" placeholder="Your name" required type="text"/>
                         </div>
 
                         <!-- Phone (+91) -->
                         <div class="flex flex-col gap-1.5">
-                            <label class="font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold">
+                            <label for="contact_phone" class="font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold">
                                 Phone Number (+91) <span class="text-[#FB6221]">*</span>
                             </label>
                             <div class="flex items-center bg-slate-50 rounded-xl border border-slate-200 focus-within:border-[#FB6221] focus-within:bg-white transition-all px-3 py-2.5">
                                 <span class="font-mono text-xs font-bold text-slate-500 mr-2">+91</span>
-                                <input autocomplete="tel" class="w-full bg-transparent text-[#0A0A0A] font-['Inter'] text-xs outline-none placeholder-slate-400" inputmode="tel" maxlength="15" name="phone" pattern="[0-9]{10}" placeholder="98765 43210" required type="tel"/>
+                                <input id="contact_phone" autocomplete="tel" class="w-full bg-transparent text-[#0A0A0A] font-['Inter'] text-xs outline-none placeholder-slate-400" inputmode="tel" maxlength="15" name="phone" pattern="[0-9]{10}" placeholder="98765 43210" required type="tel"/>
                             </div>
                         </div>
                     </div>
 
                     <!-- Email Address -->
                     <div class="flex flex-col gap-1.5">
-                        <label class="font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold">
+                        <label for="contact_email" class="font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold">
                             Email Address <span class="text-[#FB6221]">*</span>
                         </label>
-                        <input autocomplete="email" class="w-full bg-slate-50 focus:bg-white text-[#0A0A0A] font-['Inter'] text-xs px-4 py-3 rounded-xl border border-slate-200 focus:border-[#FB6221] outline-none transition-all placeholder-slate-400" name="email" placeholder="you@example.com" required type="email"/>
+                        <input id="contact_email" autocomplete="email" class="w-full bg-slate-50 focus:bg-white text-[#0A0A0A] font-['Inter'] text-xs px-4 py-3 rounded-xl border border-slate-200 focus:border-[#FB6221] outline-none transition-all placeholder-slate-400" name="email" placeholder="you@example.com" required type="email"/>
                     </div>
 
                     <!-- Course Interested In -->
                     <div class="flex flex-col gap-1.5">
-                        <label class="font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold">
+                        <label for="contact_course" class="font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold">
                             Course Interested In <span class="text-[#FB6221]">*</span>
                         </label>
                         <div class="relative">
-                            <select class="w-full appearance-none bg-slate-50 focus:bg-white text-[#0A0A0A] font-['Inter'] text-xs px-4 py-3 rounded-xl border border-slate-200 focus:border-[#FB6221] outline-none cursor-pointer transition-all pr-10 font-medium" name="course" required>
+                            <select id="contact_course" class="w-full appearance-none bg-slate-50 focus:bg-white text-[#0A0A0A] font-['Inter'] text-xs px-4 py-3 rounded-xl border border-slate-200 focus:border-[#FB6221] outline-none cursor-pointer transition-all pr-10 font-medium" name="course" required>
                                 <option disabled selected value="">Select a course...</option>
                                 <option value="SAP FICO">SAP FICO</option>
                                 <option value="SAP MM">SAP MM</option>
@@ -294,10 +294,10 @@
 
                     <!-- Message -->
                     <div class="flex flex-col gap-1.5">
-                        <label class="font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold">
+                        <label for="contact_message" class="font-mono text-[11px] uppercase tracking-wider text-slate-700 font-bold">
                             Your Message (Optional)
                         </label>
-                        <textarea class="w-full bg-slate-50 focus:bg-white text-[#0A0A0A] font-['Inter'] text-xs px-4 py-3 rounded-xl border border-slate-200 focus:border-[#FB6221] outline-none transition-all placeholder-slate-400 resize-none" name="message" placeholder="Tell us about your background or any specific questions..." rows="3"></textarea>
+                        <textarea id="contact_message" class="w-full bg-slate-50 focus:bg-white text-[#0A0A0A] font-['Inter'] text-xs px-4 py-3 rounded-xl border border-slate-200 focus:border-[#FB6221] outline-none transition-all placeholder-slate-400 resize-none" name="message" placeholder="Tell us about your background or any specific questions..." rows="3"></textarea>
                     </div>
 
                     <!-- Submit Bar -->

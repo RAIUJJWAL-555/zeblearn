@@ -121,28 +121,6 @@
                     Real learning experiences and career journeys from ZebLearn students.
                 </p>
             </div>
-
-            <!-- Controls (Prev / Next Buttons) -->
-            <div class="flex items-center gap-2 shrink-0">
-                <button
-                    id="carousel-prev-btn"
-                    type="button"
-                    aria-label="Previous student feedback"
-                    class="w-11 h-11 rounded-full border border-white/20 bg-white/5 hover:bg-[#FB6221] hover:border-[#FB6221] hover:text-white text-white flex items-center justify-center transition-all duration-200 cursor-pointer shadow-xs group"
-                    title="Scroll backward"
-                >
-                    <span class="material-symbols-outlined text-[20px] transition-transform group-hover:-translate-x-0.5">arrow_back</span>
-                </button>
-                <button
-                    id="carousel-next-btn"
-                    type="button"
-                    aria-label="Next student feedback"
-                    class="w-11 h-11 rounded-full border border-white/20 bg-white/5 hover:bg-[#FB6221] hover:border-[#FB6221] hover:text-white text-white flex items-center justify-center transition-all duration-200 cursor-pointer shadow-xs group"
-                    title="Scroll forward"
-                >
-                    <span class="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-0.5">arrow_forward</span>
-                </button>
-            </div>
         </div>
 
         <!-- Normal Marquee for Student Feedback Cards -->
@@ -150,8 +128,7 @@
             <div
                 id="video-carousel"
                 class="zeb-marquee-track zeb-marquee-left flex gap-6 items-stretch focus:outline-none"
-                style="--zeb-marquee-duration: 45s;"
-                tabindex="0"
+                style="--zeb-marquee-duration: 45s; padding-right: 1.5rem;"
                 role="region"
                 aria-label="Student Video Testimonials Carousel"
             >
@@ -288,24 +265,4 @@
     </div>
 </div>
 
-@push('scripts')
-<script>
-(function() {
-    const track = document.getElementById('video-carousel');
-    const prevBtn = document.getElementById('carousel-prev-btn');
-    const nextBtn = document.getElementById('carousel-next-btn');
 
-    if (!track || !prevBtn || !nextBtn) return;
-
-    prevBtn.addEventListener('click', function() {
-        track.style.animationDirection = 'reverse';
-        track.style.animationPlayState = 'running';
-    });
-
-    nextBtn.addEventListener('click', function() {
-        track.style.animationDirection = 'normal';
-        track.style.animationPlayState = 'running';
-    });
-})();
-</script>
-@endpush

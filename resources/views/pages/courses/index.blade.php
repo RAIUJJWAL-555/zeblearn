@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
-@section('title', 'SAP Courses Online | Multi-Module SAP Academy | ZebLearn')
-@section('description', 'Explore SAP courses at ZebLearn Academy. Learn SAP FICO, MM, SD, PP, ABAP and Basis with live online classes, real SAP system sandbox access and placement support.')
+@section('title', 'All Professional Courses | Multi-Module Enterprise Academy | ZebLearn')
+@section('description', 'Explore industry-leading professional courses in SAP ERP, Workday, Salesforce, Data Science, Cloud Computing, Cyber Security, Digital Marketing and more at ZebLearn.')
 @section('body-class', "bg-[#FAFAF8] text-[#0A0A0A] font-['Inter'] antialiased min-h-screen selection:bg-[#FB6221]/20 selection:text-[#FB6221]")
 @section('og_type', 'website')
-@section('og_title', 'SAP Courses Online | Multi-Module SAP Academy | ZebLearn')
-@section('og_description', 'Explore SAP courses at ZebLearn Academy. Learn SAP FICO, MM, SD, PP, ABAP and Basis with live online classes, real SAP system sandbox access and placement support.')
+@section('og_title', 'All Professional Courses | Multi-Module Enterprise Academy | ZebLearn')
+@section('og_description', 'Explore industry-leading professional courses in SAP ERP, Workday, Salesforce, Data Science, Cloud Computing, Cyber Security, Digital Marketing and more at ZebLearn.')
 @section('og_image', 'https://sap.zeblearn.com/images/zeblearn-home-og.webp')
-@section('twitter_title', 'SAP Courses Online | Multi-Module SAP Academy | ZebLearn')
-@section('twitter_description', 'Explore SAP courses at ZebLearn Academy. Learn SAP FICO, MM, SD, PP, ABAP and Basis with live online classes, real SAP system sandbox access and placement support.')
+@section('twitter_title', 'All Professional Courses | Multi-Module Enterprise Academy | ZebLearn')
+@section('twitter_description', 'Explore industry-leading professional courses in SAP ERP, Workday, Salesforce, Data Science, Cloud Computing, Cyber Security, Digital Marketing and more at ZebLearn.')
 @section('robots', 'index,follow,max-image-preview:large')
 
 @push('schema')
@@ -17,10 +17,10 @@
 {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  "name": "ZebLearn SAP Academy Courses",
-  "description": "Comprehensive multi-module SAP curriculum catalog for freshers, domain professionals and IT career transitions.",
+  "name": "ZebLearn Academy Professional Courses",
+  "description": "Comprehensive multi-module industry curriculum catalog for freshers, domain professionals and enterprise career transitions.",
   "url": "https://sap.zeblearn.com/courses",
-  "numberOfItems": 11,
+  "numberOfItems": 27,
   "itemListElement": [
     {
       "@type": "ListItem",
@@ -106,7 +106,7 @@
 <div class="flex flex-col w-full bg-[#FAFAF8] text-[#0A0A0A]">
 
     <!-- HERO SECTION -->
-    <section class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 pt-36 sm:pt-40 lg:pt-44 pb-12 w-full">
+    <section class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 pt-36 sm:pt-40 lg:pt-44 pb-8 w-full">
         <!-- Breadcrumbs & Telemetry -->
         <div class="flex flex-wrap items-center justify-between gap-3 pb-6 mb-8 border-b border-slate-200 animate-hero-badge">
             <nav aria-label="Breadcrumb" class="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-wider text-slate-500">
@@ -127,12 +127,12 @@
                 <span class="text-[#FB6221]">BUILT FOR CONSULTANTS.</span>
             </h1>
             <p class="font-sans text-base sm:text-lg text-slate-600 max-w-3xl leading-relaxed mt-6 animate-hero-desc">
-                ZebLearn delivers hands-on, multi-module SAP education. From core functional accounting to technical development and cloud extensions, our curriculum is engineered for career outcomes, real system proficiency, and corporate placements.
+                ZebLearn delivers hands-on, multi-module enterprise education across SAP ERP, Workday, Salesforce, Cloud Computing, Data Science and modern technology stacks. Engineered for career outcomes, real system proficiency, and corporate placements.
             </p>
         </div>
 
         <!-- Three Audience Pathways Banner (Hero Matrix) -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 animate-hero-assembly">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2 mb-10 animate-hero-assembly">
             <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between group zeb-card-interactive">
                 <div>
                     <div class="flex items-center justify-between mb-3">
@@ -166,7 +166,7 @@
 
                     <h2 class="font-heading text-lg sm:text-xl font-bold uppercase tracking-tight text-[#0A0A0A] mb-1">Upgrade Your Career</h2>
                     <p class="text-xs text-slate-600 leading-relaxed">
-                        For domain professionals in Finance, SCM, or Operations wanting to become certified SAP lead consultants.
+                        For domain professionals in Finance, SCM, or Operations wanting to become certified lead consultants.
                     </p>
                 </div>
                 <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs font-mono text-slate-500">
@@ -187,7 +187,7 @@
 
                     <h2 class="font-heading text-lg sm:text-xl font-bold uppercase tracking-tight text-[#0A0A0A] mb-1">Transition Into SAP</h2>
                     <p class="text-xs text-slate-600 leading-relaxed">
-                        For software engineers, DBAs, and sysadmins transitioning into high-growth SAP technical roles.
+                        For software engineers, DBAs, and sysadmins transitioning into high-growth enterprise technical roles.
                     </p>
                 </div>
                 <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs font-mono text-slate-500">
@@ -196,6 +196,33 @@
                 </div>
             </div>
         </div>
+
+        <!-- CATEGORY PROGRAM HEADER BANNER (EXACT TO USER SCREENSHOT) -->
+        <div class="w-full bg-[#0A0A0A] text-white rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 mb-8 relative overflow-hidden shadow-2xl border border-slate-800" data-reveal id="category-banner-container">
+            <!-- Ambient Glow Effect -->
+            <div class="absolute -right-16 -bottom-16 w-80 h-80 rounded-full bg-[#FB6221]/15 blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 max-w-4xl space-y-3">
+                <h2 id="category-banner-title" class="font-heading text-2xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-white leading-tight">
+                    {{ $categoryMeta['title'] ?? 'SAP Course Certification Training Program' }}
+                </h2>
+                <p id="category-banner-subtitle" class="font-sans text-xs sm:text-base text-slate-300 leading-relaxed max-w-3xl font-normal">
+                    {{ $categoryMeta['subtitle'] ?? 'Comprehensive SAP training modules for finance, HR, logistics and more.' }}
+                </p>
+                <div class="flex items-center gap-2 pt-1 text-xs sm:text-sm text-slate-300 font-medium">
+                    <div class="flex items-center text-amber-400">
+                        <span class="material-symbols-outlined text-[18px] fill-current">star</span>
+                        <span class="material-symbols-outlined text-[18px] fill-current">star</span>
+                        <span class="material-symbols-outlined text-[18px] fill-current">star</span>
+                        <span class="material-symbols-outlined text-[18px] fill-current">star</span>
+                        <span class="material-symbols-outlined text-[18px] fill-current">star_half</span>
+                    </div>
+                    <span id="category-banner-rating" class="font-bold text-white">{{ $categoryMeta['rating'] ?? '4.8' }} out of 5</span>
+                    <span id="category-banner-reviews" class="text-slate-400">based on {{ $categoryMeta['reviews_count'] ?? '85,000+' }} student reviews</span>
+                </div>
+            </div>
+        </div>
+
     </section>
 
     <!-- COURSE CATALOG SECTION -->
@@ -218,10 +245,11 @@
                 </span>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="available-course-grid">
+            <!-- Vertical Stack of Wide Course Cards Matching the Screenshot -->
+            <div class="flex flex-col gap-5" id="available-course-grid">
                 @foreach($allCourses->where('status', 'available') as $course)
                     <div class="course-card-wrapper" data-category="{{ $course->category }}" data-status="{{ $course->status }}">
-                        <x-course.card :course="$course" :featured="true" />
+                        <x-course.card :course="$course" :featured="true" :enrollment="$userEnrollments->get($course->id)" />
                     </div>
                 @endforeach
             </div>
@@ -245,10 +273,11 @@
                 These modules represent confirmed academy cohorts launching in upcoming batches. You can attend a complimentary demo session and reserve your seat before standard batch schedules fill up.
             </p>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="upcoming-course-grid">
+            <!-- Vertical Stack of Wide Course Cards Matching the Screenshot -->
+            <div class="flex flex-col gap-5" id="upcoming-course-grid">
                 @foreach($allCourses->where('status', 'upcoming') as $course)
                     <div class="course-card-wrapper" data-category="{{ $course->category }}" data-status="{{ $course->status }}">
-                        <x-course.card :course="$course" />
+                        <x-course.card :course="$course" :enrollment="$userEnrollments->get($course->id)" />
                     </div>
                 @endforeach
             </div>
@@ -275,10 +304,11 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="planned-course-grid">
+            <!-- Vertical Stack of Wide Course Cards Matching the Screenshot -->
+            <div class="flex flex-col gap-5" id="planned-course-grid">
                 @foreach($allCourses->where('status', 'planned') as $course)
                     <div class="course-card-wrapper" data-category="{{ $course->category }}" data-status="{{ $course->status }}">
-                        <x-course.card :course="$course" />
+                        <x-course.card :course="$course" :enrollment="$userEnrollments->get($course->id)" />
                     </div>
                 @endforeach
             </div>
@@ -304,12 +334,12 @@
                     <summary class="flex items-center justify-between font-heading text-base sm:text-lg font-bold uppercase text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors list-none tracking-tight">
                         <div class="flex items-center gap-3">
                             <span class="font-mono text-xs font-bold text-[#FB6221]">01</span>
-                            <span>Which SAP course should I choose for my career background?</span>
+                            <span>Which course should I choose for my career background?</span>
                         </div>
                         <span class="material-symbols-outlined text-[20px] text-slate-400 group-open:rotate-180 group-open:text-[#FB6221] transition-transform">expand_more</span>
                     </summary>
                     <div class="mt-3 pl-7 max-w-4xl font-sans text-xs sm:text-sm text-slate-600 leading-relaxed">
-                        If you have a background in accounting, commerce, or corporate finance (B.Com, M.Com, MBA Finance, CA), <strong>SAP FICO</strong> is the most direct functional match. For supply chain, procurement, or warehouse operations, <strong>SAP MM</strong> is recommended. For marketing, billing, and order management, <strong>SAP SD</strong> is ideal. Programmers, computer science graduates, and DBAs typically excel in <strong>SAP ABAP on HANA</strong> or <strong>SAP Basis</strong>.
+                        If you have a background in accounting or commerce, <strong>SAP FICO</strong> is the most direct functional match. For supply chain, procurement, or warehouse operations, <strong>SAP MM</strong> is recommended. For marketing, billing, and order management, <strong>SAP SD</strong> or <strong>Digital Marketing</strong> is ideal. Programmers and computer science graduates excel in <strong>SAP ABAP</strong>, <strong>Java Full Stack</strong>, <strong>Cloud Computing</strong>, or <strong>Data Science</strong>.
                     </div>
                 </details>
 
@@ -322,7 +352,7 @@
                         <span class="material-symbols-outlined text-[20px] text-slate-400 group-open:rotate-180 group-open:text-[#FB6221] transition-transform">expand_more</span>
                     </summary>
                     <div class="mt-3 pl-7 max-w-4xl font-sans text-xs sm:text-sm text-slate-600 leading-relaxed">
-                        <strong>Available Now</strong> indicates active live cohorts currently enrolling with published tuition fees and guaranteed batch dates (currently SAP FICO). <strong>Upcoming Batches</strong> are confirmed offerings where curriculum and trainers are set, and pre-registrations for demo classes are open. <strong>Roadmap Candidates</strong> are advanced modules under academic development as ZebLearn scales into a complete multi-module SAP academy.
+                        <strong>Available Now</strong> indicates active live cohorts currently enrolling with published tuition fees and confirmed batch schedules. <strong>Upcoming Batches</strong> are confirmed offerings where curriculum and trainers are set, and pre-registrations for demo classes are open. <strong>Roadmap Candidates</strong> are advanced modules under academic development.
                     </div>
                 </details>
 
@@ -330,12 +360,12 @@
                     <summary class="flex items-center justify-between font-heading text-base sm:text-lg font-bold uppercase text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors list-none tracking-tight">
                         <div class="flex items-center gap-3">
                             <span class="font-mono text-xs font-bold text-slate-400 group-open:text-[#FB6221]">03</span>
-                            <span>Will I receive real SAP GUI server practice access?</span>
+                            <span>Will I receive real enterprise system practice access?</span>
                         </div>
                         <span class="material-symbols-outlined text-[20px] text-slate-400 group-open:rotate-180 group-open:text-[#FB6221] transition-transform">expand_more</span>
                     </summary>
                     <div class="mt-3 pl-7 max-w-4xl font-sans text-xs sm:text-sm text-slate-600 leading-relaxed">
-                        Yes. Practical system exposure is the foundational pillar of ZebLearn training. All enrolled students receive dedicated SAP server login credentials to practice configuration, execute transactions, and solve real business blueprint assignments.
+                        Yes. Practical system exposure is the foundational pillar of ZebLearn training. All enrolled students receive dedicated system login credentials to practice configuration, execute transactions, and solve real business blueprint assignments.
                     </div>
                 </details>
 
@@ -348,7 +378,7 @@
                         <span class="material-symbols-outlined text-[20px] text-slate-400 group-open:rotate-180 group-open:text-[#FB6221] transition-transform">expand_more</span>
                     </summary>
                     <div class="mt-3 pl-7 max-w-4xl font-sans text-xs sm:text-sm text-slate-600 leading-relaxed">
-                        ZebLearn partners with <strong>PlacementBaba</strong>, an active job portal connecting SAP consultants with hiring employers. Toward the conclusion of your course, our faculty conducts dedicated mock interviews, optimizes your technical resume, and routes your profile to relevant open job listings.
+                        ZebLearn partners with <strong>PlacementBaba</strong>, an active job portal connecting certified professionals with hiring corporate employers. Toward the conclusion of your course, our faculty conducts dedicated mock interviews, optimizes your technical resume, and routes your profile to relevant open corporate positions.
                     </div>
                 </details>
 
@@ -361,7 +391,7 @@
                         <span class="material-symbols-outlined text-[20px] text-slate-400 group-open:rotate-180 group-open:text-[#FB6221] transition-transform">expand_more</span>
                     </summary>
                     <div class="mt-3 pl-7 max-w-4xl font-sans text-xs sm:text-sm text-slate-600 leading-relaxed">
-                        Absolutely. We believe every prospective consultant should evaluate our live online teaching style and instructor depth before financial commitment. Simply book a complimentary demo class on our website or message us on WhatsApp.
+                        Absolutely. We believe every prospective learner should evaluate our live online teaching style and instructor depth before financial commitment. Simply book a complimentary demo class on our website or message us on WhatsApp.
                     </div>
                 </details>
             </div>
@@ -375,13 +405,35 @@
 @push('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+    const categoriesData = @json(\App\Models\Course::CATEGORIES);
     const catButtons = document.querySelectorAll('#category-filter-group button');
     const statButtons = document.querySelectorAll('#status-filter-group button');
     const cards = document.querySelectorAll('.course-card-wrapper');
     const countDisplay = document.getElementById('filter-result-count');
 
+    const bannerTitle = document.getElementById('category-banner-title');
+    const bannerSubtitle = document.getElementById('category-banner-subtitle');
+    const bannerRating = document.getElementById('category-banner-rating');
+    const bannerReviews = document.getElementById('category-banner-reviews');
+
     let currentCat = '{{ $activeCategory }}';
     let currentStat = '{{ $activeStatus }}';
+
+    function updateBanner(catSlug) {
+        if (!bannerTitle) return;
+
+        const info = categoriesData[catSlug] || (catSlug === 'all' ? {
+            title: 'Professional Certification Training Programs',
+            subtitle: 'Explore multi-module industry curriculum across SAP ERP, Workday, Salesforce, Cloud, Cyber Security, and more.',
+            rating: '4.8',
+            reviews_count: '85,000+'
+        } : (categoriesData['sap-erp'] || {}));
+
+        if (info.title) bannerTitle.textContent = info.title;
+        if (info.subtitle) bannerSubtitle.textContent = info.subtitle;
+        if (info.rating && bannerRating) bannerRating.textContent = `${info.rating} out of 5`;
+        if (info.reviews_count && bannerReviews) bannerReviews.textContent = `based on ${info.reviews_count} student reviews`;
+    }
 
     function applyFilters() {
         let visibleCount = 0;
@@ -390,8 +442,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const cardCat = card.getAttribute('data-category');
             const cardStat = card.getAttribute('data-status');
 
-            const catMatch = currentCat === 'all' || cardCat === currentCat;
-            const statMatch = currentStat === 'all' || cardStat === currentStat;
+            // Category match logic:
+            const catMatch = (currentCat === 'all')
+                || (cardCat === currentCat)
+                || (currentCat === 'sap-erp' && ['functional', 'technical', 'cloud_specialized', 'sap-erp'].includes(cardCat));
+
+            const statMatch = (currentStat === 'all') || (cardStat === currentStat);
 
             if (catMatch && statMatch) {
                 card.style.display = '';
@@ -402,7 +458,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (countDisplay) {
-            countDisplay.textContent = `Showing ${visibleCount} of ${cards.length} modules`;
+            countDisplay.textContent = `Showing ${visibleCount} of ${cards.length} courses`;
         }
 
         // Toggle section headers if all cards inside are hidden
@@ -413,6 +469,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 secEl.style.display = hasVisible ? '' : 'none';
             }
         });
+
+        updateBanner(currentCat);
     }
 
     catButtons.forEach(btn => {
@@ -450,4 +508,3 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 @endpush
-

@@ -9,6 +9,111 @@ export function initFlexCarousel() {
     // Verified Student Placement Posters from /images/banner/orange/
     const items = [
         {
+            src: '/images/banner/orange/HAREE.webp',
+            alt: 'Haree - Verified Placement Story',
+            title: 'Haree',
+            subtitle: 'Verified ZebLearn Placement',
+            youtubeUrl: 'https://youtube.com/shorts/dGlDRVElzxQ'
+        },
+        {
+            src: '/images/banner/orange/ARUP.webp',
+            alt: 'Arup - Verified Placement Story',
+            title: 'Arup',
+            subtitle: 'Verified ZebLearn Placement',
+            youtubeUrl: 'https://youtube.com/shorts/pK2aQX0mYvA'
+        },
+        {
+            src: '/images/banner/orange/PRASHANT.webp',
+            alt: 'Prashant - Verified Placement Story',
+            title: 'Prashant',
+            subtitle: 'Verified ZebLearn Placement',
+            youtubeUrl: 'https://youtube.com/shorts/wKednd8TjSk'
+        },
+        {
+            src: '/images/banner/orange/ALOKYADAV.webp',
+            alt: 'Alok Yadav - Verified Placement Story',
+            title: 'Alok Yadav',
+            subtitle: 'Verified ZebLearn Placement',
+            youtubeUrl: 'https://youtube.com/shorts/uGCTM3DloE4'
+        },
+        {
+            src: '/images/banner/orange/ROCKEY.webp',
+            alt: 'Rockey - Verified Placement Story',
+            title: 'Rockey',
+            subtitle: 'Verified ZebLearn Placement',
+            youtubeUrl: 'https://youtube.com/shorts/D78El5X4_YM'
+        },
+        {
+            src: '/images/banner/orange/NIRANKAR.webp',
+            alt: 'Nirankar - Verified Placement Story',
+            title: 'Nirankar',
+            subtitle: 'Verified ZebLearn Placement',
+            youtubeUrl: 'https://youtube.com/shorts/w-fXRXoOnXE'
+        },
+        {
+            src: '/images/banner/orange/SHIVANI.webp',
+            alt: 'Shivani - Verified Placement Story',
+            title: 'Shivani',
+            subtitle: 'Verified ZebLearn Placement',
+            youtubeUrl: 'https://youtube.com/shorts/JVoNp6LS-cs'
+        },
+        {
+            src: '/images/banner/orange/PRIYANSHU.webp',
+            alt: 'Priyanshu - Verified Placement Story',
+            title: 'Priyanshu',
+            subtitle: 'Verified ZebLearn Placement',
+            youtubeUrl: 'https://youtube.com/shorts/iG1d0RdLcU8'
+        },
+        {
+            src: '/images/banner/orange/CHANDAN.webp',
+            alt: 'Chandan - Verified Placement Story',
+            title: 'Chandan',
+            subtitle: 'Verified ZebLearn Placement',
+            youtubeUrl: 'https://youtube.com/shorts/ljxsKPrp59c'
+        },
+        {
+            src: '/images/banner/orange/PAVAN.webp',
+            alt: 'Pawan - Verified Placement Story',
+            title: 'Pawan',
+            subtitle: 'Verified ZebLearn Placement',
+            youtubeUrl: 'https://youtube.com/shorts/172tnka9L_g'
+        },
+        {
+            src: '/images/banner/orange/PRAKASH.webp',
+            alt: 'Prakash - Verified Placement Story',
+            title: 'Prakash',
+            subtitle: 'Verified ZebLearn Placement',
+            youtubeUrl: 'https://youtube.com/shorts/r3-RYr7BrVw'
+        },
+        {
+            src: '/images/banner/orange/SANJAY.webp',
+            alt: 'Sanjay - Verified Placement Story',
+            title: 'Sanjay',
+            subtitle: 'Verified ZebLearn Placement',
+            youtubeUrl: 'https://youtube.com/shorts/mpgTHfozeA8'
+        },
+        {
+            src: '/images/banner/orange/SHUDHANSHU.webp',
+            alt: 'Shudhanshu - Verified Placement Story',
+            title: 'Shudhanshu',
+            subtitle: 'Verified ZebLearn Placement',
+            youtubeUrl: 'https://youtube.com/shorts/y_Lvpnh3P2U'
+        },
+        {
+            src: '/images/banner/orange/PINTUKUMAR.webp',
+            alt: 'Pintu Kumar - Verified Placement Story',
+            title: 'Pintu Kumar',
+            subtitle: 'Verified ZebLearn Placement',
+            youtubeUrl: 'https://youtube.com/shorts/TdWVmbqDoXI'
+        },
+        {
+            src: '/images/banner/orange/SHILPA.webp',
+            alt: 'Shilpa - Verified Placement Story',
+            title: 'Shilpa',
+            subtitle: 'Verified ZebLearn Placement',
+            youtubeUrl: 'https://youtube.com/shorts/TdWVmbqDoXI'
+        },
+        {
             src: '/images/banner/orange/AYUSH.webp',
             alt: 'Ayush - Verified Placement Story',
             title: 'Ayush',
@@ -19,6 +124,13 @@ export function initFlexCarousel() {
             src: '/images/banner/orange/DIVYA%20SHREE.webp',
             alt: 'Divya Shree - Verified Placement Story',
             title: 'Divya Shree',
+            subtitle: 'Verified ZebLearn Placement',
+            youtubeUrl: 'https://www.youtube.com/@ZEBLEARN'
+        },
+        {
+            src: '/images/banner/orange/INDERPREET.webp',
+            alt: 'Inderpreet - Verified Placement Story',
+            title: 'Inderpreet',
             subtitle: 'Verified ZebLearn Placement',
             youtubeUrl: 'https://www.youtube.com/@ZEBLEARN'
         },
@@ -48,118 +160,6 @@ export function initFlexCarousel() {
             alt: 'Shruti - Verified Placement Story',
             title: 'Shruti',
             subtitle: 'Verified ZebLearn Placement',
-            youtubeUrl: 'https://www.youtube.com/@ZEBLEARN'
-        },
-        {
-            src: '/images/banner/orange/ORANGE%201.webp',
-            alt: 'ZebLearn Student Placement Record 01',
-            title: 'ZebLearn Alumni',
-            subtitle: 'SAP Consultant Placement',
-            youtubeUrl: 'https://www.youtube.com/@ZEBLEARN'
-        },
-        {
-            src: '/images/banner/orange/ORANGE%202.webp',
-            alt: 'ZebLearn Student Placement Record 02',
-            title: 'ZebLearn Alumni',
-            subtitle: 'SAP Consultant Placement',
-            youtubeUrl: 'https://www.youtube.com/@ZEBLEARN'
-        },
-        {
-            src: '/images/banner/orange/ORANGE%203.webp',
-            alt: 'ZebLearn Student Placement Record 03',
-            title: 'ZebLearn Alumni',
-            subtitle: 'SAP Consultant Placement',
-            youtubeUrl: 'https://www.youtube.com/@ZEBLEARN'
-        },
-        {
-            src: '/images/banner/orange/ORANGE%204.webp',
-            alt: 'ZebLearn Student Placement Record 04',
-            title: 'ZebLearn Alumni',
-            subtitle: 'SAP Consultant Placement',
-            youtubeUrl: 'https://www.youtube.com/@ZEBLEARN'
-        },
-        {
-            src: '/images/banner/orange/ORANGE%205.webp',
-            alt: 'ZebLearn Student Placement Record 05',
-            title: 'ZebLearn Alumni',
-            subtitle: 'SAP Consultant Placement',
-            youtubeUrl: 'https://www.youtube.com/@ZEBLEARN'
-        },
-        {
-            src: '/images/banner/orange/ORANGE%206.webp',
-            alt: 'ZebLearn Student Placement Record 06',
-            title: 'ZebLearn Alumni',
-            subtitle: 'SAP Consultant Placement',
-            youtubeUrl: 'https://www.youtube.com/@ZEBLEARN'
-        },
-        {
-            src: '/images/banner/orange/ORANGE%207.webp',
-            alt: 'ZebLearn Student Placement Record 07',
-            title: 'ZebLearn Alumni',
-            subtitle: 'SAP Consultant Placement',
-            youtubeUrl: 'https://www.youtube.com/@ZEBLEARN'
-        },
-        {
-            src: '/images/banner/orange/ORANGE%208.webp',
-            alt: 'ZebLearn Student Placement Record 08',
-            title: 'ZebLearn Alumni',
-            subtitle: 'SAP Consultant Placement',
-            youtubeUrl: 'https://www.youtube.com/@ZEBLEARN'
-        },
-        {
-            src: '/images/banner/orange/ORANGE%209.webp',
-            alt: 'ZebLearn Student Placement Record 09',
-            title: 'ZebLearn Alumni',
-            subtitle: 'SAP Consultant Placement',
-            youtubeUrl: 'https://www.youtube.com/@ZEBLEARN'
-        },
-        {
-            src: '/images/banner/orange/ORANGE%2010.webp',
-            alt: 'ZebLearn Student Placement Record 10',
-            title: 'ZebLearn Alumni',
-            subtitle: 'SAP Consultant Placement',
-            youtubeUrl: 'https://www.youtube.com/@ZEBLEARN'
-        },
-        {
-            src: '/images/banner/orange/ORANGE%2011.webp',
-            alt: 'ZebLearn Student Placement Record 11',
-            title: 'ZebLearn Alumni',
-            subtitle: 'SAP Consultant Placement',
-            youtubeUrl: 'https://www.youtube.com/@ZEBLEARN'
-        },
-        {
-            src: '/images/banner/orange/ORANGE%2012.webp',
-            alt: 'ZebLearn Student Placement Record 12',
-            title: 'ZebLearn Alumni',
-            subtitle: 'SAP Consultant Placement',
-            youtubeUrl: 'https://www.youtube.com/@ZEBLEARN'
-        },
-        {
-            src: '/images/banner/orange/ORANGE%2013.webp',
-            alt: 'ZebLearn Student Placement Record 13',
-            title: 'ZebLearn Alumni',
-            subtitle: 'SAP Consultant Placement',
-            youtubeUrl: 'https://www.youtube.com/@ZEBLEARN'
-        },
-        {
-            src: '/images/banner/orange/ORANGE%2014.webp',
-            alt: 'ZebLearn Student Placement Record 14',
-            title: 'ZebLearn Alumni',
-            subtitle: 'SAP Consultant Placement',
-            youtubeUrl: 'https://www.youtube.com/@ZEBLEARN'
-        },
-        {
-            src: '/images/banner/orange/ORANGE%2015.webp',
-            alt: 'ZebLearn Student Placement Record 15',
-            title: 'ZebLearn Alumni',
-            subtitle: 'SAP Consultant Placement',
-            youtubeUrl: 'https://www.youtube.com/@ZEBLEARN'
-        },
-        {
-            src: '/images/banner/orange/ORANGE%2016.webp',
-            alt: 'ZebLearn Student Placement Record 16',
-            title: 'ZebLearn Alumni',
-            subtitle: 'SAP Consultant Placement',
             youtubeUrl: 'https://www.youtube.com/@ZEBLEARN'
         },
     ];

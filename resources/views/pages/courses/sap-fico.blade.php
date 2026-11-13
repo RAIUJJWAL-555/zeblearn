@@ -71,6 +71,10 @@ details summary::-webkit-details-marker { display: none; }
 @endpush
 
 @section('content')
+@php
+    $course = $course ?? \App\Models\Course::where('slug', 'sap-fico-training')->first();
+    $enrollment = $enrollment ?? (auth()->check() && $course ? auth()->user()->enrollments()->where('course_id', $course->id)->first() : null);
+@endphp
 <div class="flex flex-col w-full bg-[#FAFAF8] text-[#0A0A0A]">
 
     <!-- HERO SECTION -->
@@ -105,14 +109,52 @@ details summary::-webkit-details-marker { display: none; }
                 <p class="font-sans text-base text-slate-600 leading-relaxed animate-hero-desc">
                     Live online SAP FICO training with real system practice, enterprise assignments, mock interviews, and dedicated placement support.
                 </p>
-                <div class="mt-4 pt-4 border-t border-slate-200 flex items-center gap-3 animate-hero-cta">
-                    <a href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20book%20a%20free%20demo%20for%20SAP%20FICO." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#FB6221] hover:bg-[#e05214] text-white font-sans text-xs font-semibold uppercase tracking-wider shadow-md hover:shadow-lg transition-all hover:scale-[1.02] zeb-btn-cta">
+                <div class="mt-4 pt-4 border-t border-slate-200 flex flex-wrap items-center gap-3 animate-hero-cta">
+                    @if ($course)
+                        @if ($enrollment && $enrollment->isApproved())
+                            <a href="{{ route('student.courses.show', $course) }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-sans text-xs font-semibold uppercase tracking-wider shadow-md transition-all hover:scale-[1.02]">
+                                <span class="material-symbols-outlined text-[16px]">play_circle</span>
+                                <span>Continue Learning</span>
+                            </a>
+                        @elseif ($enrollment && $enrollment->isPending())
+                            <a href="{{ route('student.dashboard') }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-amber-50 border border-amber-300 text-amber-900 font-sans text-xs font-semibold uppercase tracking-wider">
+                                <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+                                <span>Awaiting Approval</span>
+                            </a>
+                        @elseif ($enrollment && ($enrollment->isRejected() || $enrollment->isCancelled()))
+                            <form action="{{ route('courses.enroll', $course) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#0A0A0A] hover:bg-[#FB6221] text-white font-sans text-xs font-semibold uppercase tracking-wider transition-all shadow-md">
+                                    <span>Re-apply for Enrollment</span>
+                                </button>
+                            </form>
+                        @else
+                            @auth
+                                @if (auth()->user()->isStudent())
+                                    <form action="{{ route('courses.enroll', $course) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#FB6221] hover:bg-[#e05214] text-white font-sans text-xs font-semibold uppercase tracking-wider shadow-md hover:shadow-lg transition-all hover:scale-[1.02] zeb-btn-cta">
+                                            <span>Enroll Now</span>
+                                            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                                        </button>
+                                    </form>
+                                @endif
+                            @else
+                                <a href="{{ route('courses.enroll.get', $course) }}" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#FB6221] hover:bg-[#e05214] text-white font-sans text-xs font-semibold uppercase tracking-wider shadow-md hover:shadow-lg transition-all hover:scale-[1.02] zeb-btn-cta">
+                                    <span>Enroll Now</span>
+                                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                                </a>
+                            @endauth
+                        @endif
+                    @endif
+
+                    <a href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20book%20a%20free%20demo%20for%20SAP%20FICO." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-sans text-xs font-semibold uppercase tracking-wider shadow-xs transition-colors zeb-btn-cta">
                         <span>Book a Free Demo</span>
                         <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
                     </a>
-                    <a href="tel:+918506888288" class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-sans text-xs font-semibold uppercase tracking-wider transition-colors shadow-xs zeb-btn-cta">
-                        <span class="material-symbols-outlined text-[16px] text-emerald-600">call</span>
-                        <span>Enquire</span>
+                    <a href="tel:+918506888288" class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-sans text-xs font-semibold uppercase tracking-wider transition-colors shadow-xs">
+                        <span class="material-symbols-outlined text-[16px] text-[#FB6221]">call</span>
+                        <span>Call Advisory</span>
                     </a>
                 </div>
             </div>
@@ -804,15 +846,58 @@ details summary::-webkit-details-marker { display: none; }
 
                     <!-- CTA Actions -->
                     <div class="space-y-2.5 mb-6">
-                        <a href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20book%20a%20free%20demo%20for%20SAP%20FICO." target="_blank" rel="noopener" class="w-full py-3.5 px-4 bg-[#FB6221] hover:bg-[#e05214] text-white font-['Inter'] text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md flex items-center justify-center gap-2">
+                        @if ($course)
+                            @if ($enrollment && $enrollment->isApproved())
+                                <a href="{{ route('student.courses.show', $course) }}" class="w-full py-3.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-['Inter'] text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md flex items-center justify-center gap-2">
+                                    <span class="material-symbols-outlined text-[16px]">play_circle</span>
+                                    <span>Continue Learning / View Course</span>
+                                </a>
+                            @elseif ($enrollment && $enrollment->isPending())
+                                <div class="w-full py-3 px-4 bg-amber-500/20 border border-amber-500/50 text-amber-300 font-['Inter'] text-xs font-bold uppercase tracking-wider rounded-xl text-center flex items-center justify-center gap-2">
+                                    <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+                                    <span>Awaiting Approval</span>
+                                </div>
+                            @elseif ($enrollment && ($enrollment->isRejected() || $enrollment->isCancelled()))
+                                <div class="space-y-2 text-center">
+                                    <span class="inline-block px-2.5 py-0.5 rounded-md bg-red-500/20 text-red-300 text-[10px] font-mono font-bold uppercase border border-red-500/30">
+                                        Application Declined
+                                    </span>
+                                    <form action="{{ route('courses.enroll', $course) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="w-full py-3 px-4 bg-white/20 hover:bg-[#FB6221] text-white font-['Inter'] text-xs font-bold uppercase tracking-wider rounded-xl transition-all">
+                                            <span>Re-apply for Enrollment</span>
+                                        </button>
+                                    </form>
+                                </div>
+                            @else
+                                @auth
+                                    @if (auth()->user()->isStudent())
+                                        <form action="{{ route('courses.enroll', $course) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="w-full py-3.5 px-4 bg-[#FB6221] hover:bg-[#e05214] text-white font-['Inter'] text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md flex items-center justify-center gap-2">
+                                                <span>Enroll Now</span>
+                                                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                                            </button>
+                                        </form>
+                                    @endif
+                                @else
+                                    <a href="{{ route('courses.enroll.get', $course) }}" class="w-full py-3.5 px-4 bg-[#FB6221] hover:bg-[#e05214] text-white font-['Inter'] text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md flex items-center justify-center gap-2">
+                                        <span>Enroll Now</span>
+                                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                                    </a>
+                                @endauth
+                            @endif
+                        @endif
+
+                        <a href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20book%20a%20free%20demo%20for%20SAP%20FICO." target="_blank" rel="noopener" class="w-full py-3 px-4 border border-white/20 hover:bg-white/10 text-white font-['Inter'] text-xs font-semibold uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2 text-center">
                             <span>Book a Free Demo</span>
                             <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
                         </a>
-                        <a href="tel:+918506888288" class="w-full py-3 px-4 border border-white/20 hover:bg-white/10 text-white font-['Inter'] text-xs font-semibold uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2 text-center">
+                        <a href="tel:+918506888288" class="w-full py-2.5 px-4 border border-white/15 hover:bg-white/10 text-white font-['Inter'] text-xs font-semibold uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2 text-center">
                             <span class="material-symbols-outlined text-[16px] text-[#FB6221]">call</span>
                             <span>Get a Call Back</span>
                         </a>
-                        <a href="https://wa.me/917277877778" target="_blank" rel="noopener" class="w-full py-2.5 px-4 flex items-center justify-center gap-2 text-slate-300 hover:text-white font-['Inter'] text-xs transition-colors">
+                        <a href="https://wa.me/917277877778" target="_blank" rel="noopener" class="w-full py-2 px-4 flex items-center justify-center gap-2 text-slate-300 hover:text-white font-['Inter'] text-xs transition-colors">
                             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                             <span>Chat with us on WhatsApp</span>
                         </a>

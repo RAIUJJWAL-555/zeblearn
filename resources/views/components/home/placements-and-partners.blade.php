@@ -283,139 +283,281 @@
                     </p>
                 </div>
 
-                <!-- 6 Original Colorful Logos in Responsive Grid -->
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-                    <!-- 1. Deloitte -->
-                    <a
-                        href="https://www.deloitte.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title="Deloitte official website"
-                        aria-label="Deloitte official website"
-                        class="h-20 px-4 py-3 rounded-2xl bg-slate-50/60 hover:bg-white border border-slate-200/80 hover:border-slate-300 shadow-2xs hover:shadow-sm flex flex-col items-center justify-center transition-all duration-200 group zeb-partner-card">
-                        <svg class="h-6 w-auto max-w-[110px]" viewBox="0 0 130 30" xmlns="http://www.w3.org/2000/svg" aria-label="Deloitte logo">
-                            <text x="0" y="23" font-family="'Inter', Arial, sans-serif" font-size="24" font-weight="800" fill="#000000" letter-spacing="-0.03em">Deloitte</text>
-                            <circle cx="95" cy="21" r="3.5" fill="#86BC25"/>
-                        </svg>
-                        <span class="font-mono text-[9px] uppercase tracking-wider text-slate-400 group-hover:text-slate-600 mt-1">Enterprise Practice</span>
-                    </a>
+                <!-- Seamless Infinite Marquee of Industry Partner / Ecosystem Logos -->
+                <div class="zeb-marquee-container -mx-2 px-2 py-2 overflow-hidden" id="ecosystem-marquee-wrapper">
+                    <div
+                        id="ecosystem-marquee-track"
+                        class="zeb-marquee-track zeb-marquee-left flex gap-4 items-center focus:outline-none"
+                        style="--zeb-marquee-duration: 26s; padding-right: 1rem;"
+                        role="region"
+                        aria-label="Enterprise SAP Ecosystem Industry Partners Infinite Marquee"
+                    >
+                        <!-- Primary Set -->
+                        <!-- 1. Deloitte -->
+                        <a
+                            href="https://www.deloitte.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title="Deloitte official website"
+                            aria-label="Deloitte official website"
+                            class="shrink-0 w-[180px] sm:w-[200px] h-20 px-4 py-3 rounded-2xl bg-slate-50/60 hover:bg-white border border-slate-200/80 hover:border-slate-300 shadow-2xs hover:shadow-sm flex flex-col items-center justify-center transition-all duration-200 group zeb-partner-card">
+                            <svg class="h-6 w-auto max-w-[110px]" viewBox="0 0 130 30" xmlns="http://www.w3.org/2000/svg" aria-label="Deloitte logo">
+                                <text x="0" y="23" font-family="'Inter', Arial, sans-serif" font-size="24" font-weight="800" fill="#000000" letter-spacing="-0.03em">Deloitte</text>
+                                <circle cx="95" cy="21" r="3.5" fill="#86BC25"/>
+                            </svg>
+                            <span class="font-mono text-[9px] uppercase tracking-wider text-slate-400 group-hover:text-slate-600 mt-1">Enterprise Practice</span>
+                        </a>
 
-                    <!-- 2. IBM -->
-                    <a
-                        href="https://www.ibm.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title="IBM official website"
-                        aria-label="IBM official website"
-                        class="h-20 px-4 py-3 rounded-2xl bg-slate-50/60 hover:bg-white border border-slate-200/80 hover:border-slate-300 shadow-2xs hover:shadow-sm flex flex-col items-center justify-center transition-all duration-200 group zeb-partner-card">
-                        <svg class="h-6 w-auto max-w-[70px]" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg" aria-label="IBM 8-bar blue logo">
-                            <g fill="#0F62FE">
-                                <rect x="0" y="2" width="24" height="2"/>
-                                <rect x="30" y="2" width="36" height="2"/>
-                                <rect x="72" y="2" width="28" height="2"/>
-                                <rect x="0" y="7" width="24" height="2"/>
-                                <rect x="30" y="7" width="36" height="2"/>
-                                <rect x="72" y="7" width="28" height="2"/>
-                                <rect x="8" y="12" width="8" height="2"/>
-                                <rect x="30" y="12" width="36" height="2"/>
-                                <rect x="72" y="12" width="8" height="2"/>
-                                <rect x="82" y="12" width="8" height="2"/>
-                                <rect x="92" y="12" width="8" height="2"/>
-                                <rect x="8" y="17" width="8" height="2"/>
-                                <rect x="30" y="17" width="36" height="2"/>
-                                <rect x="72" y="17" width="8" height="2"/>
-                                <rect x="82" y="17" width="8" height="2"/>
-                                <rect x="92" y="17" width="8" height="2"/>
-                                <rect x="8" y="22" width="8" height="2"/>
-                                <rect x="30" y="22" width="36" height="2"/>
-                                <rect x="72" y="22" width="8" height="2"/>
-                                <rect x="82" y="22" width="8" height="2"/>
-                                <rect x="92" y="22" width="8" height="2"/>
-                                <rect x="8" y="27" width="8" height="2"/>
-                                <rect x="30" y="27" width="36" height="2"/>
-                                <rect x="72" y="27" width="8" height="2"/>
-                                <rect x="82" y="27" width="8" height="2"/>
-                                <rect x="92" y="27" width="8" height="2"/>
-                                <rect x="0" y="32" width="24" height="2"/>
-                                <rect x="30" y="32" width="36" height="2"/>
-                                <rect x="72" y="32" width="28" height="2"/>
-                                <rect x="0" y="37" width="24" height="2"/>
-                                <rect x="30" y="37" width="36" height="2"/>
-                                <rect x="72" y="37" width="28" height="2"/>
-                            </g>
-                        </svg>
-                        <span class="font-mono text-[9px] uppercase tracking-wider text-slate-400 group-hover:text-slate-600 mt-1">Enterprise Practice</span>
-                    </a>
+                        <!-- 2. IBM -->
+                        <a
+                            href="https://www.ibm.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title="IBM official website"
+                            aria-label="IBM official website"
+                            class="shrink-0 w-[180px] sm:w-[200px] h-20 px-4 py-3 rounded-2xl bg-slate-50/60 hover:bg-white border border-slate-200/80 hover:border-slate-300 shadow-2xs hover:shadow-sm flex flex-col items-center justify-center transition-all duration-200 group zeb-partner-card">
+                            <svg class="h-6 w-auto max-w-[70px]" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg" aria-label="IBM 8-bar blue logo">
+                                <g fill="#0F62FE">
+                                    <rect x="0" y="2" width="24" height="2"/>
+                                    <rect x="30" y="2" width="36" height="2"/>
+                                    <rect x="72" y="2" width="28" height="2"/>
+                                    <rect x="0" y="7" width="24" height="2"/>
+                                    <rect x="30" y="7" width="36" height="2"/>
+                                    <rect x="72" y="7" width="28" height="2"/>
+                                    <rect x="8" y="12" width="8" height="2"/>
+                                    <rect x="30" y="12" width="36" height="2"/>
+                                    <rect x="72" y="12" width="8" height="2"/>
+                                    <rect x="82" y="12" width="8" height="2"/>
+                                    <rect x="92" y="12" width="8" height="2"/>
+                                    <rect x="8" y="17" width="8" height="2"/>
+                                    <rect x="30" y="17" width="36" height="2"/>
+                                    <rect x="72" y="17" width="8" height="2"/>
+                                    <rect x="82" y="17" width="8" height="2"/>
+                                    <rect x="92" y="17" width="8" height="2"/>
+                                    <rect x="8" y="22" width="8" height="2"/>
+                                    <rect x="30" y="22" width="36" height="2"/>
+                                    <rect x="72" y="22" width="8" height="2"/>
+                                    <rect x="82" y="22" width="8" height="2"/>
+                                    <rect x="92" y="22" width="8" height="2"/>
+                                    <rect x="8" y="27" width="8" height="2"/>
+                                    <rect x="30" y="27" width="36" height="2"/>
+                                    <rect x="72" y="27" width="8" height="2"/>
+                                    <rect x="82" y="27" width="8" height="2"/>
+                                    <rect x="92" y="27" width="8" height="2"/>
+                                    <rect x="0" y="32" width="24" height="2"/>
+                                    <rect x="30" y="32" width="36" height="2"/>
+                                    <rect x="72" y="32" width="28" height="2"/>
+                                    <rect x="0" y="37" width="24" height="2"/>
+                                    <rect x="30" y="37" width="36" height="2"/>
+                                    <rect x="72" y="37" width="28" height="2"/>
+                                </g>
+                            </svg>
+                            <span class="font-mono text-[9px] uppercase tracking-wider text-slate-400 group-hover:text-slate-600 mt-1">Enterprise Practice</span>
+                        </a>
 
-                    <!-- 3. TCS -->
-                    <a
-                        href="https://www.tcs.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title="Tata Consultancy Services official website"
-                        aria-label="Tata Consultancy Services official website"
-                        class="h-20 px-4 py-3 rounded-2xl bg-slate-50/60 hover:bg-white border border-slate-200/80 hover:border-slate-300 shadow-2xs hover:shadow-sm flex flex-col items-center justify-center transition-all duration-200 group zeb-partner-card">
-                        <svg class="h-6 w-auto max-w-[120px]" viewBox="0 0 150 32" xmlns="http://www.w3.org/2000/svg" aria-label="TCS logo">
-                            <text x="0" y="24" font-family="'Inter', sans-serif" font-size="26" font-weight="900" fill="#002B49" letter-spacing="-0.03em">tcs</text>
-                            <text x="44" y="16" font-family="'Inter', sans-serif" font-size="8" font-weight="700" fill="#002B49" letter-spacing="0.05em">TATA</text>
-                            <text x="44" y="25" font-family="'Inter', sans-serif" font-size="7" font-weight="600" fill="#6B7280" letter-spacing="0.02em">CONSULTANCY SERVICES</text>
-                        </svg>
-                        <span class="font-mono text-[9px] uppercase tracking-wider text-slate-400 group-hover:text-slate-600 mt-1">Enterprise Practice</span>
-                    </a>
+                        <!-- 3. TCS -->
+                        <a
+                            href="https://www.tcs.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title="Tata Consultancy Services official website"
+                            aria-label="Tata Consultancy Services official website"
+                            class="shrink-0 w-[180px] sm:w-[200px] h-20 px-4 py-3 rounded-2xl bg-slate-50/60 hover:bg-white border border-slate-200/80 hover:border-slate-300 shadow-2xs hover:shadow-sm flex flex-col items-center justify-center transition-all duration-200 group zeb-partner-card">
+                            <svg class="h-6 w-auto max-w-[120px]" viewBox="0 0 150 32" xmlns="http://www.w3.org/2000/svg" aria-label="TCS logo">
+                                <text x="0" y="24" font-family="'Inter', sans-serif" font-size="26" font-weight="900" fill="#002B49" letter-spacing="-0.03em">tcs</text>
+                                <text x="44" y="16" font-family="'Inter', sans-serif" font-size="8" font-weight="700" fill="#002B49" letter-spacing="0.05em">TATA</text>
+                                <text x="44" y="25" font-family="'Inter', sans-serif" font-size="7" font-weight="600" fill="#6B7280" letter-spacing="0.02em">CONSULTANCY SERVICES</text>
+                            </svg>
+                            <span class="font-mono text-[9px] uppercase tracking-wider text-slate-400 group-hover:text-slate-600 mt-1">Enterprise Practice</span>
+                        </a>
 
-                    <!-- 4. Wipro -->
-                    <a
-                        href="https://www.wipro.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title="Wipro official website"
-                        aria-label="Wipro official website"
-                        class="h-20 px-4 py-3 rounded-2xl bg-slate-50/60 hover:bg-white border border-slate-200/80 hover:border-slate-300 shadow-2xs hover:shadow-sm flex flex-col items-center justify-center transition-all duration-200 group zeb-partner-card">
-                        <svg class="h-6 w-auto max-w-[100px]" viewBox="0 0 130 32" xmlns="http://www.w3.org/2000/svg" aria-label="Wipro logo">
-                            <g transform="translate(14, 16)">
-                                <circle cx="0" cy="-9" r="2.5" fill="#E03C31"/>
-                                <circle cx="6.5" cy="-6.5" r="2.5" fill="#FFB81C"/>
-                                <circle cx="9" cy="0" r="2.5" fill="#78BE20"/>
-                                <circle cx="6.5" cy="6.5" r="2.5" fill="#00A3E0"/>
-                                <circle cx="0" cy="9" r="2.5" fill="#0070AD"/>
-                                <circle cx="-6.5" cy="6.5" r="2.5" fill="#7B2282"/>
-                                <circle cx="-9" cy="0" r="2.5" fill="#9B26B6"/>
-                                <circle cx="-6.5" cy="-6.5" r="2.5" fill="#C8102E"/>
-                                <circle cx="0" cy="0" r="1.8" fill="#5C768D"/>
-                            </g>
-                            <text x="34" y="23" font-family="'Inter', sans-serif" font-size="20" font-weight="700" fill="#1F2937" letter-spacing="-0.02em">wipro</text>
-                        </svg>
-                        <span class="font-mono text-[9px] uppercase tracking-wider text-slate-400 group-hover:text-slate-600 mt-1">Enterprise Practice</span>
-                    </a>
+                        <!-- 4. Wipro -->
+                        <a
+                            href="https://www.wipro.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title="Wipro official website"
+                            aria-label="Wipro official website"
+                            class="shrink-0 w-[180px] sm:w-[200px] h-20 px-4 py-3 rounded-2xl bg-slate-50/60 hover:bg-white border border-slate-200/80 hover:border-slate-300 shadow-2xs hover:shadow-sm flex flex-col items-center justify-center transition-all duration-200 group zeb-partner-card">
+                            <svg class="h-6 w-auto max-w-[100px]" viewBox="0 0 130 32" xmlns="http://www.w3.org/2000/svg" aria-label="Wipro logo">
+                                <g transform="translate(14, 16)">
+                                    <circle cx="0" cy="-9" r="2.5" fill="#E03C31"/>
+                                    <circle cx="6.5" cy="-6.5" r="2.5" fill="#FFB81C"/>
+                                    <circle cx="9" cy="0" r="2.5" fill="#78BE20"/>
+                                    <circle cx="6.5" cy="6.5" r="2.5" fill="#00A3E0"/>
+                                    <circle cx="0" cy="9" r="2.5" fill="#0070AD"/>
+                                    <circle cx="-6.5" cy="6.5" r="2.5" fill="#7B2282"/>
+                                    <circle cx="-9" cy="0" r="2.5" fill="#9B26B6"/>
+                                    <circle cx="-6.5" cy="-6.5" r="2.5" fill="#C8102E"/>
+                                    <circle cx="0" cy="0" r="1.8" fill="#5C768D"/>
+                                </g>
+                                <text x="34" y="23" font-family="'Inter', sans-serif" font-size="20" font-weight="700" fill="#1F2937" letter-spacing="-0.02em">wipro</text>
+                            </svg>
+                            <span class="font-mono text-[9px] uppercase tracking-wider text-slate-400 group-hover:text-slate-600 mt-1">Enterprise Practice</span>
+                        </a>
 
-                    <!-- 5. Capgemini -->
-                    <a
-                        href="https://www.capgemini.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title="Capgemini official website"
-                        aria-label="Capgemini official website"
-                        class="h-20 px-4 py-3 rounded-2xl bg-slate-50/60 hover:bg-white border border-slate-200/80 hover:border-slate-300 shadow-2xs hover:shadow-sm flex flex-col items-center justify-center transition-all duration-200 group zeb-partner-card">
-                        <svg class="h-6 w-auto max-w-[120px]" viewBox="0 0 150 32" xmlns="http://www.w3.org/2000/svg" aria-label="Capgemini logo">
-                            <path d="M12,4 C14.5,7 18,10.5 19,13.5 C19.8,16 18,18.5 15.5,18.5 C13.5,18.5 12.5,17 12,15.5 C11.5,17 10.5,18.5 8.5,18.5 C6,18.5 4.2,16 5,13.5 C6,10.5 9.5,7 12,4 Z M11,18 L13,18 L14,24 L10,24 Z" fill="#0070AD"/>
-                            <text x="26" y="22" font-family="'Inter', sans-serif" font-size="19" font-weight="700" fill="#111827" letter-spacing="-0.03em">Capgemini</text>
-                        </svg>
-                        <span class="font-mono text-[9px] uppercase tracking-wider text-slate-400 group-hover:text-slate-600 mt-1">Enterprise Practice</span>
-                    </a>
+                        <!-- 5. Capgemini -->
+                        <a
+                            href="https://www.capgemini.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title="Capgemini official website"
+                            aria-label="Capgemini official website"
+                            class="shrink-0 w-[180px] sm:w-[200px] h-20 px-4 py-3 rounded-2xl bg-slate-50/60 hover:bg-white border border-slate-200/80 hover:border-slate-300 shadow-2xs hover:shadow-sm flex flex-col items-center justify-center transition-all duration-200 group zeb-partner-card">
+                            <svg class="h-6 w-auto max-w-[120px]" viewBox="0 0 150 32" xmlns="http://www.w3.org/2000/svg" aria-label="Capgemini logo">
+                                <path d="M12,4 C14.5,7 18,10.5 19,13.5 C19.8,16 18,18.5 15.5,18.5 C13.5,18.5 12.5,17 12,15.5 C11.5,17 10.5,18.5 8.5,18.5 C6,18.5 4.2,16 5,13.5 C6,10.5 9.5,7 12,4 Z M11,18 L13,18 L14,24 L10,24 Z" fill="#0070AD"/>
+                                <text x="26" y="22" font-family="'Inter', sans-serif" font-size="19" font-weight="700" fill="#111827" letter-spacing="-0.03em">Capgemini</text>
+                            </svg>
+                            <span class="font-mono text-[9px] uppercase tracking-wider text-slate-400 group-hover:text-slate-600 mt-1">Enterprise Practice</span>
+                        </a>
 
-                    <!-- 6. Infosys -->
-                    <a
-                        href="https://www.infosys.com/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title="Infosys official website"
-                        aria-label="Infosys official website"
-                        class="h-20 px-4 py-3 rounded-2xl bg-slate-50/60 hover:bg-white border border-slate-200/80 hover:border-slate-300 shadow-2xs hover:shadow-sm flex flex-col items-center justify-center transition-all duration-200 group zeb-partner-card">
-                        <svg class="h-6 w-auto max-w-[95px]" viewBox="0 0 120 32" xmlns="http://www.w3.org/2000/svg" aria-label="Infosys logo">
-                            <text x="2" y="24" font-family="'Inter', sans-serif" font-size="24" font-weight="800" fill="#007CC3" letter-spacing="-0.03em">Infosys</text>
-                        </svg>
-                        <span class="font-mono text-[9px] uppercase tracking-wider text-slate-400 group-hover:text-slate-600 mt-1">Enterprise Practice</span>
-                    </a>
+                        <!-- 6. Infosys -->
+                        <a
+                            href="https://www.infosys.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title="Infosys official website"
+                            aria-label="Infosys official website"
+                            class="shrink-0 w-[180px] sm:w-[200px] h-20 px-4 py-3 rounded-2xl bg-slate-50/60 hover:bg-white border border-slate-200/80 hover:border-slate-300 shadow-2xs hover:shadow-sm flex flex-col items-center justify-center transition-all duration-200 group zeb-partner-card">
+                            <svg class="h-6 w-auto max-w-[95px]" viewBox="0 0 120 32" xmlns="http://www.w3.org/2000/svg" aria-label="Infosys logo">
+                                <text x="2" y="24" font-family="'Inter', sans-serif" font-size="24" font-weight="800" fill="#007CC3" letter-spacing="-0.03em">Infosys</text>
+                            </svg>
+                            <span class="font-mono text-[9px] uppercase tracking-wider text-slate-400 group-hover:text-slate-600 mt-1">Enterprise Practice</span>
+                        </a>
+
+                        <!-- Duplicate Set for Seamless Continuous Loop -->
+                        <!-- 1. Deloitte (duplicate) -->
+                        <a
+                            href="https://www.deloitte.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            tabindex="-1"
+                            aria-hidden="true"
+                            class="shrink-0 w-[180px] sm:w-[200px] h-20 px-4 py-3 rounded-2xl bg-slate-50/60 hover:bg-white border border-slate-200/80 hover:border-slate-300 shadow-2xs hover:shadow-sm flex flex-col items-center justify-center transition-all duration-200 group zeb-partner-card">
+                            <svg class="h-6 w-auto max-w-[110px]" viewBox="0 0 130 30" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <text x="0" y="23" font-family="'Inter', Arial, sans-serif" font-size="24" font-weight="800" fill="#000000" letter-spacing="-0.03em">Deloitte</text>
+                                <circle cx="95" cy="21" r="3.5" fill="#86BC25"/>
+                            </svg>
+                            <span class="font-mono text-[9px] uppercase tracking-wider text-slate-400 group-hover:text-slate-600 mt-1">Enterprise Practice</span>
+                        </a>
+
+                        <!-- 2. IBM (duplicate) -->
+                        <a
+                            href="https://www.ibm.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            tabindex="-1"
+                            aria-hidden="true"
+                            class="shrink-0 w-[180px] sm:w-[200px] h-20 px-4 py-3 rounded-2xl bg-slate-50/60 hover:bg-white border border-slate-200/80 hover:border-slate-300 shadow-2xs hover:shadow-sm flex flex-col items-center justify-center transition-all duration-200 group zeb-partner-card">
+                            <svg class="h-6 w-auto max-w-[70px]" viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <g fill="#0F62FE">
+                                    <rect x="0" y="2" width="24" height="2"/>
+                                    <rect x="30" y="2" width="36" height="2"/>
+                                    <rect x="72" y="2" width="28" height="2"/>
+                                    <rect x="0" y="7" width="24" height="2"/>
+                                    <rect x="30" y="7" width="36" height="2"/>
+                                    <rect x="72" y="7" width="28" height="2"/>
+                                    <rect x="8" y="12" width="8" height="2"/>
+                                    <rect x="30" y="12" width="36" height="2"/>
+                                    <rect x="72" y="12" width="8" height="2"/>
+                                    <rect x="82" y="12" width="8" height="2"/>
+                                    <rect x="92" y="12" width="8" height="2"/>
+                                    <rect x="8" y="17" width="8" height="2"/>
+                                    <rect x="30" y="17" width="36" height="2"/>
+                                    <rect x="72" y="17" width="8" height="2"/>
+                                    <rect x="82" y="17" width="8" height="2"/>
+                                    <rect x="92" y="17" width="8" height="2"/>
+                                    <rect x="8" y="22" width="8" height="2"/>
+                                    <rect x="30" y="22" width="36" height="2"/>
+                                    <rect x="72" y="22" width="8" height="2"/>
+                                    <rect x="82" y="22" width="8" height="2"/>
+                                    <rect x="92" y="22" width="8" height="2"/>
+                                    <rect x="8" y="27" width="8" height="2"/>
+                                    <rect x="30" y="27" width="36" height="2"/>
+                                    <rect x="72" y="27" width="8" height="2"/>
+                                    <rect x="82" y="27" width="8" height="2"/>
+                                    <rect x="92" y="27" width="8" height="2"/>
+                                    <rect x="0" y="32" width="24" height="2"/>
+                                    <rect x="30" y="32" width="36" height="2"/>
+                                    <rect x="72" y="32" width="28" height="2"/>
+                                    <rect x="0" y="37" width="24" height="2"/>
+                                    <rect x="30" y="37" width="36" height="2"/>
+                                    <rect x="72" y="37" width="28" height="2"/>
+                                </g>
+                            </svg>
+                            <span class="font-mono text-[9px] uppercase tracking-wider text-slate-400 group-hover:text-slate-600 mt-1">Enterprise Practice</span>
+                        </a>
+
+                        <!-- 3. TCS (duplicate) -->
+                        <a
+                            href="https://www.tcs.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            tabindex="-1"
+                            aria-hidden="true"
+                            class="shrink-0 w-[180px] sm:w-[200px] h-20 px-4 py-3 rounded-2xl bg-slate-50/60 hover:bg-white border border-slate-200/80 hover:border-slate-300 shadow-2xs hover:shadow-sm flex flex-col items-center justify-center transition-all duration-200 group zeb-partner-card">
+                            <svg class="h-6 w-auto max-w-[120px]" viewBox="0 0 150 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <text x="0" y="24" font-family="'Inter', sans-serif" font-size="26" font-weight="900" fill="#002B49" letter-spacing="-0.03em">tcs</text>
+                                <text x="44" y="16" font-family="'Inter', sans-serif" font-size="8" font-weight="700" fill="#002B49" letter-spacing="0.05em">TATA</text>
+                                <text x="44" y="25" font-family="'Inter', sans-serif" font-size="7" font-weight="600" fill="#6B7280" letter-spacing="0.02em">CONSULTANCY SERVICES</text>
+                            </svg>
+                            <span class="font-mono text-[9px] uppercase tracking-wider text-slate-400 group-hover:text-slate-600 mt-1">Enterprise Practice</span>
+                        </a>
+
+                        <!-- 4. Wipro (duplicate) -->
+                        <a
+                            href="https://www.wipro.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            tabindex="-1"
+                            aria-hidden="true"
+                            class="shrink-0 w-[180px] sm:w-[200px] h-20 px-4 py-3 rounded-2xl bg-slate-50/60 hover:bg-white border border-slate-200/80 hover:border-slate-300 shadow-2xs hover:shadow-sm flex flex-col items-center justify-center transition-all duration-200 group zeb-partner-card">
+                            <svg class="h-6 w-auto max-w-[100px]" viewBox="0 0 130 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <g transform="translate(14, 16)">
+                                    <circle cx="0" cy="-9" r="2.5" fill="#E03C31"/>
+                                    <circle cx="6.5" cy="-6.5" r="2.5" fill="#FFB81C"/>
+                                    <circle cx="9" cy="0" r="2.5" fill="#78BE20"/>
+                                    <circle cx="6.5" cy="6.5" r="2.5" fill="#00A3E0"/>
+                                    <circle cx="0" cy="9" r="2.5" fill="#0070AD"/>
+                                    <circle cx="-6.5" cy="6.5" r="2.5" fill="#7B2282"/>
+                                    <circle cx="-9" cy="0" r="2.5" fill="#9B26B6"/>
+                                    <circle cx="-6.5" cy="-6.5" r="2.5" fill="#C8102E"/>
+                                    <circle cx="0" cy="0" r="1.8" fill="#5C768D"/>
+                                </g>
+                                <text x="34" y="23" font-family="'Inter', sans-serif" font-size="20" font-weight="700" fill="#1F2937" letter-spacing="-0.02em">wipro</text>
+                            </svg>
+                            <span class="font-mono text-[9px] uppercase tracking-wider text-slate-400 group-hover:text-slate-600 mt-1">Enterprise Practice</span>
+                        </a>
+
+                        <!-- 5. Capgemini (duplicate) -->
+                        <a
+                            href="https://www.capgemini.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            tabindex="-1"
+                            aria-hidden="true"
+                            class="shrink-0 w-[180px] sm:w-[200px] h-20 px-4 py-3 rounded-2xl bg-slate-50/60 hover:bg-white border border-slate-200/80 hover:border-slate-300 shadow-2xs hover:shadow-sm flex flex-col items-center justify-center transition-all duration-200 group zeb-partner-card">
+                            <svg class="h-6 w-auto max-w-[120px]" viewBox="0 0 150 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M12,4 C14.5,7 18,10.5 19,13.5 C19.8,16 18,18.5 15.5,18.5 C13.5,18.5 12.5,17 12,15.5 C11.5,17 10.5,18.5 8.5,18.5 C6,18.5 4.2,16 5,13.5 C6,10.5 9.5,7 12,4 Z M11,18 L13,18 L14,24 L10,24 Z" fill="#0070AD"/>
+                                <text x="26" y="22" font-family="'Inter', sans-serif" font-size="19" font-weight="700" fill="#111827" letter-spacing="-0.03em">Capgemini</text>
+                            </svg>
+                            <span class="font-mono text-[9px] uppercase tracking-wider text-slate-400 group-hover:text-slate-600 mt-1">Enterprise Practice</span>
+                        </a>
+
+                        <!-- 6. Infosys (duplicate) -->
+                        <a
+                            href="https://www.infosys.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            tabindex="-1"
+                            aria-hidden="true"
+                            class="shrink-0 w-[180px] sm:w-[200px] h-20 px-4 py-3 rounded-2xl bg-slate-50/60 hover:bg-white border border-slate-200/80 hover:border-slate-300 shadow-2xs hover:shadow-sm flex flex-col items-center justify-center transition-all duration-200 group zeb-partner-card">
+                            <svg class="h-6 w-auto max-w-[95px]" viewBox="0 0 120 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <text x="2" y="24" font-family="'Inter', sans-serif" font-size="24" font-weight="800" fill="#007CC3" letter-spacing="-0.03em">Infosys</text>
+                            </svg>
+                            <span class="font-mono text-[9px] uppercase tracking-wider text-slate-400 group-hover:text-slate-600 mt-1">Enterprise Practice</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

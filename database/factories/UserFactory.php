@@ -30,6 +30,11 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'role' => User::ROLE_STUDENT,
+            'status' => User::STATUS_ACTIVE,
+            'phone' => null,
+            'avatar_path' => null,
+            'bio' => null,
         ];
     }
 
@@ -40,6 +45,56 @@ class UserFactory extends Factory
     {
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
+        ]);
+    }
+
+    /**
+     * Indicate that the user is an administrator.
+     */
+    public function admin(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'role' => User::ROLE_ADMIN,
+        ]);
+    }
+
+    /**
+     * Indicate that the user is an instructor.
+     */
+    public function instructor(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'role' => User::ROLE_INSTRUCTOR,
+        ]);
+    }
+
+    /**
+     * Indicate that the user is a student.
+     */
+    public function student(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'role' => User::ROLE_STUDENT,
+        ]);
+    }
+
+    /**
+     * Indicate that the user account is active.
+     */
+    public function active(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'status' => User::STATUS_ACTIVE,
+        ]);
+    }
+
+    /**
+     * Indicate that the user account is suspended.
+     */
+    public function suspended(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'status' => User::STATUS_SUSPENDED,
         ]);
     }
 }

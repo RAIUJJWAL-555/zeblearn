@@ -106,6 +106,58 @@
   --radius-md: .25rem;
   --radius-lg: .25rem;
   --radius-xl: .5rem;
+
+  /* ==========================================================================
+     ZEBLEARN DESIGN SYSTEM TOKENS (Tailwind v4)
+     ========================================================================== */
+  --color-brand: #FB6221;
+  --color-brand-primary: #FB6221;
+  --color-brand-hover: #e05419;
+  --color-brand-active: #c94711;
+  --color-brand-subtle: #FFF5EE;
+  --color-brand-light: #FFEDE3;
+  --color-brand-muted: rgba(251, 98, 33, 0.12);
+  --color-brand-dark: #0A0A0A;
+
+  /* App Surfaces & Backgrounds */
+  --color-app-bg: #F8F9FA;
+  --color-app-surface: #FFFFFF;
+  --color-app-surface-muted: #F1F3F5;
+  --color-app-surface-hover: #F8F9FA;
+
+  /* Text & Inks */
+  --color-text-primary: #0A0A0A;
+  --color-text-secondary: #475569;
+  --color-text-muted: #64748B;
+  --color-text-subtle: #94A3B8;
+  --color-text-inverted: #FFFFFF;
+
+  /* Borders & Dividers */
+  --color-border-subtle: #E2E8F0;
+  --color-border-default: #CBD5E1;
+  --color-border-strong: #94A3B8;
+
+  /* Semantic Feedback */
+  --color-success-bg: #ECFDF5;
+  --color-success-border: #A7F3D0;
+  --color-success-text: #065F46;
+  --color-success-primary: #10B981;
+
+  --color-warning-bg: #FFFBEB;
+  --color-warning-border: #FDE68A;
+  --color-warning-text: #92400E;
+  --color-warning-primary: #F59E0B;
+
+  --color-danger-bg: #FEF2F2;
+  --color-danger-border: #FECDD3;
+  --color-danger-text: #9F1239;
+  --color-danger-primary: #E11D48;
+  --color-danger-hover: #BE123C;
+
+  --color-info-bg: #EFF6FF;
+  --color-info-border: #BFDBFE;
+  --color-info-text: #1E40AF;
+  --color-info-primary: #3B82F6;
 }
 
 @layer base {
@@ -126,7 +178,7 @@
   img { max-width: 100%; height: auto; }
   a:focus-visible, button:focus-visible { outline: 3px solid #FB6221; outline-offset: 3px; }
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    html { scroll-behavior: auto !important; }
   }
 
   /* Prevent CLS during font-display: swap for Material Symbols */
@@ -181,10 +233,29 @@
 }
 
 /* ==========================================================================
-   ZEBLEARN MOTION DESIGN & TRANSITION SYSTEM
+   ZEBLEARN DESIGN SYSTEM TOKENS (:root)
    ========================================================================== */
 
 :root {
+  --zeb-brand: #FB6221;
+  --zeb-brand-hover: #e05419;
+  --zeb-brand-active: #c94711;
+  --zeb-brand-subtle: #FFF5EE;
+  --zeb-brand-light: #FFEDE3;
+  --zeb-dark: #0A0A0A;
+  --zeb-bg: #F8F9FA;
+  --zeb-surface: #FFFFFF;
+  --zeb-surface-muted: #F1F3F5;
+  --zeb-border-subtle: #E2E8F0;
+  --zeb-border-default: #CBD5E1;
+  --zeb-text-primary: #0A0A0A;
+  --zeb-text-secondary: #475569;
+  --zeb-text-muted: #64748B;
+  --zeb-success: #10B981;
+  --zeb-warning: #F59E0B;
+  --zeb-danger: #E11D48;
+  --zeb-info: #3B82F6;
+
   --zeb-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --zeb-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
   --zeb-dur-micro: 180ms;
@@ -193,6 +264,109 @@
   --zeb-dur-section: 450ms;
   --zeb-dur-page: 220ms;
 }
+
+/* Design System Typography & Component Utilities */
+@utility zeb-heading-page {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.75rem;
+  line-height: 2.125rem;
+  letter-spacing: -0.025em;
+  color: var(--color-text-primary);
+  @media (min-width: 640px) {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}
+
+@utility zeb-heading-section {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+  @media (min-width: 640px) {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+@utility zeb-heading-card {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: var(--color-text-primary);
+  @media (min-width: 640px) {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+
+@utility zeb-body-lead {
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  color: var(--color-text-secondary);
+}
+
+@utility zeb-body {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  color: var(--color-text-secondary);
+}
+
+@utility zeb-body-sm {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  color: var(--color-text-muted);
+}
+
+@utility zeb-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
+}
+
+@utility zeb-caption {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  color: var(--color-text-muted);
+}
+
+@utility zeb-card {
+  background-color: var(--color-app-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px 0 rgba(10, 10, 10, 0.04), 0 1px 2px -1px rgba(10, 10, 10, 0.04);
+}
+
+@utility zeb-card-elevated {
+  background-color: var(--color-app-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 1.25rem;
+  box-shadow: 0 10px 25px -5px rgba(10, 10, 10, 0.05), 0 8px 10px -6px rgba(10, 10, 10, 0.03);
+}
+
+@utility zeb-focus-ring {
+  outline: none;
+  &:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(251, 98, 33, 0.25);
+    border-color: #FB6221;
+  }
+}
+
+/* ==========================================================================
+   ZEBLEARN MOTION DESIGN & TRANSITION SYSTEM
+   ========================================================================== */
 
 /* 1. Native Cross-Document View Transitions (Progressive Enhancement) */
 @view-transition {
@@ -428,20 +602,20 @@ details[open] summary .material-symbols-outlined {
    ZEBLEARN SEAMLESS INFINITE MARQUEE SYSTEM
    ========================================================================== */
 @keyframes zeb-marquee-scroll-left {
-  0% {
-    transform: translate3d(0, 0, 0);
+  from {
+    transform: translateX(0);
   }
-  100% {
-    transform: translate3d(-50%, 0, 0);
+  to {
+    transform: translateX(-50%);
   }
 }
 
 @keyframes zeb-marquee-scroll-right {
-  0% {
-    transform: translate3d(-50%, 0, 0);
+  from {
+    transform: translateX(-50%);
   }
-  100% {
-    transform: translate3d(0, 0, 0);
+  to {
+    transform: translateX(0);
   }
 }
 
@@ -454,31 +628,26 @@ details[open] summary .material-symbols-outlined {
 }
 
 .zeb-marquee-track {
-  display: flex;
-  width: max-content;
+  display: flex !important;
+  width: max-content !important;
   will-change: transform;
 }
 
 .zeb-marquee-left {
-  animation: zeb-marquee-scroll-left var(--zeb-marquee-duration, 38s) linear infinite;
+  animation: zeb-marquee-scroll-left var(--zeb-marquee-duration, 38s) linear infinite !important;
 }
 
 .zeb-marquee-right {
-  animation: zeb-marquee-scroll-right var(--zeb-marquee-duration, 38s) linear infinite;
+  animation: zeb-marquee-scroll-right var(--zeb-marquee-duration, 38s) linear infinite !important;
 }
 
-.zeb-marquee-container:hover .zeb-marquee-track,
-.zeb-marquee-track:hover,
-.zeb-marquee-track:focus-within {
-  animation-play-state: paused !important;
+.zeb-marquee-track:hover {
+  animation-play-state: paused;
 }
 
 /* 5. Reduced-Motion Accessibility Override */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  html {
     scroll-behavior: auto !important;
   }
 
@@ -505,9 +674,7 @@ details[open] summary .material-symbols-outlined {
   .animate-ambient-1,
   .animate-ambient-2,
   .animate-ambient-3,
-  .animate-sculpture-float,
-  .zeb-marquee-left,
-  .zeb-marquee-right {
+  .animate-sculpture-float {
     animation: none !important;
     transform: none !important;
   }

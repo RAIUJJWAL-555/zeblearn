@@ -1,9 +1,14 @@
 
+import Alpine from 'alpinejs';
 import { initLaserFlow } from './laserflow';
 import { initDitherVeil } from './ditherveil';
 import { initCertificateShowcase } from './certificate-showcase';
 import { initFlexCarousel } from './flex-carousel';
 import { initInfiniteSpiral } from './infinite-spiral';
+import { initMarquees } from './marquee';
+
+window.Alpine = Alpine;
+Alpine.start();
 
 function initApp() {
     // Mobile navigation
@@ -117,8 +122,8 @@ function initApp() {
                 }
             });
         }, {
-            threshold: 0.08,
-            rootMargin: '0px 0px -30px 0px'
+            threshold: 0.01,
+            rootMargin: '50px 0px 50px 0px'
         });
 
         revealTargets.forEach(el => observer.observe(el));
@@ -245,31 +250,35 @@ function initApp() {
     }
 
     // 6. LaserFlow WebGL2 Footer Simulation
-    const laserflowContainer = document.getElementById('laserflow-container');
-    const laserflowCard = document.getElementById('laserflow-card');
+    try {
+        const laserflowContainer = document.getElementById('laserflow-container');
+        const laserflowCard = document.getElementById('laserflow-card');
 
-    if (laserflowContainer && laserflowCard) {
-        initLaserFlow(laserflowContainer, laserflowCard, {
-            beamPosition: 0.6,
-            color: '#f97316',
-            intensity: 1.8,
-            flare: 1.5,
-            spread: 1.5,
-            spill: 1,
-            fog: 0.2,
-            dust: 1.6,
-            revealImage: '/images/hero-3d-sculpture.webp',
-            revealRadius: 220,
-            revealOpacity: 0.6,
-            beamWidth: 1.5,
-            streaks: 1.5,
-            dots: 1,
-            pulse: 1.5,
-            speed: 1.5,
-            seed: 3,
-            mouseInteraction: true,
-            intro: true,
-        });
+        if (laserflowContainer && laserflowCard) {
+            initLaserFlow(laserflowContainer, laserflowCard, {
+                beamPosition: 0.6,
+                color: '#f97316',
+                intensity: 1.8,
+                flare: 1.5,
+                spread: 1.5,
+                spill: 1,
+                fog: 0.2,
+                dust: 1.6,
+                revealImage: '/images/hero-3d-sculpture.webp',
+                revealRadius: 220,
+                revealOpacity: 0.6,
+                beamWidth: 1.5,
+                streaks: 1.5,
+                dots: 1,
+                pulse: 1.5,
+                speed: 1.5,
+                seed: 3,
+                mouseInteraction: true,
+                intro: true,
+            });
+        }
+    } catch (err) {
+        console.error('[LaserFlow] Init failed:', err);
     }
 
     // 7. Awards & Recognition Certificate Showcase
@@ -291,6 +300,13 @@ function initApp() {
         initInfiniteSpiral();
     } catch (err) {
         console.error('[InfiniteSpiral] Init failed:', err);
+    }
+
+    // 7D. Bulletproof Continuous Infinite Marquee Engine
+    try {
+        initMarquees();
+    } catch (err) {
+        console.error('[Marquees] Init failed:', err);
     }
 
     // 8. DitherVeil WebGL2 Simulation (if container present)

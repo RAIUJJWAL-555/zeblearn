@@ -153,32 +153,11 @@
         </div>
     </div>
 
-    <!-- Controls Bar -->
-    <div class="flex items-center justify-between gap-4 mb-6 px-1">
+    <!-- Title Bar -->
+    <div class="mb-4 px-1 text-center sm:text-left">
         <span class="font-mono text-xs text-slate-500 uppercase font-bold tracking-wider">
             Verified Reviews (Google &amp; Partner Channels)
         </span>
-
-        <div class="flex items-center gap-2">
-            <button
-                type="button"
-                id="reviews-prev-btn"
-                aria-label="Scroll reviews backward"
-                class="w-10 h-10 rounded-full bg-white border border-slate-300 text-[#0A0A0A] hover:bg-[#FB6221] hover:text-white hover:border-[#FB6221] transition-all duration-200 shadow-xs flex items-center justify-center group"
-                title="Scroll backward"
-            >
-                <span class="material-symbols-outlined text-[18px] transition-transform group-hover:-translate-x-0.5">arrow_back</span>
-            </button>
-            <button
-                type="button"
-                id="reviews-next-btn"
-                aria-label="Scroll reviews forward"
-                class="w-10 h-10 rounded-full bg-white border border-slate-300 text-[#0A0A0A] hover:bg-[#FB6221] hover:text-white hover:border-[#FB6221] transition-all duration-200 shadow-xs flex items-center justify-center group"
-                title="Scroll forward"
-            >
-                <span class="material-symbols-outlined text-[18px] transition-transform group-hover:translate-x-0.5">arrow_forward</span>
-            </button>
-        </div>
     </div>
 
     <!-- Infinite Seamless Marquee of Review Cards -->
@@ -186,8 +165,7 @@
         <div
             id="reviews-carousel-track"
             class="zeb-marquee-track zeb-marquee-left flex gap-5 sm:gap-6 items-stretch focus:outline-none"
-            style="--zeb-marquee-duration: 48s;"
-            tabindex="0"
+            style="--zeb-marquee-duration: 48s; padding-right: 1.5rem;"
             role="region"
             aria-label="Student reviews infinite marquee"
         >
@@ -305,25 +283,3 @@
         </div>
     </div>
 </section>
-
-@push('scripts')
-<script>
-(function() {
-    const track = document.getElementById('reviews-carousel-track');
-    const prevBtn = document.getElementById('reviews-prev-btn');
-    const nextBtn = document.getElementById('reviews-next-btn');
-
-    if (!track || !prevBtn || !nextBtn) return;
-
-    prevBtn.addEventListener('click', function() {
-        track.style.animationDirection = 'reverse';
-        track.style.animationPlayState = 'running';
-    });
-
-    nextBtn.addEventListener('click', function() {
-        track.style.animationDirection = 'normal';
-        track.style.animationPlayState = 'running';
-    });
-})();
-</script>
-@endpush
