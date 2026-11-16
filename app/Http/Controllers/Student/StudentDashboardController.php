@@ -165,6 +165,26 @@ class StudentDashboardController extends Controller
             ->take(4)
             ->get();
 
+        // Certificate achievements
+        $certificates = $user->certificates()->with('course')->latest('issued_at')->get();
+        $totalCertificates = $certificates->whereNull('revoked_at')->count();
+        $recentCertificates = $certificates->take(3);
+
+        foreach ($certificates->take(3) as $cert) {
+            if ($cert->course) {
+                $activities->push([
+                    'type' => 'certificate_earned',
+                    'title' => 'Certificate Earned: '.$cert->course->name,
+                    'subtitle' => 'Credential #'.$cert->certificate_number.($cert->isRevoked() ? ' (Revoked)' : ' • Verified'),
+                    'timestamp' => $cert->issued_at,
+                    'url' => route('student.certificates.show', $cert),
+                    'badge' => 'Certificate',
+                    'badge_variant' => $cert->isRevoked() ? 'error' : 'success',
+                    'icon' => 'academic-cap',
+                ]);
+            }
+        }
+
         foreach ($recentCompletedLessons as $lp) {
             if ($lp->lesson && $lp->lesson->module && $lp->lesson->module->course) {
                 $activities->push([
@@ -234,6 +254,8 @@ class StudentDashboardController extends Controller
             'upcomingAssignments' => $upcomingAssignments,
             'pendingSubmissions' => $pendingSubmissions,
             'recentlyGradedAssignments' => $recentlyGradedAssignments,
+            'totalCertificates' => $totalCertificates,
+            'recentCertificates' => $recentCertificates,
         ]);
     }
 }

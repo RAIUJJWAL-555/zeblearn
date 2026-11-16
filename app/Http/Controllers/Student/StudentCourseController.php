@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Student;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Lesson;
+use App\Services\CertificateService;
 use App\Services\LessonProgressService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -13,7 +14,8 @@ use Illuminate\View\View;
 class StudentCourseController extends Controller
 {
     public function __construct(
-        protected LessonProgressService $progressService
+        protected LessonProgressService $progressService,
+        protected CertificateService $certificateService
     ) {}
 
     /**
@@ -151,10 +153,21 @@ class StudentCourseController extends Controller
      */
     public function completeLesson(Request $request, Course $course, Lesson $lesson): RedirectResponse
     {
-        $this->progressService->validateLessonEligibility($request->user(), $course, $lesson);
-        $this->progressService->markLessonComplete($request->user(), $course, $lesson);
+        $user = $request->user();
+        $this->progressService->validateLessonEligibility($user, $course, $lesson);
+        $this->progressService->markLessonComplete($user, $course, $lesson);
 
-        return redirect()->back()->with('success', "Completed: {$lesson->title}");
+        // Check and trigger certificate issuance if eligible
+        $certificate = $this->certificateService->checkAndIssueOnLessonCompletion($user, $course);
+
+        $message = "Completed: {$lesson->title}";
+        if ($certificate) {
+            return redirect()->back()
+                ->with('success', "Congratulations! You have completed all lessons in {$course->name}. Your course completion certificate has been issued!")
+                ->with('certificate_earned', $certificate->certificate_number);
+        }
+
+        return redirect()->back()->with('success', $message);
     }
 
     /**

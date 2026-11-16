@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Support\Str;
 
 class Course extends Model
 {
@@ -158,6 +159,34 @@ class Course extends Model
         'seo_description',
         'sort_order',
         'published_at',
+        'thumbnail_path',
+        'banner_path',
+        'hero_heading',
+        'hero_subtitle',
+        'hero_description',
+        'hero_cta_text',
+        'hero_cta_url',
+        'secondary_cta_text',
+        'secondary_cta_url',
+        'learning_outcomes',
+        'skills_covered',
+        'course_objectives',
+        'prerequisites',
+        'target_audience_text',
+        'career_opportunities',
+        'why_choose_us',
+        'certification_name',
+        'certification_authority',
+        'certification_description',
+        'certification_image_path',
+        'certification_skills',
+        'certification_benefits',
+        'section_config',
+        'trust_config',
+        'meta_keywords',
+        'og_image_path',
+        'robots_directive',
+        'canonical_url',
     ];
 
     /**
@@ -169,6 +198,13 @@ class Course extends Model
         'curriculum' => 'array',
         'highlights' => 'array',
         'target_audience' => 'array',
+        'learning_outcomes' => 'array',
+        'skills_covered' => 'array',
+        'why_choose_us' => 'array',
+        'certification_skills' => 'array',
+        'certification_benefits' => 'array',
+        'section_config' => 'array',
+        'trust_config' => 'array',
         'featured' => 'boolean',
         'fee' => 'integer',
         'discount_percent' => 'integer',
@@ -248,6 +284,138 @@ class Course extends Model
     }
 
     /**
+     * Get all certificates issued for this course.
+     */
+    public function certificates(): HasMany
+    {
+        return $this->hasMany(Certificate::class);
+    }
+
+    /**
+     * Get all FAQs created for this course.
+     */
+    public function faqs(): HasMany
+    {
+        return $this->hasMany(CourseFaq::class)->orderBy('sort_order', 'asc');
+    }
+
+    /**
+     * Get active FAQs for public display.
+     */
+    public function activeFaqs(): HasMany
+    {
+        return $this->hasMany(CourseFaq::class)->where('is_active', true)->orderBy('sort_order', 'asc');
+    }
+
+    /**
+     * Get all batches for this course.
+     */
+    public function batches(): HasMany
+    {
+        return $this->hasMany(CourseBatch::class)->orderBy('sort_order', 'asc')->orderBy('start_date', 'asc');
+    }
+
+    /**
+     * Get active upcoming batches for public display.
+     */
+    public function activeBatches(): HasMany
+    {
+        return $this->hasMany(CourseBatch::class)->where('is_active', true)->orderBy('sort_order', 'asc')->orderBy('start_date', 'asc');
+    }
+
+    /**
+     * Get all testimonials for this course.
+     */
+    public function testimonials(): HasMany
+    {
+        return $this->hasMany(CourseTestimonial::class)->orderBy('sort_order', 'asc');
+    }
+
+    /**
+     * Get published testimonials for public display.
+     */
+    public function publishedTestimonials(): HasMany
+    {
+        return $this->hasMany(CourseTestimonial::class)->where('is_published', true)->orderBy('sort_order', 'asc');
+    }
+
+    /**
+     * Get all industry / accreditation partners for this course.
+     */
+    public function partners(): HasMany
+    {
+        return $this->hasMany(CoursePartner::class)->orderBy('sort_order', 'asc');
+    }
+
+    /**
+     * Get active partners for public display.
+     */
+    public function activePartners(): HasMany
+    {
+        return $this->hasMany(CoursePartner::class)->where('is_active', true)->orderBy('sort_order', 'asc');
+    }
+
+    /**
+     * Get past URL slug redirects for this course.
+     */
+    public function slugRedirects(): HasMany
+    {
+        return $this->hasMany(CourseSlugRedirect::class);
+    }
+
+    /**
+     * Get the instructors assigned to this course.
+     */
+    public function instructors(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'course_instructors')
+            ->withPivot(['role_or_title', 'assigned_at', 'sort_order'])
+            ->withTimestamps();
+    }
+
+    /**
+     * Get centrally mapped trust and proof of work items for this course.
+     */
+    public function trustItems(): BelongsToMany
+    {
+        return $this->belongsToMany(TrustItem::class, 'trust_item_courses')
+            ->withPivot(['sort_order'])
+            ->withTimestamps()
+            ->orderByPivot('sort_order', 'asc');
+    }
+
+    /**
+     * Check if a specific user/instructor is assigned to this course.
+     */
+    public function hasInstructor(User $user): bool
+    {
+        return $this->instructors()
+            ->where('users.id', $user->id)
+            ->exists();
+    }
+
+    /**
+     * Assign an instructor to this course idempotently.
+     */
+    public function assignInstructor(User $user, ?string $roleOrTitle = 'Lead Instructor'): void
+    {
+        if (! $this->hasInstructor($user)) {
+            $this->instructors()->attach($user->id, [
+                'role_or_title' => $roleOrTitle ?? 'Lead Instructor',
+                'assigned_at' => now(),
+            ]);
+        }
+    }
+
+    /**
+     * Remove an assigned instructor from this course.
+     */
+    public function removeInstructor(User $user): void
+    {
+        $this->instructors()->detach($user->id);
+    }
+
+    /**
      * Check if course is currently open for enrollment.
      */
     public function isAvailableForEnrollment(): bool
@@ -293,6 +461,14 @@ class Course extends Model
     public function scopeFeatured(Builder $query): Builder
     {
         return $query->where('featured', true);
+    }
+
+    /**
+     * Get title alias for course name.
+     */
+    public function getTitleAttribute(): ?string
+    {
+        return $this->attributes['name'] ?? null;
     }
 
     /**
@@ -515,5 +691,178 @@ class Course extends Model
         }
 
         return route('courses.show', $this->slug);
+    }
+
+    /**
+     * Get resolved SEO Meta Title.
+     */
+    public function getResolvedSeoTitleAttribute(): string
+    {
+        if (! empty($this->seo_title)) {
+            return $this->seo_title;
+        }
+
+        return $this->name.' Certification Training Program | ZebLearn';
+    }
+
+    /**
+     * Get resolved SEO Meta Description.
+     */
+    public function getResolvedSeoDescriptionAttribute(): string
+    {
+        if (! empty($this->seo_description)) {
+            return $this->seo_description;
+        }
+
+        $source = $this->hero_description ?: ($this->short_description ?: $this->description);
+        $clean = trim(preg_replace('/\s+/', ' ', strip_tags($source ?? '')));
+
+        if ($clean !== '') {
+            return Str::limit($clean, 155);
+        }
+
+        return "Master {$this->name} with ZebLearn's live interactive cohort training, hands-on enterprise projects, expert mentorship, and global certification prep.";
+    }
+
+    /**
+     * Get resolved Canonical URL.
+     */
+    public function getResolvedCanonicalUrlAttribute(): string
+    {
+        if (! empty($this->canonical_url)) {
+            return $this->canonical_url;
+        }
+
+        return url('/courses/'.$this->slug);
+    }
+
+    /**
+     * Get resolved OG Image URL.
+     */
+    public function getResolvedOgImageAttribute(): string
+    {
+        if (! empty($this->og_image_path)) {
+            return filter_var($this->og_image_path, FILTER_VALIDATE_URL) ? $this->og_image_path : asset($this->og_image_path);
+        }
+
+        if (! empty($this->banner_path)) {
+            return filter_var($this->banner_path, FILTER_VALIDATE_URL) ? $this->banner_path : asset($this->banner_path);
+        }
+
+        if (! empty($this->thumbnail_path)) {
+            return filter_var($this->thumbnail_path, FILTER_VALIDATE_URL) ? $this->thumbnail_path : asset($this->thumbnail_path);
+        }
+
+        return asset('images/logo.png');
+    }
+
+    /**
+     * Get resolved section configuration with default ordering and visibility.
+     *
+     * @return array<string, array{visible: bool, order: int, title: string}>
+     */
+    public function getResolvedSectionConfigAttribute(): array
+    {
+        $defaultConfig = [
+            'hero' => ['visible' => true, 'order' => 10, 'title' => 'Hero Banner'],
+            'partners' => ['visible' => true, 'order' => 20, 'title' => 'Accreditation & Hiring Partners'],
+            'overview' => ['visible' => true, 'order' => 30, 'title' => 'Course Overview & Highlights'],
+            'outcomes' => ['visible' => true, 'order' => 40, 'title' => 'Learning Outcomes & Skills Covered'],
+            'placements' => ['visible' => true, 'order' => 50, 'title' => 'Verified Student Placements'],
+            'curriculum' => ['visible' => true, 'order' => 60, 'title' => 'Comprehensive Curriculum & Lessons'],
+            'faculty' => ['visible' => true, 'order' => 70, 'title' => 'Expert Faculty & Mentors'],
+            'projects' => ['visible' => true, 'order' => 80, 'title' => 'Industry Projects & Case Studies'],
+            'certification' => ['visible' => true, 'order' => 90, 'title' => 'Certification & Certificate Showcase'],
+            'testimonials' => ['visible' => true, 'order' => 100, 'title' => 'Verified Student Reviews'],
+            'video_stories' => ['visible' => true, 'order' => 105, 'title' => 'Student Video Stories'],
+            'batches' => ['visible' => true, 'order' => 110, 'title' => 'Upcoming Live Batches'],
+            'pricing' => ['visible' => true, 'order' => 120, 'title' => 'Tuition Fee & Financial Aid'],
+            'awards' => ['visible' => true, 'order' => 130, 'title' => 'Awards & Institutional Recognition'],
+            'faqs' => ['visible' => true, 'order' => 140, 'title' => 'Frequently Asked Questions'],
+            'related' => ['visible' => true, 'order' => 150, 'title' => 'Explore Related Programs'],
+            'cta' => ['visible' => true, 'order' => 160, 'title' => 'Final Call-to-Action Banner'],
+        ];
+
+        if (is_array($this->section_config) && ! empty($this->section_config)) {
+            foreach ($defaultConfig as $key => $default) {
+                if (isset($this->section_config[$key])) {
+                    $defaultConfig[$key]['visible'] = (bool) ($this->section_config[$key]['visible'] ?? $default['visible']);
+                    $defaultConfig[$key]['order'] = (int) ($this->section_config[$key]['order'] ?? $default['order']);
+                }
+            }
+        }
+
+        uasort($defaultConfig, fn ($a, $b) => $a['order'] <=> $b['order']);
+
+        return $defaultConfig;
+    }
+
+    /**
+     * Get resolved course-level trust & proof configuration.
+     *
+     * @return array{include_global: bool, sections: array<string, array{enabled: bool, limit: int, mode: string}>, manual_overrides: array<string, list<int>>}
+     */
+    public function getResolvedTrustConfigAttribute(): array
+    {
+        $default = [
+            'include_global' => true,
+            'sections' => [
+                'placements' => ['enabled' => true, 'limit' => 6, 'mode' => 'auto'],
+                'testimonials' => ['enabled' => true, 'limit' => 6, 'mode' => 'auto'],
+                'trainers' => ['enabled' => true, 'limit' => 3, 'mode' => 'auto'],
+                'certifications' => ['enabled' => true, 'limit' => 6, 'mode' => 'auto'],
+                'partners' => ['enabled' => true, 'limit' => 8, 'mode' => 'auto'],
+                'projects' => ['enabled' => true, 'limit' => 6, 'mode' => 'auto'],
+                'video_stories' => ['enabled' => true, 'limit' => 3, 'mode' => 'auto'],
+                'awards' => ['enabled' => true, 'limit' => 3, 'mode' => 'auto'],
+            ],
+            'manual_overrides' => [],
+        ];
+
+        if (is_array($this->trust_config) && ! empty($this->trust_config)) {
+            $default['include_global'] = (bool) ($this->trust_config['include_global'] ?? true);
+
+            if (isset($this->trust_config['sections']) && is_array($this->trust_config['sections'])) {
+                foreach ($default['sections'] as $key => $sectionDefaults) {
+                    if (isset($this->trust_config['sections'][$key])) {
+                        $default['sections'][$key]['enabled'] = (bool) ($this->trust_config['sections'][$key]['enabled'] ?? $sectionDefaults['enabled']);
+                        $default['sections'][$key]['limit'] = (int) ($this->trust_config['sections'][$key]['limit'] ?? $sectionDefaults['limit']);
+                        $default['sections'][$key]['mode'] = (string) ($this->trust_config['sections'][$key]['mode'] ?? $sectionDefaults['mode']);
+                    }
+                }
+            }
+
+            if (isset($this->trust_config['manual_overrides']) && is_array($this->trust_config['manual_overrides'])) {
+                $default['manual_overrides'] = $this->trust_config['manual_overrides'];
+            }
+        }
+
+        return $default;
+    }
+
+    /**
+     * Find related published courses for internal linking.
+     */
+    public function relatedCourses(int $limit = 3)
+    {
+        $categoryCourses = self::published()
+            ->where('id', '!=', $this->id)
+            ->where('category', $this->category)
+            ->orderBy('sort_order', 'asc')
+            ->limit($limit)
+            ->get();
+
+        if ($categoryCourses->count() < $limit) {
+            $fallback = self::published()
+                ->where('id', '!=', $this->id)
+                ->whereNotIn('id', $categoryCourses->pluck('id'))
+                ->orderBy('learner_count', 'desc')
+                ->limit($limit - $categoryCourses->count())
+                ->get();
+
+            $categoryCourses = $categoryCourses->concat($fallback);
+        }
+
+        return $categoryCourses;
     }
 }

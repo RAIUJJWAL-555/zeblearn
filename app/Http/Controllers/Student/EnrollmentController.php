@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Enrollment;
 use App\Models\User;
+use App\Services\NotificationService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -75,6 +76,8 @@ class EnrollmentController extends Controller
                 'admin_note' => null,
             ]);
 
+            app(NotificationService::class)->notifyAdminsNewEnrollment($existing);
+
             return redirect()->route('student.dashboard')->with(
                 'success',
                 "Your enrollment request for {$course->name} has been resubmitted for admin review."
@@ -82,13 +85,15 @@ class EnrollmentController extends Controller
         }
 
         // 5. Create fresh pending enrollment
-        Enrollment::create([
+        $enrollment = Enrollment::create([
             'user_id' => $user->id,
             'course_id' => $course->id,
             'status' => Enrollment::STATUS_PENDING,
             'enrollment_source' => 'web',
             'requested_at' => now(),
         ]);
+
+        app(NotificationService::class)->notifyAdminsNewEnrollment($enrollment);
 
         return redirect()->route('student.dashboard')->with(
             'success',

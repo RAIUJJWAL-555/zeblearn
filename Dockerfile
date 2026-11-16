@@ -33,14 +33,22 @@ RUN composer install \
 
 COPY --from=frontend /app/public/build ./public/build
 
+ENV APP_ENV=production \
+    APP_DEBUG=false \
+    LOG_CHANNEL=stderr \
+    LOG_LEVEL=debug
+
 RUN sed -ri 's!/var/www/html!/var/www/html/public!g' \
     /etc/apache2/sites-available/000-default.conf \
     && printf '\n<Directory /var/www/html/public>\nAllowOverride All\nRequire all granted\n</Directory>\n' \
     >> /etc/apache2/apache2.conf \
-    && mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views storage/logs bootstrap/cache \
-    && chown -R www-data:www-data storage bootstrap/cache \
-    && chmod -R ug+rwx storage bootstrap/cache
+    && mkdir -p storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs bootstrap/cache database \
+    && touch database/database.sqlite \
+    && chown -R www-data:www-data storage bootstrap/cache database \
+    && chmod -R ug+rwx storage bootstrap/cache database \
+    && chmod +x docker-entrypoint.sh \
+    && cp docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 
 EXPOSE 10000
 
-CMD ["bash", "-lc", "set -e; PORT=${PORT:-10000}; sed -i \"s/Listen 80/Listen ${PORT}/\" /etc/apache2/ports.conf; sed -i \"s/:80>/:${PORT}>/\" /etc/apache2/sites-available/000-default.conf; php artisan config:cache; apache2-foreground"]
+CMD ["/usr/local/bin/docker-entrypoint.sh"]

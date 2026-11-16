@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 40" width="100" height="40" aria-label="IBM">
+  <g fill="#0F62FE">
+    <rect x="0" y="2" width="24" height="2"/><rect x="30" y="2" width="36" height="2"/><rect x="72" y="2" width="28" height="2"/>
+    <rect x="0" y="7" width="24" height="2"/><rect x="30" y="7" width="36" height="2"/><rect x="72" y="7" width="28" height="2"/>
+    <rect x="8" y="12" width="8" height="2"/><rect x="30" y="12" width="36" height="2"/><rect x="72" y="12" width="8" height="2"/>
+    <rect x="82" y="12" width="8" height="2"/><rect x="92" y="12" width="8" height="2"/>
+    <rect x="8" y="17" width="8" height="2"/><rect x="30" y="17" width="36" height="2"/><rect x="72" y="17" width="8" height="2"/>
+    <rect x="82" y="17" width="8" height="2"/><rect x="92" y="17" width="8" height="2"/>
+    <rect x="8" y="22" width="8" height="2"/><rect x="30" y="22" width="36" height="2"/><rect x="72" y="22" width="8" height="2"/>
+    <rect x="82" y="22" width="8" height="2"/><rect x="92" y="22" width="8" height="2"/>
+    <rect x="8" y="27" width="8" height="2"/><rect x="30" y="27" width="36" height="2"/><rect x="72" y="27" width="8" height="2"/>
+    <rect x="82" y="27" width="8" height="2"/><rect x="92" y="27" width="8" height="2"/>
+    <rect x="0" y="32" width="24" height="2"/><rect x="30" y="32" width="36" height="2"/><rect x="72" y="32" width="28" height="2"/>
+    <rect x="0" y="37" width="24" height="2"/><rect x="30" y="37" width="36" height="2"/><rect x="72" y="37" width="28" height="2"/>
+  </g>
+</svg>
+

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 32" width="130" height="32" aria-label="Wipro">
+  <g transform="translate(14, 16)">
+    <circle cx="0" cy="-9" r="2.5" fill="#E03C31"/>
+    <circle cx="6.5" cy="-6.5" r="2.5" fill="#FFB81C"/>
+    <circle cx="9" cy="0" r="2.5" fill="#78BE20"/>
+    <circle cx="6.5" cy="6.5" r="2.5" fill="#00A3E0"/>
+    <circle cx="0" cy="9" r="2.5" fill="#0070AD"/>
+    <circle cx="-6.5" cy="6.5" r="2.5" fill="#7B2282"/>
+    <circle cx="-9" cy="0" r="2.5" fill="#9B26B6"/>
+    <circle cx="-6.5" cy="-6.5" r="2.5" fill="#C8102E"/>
+    <circle cx="0" cy="0" r="1.8" fill="#5C768D"/>
+  </g>
+  <text x="34" y="23" font-family="'Inter', sans-serif" font-size="20" font-weight="700" fill="#1F2937" letter-spacing="-0.02em">wipro</text>
+</svg>
+

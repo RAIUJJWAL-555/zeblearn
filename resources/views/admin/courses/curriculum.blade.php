@@ -519,15 +519,16 @@
     @endif
 
     {{-- MODAL 1: ADD MODULE --}}
-    <div
-        x-show="moduleModalOpen"
-        x-cloak
-        class="fixed inset-0 z-50 overflow-y-auto"
-        aria-labelledby="modal-title"
-        role="dialog"
-        aria-modal="true"
-    >
-        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <template x-teleport="body">
+        <div
+            x-show="moduleModalOpen"
+            x-cloak
+            class="relative z-[100]"
+            aria-labelledby="modal-title"
+            role="dialog"
+            aria-modal="true"
+        >
+            {{-- Backdrop Overlay --}}
             <div
                 x-show="moduleModalOpen"
                 x-transition:enter="ease-out duration-300"
@@ -536,550 +537,613 @@
                 x-transition:leave="ease-in duration-200"
                 x-transition:leave-start="opacity-100"
                 x-transition:leave-end="opacity-0"
-                class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity"
+                class="fixed inset-0 bg-slate-950/60 transition-opacity"
                 @click="moduleModalOpen = false"
+                aria-hidden="true"
             ></div>
 
-            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            {{-- Centering Container --}}
+            <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+                    {{-- Modal Dialog Panel --}}
+                    <div
+                        x-show="moduleModalOpen"
+                        x-transition:enter="ease-out duration-300"
+                        x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                        x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                        x-transition:leave="ease-in duration-200"
+                        x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                        x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                        class="relative w-full max-w-lg transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all sm:my-8 border border-slate-200"
+                        @click.stop
+                    >
+                        <form action="{{ route('admin.courses.modules.store', $course) }}" method="POST">
+                            @csrf
+                            <div class="p-6 sm:p-8 space-y-5">
+                                <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                                    <div>
+                                        <h3 class="text-lg font-bold text-slate-900 font-heading">Add Curriculum Module</h3>
+                                        <p class="text-xs text-slate-500 mt-0.5">Create a new sequential module for {{ $course->name }}</p>
+                                    </div>
+                                    <button type="button" @click="moduleModalOpen = false" class="text-slate-400 hover:text-slate-600 cursor-pointer">
+                                        <x-ui.icon name="close" size="sm" />
+                                    </button>
+                                </div>
 
-            <div
-                x-show="moduleModalOpen"
-                x-transition:enter="ease-out duration-300"
-                x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
-                x-transition:leave="ease-in duration-200"
-                x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
-                x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-                class="inline-block align-bottom bg-white rounded-3xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full border border-slate-200"
-            >
-                <form action="{{ route('admin.courses.modules.store', $course) }}" method="POST">
-                    @csrf
-                    <div class="p-6 sm:p-8 space-y-5">
-                        <div class="flex items-center justify-between border-b border-slate-100 pb-4">
-                            <div>
-                                <h3 class="text-lg font-bold text-slate-900 font-heading">Add Curriculum Module</h3>
-                                <p class="text-xs text-slate-500 mt-0.5">Create a new sequential module for {{ $course->name }}</p>
+                                <div>
+                                    <label for="module_title" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                                        Module Title <span class="text-rose-500">*</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="module_title"
+                                        name="title"
+                                        required
+                                        placeholder="e.g. Enterprise General Ledger & Document Splitting"
+                                        class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label for="module_description" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                                        Description <span class="text-slate-400 font-normal">(optional)</span>
+                                    </label>
+                                    <textarea
+                                        id="module_description"
+                                        name="description"
+                                        rows="3"
+                                        placeholder="Summary of topics covered in this module..."
+                                        class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs"
+                                    ></textarea>
+                                </div>
+
+                                <div>
+                                    <label for="module_status" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                                        Publishing Status <span class="text-rose-500">*</span>
+                                    </label>
+                                    <select
+                                        id="module_status"
+                                        name="status"
+                                        class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-medium cursor-pointer"
+                                    >
+                                        <option value="published" selected>Published (Visible to Enrolled Students)</option>
+                                        <option value="draft">Draft (Curriculum in Preparation)</option>
+                                    </select>
+                                </div>
                             </div>
-                            <button type="button" @click="moduleModalOpen = false" class="text-slate-400 hover:text-slate-600 cursor-pointer">
-                                <x-ui.icon name="close" size="sm" />
-                            </button>
-                        </div>
 
-                        <div>
-                            <label for="module_title" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
-                                Module Title <span class="text-rose-500">*</span>
-                            </label>
-                            <input
-                                type="text"
-                                id="module_title"
-                                name="title"
-                                required
-                                placeholder="e.g. Enterprise General Ledger & Document Splitting"
-                                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs"
-                            />
-                        </div>
-
-                        <div>
-                            <label for="module_description" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
-                                Description <span class="text-slate-400 font-normal">(optional)</span>
-                            </label>
-                            <textarea
-                                id="module_description"
-                                name="description"
-                                rows="3"
-                                placeholder="Summary of topics covered in this module..."
-                                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs"
-                            ></textarea>
-                        </div>
-
-                        <div>
-                            <label for="module_status" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
-                                Publishing Status <span class="text-rose-500">*</span>
-                            </label>
-                            <select
-                                id="module_status"
-                                name="status"
-                                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-medium cursor-pointer"
-                            >
-                                <option value="published" selected>Published (Visible to Enrolled Students)</option>
-                                <option value="draft">Draft (Curriculum in Preparation)</option>
-                            </select>
-                        </div>
+                            <div class="bg-slate-50 px-6 py-4 flex items-center justify-end gap-3 border-t border-slate-100">
+                                <x-ui.button
+                                    type="button"
+                                    @click="moduleModalOpen = false"
+                                    variant="secondary"
+                                    size="sm"
+                                >
+                                    Cancel
+                                </x-ui.button>
+                                <x-ui.button
+                                    type="submit"
+                                    variant="primary"
+                                    size="sm"
+                                >
+                                    Create Module
+                                </x-ui.button>
+                            </div>
+                        </form>
                     </div>
-
-                    <div class="bg-slate-50 px-6 py-4 flex items-center justify-end gap-3 border-t border-slate-100">
-                        <x-ui.button
-                            type="button"
-                            @click="moduleModalOpen = false"
-                            variant="secondary"
-                            size="sm"
-                        >
-                            Cancel
-                        </x-ui.button>
-                        <x-ui.button
-                            type="submit"
-                            variant="primary"
-                            size="sm"
-                        >
-                            Create Module
-                        </x-ui.button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
+    </template>
 
     {{-- MODAL 2: EDIT MODULE --}}
-    <div
-        x-show="moduleEditModalOpen"
-        x-cloak
-        class="fixed inset-0 z-50 overflow-y-auto"
-        role="dialog"
-        aria-modal="true"
-    >
-        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <template x-teleport="body">
+        <div
+            x-show="moduleEditModalOpen"
+            x-cloak
+            class="relative z-[100]"
+            role="dialog"
+            aria-modal="true"
+        >
+            {{-- Backdrop Overlay --}}
             <div
                 x-show="moduleEditModalOpen"
-                class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity"
+                x-transition:enter="ease-out duration-300"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="ease-in duration-200"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                class="fixed inset-0 bg-slate-950/60 transition-opacity"
                 @click="moduleEditModalOpen = false"
+                aria-hidden="true"
             ></div>
 
-            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            {{-- Centering Container --}}
+            <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+                    {{-- Modal Dialog Panel --}}
+                    <div
+                        x-show="moduleEditModalOpen"
+                        x-transition:enter="ease-out duration-300"
+                        x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                        x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                        x-transition:leave="ease-in duration-200"
+                        x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                        x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                        class="relative w-full max-w-lg transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all sm:my-8 border border-slate-200"
+                        @click.stop
+                    >
+                        <form :action="activeModule.updateUrl" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="p-6 sm:p-8 space-y-5">
+                                <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                                    <div>
+                                        <h3 class="text-lg font-bold text-slate-900 font-heading">Edit Curriculum Module</h3>
+                                        <p class="text-xs text-slate-500 mt-0.5">Update title, summary, or publication state</p>
+                                    </div>
+                                    <button type="button" @click="moduleEditModalOpen = false" class="text-slate-400 hover:text-slate-600 cursor-pointer">
+                                        <x-ui.icon name="close" size="sm" />
+                                    </button>
+                                </div>
 
-            <div
-                x-show="moduleEditModalOpen"
-                class="inline-block align-bottom bg-white rounded-3xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full border border-slate-200"
-            >
-                <form :action="activeModule.updateUrl" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <div class="p-6 sm:p-8 space-y-5">
-                        <div class="flex items-center justify-between border-b border-slate-100 pb-4">
-                            <div>
-                                <h3 class="text-lg font-bold text-slate-900 font-heading">Edit Curriculum Module</h3>
-                                <p class="text-xs text-slate-500 mt-0.5">Update title, summary, or publication state</p>
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                                        Module Title <span class="text-rose-500">*</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="title"
+                                        aria-label="Edit Module Title"
+                                        x-model="activeModule.title"
+                                        required
+                                        class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                                        Description <span class="text-slate-400 font-normal">(optional)</span>
+                                    </label>
+                                    <textarea
+                                        name="description"
+                                        aria-label="Edit Module Description"
+                                        x-model="activeModule.description"
+                                        rows="3"
+                                        class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs"
+                                    ></textarea>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                                        Publishing Status <span class="text-rose-500">*</span>
+                                    </label>
+                                    <select
+                                        name="status"
+                                        aria-label="Edit Module Publishing Status"
+                                        x-model="activeModule.status"
+                                        class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-medium cursor-pointer"
+                                    >
+                                        <option value="published">Published (Visible to Enrolled Students)</option>
+                                        <option value="draft">Draft (Curriculum in Preparation)</option>
+                                    </select>
+                                </div>
                             </div>
-                            <button type="button" @click="moduleEditModalOpen = false" class="text-slate-400 hover:text-slate-600 cursor-pointer">
-                                <x-ui.icon name="close" size="sm" />
-                            </button>
-                        </div>
 
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
-                                Module Title <span class="text-rose-500">*</span>
-                            </label>
-                            <input
-                                type="text"
-                                name="title"
-                                aria-label="Edit Module Title"
-                                x-model="activeModule.title"
-                                required
-                                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs"
-                            />
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
-                                Description <span class="text-slate-400 font-normal">(optional)</span>
-                            </label>
-                            <textarea
-                                name="description"
-                                aria-label="Edit Module Description"
-                                x-model="activeModule.description"
-                                rows="3"
-                                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs"
-                            ></textarea>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
-                                Publishing Status <span class="text-rose-500">*</span>
-                            </label>
-                            <select
-                                name="status"
-                                aria-label="Edit Module Publishing Status"
-                                x-model="activeModule.status"
-                                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-medium cursor-pointer"
-                            >
-                                <option value="published">Published (Visible to Enrolled Students)</option>
-                                <option value="draft">Draft (Curriculum in Preparation)</option>
-                            </select>
-                        </div>
+                            <div class="bg-slate-50 px-6 py-4 flex items-center justify-end gap-3 border-t border-slate-100">
+                                <x-ui.button
+                                    type="button"
+                                    @click="moduleEditModalOpen = false"
+                                    variant="secondary"
+                                    size="sm"
+                                >
+                                    Cancel
+                                </x-ui.button>
+                                <x-ui.button
+                                    type="submit"
+                                    variant="primary"
+                                    size="sm"
+                                >
+                                    Save Changes
+                                </x-ui.button>
+                            </div>
+                        </form>
                     </div>
-
-                    <div class="bg-slate-50 px-6 py-4 flex items-center justify-end gap-3 border-t border-slate-100">
-                        <x-ui.button
-                            type="button"
-                            @click="moduleEditModalOpen = false"
-                            variant="secondary"
-                            size="sm"
-                        >
-                            Cancel
-                        </x-ui.button>
-                        <x-ui.button
-                            type="submit"
-                            variant="primary"
-                            size="sm"
-                        >
-                            Save Changes
-                        </x-ui.button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
+    </template>
 
     {{-- MODAL 3: ADD LESSON --}}
-    <div
-        x-show="lessonModalOpen"
-        x-cloak
-        class="fixed inset-0 z-50 overflow-y-auto"
-        role="dialog"
-        aria-modal="true"
-    >
-        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <template x-teleport="body">
+        <div
+            x-show="lessonModalOpen"
+            x-cloak
+            class="relative z-[100]"
+            role="dialog"
+            aria-modal="true"
+        >
+            {{-- Backdrop Overlay --}}
             <div
                 x-show="lessonModalOpen"
-                class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity"
+                x-transition:enter="ease-out duration-300"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="ease-in duration-200"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                class="fixed inset-0 bg-slate-950/60 transition-opacity"
                 @click="lessonModalOpen = false"
+                aria-hidden="true"
             ></div>
 
-            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            {{-- Centering Container --}}
+            <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+                    {{-- Modal Dialog Panel --}}
+                    <div
+                        x-show="lessonModalOpen"
+                        x-transition:enter="ease-out duration-300"
+                        x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                        x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                        x-transition:leave="ease-in duration-200"
+                        x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                        x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                        x-data="{ contentType: 'text' }"
+                        class="relative w-full max-w-xl transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all sm:my-8 border border-slate-200"
+                        @click.stop
+                    >
+                        <form :action="activeModuleForLesson.storeUrl" method="POST">
+                            @csrf
+                            <div class="p-6 sm:p-8 space-y-5">
+                                <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                                    <div>
+                                        <h3 class="text-lg font-bold text-slate-900 font-heading">Add Lesson</h3>
+                                        <p class="text-xs text-slate-500 mt-0.5">
+                                            Adding to <span class="font-bold text-slate-800" x-text="activeModuleForLesson.title"></span>
+                                        </p>
+                                    </div>
+                                    <button type="button" @click="lessonModalOpen = false" class="text-slate-400 hover:text-slate-600 cursor-pointer">
+                                        <x-ui.icon name="close" size="sm" />
+                                    </button>
+                                </div>
 
-            <div
-                x-show="lessonModalOpen"
-                x-data="{ contentType: 'text' }"
-                class="inline-block align-bottom bg-white rounded-3xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full border border-slate-200"
-            >
-                <form :action="activeModuleForLesson.storeUrl" method="POST">
-                    @csrf
-                    <div class="p-6 sm:p-8 space-y-5">
-                        <div class="flex items-center justify-between border-b border-slate-100 pb-4">
-                            <div>
-                                <h3 class="text-lg font-bold text-slate-900 font-heading">Add Lesson</h3>
-                                <p class="text-xs text-slate-500 mt-0.5">
-                                    Adding to <span class="font-bold text-slate-800" x-text="activeModuleForLesson.title"></span>
-                                </p>
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                                        Lesson Title <span class="text-rose-500">*</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="title"
+                                        aria-label="Lesson Title"
+                                        required
+                                        placeholder="e.g. Configuring Zero-Balance Clearing Rules"
+                                        class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs"
+                                    />
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                                            Content Type <span class="text-rose-500">*</span>
+                                        </label>
+                                        <select
+                                            name="content_type"
+                                            aria-label="Lesson Content Type"
+                                            x-model="contentType"
+                                            required
+                                            class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-medium cursor-pointer"
+                                        >
+                                            <option value="text">Text Lesson (Reading &amp; Code)</option>
+                                            <option value="video">Video Lesson (External Streaming URL)</option>
+                                            <option value="resource">Resource Link (Sandbox / Drive / Docs)</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                                            Duration <span class="text-slate-400 font-normal">(minutes)</span>
+                                        </label>
+                                        <input
+                                            type="number"
+                                            name="duration_minutes"
+                                            aria-label="Lesson Duration in minutes"
+                                            min="1"
+                                            max="1440"
+                                            placeholder="e.g. 45"
+                                            class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-mono"
+                                        />
+                                    </div>
+                                </div>
+
+                                {{-- TYPE SPECIFIC INPUT: TEXT CONTENT --}}
+                                <div x-show="contentType === 'text'">
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                                        Lesson Text Content
+                                    </label>
+                                    <textarea
+                                        name="content"
+                                        aria-label="Lesson Text Content"
+                                        rows="5"
+                                        placeholder="Write the lesson reading material, code examples, steps, or configuration guidelines..."
+                                        class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-mono text-xs"
+                                    ></textarea>
+                                </div>
+
+                                {{-- TYPE SPECIFIC INPUT: VIDEO URL --}}
+                                <div x-show="contentType === 'video'">
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                                        Video Stream URL <span class="text-rose-500">*</span>
+                                    </label>
+                                    <input
+                                        type="url"
+                                        name="video_url"
+                                        aria-label="Video Stream URL"
+                                        placeholder="https://www.youtube.com/watch?v=... or https://vimeo.com/..."
+                                        class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-mono text-xs"
+                                    />
+                                </div>
+
+                                {{-- TYPE SPECIFIC INPUT: RESOURCE URL --}}
+                                <div x-show="contentType === 'resource'">
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                                        External Resource URL <span class="text-rose-500">*</span>
+                                    </label>
+                                    <input
+                                        type="url"
+                                        name="resource_url"
+                                        aria-label="External Resource URL"
+                                        placeholder="https://drive.google.com/... or https://sandbox.sap.zeblearn.com"
+                                        class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-mono text-xs"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                                        Short Lesson Summary <span class="text-slate-400 font-normal">(optional)</span>
+                                    </label>
+                                    <textarea
+                                        name="description"
+                                        aria-label="Lesson Summary"
+                                        rows="2"
+                                        placeholder="Quick outcome or bullet points for the lesson syllabus..."
+                                        class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs"
+                                    ></textarea>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                                        Publishing Status <span class="text-rose-500">*</span>
+                                    </label>
+                                    <select
+                                        name="status"
+                                        aria-label="Lesson Publishing Status"
+                                        class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-medium cursor-pointer"
+                                    >
+                                        <option value="published" selected>Published (Visible to Enrolled Students)</option>
+                                        <option value="draft">Draft (Content in Review)</option>
+                                    </select>
+                                </div>
                             </div>
-                            <button type="button" @click="lessonModalOpen = false" class="text-slate-400 hover:text-slate-600 cursor-pointer">
-                                <x-ui.icon name="close" size="sm" />
-                            </button>
-                        </div>
 
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
-                                Lesson Title <span class="text-rose-500">*</span>
-                            </label>
-                            <input
-                                type="text"
-                                name="title"
-                                aria-label="Lesson Title"
-                                required
-                                placeholder="e.g. Configuring Zero-Balance Clearing Rules"
-                                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs"
-                            />
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
-                                    Content Type <span class="text-rose-500">*</span>
-                                </label>
-                                <select
-                                    name="content_type"
-                                    aria-label="Lesson Content Type"
-                                    x-model="contentType"
-                                    required
-                                    class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-medium cursor-pointer"
+                            <div class="bg-slate-50 px-6 py-4 flex items-center justify-end gap-3 border-t border-slate-100">
+                                <x-ui.button
+                                    type="button"
+                                    @click="lessonModalOpen = false"
+                                    variant="secondary"
+                                    size="sm"
                                 >
-                                    <option value="text">Text Lesson (Reading &amp; Code)</option>
-                                    <option value="video">Video Lesson (External Streaming URL)</option>
-                                    <option value="resource">Resource Link (Sandbox / Drive / Docs)</option>
-                                </select>
+                                    Cancel
+                                </x-ui.button>
+                                <x-ui.button
+                                    type="submit"
+                                    variant="primary"
+                                    size="sm"
+                                >
+                                    Create Lesson
+                                </x-ui.button>
                             </div>
-
-                            <div>
-                                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
-                                    Duration <span class="text-slate-400 font-normal">(minutes)</span>
-                                </label>
-                                <input
-                                    type="number"
-                                    name="duration_minutes"
-                                    aria-label="Lesson Duration in minutes"
-                                    min="1"
-                                    max="1440"
-                                    placeholder="e.g. 45"
-                                    class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-mono"
-                                />
-                            </div>
-                        </div>
-
-                        {{-- TYPE SPECIFIC INPUT: TEXT CONTENT --}}
-                        <div x-show="contentType === 'text'">
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
-                                Lesson Text Content
-                            </label>
-                            <textarea
-                                name="content"
-                                aria-label="Lesson Text Content"
-                                rows="5"
-                                placeholder="Write the lesson reading material, code examples, steps, or configuration guidelines..."
-                                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-mono text-xs"
-                            ></textarea>
-                        </div>
-
-                        {{-- TYPE SPECIFIC INPUT: VIDEO URL --}}
-                        <div x-show="contentType === 'video'">
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
-                                Video Stream URL <span class="text-rose-500">*</span>
-                            </label>
-                            <input
-                                type="url"
-                                name="video_url"
-                                aria-label="Video Stream URL"
-                                placeholder="https://www.youtube.com/watch?v=... or https://vimeo.com/..."
-                                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-mono text-xs"
-                            />
-                        </div>
-
-                        {{-- TYPE SPECIFIC INPUT: RESOURCE URL --}}
-                        <div x-show="contentType === 'resource'">
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
-                                External Resource URL <span class="text-rose-500">*</span>
-                            </label>
-                            <input
-                                type="url"
-                                name="resource_url"
-                                aria-label="External Resource URL"
-                                placeholder="https://drive.google.com/... or https://sandbox.sap.zeblearn.com"
-                                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-mono text-xs"
-                            />
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
-                                Short Lesson Summary <span class="text-slate-400 font-normal">(optional)</span>
-                            </label>
-                            <textarea
-                                name="description"
-                                aria-label="Lesson Summary"
-                                rows="2"
-                                placeholder="Quick outcome or bullet points for the lesson syllabus..."
-                                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs"
-                            ></textarea>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
-                                Publishing Status <span class="text-rose-500">*</span>
-                            </label>
-                            <select
-                                name="status"
-                                aria-label="Lesson Publishing Status"
-                                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-medium cursor-pointer"
-                            >
-                                <option value="published" selected>Published (Visible to Enrolled Students)</option>
-                                <option value="draft">Draft (Content in Review)</option>
-                            </select>
-                        </div>
+                        </form>
                     </div>
-
-                    <div class="bg-slate-50 px-6 py-4 flex items-center justify-end gap-3 border-t border-slate-100">
-                        <x-ui.button
-                            type="button"
-                            @click="lessonModalOpen = false"
-                            variant="secondary"
-                            size="sm"
-                        >
-                            Cancel
-                        </x-ui.button>
-                        <x-ui.button
-                            type="submit"
-                            variant="primary"
-                            size="sm"
-                        >
-                            Create Lesson
-                        </x-ui.button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
+    </template>
 
     {{-- MODAL 4: EDIT LESSON --}}
-    <div
-        x-show="lessonEditModalOpen"
-        x-cloak
-        class="fixed inset-0 z-50 overflow-y-auto"
-        role="dialog"
-        aria-modal="true"
-    >
-        <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <template x-teleport="body">
+        <div
+            x-show="lessonEditModalOpen"
+            x-cloak
+            class="relative z-[100]"
+            role="dialog"
+            aria-modal="true"
+        >
+            {{-- Backdrop Overlay --}}
             <div
                 x-show="lessonEditModalOpen"
-                class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity"
+                x-transition:enter="ease-out duration-300"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+                x-transition:leave="ease-in duration-200"
+                x-transition:leave-start="opacity-100"
+                x-transition:leave-end="opacity-0"
+                class="fixed inset-0 bg-slate-950/60 transition-opacity"
                 @click="lessonEditModalOpen = false"
+                aria-hidden="true"
             ></div>
 
-            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            {{-- Centering Container --}}
+            <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+                <div class="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
+                    {{-- Modal Dialog Panel --}}
+                    <div
+                        x-show="lessonEditModalOpen"
+                        x-transition:enter="ease-out duration-300"
+                        x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                        x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                        x-transition:leave="ease-in duration-200"
+                        x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                        x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                        class="relative w-full max-w-xl transform overflow-hidden rounded-2xl bg-white text-left shadow-2xl transition-all sm:my-8 border border-slate-200"
+                        @click.stop
+                    >
+                        <form :action="activeLesson.updateUrl" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="p-6 sm:p-8 space-y-5">
+                                <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+                                    <div>
+                                        <h3 class="text-lg font-bold text-slate-900 font-heading">Edit Lesson</h3>
+                                        <p class="text-xs text-slate-500 mt-0.5">Modify content, duration, URL, or publish status</p>
+                                    </div>
+                                    <button type="button" @click="lessonEditModalOpen = false" class="text-slate-400 hover:text-slate-600 cursor-pointer">
+                                        <x-ui.icon name="close" size="sm" />
+                                    </button>
+                                </div>
 
-            <div
-                x-show="lessonEditModalOpen"
-                class="inline-block align-bottom bg-white rounded-3xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full border border-slate-200"
-            >
-                <form :action="activeLesson.updateUrl" method="POST">
-                    @csrf
-                    @method('PUT')
-                    <div class="p-6 sm:p-8 space-y-5">
-                        <div class="flex items-center justify-between border-b border-slate-100 pb-4">
-                            <div>
-                                <h3 class="text-lg font-bold text-slate-900 font-heading">Edit Lesson</h3>
-                                <p class="text-xs text-slate-500 mt-0.5">Modify content, duration, URL, or publish status</p>
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                                        Lesson Title <span class="text-rose-500">*</span>
+                                    </label>
+                                    <input
+                                        type="text"
+                                        name="title"
+                                        aria-label="Edit Lesson Title"
+                                        x-model="activeLesson.title"
+                                        required
+                                        class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs"
+                                    />
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                                            Content Type <span class="text-rose-500">*</span>
+                                        </label>
+                                        <select
+                                            name="content_type"
+                                            aria-label="Edit Lesson Content Type"
+                                            x-model="activeLesson.content_type"
+                                            required
+                                            class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-medium cursor-pointer"
+                                        >
+                                            <option value="text">Text Lesson</option>
+                                            <option value="video">Video Lesson</option>
+                                            <option value="resource">Resource Link</option>
+                                        </select>
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                                            Duration (minutes)
+                                        </label>
+                                        <input
+                                            type="number"
+                                            name="duration_minutes"
+                                            aria-label="Edit Lesson Duration in minutes"
+                                            min="1"
+                                            max="1440"
+                                            x-model="activeLesson.duration_minutes"
+                                            class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-mono"
+                                        />
+                                    </div>
+                                </div>
+
+                                {{-- TYPE SPECIFIC INPUT: TEXT CONTENT --}}
+                                <div x-show="activeLesson.content_type === 'text'">
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                                        Lesson Text Content
+                                    </label>
+                                    <textarea
+                                        name="content"
+                                        aria-label="Edit Lesson Text Content"
+                                        rows="5"
+                                        x-model="activeLesson.content"
+                                        class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-mono text-xs"
+                                    ></textarea>
+                                </div>
+
+                                {{-- TYPE SPECIFIC INPUT: VIDEO URL --}}
+                                <div x-show="activeLesson.content_type === 'video'">
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                                        Video Stream URL
+                                    </label>
+                                    <input
+                                        type="url"
+                                        name="video_url"
+                                        aria-label="Edit Video Stream URL"
+                                        x-model="activeLesson.video_url"
+                                        class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-mono text-xs"
+                                    />
+                                </div>
+
+                                {{-- TYPE SPECIFIC INPUT: RESOURCE URL --}}
+                                <div x-show="activeLesson.content_type === 'resource'">
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                                        External Resource URL
+                                    </label>
+                                    <input
+                                        type="url"
+                                        name="resource_url"
+                                        aria-label="Edit External Resource URL"
+                                        x-model="activeLesson.resource_url"
+                                        class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-mono text-xs"
+                                    />
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                                        Description
+                                    </label>
+                                    <textarea
+                                        name="description"
+                                        aria-label="Edit Lesson Description"
+                                        x-model="activeLesson.description"
+                                        rows="2"
+                                        class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs"
+                                    ></textarea>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                                        Publishing Status <span class="text-rose-500">*</span>
+                                    </label>
+                                    <select
+                                        name="status"
+                                        aria-label="Edit Lesson Publishing Status"
+                                        x-model="activeLesson.status"
+                                        class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-medium cursor-pointer"
+                                    >
+                                        <option value="published">Published (Visible to Enrolled Students)</option>
+                                        <option value="draft">Draft (Content in Review)</option>
+                                    </select>
+                                </div>
                             </div>
-                            <button type="button" @click="lessonEditModalOpen = false" class="text-slate-400 hover:text-slate-600 cursor-pointer">
-                                <x-ui.icon name="close" size="sm" />
-                            </button>
-                        </div>
 
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
-                                Lesson Title <span class="text-rose-500">*</span>
-                            </label>
-                            <input
-                                type="text"
-                                name="title"
-                                aria-label="Edit Lesson Title"
-                                x-model="activeLesson.title"
-                                required
-                                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs"
-                            />
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
-                                    Content Type <span class="text-rose-500">*</span>
-                                </label>
-                                <select
-                                    name="content_type"
-                                    aria-label="Edit Lesson Content Type"
-                                    x-model="activeLesson.content_type"
-                                    required
-                                    class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-medium cursor-pointer"
+                            <div class="bg-slate-50 px-6 py-4 flex items-center justify-end gap-3 border-t border-slate-100">
+                                <x-ui.button
+                                    type="button"
+                                    @click="lessonEditModalOpen = false"
+                                    variant="secondary"
+                                    size="sm"
                                 >
-                                    <option value="text">Text Lesson</option>
-                                    <option value="video">Video Lesson</option>
-                                    <option value="resource">Resource Link</option>
-                                </select>
+                                    Cancel
+                                </x-ui.button>
+                                <x-ui.button
+                                    type="submit"
+                                    variant="primary"
+                                    size="sm"
+                                >
+                                    Save Changes
+                                </x-ui.button>
                             </div>
-
-                            <div>
-                                <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
-                                    Duration (minutes)
-                                </label>
-                                <input
-                                    type="number"
-                                    name="duration_minutes"
-                                    aria-label="Edit Lesson Duration in minutes"
-                                    min="1"
-                                    max="1440"
-                                    x-model="activeLesson.duration_minutes"
-                                    class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-mono"
-                                />
-                            </div>
-                        </div>
-
-                        {{-- TYPE SPECIFIC INPUT: TEXT CONTENT --}}
-                        <div x-show="activeLesson.content_type === 'text'">
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
-                                Lesson Text Content
-                            </label>
-                            <textarea
-                                name="content"
-                                aria-label="Edit Lesson Text Content"
-                                rows="5"
-                                x-model="activeLesson.content"
-                                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-mono text-xs"
-                            ></textarea>
-                        </div>
-
-                        {{-- TYPE SPECIFIC INPUT: VIDEO URL --}}
-                        <div x-show="activeLesson.content_type === 'video'">
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
-                                Video Stream URL
-                            </label>
-                            <input
-                                type="url"
-                                name="video_url"
-                                aria-label="Edit Video Stream URL"
-                                x-model="activeLesson.video_url"
-                                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-mono text-xs"
-                            />
-                        </div>
-
-                        {{-- TYPE SPECIFIC INPUT: RESOURCE URL --}}
-                        <div x-show="activeLesson.content_type === 'resource'">
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
-                                External Resource URL
-                            </label>
-                            <input
-                                type="url"
-                                name="resource_url"
-                                aria-label="Edit External Resource URL"
-                                x-model="activeLesson.resource_url"
-                                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-mono text-xs"
-                            />
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
-                                Description
-                            </label>
-                            <textarea
-                                name="description"
-                                aria-label="Edit Lesson Description"
-                                x-model="activeLesson.description"
-                                rows="2"
-                                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs"
-                            ></textarea>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
-                                Publishing Status <span class="text-rose-500">*</span>
-                            </label>
-                            <select
-                                name="status"
-                                aria-label="Edit Lesson Publishing Status"
-                                x-model="activeLesson.status"
-                                class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-medium cursor-pointer"
-                            >
-                                <option value="published">Published (Visible to Enrolled Students)</option>
-                                <option value="draft">Draft (Content in Review)</option>
-                            </select>
-                        </div>
+                        </form>
                     </div>
-
-                    <div class="bg-slate-50 px-6 py-4 flex items-center justify-end gap-3 border-t border-slate-100">
-                        <x-ui.button
-                            type="button"
-                            @click="lessonEditModalOpen = false"
-                            variant="secondary"
-                            size="sm"
-                        >
-                            Cancel
-                        </x-ui.button>
-                        <x-ui.button
-                            type="submit"
-                            variant="primary"
-                            size="sm"
-                        >
-                            Save Changes
-                        </x-ui.button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
+    </template>
 </div>
 @endsection

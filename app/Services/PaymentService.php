@@ -248,7 +248,7 @@ class PaymentService
         $paymentMethod = $gatewayPayment['method'] ?? 'online';
 
         // 6. Transactional state change with row-level locking
-        return DB::transaction(function () use ($payment, $paymentId, $signature, $paymentMethod, $user) {
+        $result = DB::transaction(function () use ($payment, $paymentId, $signature, $paymentMethod, $user) {
             $lockedPayment = Payment::where('id', $payment->id)->lockForUpdate()->first();
 
             if (! $lockedPayment || $lockedPayment->isPaid()) {
@@ -294,6 +294,12 @@ class PaymentService
 
             return $lockedPayment;
         });
+
+        if ($result && $result->isPaid()) {
+            app(NotificationService::class)->notifyPaymentSuccess($result);
+        }
+
+        return $result;
     }
 
     /**
@@ -386,6 +392,7 @@ class PaymentService
                 }
 
                 $payment->update(['enrollment_id' => $enrollment->id]);
+                app(NotificationService::class)->notifyPaymentSuccess($payment);
             });
         } elseif ($eventType === 'order.paid') {
             $paymentEntity = $payload['payment']['entity'] ?? [];
@@ -451,6 +458,7 @@ class PaymentService
                 }
 
                 $payment->update(['enrollment_id' => $enrollment->id]);
+                app(NotificationService::class)->notifyPaymentSuccess($payment);
             });
         } elseif ($eventType === 'payment.authorized') {
             $paymentEntity = $payload['payment']['entity'] ?? [];
@@ -489,6 +497,7 @@ class PaymentService
                         'status' => Payment::STATUS_FAILED,
                         'failure_reason' => $errorDescription,
                     ]);
+                    app(NotificationService::class)->notifyPaymentFailed($payment, $errorDescription);
                 });
             }
         }

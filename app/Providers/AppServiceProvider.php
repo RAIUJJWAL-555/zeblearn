@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,6 +22,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Explicit route model binding for instructor parameter
+        Route::model('instructor', User::class);
+
         // Strict role-specific gates
         Gate::define('admin-only', function (User $user): bool {
             return $user->isAdmin() && $user->isActive();

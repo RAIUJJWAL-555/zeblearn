@@ -14,13 +14,13 @@
 
         <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div class="space-y-3 max-w-2xl">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-xs font-mono text-[#FB6221]">
-                    <span class="w-2 h-2 rounded-full bg-[#FB6221] animate-pulse"></span>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white border border-white/15 text-[11px] font-mono font-bold tracking-wider uppercase">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                     <span>ADMINISTRATION CONSOLE • REAL-TIME TELEMETRY</span>
                 </div>
 
                 <h1 class="text-2xl sm:text-3xl xl:text-4xl font-extrabold font-heading text-white tracking-tight">
-                    Welcome back, {{ auth()->user()->name }} 👋
+                    Welcome back, {{ auth()->user()->name }} 
                 </h1>
 
                 <p class="text-slate-300 text-sm sm:text-base leading-relaxed">

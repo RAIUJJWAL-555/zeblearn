@@ -612,3 +612,46 @@ test('23. structural settings cannot be modified once submissions exist', functi
     expect($assignment->fresh()->max_marks)->toBe(100);
     expect($assignment->fresh()->max_attempts)->toBe(1);
 });
+
+// 24. Assignment dates support datetime range beyond 2038 and validate order.
+test('24. assignment dates support datetime range beyond 2038 and validate order', function () {
+    $ctx = setupAssignmentTestContext();
+    $admin = User::factory()->admin()->create();
+
+    // 1. Replicating the exact payload with year 5030 and 9224
+    $response = $this->actingAs($admin)->post(route('admin.assignments.store'), [
+        'course_id' => $ctx['course']->id,
+        'course_module_id' => $ctx['module']->id,
+        'lesson_id' => $ctx['lesson']->id,
+        'title' => 'SAP MM Procure-to-Pay Cycle – Business Process Analysis',
+        'description' => 'Analyze a real-world procurement scenario.',
+        'instructions' => 'Task 1: Explain the complete Procure-to-Pay cycle.',
+        'max_marks' => 100,
+        'passing_marks' => 60,
+        'start_at' => '5030-04-03 15:40:00',
+        'due_at' => '9224-04-15 03:45:00',
+        'allow_late_submissions' => '0',
+        'late_penalty_percent' => 0,
+        'max_attempts' => 1,
+        'allow_text_submission' => '1',
+        'allow_file_submission' => '1',
+        'allowed_file_types' => 'pdf,doc,docx,zip,txt',
+        'max_file_size_mb' => 10,
+    ]);
+
+    $response->assertRedirect();
+    $created = Assignment::where('slug', 'sap-mm-procure-to-pay-cycle-business-process-analysis')->first();
+    expect($created)->not->toBeNull();
+    expect($created->start_at->format('Y-m-d H:i:s'))->toBe('5030-04-03 15:40:00');
+    expect($created->due_at->format('Y-m-d H:i:s'))->toBe('9224-04-15 03:45:00');
+
+    // 2. Due date before start date is rejected by validation
+    $invalidResponse = $this->actingAs($admin)->post(route('admin.assignments.store'), [
+        'course_id' => $ctx['course']->id,
+        'course_module_id' => $ctx['module']->id,
+        'title' => 'Invalid Date Order Assignment',
+        'start_at' => '2026-06-01 10:00:00',
+        'due_at' => '2026-05-01 10:00:00',
+    ]);
+    $invalidResponse->assertSessionHasErrors(['due_at']);
+});

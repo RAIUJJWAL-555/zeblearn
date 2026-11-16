@@ -1,22 +1,37 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminAnalyticsController;
 use App\Http\Controllers\Admin\AdminAssignmentController;
+use App\Http\Controllers\Admin\AdminCertificateController;
 use App\Http\Controllers\Admin\AdminCourseController;
 use App\Http\Controllers\Admin\AdminCurriculumController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminEnrollmentController;
+use App\Http\Controllers\Admin\AdminInstructorController;
 use App\Http\Controllers\Admin\AdminPaymentController;
 use App\Http\Controllers\Admin\AdminQuizController;
 use App\Http\Controllers\Admin\AdminQuizQuestionController;
+use App\Http\Controllers\Admin\AdminSettingController;
+use App\Http\Controllers\Admin\AdminTrustItemController;
+use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Instructor\InstructorAnalyticsController;
+use App\Http\Controllers\Instructor\InstructorAssignmentController;
+use App\Http\Controllers\Instructor\InstructorCourseController;
+use App\Http\Controllers\Instructor\InstructorDashboardController;
+use App\Http\Controllers\Instructor\InstructorProfileController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Student\EnrollmentController;
 use App\Http\Controllers\Student\PaymentController;
+use App\Http\Controllers\Student\StudentAnalyticsController;
 use App\Http\Controllers\Student\StudentAssignmentController;
+use App\Http\Controllers\Student\StudentCertificateController;
 use App\Http\Controllers\Student\StudentCourseController;
 use App\Http\Controllers\Student\StudentDashboardController;
+use App\Http\Controllers\Student\StudentProfileController;
 use App\Http\Controllers\Student\StudentQuizController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,6 +54,11 @@ Route::middleware('guest')->group(function () {
 // Authenticated session management
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+    // Centralized Notification Actions
+    Route::post('/notifications/{id}/mark-read', [NotificationController::class, 'markAsRead'])->name('notifications.mark-read');
+    Route::post('/notifications/mark-all-read', [NotificationController::class, 'markAllAsRead'])->name('notifications.mark-all-read');
+    Route::get('/notifications/{id}/go', [NotificationController::class, 'readAndRedirect'])->name('notifications.read-and-redirect');
 });
 
 // Student routes: Learning area, dashboard, enrollment and payments
@@ -77,10 +97,52 @@ Route::middleware(['auth', 'role:student'])->group(function () {
         ->name('student.checkout.verify');
     Route::get('/student/payments', [PaymentController::class, 'history'])->name('student.payments.history');
     Route::get('/student/payments/{payment}', [PaymentController::class, 'receipt'])->name('student.payments.receipt');
+
+    // Student Certificates
+    Route::get('/student/certificates', [StudentCertificateController::class, 'index'])->name('student.certificates.index');
+    Route::get('/student/certificates/{certificate}', [StudentCertificateController::class, 'show'])->name('student.certificates.show');
+    Route::get('/student/certificates/{certificate}/download', [StudentCertificateController::class, 'download'])->name('student.certificates.download');
+
+    // Student Notifications
+    Route::get('/student/notifications', [NotificationController::class, 'studentIndex'])->name('student.notifications.index');
+
+    // Student Profile & Learning Profile
+    Route::get('/student/profile', [StudentProfileController::class, 'show'])->name('student.profile.show');
+    Route::get('/student/profile/edit', [StudentProfileController::class, 'edit'])->name('student.profile.edit');
+    Route::put('/student/profile', [StudentProfileController::class, 'update'])->name('student.profile.update');
+    Route::delete('/student/profile/avatar', [StudentProfileController::class, 'destroyAvatar'])->name('student.profile.avatar.destroy');
+    Route::put('/student/profile/password', [StudentProfileController::class, 'updatePassword'])->name('student.profile.password.update');
+    Route::get('/student/learning-profile', [StudentProfileController::class, 'learningProfile'])->name('student.profile.learning');
+    Route::get('/student/analytics', [StudentAnalyticsController::class, 'index'])->name('student.analytics.index');
 });
 
-Route::middleware(['auth', 'role:instructor'])->group(function () {
-    Route::get('/instructor/dashboard', fn () => response('Instructor Dashboard Placeholder'))->name('instructor.dashboard');
+Route::middleware(['auth', 'role:instructor'])->prefix('instructor')->name('instructor.')->group(function () {
+    Route::get('/dashboard', [InstructorDashboardController::class, 'index'])->name('dashboard');
+
+    // Instructor Performance Analytics
+    Route::get('/analytics', [InstructorAnalyticsController::class, 'index'])->name('analytics.index');
+    Route::get('/analytics/export', [InstructorAnalyticsController::class, 'export'])->name('analytics.export');
+
+    // Assigned Course Management & Student Progress
+    Route::get('/courses', [InstructorCourseController::class, 'index'])->name('courses.index');
+    Route::get('/courses/{course}', [InstructorCourseController::class, 'show'])->name('courses.show');
+    Route::get('/courses/{course}/students', [InstructorCourseController::class, 'students'])->name('courses.students');
+
+    // Assignment Submissions & Grading
+    Route::get('/assignments', [InstructorAssignmentController::class, 'index'])->name('assignments.index');
+    Route::get('/assignments/{assignment}/submissions/{submission}', [InstructorAssignmentController::class, 'submissionShow'])->name('assignments.submissions.show');
+    Route::post('/assignments/{assignment}/submissions/{submission}/grade', [InstructorAssignmentController::class, 'grade'])->name('assignments.submissions.grade');
+    Route::get('/assignments/{assignment}/submissions/{submission}/files/{file}/download', [InstructorAssignmentController::class, 'downloadFile'])->name('assignments.files.download');
+
+    // Instructor Notifications
+    Route::get('/notifications', [NotificationController::class, 'instructorIndex'])->name('notifications.index');
+
+    // Instructor Faculty Profile
+    Route::get('/profile', [InstructorProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/edit', [InstructorProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [InstructorProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile/avatar', [InstructorProfileController::class, 'destroyAvatar'])->name('profile.avatar.destroy');
+    Route::put('/profile/password', [InstructorProfileController::class, 'updatePassword'])->name('profile.password.update');
 });
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
@@ -90,6 +152,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('/courses', [AdminCourseController::class, 'index'])->name('courses.index');
     Route::get('/courses/create', [AdminCourseController::class, 'create'])->name('courses.create');
     Route::post('/courses', [AdminCourseController::class, 'store'])->name('courses.store');
+    Route::get('/courses/{course}/preview', [AdminCourseController::class, 'preview'])->name('courses.preview');
     Route::get('/courses/{course}/edit', [AdminCourseController::class, 'edit'])->name('courses.edit');
     Route::put('/courses/{course}', [AdminCourseController::class, 'update'])->name('courses.update');
     Route::delete('/courses/{course}', [AdminCourseController::class, 'destroy'])->name('courses.destroy');
@@ -105,6 +168,15 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::put('/courses/{course}/modules/{module}/lessons/{lesson}', [AdminCurriculumController::class, 'updateLesson'])->name('courses.lessons.update');
     Route::delete('/courses/{course}/modules/{module}/lessons/{lesson}', [AdminCurriculumController::class, 'destroyLesson'])->name('courses.lessons.destroy');
     Route::match(['post', 'patch'], '/courses/{course}/modules/{module}/lessons/reorder', [AdminCurriculumController::class, 'reorderLessons'])->name('courses.lessons.reorder');
+
+    // Centralized Trust & Proof of Work Library
+    Route::get('/trust', [AdminTrustItemController::class, 'index'])->name('trust.index');
+    Route::get('/trust/create', [AdminTrustItemController::class, 'create'])->name('trust.create');
+    Route::post('/trust', [AdminTrustItemController::class, 'store'])->name('trust.store');
+    Route::get('/trust/{trustItem}/edit', [AdminTrustItemController::class, 'edit'])->name('trust.edit');
+    Route::put('/trust/{trustItem}', [AdminTrustItemController::class, 'update'])->name('trust.update');
+    Route::delete('/trust/{trustItem}', [AdminTrustItemController::class, 'destroy'])->name('trust.destroy');
+    Route::patch('/trust/{trustItem}/toggle-status', [AdminTrustItemController::class, 'toggleStatus'])->name('trust.toggle-status');
 
     // Student Enrollment Approvals & Management
     Route::get('/enrollments', [AdminEnrollmentController::class, 'index'])->name('enrollments.index');
@@ -146,4 +218,40 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('/assignments/{assignment}/submissions/{submission}', [AdminAssignmentController::class, 'submissionShow'])->name('assignments.submissions.show');
     Route::post('/assignments/{assignment}/submissions/{submission}/grade', [AdminAssignmentController::class, 'grade'])->name('assignments.submissions.grade');
     Route::get('/assignments/{assignment}/submissions/{submission}/files/{file}/download', [AdminAssignmentController::class, 'downloadFile'])->name('assignments.files.download');
+
+    // Certificate Registry & Management
+    Route::get('/certificates', [AdminCertificateController::class, 'index'])->name('certificates.index');
+    Route::get('/certificates/{certificate}', [AdminCertificateController::class, 'show'])->name('certificates.show');
+    Route::post('/certificates/{certificate}/revoke', [AdminCertificateController::class, 'revoke'])->name('certificates.revoke');
+    Route::get('/certificates/{certificate}/download', [AdminCertificateController::class, 'download'])->name('certificates.download');
+
+    // Instructor Management
+    Route::resource('instructors', AdminInstructorController::class);
+    Route::patch('/instructors/{instructor}/toggle-status', [AdminInstructorController::class, 'toggleStatus'])->name('instructors.toggle-status');
+    Route::post('/instructors/{instructor}/courses', [AdminInstructorController::class, 'assignCourse'])->name('instructors.courses.assign');
+    Route::delete('/instructors/{instructor}/courses/{course}', [AdminInstructorController::class, 'unassignCourse'])->name('instructors.courses.unassign');
+
+    // Admin Notifications
+    Route::get('/notifications', [NotificationController::class, 'adminIndex'])->name('notifications.index');
+
+    // Platform User & Student Management Directory
+    Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
+    Route::get('/users/{user}', [AdminUserController::class, 'show'])->name('users.show');
+    Route::get('/users/{user}/edit', [AdminUserController::class, 'edit'])->name('users.edit');
+    Route::put('/users/{user}', [AdminUserController::class, 'update'])->name('users.update');
+    Route::patch('/users/{user}/toggle-status', [AdminUserController::class, 'toggleStatus'])->name('users.toggle-status');
+    Route::delete('/users/{user}', [AdminUserController::class, 'destroy'])->name('users.destroy');
+
+    // Platform Analytics & Reporting Hub
+    Route::get('/analytics', [AdminAnalyticsController::class, 'index'])->name('analytics.index');
+    Route::get('/analytics/revenue', [AdminAnalyticsController::class, 'revenue'])->name('analytics.revenue');
+    Route::get('/analytics/enrollments', [AdminAnalyticsController::class, 'enrollments'])->name('analytics.enrollments');
+    Route::get('/analytics/courses', [AdminAnalyticsController::class, 'courses'])->name('analytics.courses');
+    Route::get('/analytics/students', [AdminAnalyticsController::class, 'students'])->name('analytics.students');
+    Route::get('/analytics/instructors', [AdminAnalyticsController::class, 'instructors'])->name('analytics.instructors');
+    Route::get('/analytics/export/{type}', [AdminAnalyticsController::class, 'export'])->name('analytics.export');
+
+    // System Settings & Platform Configuration
+    Route::get('/settings', [AdminSettingController::class, 'index'])->name('settings.index');
+    Route::put('/settings', [AdminSettingController::class, 'update'])->name('settings.update');
 });

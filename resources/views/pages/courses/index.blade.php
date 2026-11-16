@@ -9,7 +9,7 @@
 @section('og_image', 'https://sap.zeblearn.com/images/zeblearn-home-og.webp')
 @section('twitter_title', 'All Professional Courses | Multi-Module Enterprise Academy | ZebLearn')
 @section('twitter_description', 'Explore industry-leading professional courses in SAP ERP, Workday, Salesforce, Data Science, Cloud Computing, Cyber Security, Digital Marketing and more at ZebLearn.')
-@section('robots', 'index,follow,max-image-preview:large')
+@section('robots', $robotsDirective ?? 'index,follow,max-image-preview:large')
 
 @push('schema')
 @verbatim
@@ -228,6 +228,73 @@
     <!-- COURSE CATALOG SECTION -->
     <section class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 pb-20 w-full" id="catalog">
         
+        <!-- Search & Advanced Filter Bar -->
+        <div class="bg-white rounded-2xl p-4 sm:p-6 border border-slate-200/90 shadow-xs mb-6">
+            <form method="GET" action="{{ route('courses.index') }}" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 items-center">
+                <input type="hidden" name="category" value="{{ $activeCategory }}">
+                <input type="hidden" name="status" value="{{ $activeStatus }}">
+
+                <!-- Search Input -->
+                <div class="lg:col-span-5 relative">
+                    <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">search</span>
+                    <input
+                        type="text"
+                        name="q"
+                        value="{{ $searchQuery ?? '' }}"
+                        placeholder="Search courses, skills, ERP modules (e.g. FICO, ABAP, Workday)..."
+                        class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-900 placeholder:text-slate-400 focus:bg-white focus:border-[#FB6221] focus:ring-1 focus:ring-[#FB6221] transition-all"
+                    >
+                </div>
+
+                <!-- Delivery Mode Filter -->
+                <div class="lg:col-span-3">
+                    <select
+                        name="delivery_mode"
+                        class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 focus:bg-white focus:border-[#FB6221] focus:ring-1 focus:ring-[#FB6221] transition-all"
+                    >
+                        <option value="all" {{ ($activeDeliveryMode ?? 'all') === 'all' ? 'selected' : '' }}>All Delivery Modes</option>
+                        <option value="Live Online" {{ ($activeDeliveryMode ?? '') === 'Live Online' ? 'selected' : '' }}>Live Online Cohort</option>
+                        <option value="Self-Paced" {{ ($activeDeliveryMode ?? '') === 'Self-Paced' ? 'selected' : '' }}>Self-Paced</option>
+                        <option value="Classroom" {{ ($activeDeliveryMode ?? '') === 'Classroom' ? 'selected' : '' }}>Classroom Hybrid</option>
+                    </select>
+                </div>
+
+                <!-- Sort Selector -->
+                <div class="lg:col-span-2">
+                    <select
+                        name="sort"
+                        class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 focus:bg-white focus:border-[#FB6221] focus:ring-1 focus:ring-[#FB6221] transition-all"
+                    >
+                        <option value="default" {{ ($activeSort ?? 'default') === 'default' ? 'selected' : '' }}>Default Order</option>
+                        <option value="newest" {{ ($activeSort ?? '') === 'newest' ? 'selected' : '' }}>Newest</option>
+                        <option value="popular" {{ ($activeSort ?? '') === 'popular' ? 'selected' : '' }}>Most Popular</option>
+                        <option value="price_asc" {{ ($activeSort ?? '') === 'price_asc' ? 'selected' : '' }}>Price: Low to High</option>
+                        <option value="price_desc" {{ ($activeSort ?? '') === 'price_desc' ? 'selected' : '' }}>Price: High to Low</option>
+                        <option value="name_asc" {{ ($activeSort ?? '') === 'name_asc' ? 'selected' : '' }}>Name: A to Z</option>
+                    </select>
+                </div>
+
+                <!-- Submit & Clear Buttons -->
+                <div class="lg:col-span-2 flex items-center gap-2">
+                    <button
+                        type="submit"
+                        class="flex-1 py-2.5 px-4 bg-[#FB6221] hover:bg-[#e05214] text-white font-mono text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-xs text-center"
+                    >
+                        Search
+                    </button>
+                    @if (!empty($searchQuery) || ($activeDeliveryMode ?? 'all') !== 'all' || ($activeSort ?? 'default') !== 'default' || $activeCategory !== 'all' || $activeStatus !== 'all')
+                        <a
+                            href="{{ route('courses.index') }}"
+                            class="py-2.5 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-mono text-xs font-semibold rounded-xl transition-all text-center"
+                            title="Reset all filters"
+                        >
+                            Reset
+                        </a>
+                    @endif
+                </div>
+            </form>
+        </div>
+
         <!-- Interactive Category and Status Filters -->
         <x-course.filters :activeCategory="$activeCategory" :activeStatus="$activeStatus" />
 
@@ -313,6 +380,12 @@
                 @endforeach
             </div>
         </div>
+
+        @if ($courses->hasPages())
+            <div class="my-8 flex justify-center">
+                {{ $courses->links() }}
+            </div>
+        @endif
 
         <!-- ACADEMY ADVISORY CTA BANNER -->
         <x-course.cta />

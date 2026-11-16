@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 36" width="120" height="36" aria-label="PwC">
+  <g transform="translate(0, 4)">
+    <rect x="0" y="0" width="8" height="8" fill="#DC143C" rx="1"/>
+    <rect x="9" y="0" width="8" height="8" fill="#EB8C00" rx="1"/>
+    <rect x="0" y="9" width="8" height="8" fill="#EB1C24" rx="1"/>
+    <rect x="9" y="9" width="8" height="8" fill="#B71234" rx="1"/>
+    <rect x="18" y="9" width="6" height="8" fill="#FFB600" rx="1"/>
+    <rect x="9" y="18" width="8" height="6" fill="#D04A02" rx="1"/>
+  </g>
+  <text x="32" y="25" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="24" font-weight="900" fill="#2D2D2D" letter-spacing="-0.04em">pwc</text>
+</svg>
+

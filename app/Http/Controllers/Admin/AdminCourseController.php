@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Course;
 use App\Models\LessonProgress;
+use App\Models\User;
+use App\Services\CourseCmsService;
+use App\Services\TrustProofService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -16,6 +19,10 @@ use Illuminate\View\View;
 
 class AdminCourseController extends Controller
 {
+    public function __construct(
+        protected CourseCmsService $cmsService
+    ) {}
+
     /**
      * Display a paginated listing of courses with search and filters.
      */
@@ -68,6 +75,8 @@ class AdminCourseController extends Controller
      */
     public function create(): View
     {
+        $availableInstructors = User::whereIn('role', ['instructor', 'admin'])->orderBy('name')->get();
+
         return view('admin.courses.create', [
             'course' => new Course([
                 'status' => 'available',
@@ -76,8 +85,10 @@ class AdminCourseController extends Controller
                 'modules_count' => 12,
                 'duration' => '3 Months',
                 'delivery_mode' => 'Live Online + Real System Practice',
+                'robots_directive' => 'index, follow',
             ]),
             'categories' => $this->getCategories(),
+            'availableInstructors' => $availableInstructors,
         ]);
     }
 
@@ -100,8 +111,31 @@ class AdminCourseController extends Controller
             $validated['slug'] = $slug;
         }
 
-        // Highlights transformation
-        $validated['highlights'] = $this->parseHighlights($request->input('highlights'));
+        // Harmonize & Sanitize Pricing
+        if (! empty($validated['discount']) && empty($validated['discount_percent'])) {
+            $validated['discount_percent'] = (int) filter_var($validated['discount'], FILTER_SANITIZE_NUMBER_INT);
+        }
+        if (! empty($validated['overview']) && empty($validated['description'])) {
+            $validated['description'] = $validated['overview'];
+        }
+        $validated = $this->cmsService->harmonizePricing($validated);
+
+        // Highlights & Outcomes transformation
+        $validated['highlights'] = $this->parseList($request->input('highlights'));
+        $validated['learning_outcomes'] = $this->parseList($request->input('learning_outcomes'));
+        $validated['skills_covered'] = $this->parseList($request->input('skills_covered'));
+        $validated['certification_skills'] = $this->parseList($request->input('certification_skills'));
+        $validated['certification_benefits'] = $this->parseList($request->input('certification_benefits'));
+
+        // Handle section configuration
+        if ($request->has('section_config') && is_array($request->input('section_config'))) {
+            $validated['section_config'] = $request->input('section_config');
+        }
+
+        // Handle trust & proof configuration
+        if ($request->has('trust_config') && is_array($request->input('trust_config'))) {
+            $validated['trust_config'] = $request->input('trust_config');
+        }
 
         // Published at handling
         $validated['published_at'] = $request->boolean('is_published') ? now() : null;
@@ -112,6 +146,25 @@ class AdminCourseController extends Controller
 
         $course = Course::create($validated);
 
+        // Sync Repeaters
+        if ($request->has('faqs')) {
+            $this->cmsService->syncFaqs($course, is_array($request->input('faqs')) ? $request->input('faqs') : []);
+        }
+        if ($request->has('batches')) {
+            $this->cmsService->syncBatches($course, is_array($request->input('batches')) ? $request->input('batches') : []);
+        }
+        if ($request->has('testimonials') && is_array($request->input('testimonials'))) {
+            $this->cmsService->syncTestimonials($course, $request->input('testimonials'));
+        }
+        if ($request->has('partners') && is_array($request->input('partners'))) {
+            $this->cmsService->syncPartners($course, $request->input('partners'));
+        }
+        if ($request->has('faculty') && is_array($request->input('faculty'))) {
+            $this->cmsService->syncFaculty($course, $request->input('faculty'));
+        }
+
+        $this->cmsService->invalidateCourseCache($course);
+
         return redirect()->route('admin.courses.index')
             ->with('success', "Course '{$course->name}' has been created successfully.");
     }
@@ -121,9 +174,20 @@ class AdminCourseController extends Controller
      */
     public function edit(Course $course): View
     {
+        $course->load([
+            'faqs',
+            'batches',
+            'testimonials',
+            'partners',
+            'instructors',
+        ]);
+
+        $availableInstructors = User::whereIn('role', ['instructor', 'admin'])->orderBy('name')->get();
+
         return view('admin.courses.edit', [
             'course' => $course,
             'categories' => $this->getCategories(),
+            'availableInstructors' => $availableInstructors,
         ]);
     }
 
@@ -134,12 +198,38 @@ class AdminCourseController extends Controller
     {
         $validated = $this->validateCourse($request, $course->id);
 
+        $oldSlug = $course->slug;
+
         if (empty($validated['slug'])) {
             $validated['slug'] = Str::slug($validated['name']);
         }
+        $newSlug = $validated['slug'];
 
-        // Highlights transformation
-        $validated['highlights'] = $this->parseHighlights($request->input('highlights'));
+        // Harmonize & Sanitize Pricing
+        if (! empty($validated['discount']) && empty($validated['discount_percent'])) {
+            $validated['discount_percent'] = (int) filter_var($validated['discount'], FILTER_SANITIZE_NUMBER_INT);
+        }
+        if (! empty($validated['overview']) && empty($validated['description'])) {
+            $validated['description'] = $validated['overview'];
+        }
+        $validated = $this->cmsService->harmonizePricing($validated);
+
+        // List transformations
+        $validated['highlights'] = $this->parseList($request->input('highlights'));
+        $validated['learning_outcomes'] = $this->parseList($request->input('learning_outcomes'));
+        $validated['skills_covered'] = $this->parseList($request->input('skills_covered'));
+        $validated['certification_skills'] = $this->parseList($request->input('certification_skills'));
+        $validated['certification_benefits'] = $this->parseList($request->input('certification_benefits'));
+
+        // Handle section configuration
+        if ($request->has('section_config') && is_array($request->input('section_config'))) {
+            $validated['section_config'] = $request->input('section_config');
+        }
+
+        // Handle trust & proof configuration
+        if ($request->has('trust_config') && is_array($request->input('trust_config'))) {
+            $validated['trust_config'] = $request->input('trust_config');
+        }
 
         // Published at handling
         if ($request->boolean('is_published')) {
@@ -155,8 +245,63 @@ class AdminCourseController extends Controller
 
         $course->update($validated);
 
+        // Check if slug changed; record 301 permanent redirect
+        if ($oldSlug !== $newSlug) {
+            $this->cmsService->recordSlugChange($course, $oldSlug, $newSlug);
+        }
+
+        // Sync Repeaters
+        if ($request->has('faqs')) {
+            $this->cmsService->syncFaqs($course, is_array($request->input('faqs')) ? $request->input('faqs') : []);
+        }
+        if ($request->has('batches')) {
+            $this->cmsService->syncBatches($course, is_array($request->input('batches')) ? $request->input('batches') : []);
+        }
+        if ($request->has('testimonials') && is_array($request->input('testimonials'))) {
+            $this->cmsService->syncTestimonials($course, $request->input('testimonials'));
+        }
+        if ($request->has('partners') && is_array($request->input('partners'))) {
+            $this->cmsService->syncPartners($course, $request->input('partners'));
+        }
+        if ($request->has('faculty') && is_array($request->input('faculty'))) {
+            $this->cmsService->syncFaculty($course, $request->input('faculty'));
+        }
+
+        $this->cmsService->invalidateCourseCache($course);
+
         return redirect()->route('admin.courses.index')
             ->with('success', "Course '{$course->name}' has been updated successfully.");
+    }
+
+    /**
+     * Preview the course landing page as admin in preview mode.
+     */
+    public function preview(Course $course): View
+    {
+        $course->load([
+            'modules' => function ($query) {
+                $query->ordered()->withCount('lessons')->with(['lessons' => function ($lq) {
+                    $lq->ordered();
+                }]);
+            },
+            'instructors' => function ($query) {
+                $query->orderByPivot('sort_order', 'asc');
+            },
+            'activeFaqs',
+            'activeBatches',
+            'publishedTestimonials',
+            'activePartners',
+        ]);
+
+        $trustRecords = app(TrustProofService::class)->getRecordsForCourse($course);
+
+        return view('pages.courses.landing', [
+            'course' => $course,
+            'enrollment' => null,
+            'relatedCourses' => $course->relatedCourses(3),
+            'isPreview' => true,
+            'trustRecords' => $trustRecords,
+        ]);
     }
 
     /**
@@ -171,6 +316,8 @@ class AdminCourseController extends Controller
         $course->update([
             'status' => $validated['status'],
         ]);
+
+        $this->cmsService->invalidateCourseCache($course);
 
         return back()->with('success', "Status for '{$course->name}' has been updated to ".ucfirst($validated['status']).'.');
     }
@@ -202,6 +349,7 @@ class AdminCourseController extends Controller
         }
 
         $name = $course->name;
+        $this->cmsService->invalidateCourseCache($course);
         $course->delete();
 
         return redirect()->route('admin.courses.index')
@@ -223,11 +371,13 @@ class AdminCourseController extends Controller
             'status' => ['required', 'string', 'in:available,upcoming,planned'],
             'short_description' => ['required', 'string'],
             'description' => ['nullable', 'string'],
+            'overview' => ['nullable', 'string'],
             'duration' => ['nullable', 'string', 'max:100'],
             'modules_count' => ['nullable', 'integer', 'min:0'],
             'delivery_mode' => ['nullable', 'string', 'max:255'],
             'fee' => ['nullable', 'integer', 'min:0'],
             'discount_percent' => ['nullable', 'integer', 'min:0', 'max:100'],
+            'discount' => ['nullable', 'string'],
             'original_fee' => ['nullable', 'integer', 'min:0'],
             'badge_label' => ['nullable', 'string', 'max:100'],
             'tag_badge' => ['nullable', 'string', 'max:50'],
@@ -235,21 +385,54 @@ class AdminCourseController extends Controller
             'sort_order' => ['nullable', 'integer'],
             'seo_title' => ['nullable', 'string', 'max:255'],
             'seo_description' => ['nullable', 'string'],
+
+            // CMS & SEO Fields
+            'thumbnail_path' => ['nullable', 'string', 'max:255'],
+            'banner_path' => ['nullable', 'string', 'max:255'],
+            'hero_heading' => ['nullable', 'string', 'max:255'],
+            'hero_subtitle' => ['nullable', 'string', 'max:255'],
+            'hero_description' => ['nullable', 'string'],
+            'hero_cta_text' => ['nullable', 'string', 'max:100'],
+            'hero_cta_url' => ['nullable', 'string', 'max:255'],
+            'secondary_cta_text' => ['nullable', 'string', 'max:100'],
+            'secondary_cta_url' => ['nullable', 'string', 'max:255'],
+            'learning_outcomes' => ['nullable'],
+            'skills_covered' => ['nullable'],
+            'course_objectives' => ['nullable', 'string'],
+            'prerequisites' => ['nullable', 'string'],
+            'target_audience_text' => ['nullable', 'string'],
+            'career_opportunities' => ['nullable', 'string'],
+            'certification_name' => ['nullable', 'string', 'max:255'],
+            'certification_authority' => ['nullable', 'string', 'max:255'],
+            'certification_description' => ['nullable', 'string'],
+            'certification_image_path' => ['nullable', 'string', 'max:255'],
+            'certification_skills' => ['nullable'],
+            'certification_benefits' => ['nullable'],
+            'meta_keywords' => ['nullable', 'string', 'max:255'],
+            'og_image_path' => ['nullable', 'string', 'max:255'],
+            'robots_directive' => ['nullable', 'string', 'max:100'],
+            'canonical_url' => ['nullable', 'string', 'max:255'],
+            'section_config' => ['nullable', 'array'],
+            'trust_config' => ['nullable', 'array'],
         ]);
     }
 
     /**
-     * Parse highlights textarea into an array.
+     * Parse multi-line string or array input into clean string array.
      *
      * @return list<string>
      */
-    protected function parseHighlights(?string $highlightsInput): array
+    protected function parseList(mixed $input): array
     {
-        if (! $highlightsInput) {
+        if (is_array($input)) {
+            return array_values(array_filter(array_map('trim', $input)));
+        }
+
+        if (! is_string($input) || trim($input) === '') {
             return [];
         }
 
-        $lines = array_map('trim', explode("\n", $highlightsInput));
+        $lines = array_map('trim', explode("\n", $input));
 
         return array_values(array_filter($lines));
     }

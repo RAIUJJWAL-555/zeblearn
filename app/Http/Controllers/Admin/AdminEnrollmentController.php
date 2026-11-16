@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\Enrollment;
+use App\Services\NotificationService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -100,6 +101,8 @@ class AdminEnrollmentController extends Controller
             ]);
         });
 
+        app(NotificationService::class)->notifyStudentEnrollmentApproved($enrollment);
+
         return back()->with(
             'success',
             "Enrollment for {$enrollment->user->name} in {$enrollment->course->name} approved. Course access is now granted."
@@ -123,6 +126,8 @@ class AdminEnrollmentController extends Controller
                 'admin_note' => $validated['admin_note'] ?? 'Enrollment request declined by admissions team.',
             ]);
         });
+
+        app(NotificationService::class)->notifyStudentEnrollmentRejected($enrollment, $validated['admin_note'] ?? null);
 
         return back()->with(
             'success',

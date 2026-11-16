@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 32" width="150" height="32" aria-label="Capgemini">
+  <path d="M12,4 C14.5,7 18,10.5 19,13.5 C19.8,16 18,18.5 15.5,18.5 C13.5,18.5 12.5,17 12,15.5 C11.5,17 10.5,18.5 8.5,18.5 C6,18.5 4.2,16 5,13.5 C6,10.5 9.5,7 12,4 Z M11,18 L13,18 L14,24 L10,24 Z" fill="#0070AD"/>
+  <text x="26" y="22" font-family="'Inter', sans-serif" font-size="19" font-weight="700" fill="#111827" letter-spacing="-0.03em">Capgemini</text>
+</svg>
+

@@ -11,9 +11,19 @@
         <x-ui.card padding="md" class="border-slate-200/90 shadow-2xs">
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div class="flex items-center gap-4">
-                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#0A0A0A] to-slate-800 text-white flex items-center justify-center font-heading font-black text-2xl shadow-sm shrink-0 border border-slate-700">
-                        {{ strtoupper(substr($user->name, 0, 2)) }}
-                    </div>
+                    <a href="{{ route('student.profile.show') }}" class="group shrink-0" title="View Profile">
+                        @if ($user->avatarUrl())
+                            <img
+                                src="{{ $user->avatarUrl() }}"
+                                alt="{{ $user->name }}"
+                                class="w-16 h-16 rounded-2xl object-cover border border-slate-200 shadow-sm group-hover:scale-102 transition-transform"
+                            />
+                        @else
+                            <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#0A0A0A] to-slate-800 text-white flex items-center justify-center font-heading font-black text-2xl shadow-sm border border-slate-700 group-hover:scale-102 transition-transform">
+                                {{ strtoupper(substr($user->name, 0, 2)) }}
+                            </div>
+                        @endif
+                    </a>
                     <div>
                         <div class="flex items-center gap-2.5 flex-wrap">
                             <span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-mono font-bold uppercase tracking-wider bg-orange-50 text-[#FB6221] border border-orange-200">
@@ -37,12 +47,57 @@
 
                 <div class="flex items-center gap-2.5 flex-wrap">
                     <x-ui.button
+                        href="{{ route('student.analytics.index') }}"
+                        variant="secondary"
+                        size="sm"
+                    >
+                        <svg class="w-4 h-4 text-[#FB6221] mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                        Analytics
+                    </x-ui.button>
+
+                    <x-ui.button
+                        href="{{ route('student.profile.show') }}"
+                        variant="secondary"
+                        size="sm"
+                        icon="user"
+                    >
+                        My Profile
+                    </x-ui.button>
+
+                    @if (($totalCertificates ?? 0) > 0)
+                        <x-ui.button
+                            href="{{ route('student.certificates.index') }}"
+                            variant="secondary"
+                            size="sm"
+                            icon="academic-cap"
+                        >
+                            My Certificates
+                        </x-ui.button>
+                    @endif
+
+                    <x-ui.button
                         href="{{ route('student.payments.history') }}"
                         variant="secondary"
                         size="sm"
                         icon="credit-card"
                     >
                         My Payments
+                    </x-ui.button>
+
+                    <x-ui.button
+                        href="{{ route('student.notifications.index') }}"
+                        variant="secondary"
+                        size="sm"
+                        icon="bell"
+                    >
+                        Notifications
+                        @if (auth()->user()->unreadNotifications()->count() > 0)
+                            <span class="ml-1.5 px-1.5 py-0.5 rounded-full text-[10px] font-mono font-bold bg-[#FB6221] text-white">
+                                {{ auth()->user()->unreadNotifications()->count() }}
+                            </span>
+                        @endif
                     </x-ui.button>
 
                     <x-ui.button
@@ -90,14 +145,14 @@
         @endif
 
         {{-- LEARNING KPI METRICS GRID --}}
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div class="grid grid-cols-2 sm:grid-cols-3 {{ ($totalCertificates ?? 0) > 0 ? 'lg:grid-cols-6' : 'lg:grid-cols-5' }} gap-4">
             <x-ui.card padding="sm" class="space-y-1">
                 <div class="flex items-center justify-between">
                     <span class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400">Enrolled Courses</span>
                     <x-ui.icon name="academic-cap" size="xs" class="text-slate-400" />
                 </div>
                 <span class="text-2xl sm:text-3xl font-black text-slate-900 font-heading block">{{ $totalEnrolled }}</span>
-                <span class="text-[11px] text-slate-500 font-sans block">Approved academy seats</span>
+                <span class="text-[11px] text-slate-500 font-sans block">Approved seats</span>
             </x-ui.card>
 
             <x-ui.card padding="sm" class="space-y-1">
@@ -106,7 +161,7 @@
                     <x-ui.icon name="check-circle" size="xs" class="text-emerald-500" />
                 </div>
                 <span class="text-2xl sm:text-3xl font-black text-slate-900 font-heading block">{{ $totalCompletedLessons }}</span>
-                <span class="text-[11px] text-slate-500 font-sans block">Verified completions</span>
+                <span class="text-[11px] text-slate-500 font-sans block">Verified lessons</span>
             </x-ui.card>
 
             <x-ui.card padding="sm" class="space-y-1">
@@ -124,10 +179,10 @@
                     <x-ui.icon name="shield-check" size="xs" class="text-emerald-600" />
                 </div>
                 <span class="text-2xl sm:text-3xl font-black text-emerald-600 font-heading block">{{ $completedCoursesCount }}</span>
-                <span class="text-[11px] text-slate-500 font-sans block">Fully completed courses</span>
+                <span class="text-[11px] text-slate-500 font-sans block">Completed courses</span>
             </x-ui.card>
 
-            <x-ui.card padding="sm" class="col-span-2 sm:col-span-1 space-y-1">
+            <x-ui.card padding="sm" class="space-y-1">
                 <div class="flex items-center justify-between">
                     <span class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400">Quiz Attempts</span>
                     <x-ui.icon name="academic-cap" size="xs" class="text-[#FB6221]" />
@@ -137,6 +192,17 @@
                     {{ $passedQuizAttempts }} Passed
                 </span>
             </x-ui.card>
+
+            @if (($totalCertificates ?? 0) > 0)
+                <x-ui.card padding="sm" class="space-y-1">
+                    <div class="flex items-center justify-between">
+                        <span class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-400">Certificates</span>
+                        <x-ui.icon name="academic-cap" size="xs" class="text-[#FB6221]" />
+                    </div>
+                    <span class="text-2xl sm:text-3xl font-black text-[#FB6221] font-heading block">{{ $totalCertificates }}</span>
+                    <span class="text-[11px] text-slate-500 font-sans block">Earned awards</span>
+                </x-ui.card>
+            @endif
         </div>
 
         {{-- CONTINUE LEARNING HERO SECTION --}}
@@ -726,6 +792,79 @@
                 </x-ui.card>
             </div>
         </div>
+
+        @if ($recentCertificates->isNotEmpty())
+            {{-- SECTION 6: EARNED CERTIFICATES & CREDENTIALS --}}
+            <div class="space-y-4 pt-4">
+                <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-[#FB6221]"></span>
+                        <h2 class="font-heading text-lg sm:text-xl font-bold uppercase tracking-tight text-slate-900">
+                            Earned Certificates &amp; Credentials
+                        </h2>
+                    </div>
+                    <x-ui.button
+                        href="{{ route('student.certificates.index') }}"
+                        variant="ghost"
+                        size="xs"
+                        icon="arrow-right"
+                        class="text-[#FB6221] hover:text-[#e05214]"
+                    >
+                        View All Certificates
+                    </x-ui.button>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    @foreach ($recentCertificates as $cert)
+                        <x-ui.card padding="md" class="relative group hover:border-[#FB6221]/40 transition-all flex flex-col justify-between">
+                            <div class="space-y-3">
+                                <div class="flex items-start justify-between gap-2">
+                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase tracking-wider bg-slate-100 text-slate-700 border border-slate-200">
+                                        {{ $cert->certificate_number }}
+                                    </span>
+                                    @if ($cert->isRevoked())
+                                        <x-ui.badge variant="error" size="xs">Revoked</x-ui.badge>
+                                    @else
+                                        <x-ui.badge variant="success" size="xs" dot>Verified</x-ui.badge>
+                                    @endif
+                                </div>
+                                <div>
+                                    <h4 class="font-heading font-black text-sm text-slate-900 group-hover:text-[#FB6221] transition-colors line-clamp-1">
+                                        {{ $cert->course?->name }}
+                                    </h4>
+                                    <p class="text-[11px] text-slate-500 font-sans mt-0.5">
+                                        Issued {{ $cert->issued_at->format('d M Y') }}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="pt-4 mt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+                                <a href="{{ route('certificates.verify', $cert->certificate_number) }}" target="_blank" class="text-[11px] font-mono text-slate-400 hover:text-slate-700 underline">
+                                    Public Link
+                                </a>
+                                <div class="flex items-center gap-1.5">
+                                    <x-ui.button
+                                        href="{{ route('student.certificates.show', $cert) }}"
+                                        variant="secondary"
+                                        size="xs"
+                                    >
+                                        View
+                                    </x-ui.button>
+                                    <x-ui.button
+                                        href="{{ route('student.certificates.download', $cert) }}"
+                                        variant="dark"
+                                        size="xs"
+                                        icon="arrow-down-tray"
+                                    >
+                                        PDF
+                                    </x-ui.button>
+                                </div>
+                            </div>
+                        </x-ui.card>
+                    @endforeach
+                </div>
+            </div>
+        @endif
 
     </div>
 </div>

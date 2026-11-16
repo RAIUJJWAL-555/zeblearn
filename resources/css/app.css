@@ -1,5 +1,32 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   INTER FONT FAMILY — LOCAL HOSTED WOFF2 WITH SYSTEM FALLBACKS
+   ========================================================================== */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: local('Inter'),
+       local('Inter Variable'),
+       url('/fonts/inter-latin.woff2') format('woff2-variations'),
+       url('/fonts/inter-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: local('Inter'),
+       local('Inter Variable'),
+       url('/fonts/inter-latin-ext.woff2') format('woff2-variations'),
+       url('/fonts/inter-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
 @theme {
   --color-on-secondary-fixed-variant: #6a3b15;
   --color-on-surface: #241912;
@@ -57,20 +84,20 @@
   --color-canvas-glow: #F0F1F3;
   --color-on-tertiary: #ffffff;
   --color-on-error-container: #93000a;
-  --font-heading: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-display: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  --font-display-xl: "Poppins", system-ui, -apple-system, sans-serif;
-  --font-display-lg: "Poppins", system-ui, -apple-system, sans-serif;
-  --font-display-lg-mobile: "Poppins", system-ui, -apple-system, sans-serif;
-  --font-display-xl-mobile: "Poppins", system-ui, -apple-system, sans-serif;
-  --font-headline-xl: "Poppins", system-ui, -apple-system, sans-serif;
-  --font-headline-xl-mobile: "Poppins", system-ui, -apple-system, sans-serif;
-  --font-headline-lg: "Poppins", system-ui, -apple-system, sans-serif;
-  --font-headline-sm: "Poppins", system-ui, -apple-system, sans-serif;
-  --font-headline: "Poppins", system-ui, -apple-system, sans-serif;
+  --font-display-xl: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display-lg: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display-lg-mobile: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display-xl-mobile: "Inter", system-ui, -apple-system, sans-serif;
+  --font-headline-xl: "Inter", system-ui, -apple-system, sans-serif;
+  --font-headline-xl-mobile: "Inter", system-ui, -apple-system, sans-serif;
+  --font-headline-lg: "Inter", system-ui, -apple-system, sans-serif;
+  --font-headline-sm: "Inter", system-ui, -apple-system, sans-serif;
+  --font-headline: "Inter", system-ui, -apple-system, sans-serif;
   --font-body-xl: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-body-lg: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-body-md: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
@@ -163,17 +190,23 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
   body {
     margin: 0;
     min-width: 320px;
-    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 0.9375rem; /* 15px default body */
+    line-height: 1.6;
     color: #0A0A0A;
     background-color: #FAFAF8;
-    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
   img { max-width: 100%; height: auto; }
   a:focus-visible, button:focus-visible { outline: 3px solid #FB6221; outline-offset: 3px; }
@@ -183,6 +216,7 @@
 
   /* Prevent CLS during font-display: swap for Material Symbols */
   .material-symbols-outlined {
+    font-family: 'Material Symbols Outlined' !important;
     display: inline-block;
     width: 1em;
     height: 1em;
@@ -195,8 +229,128 @@
     font-feature-settings: 'liga';
   }
 
-  /* Typography System: Poppins Black (Weight 900) Headings & Display + Inter Body + IBM Plex Mono Labels */
-  h1, h2, h3, h4, h5, h6,
+  /* ==========================================================================
+     GLOBAL TYPOGRAPHY HIERARCHY — INTER ONLY (400, 500, 600, 700)
+     ========================================================================== */
+
+  /* Main page headings: 28–32px, weight 700 */
+  h1, .zeb-heading-page {
+    font-family: var(--font-sans) !important;
+    font-weight: 700;
+    font-size: 1.75rem; /* 28px */
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+  }
+  @media (min-width: 640px) {
+    h1, .zeb-heading-page {
+      font-size: 2rem; /* 32px */
+      line-height: 1.25;
+    }
+  }
+
+  /* Section headings: 20–24px, weight 600 */
+  h2, .zeb-heading-section {
+    font-family: var(--font-sans) !important;
+    font-weight: 600;
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+  }
+  @media (min-width: 640px) {
+    h2, .zeb-heading-section {
+      font-size: 1.5rem; /* 24px */
+      line-height: 1.3;
+    }
+  }
+
+  /* Card headings: 15–17px, weight 600 */
+  h3, .zeb-heading-card {
+    font-family: var(--font-sans) !important;
+    font-weight: 600;
+    font-size: 1rem; /* 16px */
+    line-height: 1.45;
+    letter-spacing: -0.015em;
+  }
+  @media (min-width: 640px) {
+    h3, .zeb-heading-card {
+      font-size: 1.0625rem; /* 17px */
+    }
+  }
+
+  /* Subheadings & minor headings: 14-15px, weight 600 */
+  h4, h5, h6 {
+    font-family: var(--font-sans) !important;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.4;
+  }
+
+  /* Large hero titles: Inter Bold (700), clean letter spacing */
+  .hero-title, [class*="text-5xl"], [class*="text-6xl"], [class*="text-7xl"], [class*="text-8xl"], [class*="text-[76px]"], [class*="text-[80px]"], [class*="text-[96px]"] {
+    font-family: var(--font-sans) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.03em;
+  }
+
+  /* Body text: 14–15px, weight 400 */
+  p, li, input, textarea, select, button,
+  .font-body,
+  .font-sans,
+  .font-\[\'Inter\'\],
+  [class*="font-['Inter']"] {
+    font-family: var(--font-sans);
+  }
+
+  /* Tables: headings 12-13px weight 600, content 13-14px weight 400 */
+  table th {
+    font-family: var(--font-sans);
+    font-size: 0.75rem; /* 12px */
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    line-height: 1.15rem;
+    overflow-wrap: break-word;
+  }
+  @media (min-width: 640px) {
+    table th {
+      font-size: 0.8125rem; /* 13px */
+    }
+  }
+
+  table td {
+    font-family: var(--font-sans);
+    font-size: 0.8125rem; /* 13px */
+    font-weight: 400;
+    line-height: 1.35rem;
+    overflow-wrap: break-word;
+  }
+  @media (min-width: 640px) {
+    table td {
+      font-size: 0.875rem; /* 14px */
+    }
+  }
+
+  /* Tabular Numerals for financial values, counts, metrics, and percentages */
+  table td,
+  .tabular-nums,
+  .font-mono,
+  [class*="font-mono"],
+  .stat-value,
+  .zeb-stat-number,
+  [data-tabular-nums] {
+    font-variant-numeric: tabular-nums;
+    -webkit-font-feature-settings: 'tnum';
+    font-feature-settings: 'tnum';
+  }
+
+  /* Monospace overrides for code & technical tags */
+  code, kbd, samp, pre,
+  .font-mono,
+  .font-\[\'IBM_Plex_Mono\'\],
+  [class*="font-mono"] {
+    font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+  }
+
+  /* Override legacy font class mappings to Inter */
   .font-heading,
   .font-display,
   .font-\[\'Poppins\'\],
@@ -204,31 +358,10 @@
   .font-\[\'Anton\'\],
   [class*="font-['Anton']"],
   .font-\[\'Manrope\'\],
-  [class*="font-['Manrope']"] {
-    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
-    font-weight: 900;
-    letter-spacing: -0.03em;
-  }
-
-  h1, .hero-title, [class*="text-5xl"], [class*="text-6xl"], [class*="text-7xl"], [class*="text-8xl"], [class*="text-[76px]"], [class*="text-[80px]"], [class*="text-[96px]"] {
-    font-family: "Poppins", system-ui, -apple-system, sans-serif !important;
-    font-weight: 900 !important;
-    letter-spacing: -0.035em;
-  }
-
-  p, li, input, textarea, select, button,
-  .font-body,
-  .font-sans,
-  .font-\[\'Inter\'\],
-  [class*="font-['Inter']"] {
-    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  }
-
-  code, kbd, samp, pre,
-  .font-mono,
-  .font-\[\'IBM_Plex_Mono\'\],
-  [class*="font-mono"] {
-    font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+  [class*="font-['Manrope']"],
+  .font-\[\'Bricolage_Grotesque\'\],
+  [class*="font-['Bricolage_Grotesque']"] {
+    font-family: var(--font-sans) !important;
   }
 }
 
@@ -268,66 +401,84 @@
 /* Design System Typography & Component Utilities */
 @utility zeb-heading-page {
   font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: 1.75rem;
+  font-weight: 700;
+  font-size: 1.75rem; /* 28px */
   line-height: 2.125rem;
   letter-spacing: -0.025em;
   color: var(--color-text-primary);
   @media (min-width: 640px) {
-    font-size: 2.25rem;
-    line-height: 2.5rem;
+    font-size: 2rem; /* 32px */
+    line-height: 2.375rem;
   }
 }
 
 @utility zeb-heading-section {
   font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.25rem;
+  font-weight: 600;
+  font-size: 1.25rem; /* 20px */
   line-height: 1.75rem;
   letter-spacing: -0.02em;
   color: var(--color-text-primary);
   @media (min-width: 640px) {
-    font-size: 1.5rem;
+    font-size: 1.5rem; /* 24px */
     line-height: 2rem;
   }
 }
 
 @utility zeb-heading-card {
   font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1rem;
-  line-height: 1.5rem;
+  font-weight: 600;
+  font-size: 0.9375rem; /* 15px */
+  line-height: 1.45rem;
+  letter-spacing: -0.015em;
   color: var(--color-text-primary);
   @media (min-width: 640px) {
-    font-size: 1.125rem;
-    line-height: 1.75rem;
+    font-size: 1.0625rem; /* 17px */
+    line-height: 1.625rem;
   }
 }
 
 @utility zeb-body-lead {
   font-family: var(--font-body);
-  font-size: 1.125rem;
-  line-height: 1.75rem;
+  font-size: 1rem; /* 16px */
+  font-weight: 400;
+  line-height: 1.65rem;
   color: var(--color-text-secondary);
 }
 
 @utility zeb-body {
   font-family: var(--font-body);
-  font-size: 0.875rem;
+  font-size: 0.875rem; /* 14px */
+  font-weight: 400;
   line-height: 1.5rem;
   color: var(--color-text-secondary);
+  @media (min-width: 640px) {
+    font-size: 0.9375rem; /* 15px */
+  }
 }
 
 @utility zeb-body-sm {
   font-family: var(--font-body);
-  font-size: 0.75rem;
-  line-height: 1.125rem;
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 400;
+  line-height: 1.25rem;
   color: var(--color-text-muted);
+}
+
+@utility zeb-nav-label {
+  font-family: var(--font-body);
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 500;
+  line-height: 1.25rem;
+  letter-spacing: -0.01em;
+  @media (min-width: 640px) {
+    font-size: 0.875rem; /* 14px */
+  }
 }
 
 @utility zeb-label {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.75rem; /* 12px */
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -336,9 +487,24 @@
 
 @utility zeb-caption {
   font-family: var(--font-body);
-  font-size: 0.6875rem;
-  line-height: 1rem;
+  font-size: 0.75rem; /* 12px */
+  font-weight: 400;
+  line-height: 1.125rem;
   color: var(--color-text-muted);
+}
+
+@utility zeb-stat-number {
+  font-family: var(--font-heading);
+  font-size: 1.75rem; /* 28px */
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-feature-settings: 'tnum';
+  font-feature-settings: 'tnum';
+  @media (min-width: 640px) {
+    font-size: 2.25rem; /* 36px */
+  }
 }
 
 @utility zeb-card {
@@ -770,3 +936,8 @@ details[open] summary .material-symbols-outlined {
   body.zeb-page main { overflow-x: clip; }
   body.zeb-page h1 { overflow-wrap: anywhere; }
 }
+
+[x-cloak] {
+  display: none !important;
+}
+

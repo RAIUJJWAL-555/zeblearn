@@ -23,7 +23,7 @@
 <span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
 <span class="text-[12px] font-semibold tracking-wider uppercase text-[#0A0A0A]">Blog &amp; Knowledge Base</span>
 </div>
-<h1 class="font-['Anton'] text-[64px] sm:text-[88px] lg:text-[104px] uppercase tracking-tight leading-[0.9] text-[#0A0A0A] select-none">
+<h1 class="font-bold tracking-tight font-sans text-[64px] sm:text-[88px] lg:text-[104px] uppercase tracking-tight leading-[0.9] text-[#0A0A0A] select-none">
             SAP NOTES.<br/>
 <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#0A0A0A] via-[#0A0A0A] to-[#FB6221]">INTERVIEW PREP.</span>
 </h1>
@@ -101,7 +101,7 @@
 <div class="lg:col-span-5 bg-[#0A0A0A] p-8 lg:p-12 flex flex-col justify-between text-white border-t lg:border-t-0 lg:border-l border-white/10">
 <div class="space-y-4">
 
-<h2 class="font-['Anton'] text-[38px] sm:text-[46px] lg:text-[50px] uppercase leading-[0.95] tracking-wide text-white group-hover:text-[#FB6221] transition-colors pt-2">
+<h2 class="font-bold tracking-tight font-sans text-[38px] sm:text-[46px] lg:text-[50px] uppercase leading-[0.95] tracking-wide text-white group-hover:text-[#FB6221] transition-colors pt-2">
               TOP 50 SAP EWM INTERVIEW QUESTION ANSWER
             </h2>
 <p class="text-[15px] text-[#D3D6DA] leading-relaxed font-normal pt-1">
@@ -133,12 +133,12 @@
 <article class="relative md:col-span-12 lg:col-span-4 rounded-[24px] bg-white border border-[#D3D6DA] overflow-hidden flex flex-col justify-between p-6 shadow-xs hover:shadow-[0_12px_28px_rgba(10,10,10,0.06)] group transition-all duration-300"><a aria-label="Read article" class="absolute inset-0 z-10" href="https://sap.zeblearn.com/top-interview-question-answer-on-sap-basic/" rel="noopener" target="_blank"></a>
 <div>
 <div class="w-full h-52 rounded-[16px] overflow-hidden bg-[#D3D6DA] relative mb-5">
-<div class="w-full h-full flex items-center justify-center font-['Anton'] text-[64px] uppercase text-[#0A0A0A]/10 select-none">BASIS</div>
+<div class="w-full h-full flex items-center justify-center font-bold tracking-tight font-sans text-[64px] uppercase text-[#0A0A0A]/10 select-none">BASIS</div>
 <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/95 backdrop-blur-xs text-[11px] font-semibold uppercase tracking-wider text-[#0A0A0A]">
                 SAP BASIS
               </span>
 </div>
-<h3 class="font-['Anton'] text-[28px] leading-[1] uppercase tracking-wide text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors">
+<h3 class="font-bold tracking-tight font-sans text-[28px] leading-[1] uppercase tracking-wide text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors">
               TOP INTERVIEW QUESTION ANSWER ON SAP BASIC
             </h3>
 <p class="text-[14px] text-[#0A0A0A]/70 mt-3 leading-relaxed">
@@ -161,7 +161,7 @@
               </span>
 <span class="text-[11px] font-mono text-[#0A0A0A]/60">ECC · HANA</span>
 </div>
-<h3 class="font-['Anton'] text-[32px] leading-[0.98] uppercase tracking-wide text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors">
+<h3 class="font-bold tracking-tight font-sans text-[32px] leading-[0.98] uppercase tracking-wide text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors">
               TOP 20 QUESTION ANSWER ON SAP ECC + HANA + SAP POWER USER
             </h3>
 <p class="text-[14px] text-[#0A0A0A]/75 mt-4 leading-relaxed">
@@ -184,7 +184,7 @@
               </span>
 <span class="w-2 h-2 rounded-full bg-[#FB6221]"></span>
 </div>
-<h3 class="font-['Anton'] text-[34px] leading-[0.96] uppercase tracking-wide text-white group-hover:text-[#FB6221] transition-colors">
+<h3 class="font-bold tracking-tight font-sans text-[34px] leading-[0.96] uppercase tracking-wide text-white group-hover:text-[#FB6221] transition-colors">
               HOW SYSTEM COPY WORKS IN SAP
             </h3>
 <p class="text-[14px] text-[#D3D6DA] mt-4 leading-relaxed">
@@ -205,7 +205,7 @@
 <span class="inline-block px-3 py-1 rounded-full bg-[#F0F1F3] text-[#0A0A0A] text-[11px] font-semibold uppercase tracking-wider mb-4">
                 FINANCE / FICO
               </span>
-<h3 class="font-['Anton'] text-[30px] sm:text-[34px] leading-[0.98] uppercase tracking-wide text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors">
+<h3 class="font-bold tracking-tight font-sans text-[30px] sm:text-[34px] leading-[0.98] uppercase tracking-wide text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors">
                 FICO MONTH-END CLOSING, STEP BY STEP
               </h3>
 <p class="text-[14px] text-[#0A0A0A]/70 mt-3 leading-relaxed">
@@ -220,7 +220,7 @@
 </div>
 </div>
 <div class="w-full sm:w-44 h-48 sm:h-auto rounded-[16px] overflow-hidden bg-[#D3D6DA] shrink-0">
-<div class="w-full h-full flex items-center justify-center font-['Anton'] text-[64px] uppercase text-[#0A0A0A]/10 select-none">FICO</div>
+<div class="w-full h-full flex items-center justify-center font-bold tracking-tight font-sans text-[64px] uppercase text-[#0A0A0A]/10 select-none">FICO</div>
 </div>
 </article>
 <!-- POST 5: Vivid orange card #FB6221, 6 cols -->
@@ -234,7 +234,7 @@
                 GUIDE
               </span>
 </div>
-<h3 class="font-['Anton'] text-[34px] sm:text-[40px] leading-[0.95] uppercase tracking-wide text-white group-hover:text-black transition-colors">
+<h3 class="font-bold tracking-tight font-sans text-[34px] sm:text-[40px] leading-[0.95] uppercase tracking-wide text-white group-hover:text-black transition-colors">
               SAP MM VS SD: WHICH TO LEARN FIRST
             </h3>
 <!-- Rule strictly adhered: On orange surfaces, large text is white, small text is crisp black -->
@@ -258,7 +258,7 @@
               </span>
 <span class="text-[11px] font-mono text-[#0A0A0A]/50">INTERVIEW</span>
 </div>
-<h3 class="font-['Anton'] text-[30px] leading-[0.98] uppercase tracking-wide text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors">
+<h3 class="font-bold tracking-tight font-sans text-[30px] leading-[0.98] uppercase tracking-wide text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors">
               HOW TO PREPARE FOR YOUR FIRST SAP INTERVIEW
             </h3>
 <p class="text-[14px] text-[#0A0A0A]/70 mt-3 leading-relaxed">
@@ -281,7 +281,7 @@
               </span>
 <span class="text-[11px] font-mono text-[#0A0A0A]/60">CAREER</span>
 </div>
-<h3 class="font-['Anton'] text-[30px] leading-[0.98] uppercase tracking-wide text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors">
+<h3 class="font-bold tracking-tight font-sans text-[30px] leading-[0.98] uppercase tracking-wide text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors">
               IS SAP A GOOD CAREER FOR COMMERCE GRADUATES
             </h3>
 <p class="text-[14px] text-[#0A0A0A]/75 mt-3 leading-relaxed">
@@ -304,7 +304,7 @@
               </span>
 <span class="text-[11px] font-mono text-[#0A0A0A]/50">SALES &amp; DISTRIBUTION</span>
 </div>
-<h3 class="font-['Anton'] text-[30px] leading-[0.98] uppercase tracking-wide text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors">
+<h3 class="font-bold tracking-tight font-sans text-[30px] leading-[0.98] uppercase tracking-wide text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors">
               TOP SAP SD INTERVIEW QUESTION ANSWER
             </h3>
 <p class="text-[14px] text-[#0A0A0A]/70 mt-3 leading-relaxed">
@@ -332,7 +332,7 @@
 <span class="w-1.5 h-1.5 rounded-full bg-[#FB6221]"></span>
               FREE DEMO
             </div>
-<h2 class="font-['Anton'] text-[42px] sm:text-[54px] lg:text-[62px] uppercase leading-[0.92] tracking-wide text-white">
+<h2 class="font-bold tracking-tight font-sans text-[42px] sm:text-[54px] lg:text-[62px] uppercase leading-[0.92] tracking-wide text-white">
               NOT SURE WHERE<br/>TO START?
             </h2>
 <!-- On orange surfaces, large text is white, small text is crisp black -->

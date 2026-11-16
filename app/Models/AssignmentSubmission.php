@@ -77,6 +77,14 @@ class AssignmentSubmission extends Model
     }
 
     /**
+     * Get the student who submitted (alias for user).
+     */
+    public function student(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    /**
      * Get the instructor or administrator who graded this submission.
      */
     public function grader(): BelongsTo

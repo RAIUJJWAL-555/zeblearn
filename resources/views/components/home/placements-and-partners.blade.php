@@ -203,7 +203,7 @@
                                 class="inline-block transition-transform hover:scale-[1.02]">
                                 <svg class="h-8 w-auto max-w-[170px]" viewBox="0 0 160 32" xmlns="http://www.w3.org/2000/svg" aria-label="PlacementBaba logo">
                                     <rect x="0" y="3" width="26" height="26" rx="6" fill="#FB6221"/>
-                                    <text x="6" y="21" font-family="'Manrope', sans-serif" font-weight="800" font-size="14" fill="#FFFFFF">PB</text>
+                                    <text x="6" y="21" font-family="'Inter', sans-serif" font-weight="800" font-size="14" fill="#FFFFFF">PB</text>
                                     <text x="34" y="23" font-family="'Inter', sans-serif" font-size="16" font-weight="800" fill="#0A0A0A" letter-spacing="-0.02em">Placement<tspan fill="#FB6221">Baba</tspan></text>
                                 </svg>
                             </a>

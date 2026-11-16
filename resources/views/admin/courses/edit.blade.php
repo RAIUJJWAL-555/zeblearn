@@ -32,6 +32,17 @@
         </div>
 
         <div class="flex flex-wrap items-center gap-2.5">
+            {{-- Preview Landing Page in Admin Mode --}}
+            <x-ui.button
+                href="{{ route('admin.courses.preview', $course) }}"
+                variant="secondary"
+                size="sm"
+                icon="eye"
+                target="_blank"
+            >
+                Preview Landing Page
+            </x-ui.button>
+
             {{-- Curriculum Link --}}
             <x-ui.button
                 href="{{ route('admin.courses.curriculum', $course) }}"

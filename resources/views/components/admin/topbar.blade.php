@@ -58,19 +58,8 @@
 
     {{-- Right Section: Alerts, Actions & Admin Profile Dropdown --}}
     <div class="flex items-center gap-2 sm:gap-3">
-        {{-- Notification Placeholder Pill --}}
-        <button
-            type="button"
-            class="relative p-2 rounded-lg text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors focus:outline-hidden focus:ring-2 focus:ring-[#FB6221] cursor-pointer"
-            aria-label="View notifications"
-            title="Notification alerts"
-        >
-            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-            </svg>
-            {{-- Notification Dot --}}
-            <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#FB6221] ring-2 ring-white"></span>
-        </button>
+        {{-- Notification Bell Dropdown --}}
+        <x-ui.notification-bell theme="light" />
 
         {{-- Divider --}}
         <div class="h-6 w-px bg-slate-200 my-auto"></div>
@@ -127,6 +116,15 @@
 
                 {{-- Links --}}
                 <div class="py-1">
+                    <a
+                        href="{{ route('admin.users.show', auth()->id()) }}"
+                        class="flex items-center justify-between px-4 py-2 text-slate-700 hover:bg-slate-50 transition-colors"
+                    >
+                        <span>My Account Details</span>
+                        <svg class="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                    </a>
                     <a
                         href="{{ route('home') }}"
                         target="_blank"

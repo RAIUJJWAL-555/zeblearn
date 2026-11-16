@@ -107,7 +107,7 @@ class AssignmentService
             }
         }
 
-        return DB::transaction(function () use ($user, $assignment, $submissionText, $uploadedFiles) {
+        $submission = DB::transaction(function () use ($user, $assignment, $submissionText, $uploadedFiles) {
             // Row-level lock on student's enrollment to serialize concurrent submission attempts
             Enrollment::where('user_id', $user->id)
                 ->where('course_id', $assignment->course_id)
@@ -158,6 +158,10 @@ class AssignmentService
 
             return $submission->load('files');
         });
+
+        app(NotificationService::class)->notifyInstructorsNewSubmission($submission);
+
+        return $submission;
     }
 
     /**
@@ -190,7 +194,11 @@ class AssignmentService
             'status' => $status,
         ]);
 
-        return $submission->fresh(['assignment', 'user', 'grader', 'files']);
+        $fresh = $submission->fresh(['assignment', 'user', 'grader', 'files']);
+
+        app(NotificationService::class)->notifyAssignmentGraded($fresh);
+
+        return $fresh;
     }
 
     /**
@@ -214,7 +222,11 @@ class AssignmentService
             'private_notes' => $privateNotes ? trim($privateNotes) : null,
         ]);
 
-        return $submission->fresh(['assignment', 'user', 'grader', 'files']);
+        $fresh = $submission->fresh(['assignment', 'user', 'grader', 'files']);
+
+        app(NotificationService::class)->notifyAssignmentResubmissionRequested($fresh);
+
+        return $fresh;
     }
 
     /**
