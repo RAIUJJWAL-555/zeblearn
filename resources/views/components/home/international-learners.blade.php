@@ -8,7 +8,7 @@
             'country_code' => 'UAE',
             'city' => 'Dubai',
             'course' => 'SAP FICO',
-            'quote' => 'Joining from Dubai was seamless. The weekend schedule aligned with Gulf timing, and having direct sandbox access to configure general ledgers and asset accounting made complex enterprise processes clear.',
+            'quote' => 'Joining from Dubai was smooth and practical. The weekend schedule aligned with Gulf timing, and having direct sandbox access to configure general ledgers and asset accounting made complex enterprise processes clear.',
             'initials' => 'FA',
         ],
         [

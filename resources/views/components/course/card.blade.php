@@ -9,7 +9,7 @@
 @endphp
 
 <article class="group relative bg-white rounded-2xl sm:rounded-3xl border border-slate-200/90 hover:border-amber-400 p-5 sm:p-7 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-l-4 sm:border-l-[6px] border-l-amber-400 select-none zeb-card-interactive" data-reveal>
-    
+
     <!-- Left Column: Main Course Information -->
     <div class="flex-1 min-w-0">
         <!-- Top Meta Row: Category Badge + Tag Badge + Know More Link -->
@@ -18,7 +18,14 @@
                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-[11px] font-mono font-bold uppercase tracking-wider bg-blue-50 text-blue-600 border border-blue-200/70">
                     {{ $course->category_badge }}
                 </span>
-                
+
+                @if($course->isRecentlyAdded())
+                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-mono font-bold uppercase tracking-wider bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-2xs">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                        Recently Added
+                    </span>
+                @endif
+
                 @if($course->display_tag)
                     <span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-mono font-black uppercase tracking-wider bg-amber-400 text-black shadow-2xs">
                         {{ $course->display_tag }}
@@ -42,7 +49,7 @@
             {{ $course->short_description }}
         </p>
 
-        <!-- Star Rating Row -->
+        <!-- Star Rating & Dynamic Reviews Row -->
         <div class="flex items-center gap-2 text-xs text-slate-600 font-medium mb-4">
             <div class="flex items-center text-amber-400">
                 <span class="material-symbols-outlined text-[16px] fill-current">star</span>
@@ -52,7 +59,7 @@
                 <span class="material-symbols-outlined text-[16px] fill-current">star</span>
             </div>
             <span class="font-bold text-[#0A0A0A]">{{ $course->display_rating }}</span>
-            <span class="text-slate-500">({{ $course->display_ratings_count }} ratings)</span>
+            <span class="text-slate-500">({{ $course->display_reviews_count }} reviews)</span>
         </div>
 
         <!-- Bottom Detail Tags (Duration, Modules, Students) -->
@@ -81,18 +88,12 @@
         </div>
 
         @if (! $course->isAvailableForEnrollment())
-            @if ($course->status === 'upcoming')
-                <a
-                    href="{{ route('book-demo', ['course' => $course->slug]) }}"
-                    class="inline-flex items-center justify-center w-full px-5 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-sans text-xs font-bold uppercase tracking-wider transition-colors"
-                >
-                    <span>Pre-Register</span>
-                </a>
-            @else
-                <span class="inline-flex items-center justify-center w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-400 font-mono text-[11px] font-bold uppercase">
-                    Roadmap Batch
-                </span>
-            @endif
+            <a
+                href="{{ route('book-demo', ['course' => $course->slug]) }}"
+                class="inline-flex items-center justify-center w-full px-5 py-3 rounded-xl bg-[#0A0A0A] hover:bg-[#FB6221] text-white font-sans text-xs font-bold uppercase tracking-wider transition-all duration-200 shadow-sm hover:shadow-md"
+            >
+                <span>Book a Demo</span>
+            </a>
         @else
             {{-- Course is available for enrollment: 5-state machine --}}
             @if ($enrollment && $enrollment->isApproved())

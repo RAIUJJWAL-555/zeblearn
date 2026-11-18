@@ -35,7 +35,15 @@
             </p>
         </div>
 
-        <div class="shrink-0">
+        <div class="shrink-0 flex items-center gap-2.5">
+            <x-ui.button
+                href="{{ route('admin.courses.import.index') }}"
+                variant="secondary"
+                size="md"
+                icon="upload_file"
+            >
+                Import CSV
+            </x-ui.button>
             <x-ui.button
                 href="{{ route('admin.courses.create') }}"
                 variant="primary"
@@ -195,20 +203,45 @@
 
                             {{-- Published State --}}
                             <td class="py-4 px-4 whitespace-nowrap text-center">
-                                @if ($course->published_at && $course->published_at <= now())
-                                    <x-ui.badge variant="success" size="xs" dot>
-                                        Live
-                                    </x-ui.badge>
+                                @if ($course->isPublished())
+                                    <x-ui.badge variant="success" size="xs" dot>Live</x-ui.badge>
                                 @else
-                                    <x-ui.badge variant="neutral" size="xs">
-                                        Draft
-                                    </x-ui.badge>
+                                    <x-ui.badge variant="neutral" size="xs">Draft</x-ui.badge>
                                 @endif
                             </td>
 
                             {{-- Actions --}}
                             <td class="py-4 px-6 whitespace-nowrap text-right">
                                 <div class="inline-flex items-center gap-1.5">
+                                    {{-- Publish / Unpublish Quick Action --}}
+                                    @if ($course->isPublished())
+                                        <form action="{{ route('admin.courses.unpublish', $course) }}" method="POST" class="inline-flex">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button
+                                                type="submit"
+                                                class="p-1.5 min-w-[32px] min-h-[32px] inline-flex items-center justify-center text-emerald-600 hover:text-amber-600 hover:bg-amber-50 rounded-lg transition-colors border border-transparent hover:border-amber-200 cursor-pointer"
+                                                aria-label="Unpublish {{ $course->name }}"
+                                                title="Unpublish (Revert to Draft)"
+                                            >
+                                                <x-ui.icon name="check-circle" size="sm" />
+                                            </button>
+                                        </form>
+                                    @else
+                                        <form action="{{ route('admin.courses.publish', $course) }}" method="POST" class="inline-flex">
+                                            @csrf
+                                            @method('PATCH')
+                                            <button
+                                                type="submit"
+                                                class="p-1.5 min-w-[32px] min-h-[32px] inline-flex items-center justify-center text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors border border-transparent hover:border-emerald-200 cursor-pointer"
+                                                aria-label="Publish {{ $course->name }} Live"
+                                                title="Publish Course Live"
+                                            >
+                                                <x-ui.icon name="arrow-up" size="sm" />
+                                            </button>
+                                        </form>
+                                    @endif
+
                                     {{-- Curriculum --}}
                                     <a
                                         href="{{ route('admin.courses.curriculum', $course) }}"

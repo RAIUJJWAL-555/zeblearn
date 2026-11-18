@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
+use App\Models\Blog;
+use App\Models\Course;
 use App\Models\User;
+use App\Observers\BlogSpiderObserver;
+use App\Observers\CourseSpiderObserver;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -54,5 +58,13 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('access-lms', function (User $user): bool {
             return $user->isActive();
         });
+
+        // SEO Spider Web Observers
+        Blog::observe(BlogSpiderObserver::class);
+        Course::observe(CourseSpiderObserver::class);
+
+        // SEO Spider Web Observers
+        Blog::observe(BlogSpiderObserver::class);
+        Course::observe(CourseSpiderObserver::class);
     }
 }

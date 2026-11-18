@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Course;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
@@ -31,22 +30,17 @@ test('course catalog page loads successfully and displays structured academy cou
     $response->assertSee('SAP Technical');
     $response->assertSee('SAP Cloud &amp; Specialized', false);
 
-    // 4. Confirmed Available Flagship Course (SAP FICO)
+    // 4. Unified Courses Catalog
     $response->assertSee('SAP FICO Training');
     $response->assertSee('₹25,000 + GST');
-    $response->assertSee('Available');
+    $response->assertSee('ALL COURSES');
 
-    // 5. Upcoming cohorts (MM, SD, PP, ABAP, Basis)
+    // 5. Featured academy courses
     $response->assertSee('SAP MM Training');
     $response->assertSee('SAP SD Training');
     $response->assertSee('SAP PP Training');
     $response->assertSee('SAP ABAP on HANA Training');
     $response->assertSee('SAP S/4HANA Basis &amp; Administration', false);
-    $response->assertSee('UPCOMING BATCH');
-
-    // 6. Planned Roadmap with transparency callout
-    $response->assertSee('ACADEMY ROADMAP CANDIDATES');
-    $response->assertSee('CURRICULUM IN DEVELOPMENT');
     $response->assertSee('SAP EWM (Extended Warehouse Management)');
     $response->assertSee('SAP BTP (Business Technology Platform)');
 

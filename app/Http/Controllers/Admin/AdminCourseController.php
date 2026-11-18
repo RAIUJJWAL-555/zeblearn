@@ -99,6 +99,10 @@ class AdminCourseController extends Controller
     {
         $validated = $this->validateCourse($request);
 
+        if (! empty($validated['slug'])) {
+            $validated['slug'] = trim((string) $validated['slug'], "/ \t\n\r\0\x0B");
+        }
+
         // Safe Unique Slug Generation
         if (empty($validated['slug'])) {
             $baseSlug = Str::slug($validated['name']);
@@ -198,10 +202,12 @@ class AdminCourseController extends Controller
     {
         $validated = $this->validateCourse($request, $course->id);
 
-        $oldSlug = $course->slug;
+        $oldSlug = trim((string) $course->slug, "/ \t\n\r\0\x0B");
 
         if (empty($validated['slug'])) {
             $validated['slug'] = Str::slug($validated['name']);
+        } else {
+            $validated['slug'] = trim((string) $validated['slug'], "/ \t\n\r\0\x0B");
         }
         $newSlug = $validated['slug'];
 
@@ -246,7 +252,7 @@ class AdminCourseController extends Controller
         $course->update($validated);
 
         // Check if slug changed; record 301 permanent redirect
-        if ($oldSlug !== $newSlug) {
+        if ($oldSlug !== $newSlug && ! empty($oldSlug) && ! empty($newSlug)) {
             $this->cmsService->recordSlugChange($course, $oldSlug, $newSlug);
         }
 
@@ -271,6 +277,28 @@ class AdminCourseController extends Controller
 
         return redirect()->route('admin.courses.index')
             ->with('success', "Course '{$course->name}' has been updated successfully.");
+    }
+
+    /**
+     * Directly publish a course live.
+     */
+    public function publish(Course $course): RedirectResponse
+    {
+        $course->update(['published_at' => now()]);
+        $this->cmsService->invalidateCourseCache($course);
+
+        return back()->with('success', "Course '{$course->name}' has been published live successfully.");
+    }
+
+    /**
+     * Unpublish a course back to draft.
+     */
+    public function unpublish(Course $course): RedirectResponse
+    {
+        $course->update(['published_at' => null]);
+        $this->cmsService->invalidateCourseCache($course);
+
+        return back()->with('success', "Course '{$course->name}' has been unpublished and moved to draft.");
     }
 
     /**
@@ -379,6 +407,10 @@ class AdminCourseController extends Controller
             'discount_percent' => ['nullable', 'integer', 'min:0', 'max:100'],
             'discount' => ['nullable', 'string'],
             'original_fee' => ['nullable', 'integer', 'min:0'],
+            'rating' => ['nullable', 'numeric', 'min:1', 'max:5'],
+            'ratings_count' => ['nullable', 'integer', 'min:0'],
+            'reviews_count' => ['nullable', 'integer', 'min:0'],
+            'learner_count' => ['nullable', 'integer', 'min:0'],
             'badge_label' => ['nullable', 'string', 'max:100'],
             'tag_badge' => ['nullable', 'string', 'max:50'],
             'highlights' => ['nullable', 'string'],

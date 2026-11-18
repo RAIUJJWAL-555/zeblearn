@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 40" fill="none">
+    <text x="5" y="27" font-family="'Inter', sans-serif" font-size="24" font-weight="800" font-style="italic" fill="#2874F0">Flipkart</text>
+    <g transform="translate(115, 6)">
+        <rect x="0" y="4" width="26" height="26" rx="5" fill="#FFE11B"/>
+        <path d="M7 4V2C7 1 8 0 9 0H17C18 0 19 1 19 2V4" stroke="#2874F0" stroke-width="2" fill="none"/>
+        <path d="M8 12H18M8 17H15M8 22H13" stroke="#2874F0" stroke-width="2" stroke-linecap="round"/>
+    </g>
+</svg>

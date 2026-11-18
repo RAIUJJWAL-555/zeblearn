@@ -20,7 +20,7 @@ test('homepage renders all 5 international trust and placement experience sectio
     $response->assertSee('Kagiso Ndlovu');
 
     // 2. SECTION 2: PLACEMENT PROOF & VERIFICATION
-    $response->assertSee("DON'T BELIEVE US? VERIFY EVERYTHING.", false);
+    $response->assertSee('Feedback from Our Students');
     $response->assertSee('id="placement-proof"', false);
     $response->assertSee('id="proof-modal"', false);
     $response->assertSee('Accenture');
@@ -55,7 +55,7 @@ test('homepage renders all 5 international trust and placement experience sectio
 
     // 5. SECTION 5: VIDEO STORIES FROM OUR STUDENTS
     $response->assertSee('FEEDBACK FROM OUR STUDENTS');
-    $response->assertSee('HEAR FROM OUR STUDENTS');
+    $response->assertSee('Real learning experiences and career journeys');
     $response->assertSee('id="stories"', false);
     $response->assertSee('id="video-carousel"', false);
     $response->assertSee('id="yt-modal"', false);

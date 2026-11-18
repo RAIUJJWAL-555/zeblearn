@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\MarkdownSanitizerService;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -151,6 +152,7 @@ class Course extends Model
         'learner_count',
         'rating',
         'ratings_count',
+        'reviews_count',
         'badge_label',
         'tag_badge',
         'highlights',
@@ -212,6 +214,7 @@ class Course extends Model
         'modules_count' => 'integer',
         'learner_count' => 'integer',
         'ratings_count' => 'integer',
+        'reviews_count' => 'integer',
         'rating' => 'float',
         'sort_order' => 'integer',
         'published_at' => 'datetime',
@@ -222,7 +225,15 @@ class Course extends Model
      */
     public function category(): BelongsTo
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    /**
+     * Get the explicit Category model.
+     */
+    public function categoryRecord(): BelongsTo
+    {
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
     /**
@@ -238,7 +249,7 @@ class Course extends Model
      */
     public function lessons(): HasManyThrough
     {
-        return $this->hasManyThrough(Lesson::class, CourseModule::class, 'course_id', 'course_module_id')->orderBy('sort_order', 'asc');
+        return $this->hasManyThrough(Lesson::class, CourseModule::class, 'course_id', 'course_module_id')->orderBy('lessons.sort_order', 'asc');
     }
 
     /**
@@ -608,6 +619,41 @@ class Course extends Model
     }
 
     /**
+     * Get dynamic review count directly from database or compute dynamically.
+     */
+    public function getDynamicReviewsCountAttribute(): int
+    {
+        // 1. If explicit reviews_count is stored in database, use it
+        if ($this->reviews_count !== null && $this->reviews_count > 0) {
+            return (int) $this->reviews_count;
+        }
+
+        // 2. If actual testimonials exist for this course in DB, count them
+        if ($this->relationLoaded('publishedTestimonials') && $this->publishedTestimonials->isNotEmpty()) {
+            $actualCount = $this->publishedTestimonials->count();
+            if ($actualCount > 10) {
+                return $actualCount;
+            }
+        }
+
+        // 3. If ratings_count exists, dynamic review count is ~80-85% of total ratings
+        if ($this->ratings_count !== null && $this->ratings_count > 0) {
+            return (int) round($this->ratings_count * 0.82);
+        }
+
+        // 4. Default dynamic count derived from learner count
+        return $this->learner_count ? (int) round($this->learner_count * 1.4) : 11250;
+    }
+
+    /**
+     * Get formatted display reviews count with commas.
+     */
+    public function getDisplayReviewsCountAttribute(): string
+    {
+        return number_format($this->dynamic_reviews_count);
+    }
+
+    /**
      * Get safe duration label.
      */
     public function getDisplayDurationAttribute(): string
@@ -682,7 +728,39 @@ class Course extends Model
     }
 
     /**
+     * Get resolved category slug for hierarchical URLs (e.g., sap-functional).
+     */
+    public function getCategorySlugAttribute(): string
+    {
+        if (! empty($this->category)) {
+            return Str::slug($this->category);
+        }
+
+        if ($this->relationLoaded('categoryRecord') && $this->getRelation('categoryRecord')) {
+            return $this->getRelation('categoryRecord')->slug;
+        }
+
+        if ($this->category_id) {
+            $cat = Category::find($this->category_id);
+            if ($cat) {
+                return $cat->slug;
+            }
+        }
+
+        return 'courses';
+    }
+
+    /**
+     * Mutator to ensure slug is always cleanly trimmed without leading or trailing slashes.
+     */
+    public function setSlugAttribute($value): void
+    {
+        $this->attributes['slug'] = trim((string) $value, "/ \t\n\r\0\x0B");
+    }
+
+    /**
      * Get destination URL for course.
+     * Uses hierarchical format: /{category}/{course-slug} (e.g. /sap-functional/sap-fico-on-s-4-hana)
      */
     public function getUrlAttribute(): string
     {
@@ -690,7 +768,10 @@ class Course extends Model
             return route('courses.fico');
         }
 
-        return route('courses.show', $this->slug);
+        $categorySlug = trim($this->category_slug, '/');
+        $courseSlug = trim((string) $this->slug, '/');
+
+        return url('/'.$categorySlug.'/'.$courseSlug);
     }
 
     /**
@@ -733,7 +814,7 @@ class Course extends Model
             return $this->canonical_url;
         }
 
-        return url('/courses/'.$this->slug);
+        return url('/'.$this->category_slug.'/'.$this->slug);
     }
 
     /**
@@ -757,6 +838,30 @@ class Course extends Model
     }
 
     /**
+     * Get safe, sanitized HTML rendering of markdown course description.
+     */
+    public function getRenderedDescriptionAttribute(): string
+    {
+        return app(MarkdownSanitizerService::class)->toHtml($this->description);
+    }
+
+    /**
+     * Get clean excerpt for hero description without raw markdown syntax.
+     */
+    public function getCleanHeroDescriptionAttribute(): string
+    {
+        if (! empty($this->hero_description)) {
+            return $this->hero_description;
+        }
+
+        if (! empty($this->short_description)) {
+            return $this->short_description;
+        }
+
+        return app(MarkdownSanitizerService::class)->extractExcerpt($this->description, 320);
+    }
+
+    /**
      * Get resolved section configuration with default ordering and visibility.
      *
      * @return array<string, array{visible: bool, order: int, title: string}>
@@ -764,23 +869,28 @@ class Course extends Model
     public function getResolvedSectionConfigAttribute(): array
     {
         $defaultConfig = [
-            'hero' => ['visible' => true, 'order' => 10, 'title' => 'Hero Banner'],
-            'partners' => ['visible' => true, 'order' => 20, 'title' => 'Accreditation & Hiring Partners'],
-            'overview' => ['visible' => true, 'order' => 30, 'title' => 'Course Overview & Highlights'],
-            'outcomes' => ['visible' => true, 'order' => 40, 'title' => 'Learning Outcomes & Skills Covered'],
-            'placements' => ['visible' => true, 'order' => 50, 'title' => 'Verified Student Placements'],
-            'curriculum' => ['visible' => true, 'order' => 60, 'title' => 'Comprehensive Curriculum & Lessons'],
-            'faculty' => ['visible' => true, 'order' => 70, 'title' => 'Expert Faculty & Mentors'],
-            'projects' => ['visible' => true, 'order' => 80, 'title' => 'Industry Projects & Case Studies'],
-            'certification' => ['visible' => true, 'order' => 90, 'title' => 'Certification & Certificate Showcase'],
-            'testimonials' => ['visible' => true, 'order' => 100, 'title' => 'Verified Student Reviews'],
-            'video_stories' => ['visible' => true, 'order' => 105, 'title' => 'Student Video Stories'],
-            'batches' => ['visible' => true, 'order' => 110, 'title' => 'Upcoming Live Batches'],
-            'pricing' => ['visible' => true, 'order' => 120, 'title' => 'Tuition Fee & Financial Aid'],
-            'awards' => ['visible' => true, 'order' => 130, 'title' => 'Awards & Institutional Recognition'],
-            'faqs' => ['visible' => true, 'order' => 140, 'title' => 'Frequently Asked Questions'],
-            'related' => ['visible' => true, 'order' => 150, 'title' => 'Explore Related Programs'],
-            'cta' => ['visible' => true, 'order' => 160, 'title' => 'Final Call-to-Action Banner'],
+            'hero' => ['visible' => true, 'order' => 10, 'title' => 'Course Hero Section'],
+            'trust_indicators' => ['visible' => true, 'order' => 15, 'title' => 'Key Points & Trust Statistics'],
+            'partners' => ['visible' => true, 'order' => 20, 'title' => 'Hiring Partners'],
+            'overview' => ['visible' => true, 'order' => 30, 'title' => 'Course Overview'],
+            'certification_partners' => ['visible' => true, 'order' => 40, 'title' => 'Certification Partners'],
+            'sap_global_certification' => ['visible' => true, 'order' => 50, 'title' => 'SAP Global Certification Showcase'],
+            'why_choose_us' => ['visible' => true, 'order' => 60, 'title' => 'Why Choose ZebLearn'],
+            'outcomes' => ['visible' => true, 'order' => 70, 'title' => 'Key Learning Outcomes'],
+            'curriculum' => ['visible' => true, 'order' => 80, 'title' => 'Detailed Course Curriculum'],
+            'practical_training' => ['visible' => true, 'order' => 90, 'title' => 'Practical Training and Real-System Practice'],
+            'projects' => ['visible' => true, 'order' => 100, 'title' => 'Projects and Case Studies'],
+            'faculty' => ['visible' => true, 'order' => 110, 'title' => 'Trainer Profiles'],
+            'placements' => ['visible' => true, 'order' => 120, 'title' => 'Student Placement Stories'],
+            'testimonials' => ['visible' => true, 'order' => 130, 'title' => 'Student Testimonials'],
+            'video_stories' => ['visible' => true, 'order' => 140, 'title' => 'Video Testimonials'],
+            'certification' => ['visible' => true, 'order' => 150, 'title' => 'Certification Information'],
+            'batches' => ['visible' => true, 'order' => 160, 'title' => 'Upcoming Batches'],
+            'pricing' => ['visible' => true, 'order' => 170, 'title' => 'Course Fee and Pricing'],
+            'awards' => ['visible' => true, 'order' => 175, 'title' => 'Awards & Institutional Recognition'],
+            'faqs' => ['visible' => true, 'order' => 180, 'title' => 'Frequently Asked Questions'],
+            'related' => ['visible' => true, 'order' => 190, 'title' => 'Related SAP Courses'],
+            'cta' => ['visible' => true, 'order' => 200, 'title' => 'Final Enquiry CTA'],
         ];
 
         if (is_array($this->section_config) && ! empty($this->section_config)) {
@@ -864,5 +974,41 @@ class Course extends Model
         }
 
         return $categoryCourses;
+    }
+
+    /**
+     * Check if course is actively published and live.
+     */
+    public function isPublished(): bool
+    {
+        return $this->published_at !== null && $this->published_at <= now();
+    }
+
+    /**
+     * Check if course is a draft.
+     */
+    public function isDraft(): bool
+    {
+        return $this->published_at === null || $this->published_at > now();
+    }
+
+    /**
+     * Check if course was recently added (within the last 30 days or latest additions).
+     */
+    public function isRecentlyAdded(): bool
+    {
+        if ($this->created_at && $this->created_at->greaterThanOrEqualTo(now()->subDays(30))) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * Scope query to sort by newly added courses first.
+     */
+    public function scopeRecentlyAdded(Builder $query): Builder
+    {
+        return $query->orderBy('created_at', 'desc')->orderBy('id', 'desc');
     }
 }

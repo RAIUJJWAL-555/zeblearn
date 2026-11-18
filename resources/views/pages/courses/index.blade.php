@@ -227,7 +227,7 @@
 
     <!-- COURSE CATALOG SECTION -->
     <section class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-12 pb-20 w-full" id="catalog">
-        
+
         <!-- Search & Advanced Filter Bar -->
         <div class="bg-white rounded-2xl p-4 sm:p-6 border border-slate-200/90 shadow-xs mb-6">
             <form method="GET" action="{{ route('courses.index') }}" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 items-center">
@@ -263,14 +263,15 @@
                 <div class="lg:col-span-2">
                     <select
                         name="sort"
-                        class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 focus:bg-white focus:border-[#FB6221] focus:ring-1 focus:ring-[#FB6221] transition-all"
+                        onchange="this.form.submit()"
+                        class="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 focus:bg-white focus:border-[#FB6221] focus:ring-1 focus:ring-[#FB6221] transition-all cursor-pointer"
                     >
-                        <option value="default" {{ ($activeSort ?? 'default') === 'default' ? 'selected' : '' }}>Default Order</option>
-                        <option value="newest" {{ ($activeSort ?? '') === 'newest' ? 'selected' : '' }}>Newest</option>
+                        <option value="newest" {{ ($activeSort ?? 'newest') === 'newest' ? 'selected' : '' }}>Recently Added</option>
                         <option value="popular" {{ ($activeSort ?? '') === 'popular' ? 'selected' : '' }}>Most Popular</option>
                         <option value="price_asc" {{ ($activeSort ?? '') === 'price_asc' ? 'selected' : '' }}>Price: Low to High</option>
                         <option value="price_desc" {{ ($activeSort ?? '') === 'price_desc' ? 'selected' : '' }}>Price: High to Low</option>
                         <option value="name_asc" {{ ($activeSort ?? '') === 'name_asc' ? 'selected' : '' }}>Name: A to Z</option>
+                        <option value="oldest" {{ ($activeSort ?? '') === 'oldest' ? 'selected' : '' }}>Oldest Added</option>
                     </select>
                 </div>
 
@@ -298,97 +299,90 @@
         <!-- Interactive Category and Status Filters -->
         <x-course.filters :activeCategory="$activeCategory" :activeStatus="$activeStatus" />
 
-        <!-- 1. AVAILABLE COURSES SECTION (LIVE ADMISSIONS) -->
-        <div class="mb-14" id="section-available">
-            <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-200">
-                <div class="flex items-center gap-2.5">
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <h2 class="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-tight text-[#0A0A0A]">
-                        AVAILABLE NOW · ADMISSIONS OPEN
-                    </h2>
-                </div>
-                <span class="font-mono text-xs text-slate-500 font-semibold hidden sm:inline-block">
-                    CONFIRMED BATCH SCHEDULE
-                </span>
-            </div>
-
-            <!-- Vertical Stack of Wide Course Cards Matching the Screenshot -->
-            <div class="flex flex-col gap-5" id="available-course-grid">
-                @foreach($allCourses->where('status', 'available') as $course)
-                    <div class="course-card-wrapper" data-category="{{ $course->category }}" data-status="{{ $course->status }}">
-                        <x-course.card :course="$course" :featured="true" :enrollment="$userEnrollments->get($course->id)" />
+        @if (!empty($searchQuery))
+            <!-- ACTIVE SEARCH RESULTS VIEW -->
+            <div class="mb-14" id="section-search-results">
+                <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-200">
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-2.5 h-2.5 rounded-full bg-[#FB6221]"></span>
+                        <h2 class="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-tight text-[#0A0A0A]">
+                            SEARCH RESULTS FOR "{{ $searchQuery }}" ({{ $courses->total() }})
+                        </h2>
                     </div>
-                @endforeach
-            </div>
-        </div>
-
-        <!-- 2. UPCOMING ACADEMY BATCHES SECTION -->
-        <div class="mb-14" id="section-upcoming">
-            <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-200">
-                <div class="flex items-center gap-2.5">
-                    <span class="w-2.5 h-2.5 rounded-full bg-[#FB6221]"></span>
-                    <h2 class="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-tight text-[#0A0A0A]">
-                        UPCOMING BATCHES · ENROL INTEREST
-                    </h2>
+                    <span class="font-mono text-xs text-slate-500 font-semibold hidden sm:inline-block">
+                        Showing {{ $courses->count() }} of {{ $courses->total() }} matching courses
+                    </span>
                 </div>
-                <span class="font-mono text-xs text-orange-600 font-bold uppercase tracking-wider hidden sm:inline-block">
-                    PRE-REGISTRATION OPEN
-                </span>
-            </div>
 
-            <p class="font-sans text-xs sm:text-sm text-slate-600 mb-6 max-w-3xl leading-relaxed">
-                These modules represent confirmed academy cohorts launching in upcoming batches. You can attend a complimentary demo session and reserve your seat before standard batch schedules fill up.
-            </p>
-
-            <!-- Vertical Stack of Wide Course Cards Matching the Screenshot -->
-            <div class="flex flex-col gap-5" id="upcoming-course-grid">
-                @foreach($allCourses->where('status', 'upcoming') as $course)
-                    <div class="course-card-wrapper" data-category="{{ $course->category }}" data-status="{{ $course->status }}">
-                        <x-course.card :course="$course" :enrollment="$userEnrollments->get($course->id)" />
+                @if ($courses->isEmpty())
+                    <div class="bg-white rounded-3xl p-12 text-center border border-slate-200/90 shadow-xs max-w-xl mx-auto my-8 space-y-4">
+                        <div class="w-16 h-16 rounded-full bg-orange-50 text-[#FB6221] flex items-center justify-center mx-auto">
+                            <span class="material-symbols-outlined text-[32px]">search_off</span>
+                        </div>
+                        <h3 class="font-heading text-xl font-bold text-slate-900">No matching courses found</h3>
+                        <p class="font-sans text-xs sm:text-sm text-slate-600 leading-relaxed">
+                            We couldn't find any courses matching "{{ $searchQuery }}". Try searching for FICO, MM, PP, ABAP, S/4HANA, or reset your search.
+                        </p>
+                        <a href="{{ route('courses.index') }}" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#FB6221] text-white font-mono text-xs font-bold uppercase tracking-wider hover:bg-[#e05214] transition-colors">
+                            <span>Browse All Courses</span>
+                            <span class="material-symbols-outlined text-[16px]">refresh</span>
+                        </a>
                     </div>
-                @endforeach
-            </div>
-        </div>
+                @else
+                    <div class="flex flex-col gap-5">
+                        @foreach($courses as $course)
+                            <div class="course-card-wrapper" data-category="{{ $course->category }}" data-status="{{ $course->status }}">
+                                <x-course.card :course="$course" :featured="$course->featured" :enrollment="$userEnrollments->get($course->id)" />
+                            </div>
+                        @endforeach
+                    </div>
 
-        <!-- 3. PLANNED ROADMAP CANDIDATES SECTION -->
-        <div class="mb-14" id="section-planned">
-            <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-200">
-                <div class="flex items-center gap-2.5">
-                    <span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span>
-                    <h2 class="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-tight text-slate-700">
-                        ACADEMY ROADMAP CANDIDATES
-                    </h2>
+                    @if ($courses->hasPages())
+                        <div class="my-8 flex justify-center">
+                            {{ $courses->links() }}
+                        </div>
+                    @endif
+                @endif
+            </div>
+        @else
+            <!-- UNIFIED COURSES DIRECTORY -->
+            <div class="mb-14" id="section-all-courses">
+                <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-200">
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-2.5 h-2.5 rounded-full bg-[#FB6221]"></span>
+                        <h2 class="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-tight text-[#0A0A0A]">
+                            ALL COURSES ({{ $allCourses->count() }})
+                        </h2>
+                    </div>
+                    <span class="font-mono text-xs text-slate-500 font-semibold hidden sm:inline-block">
+                        SORTED BY RECENTLY ADDED
+                    </span>
                 </div>
-                <span class="font-mono text-xs text-slate-400 font-semibold hidden sm:inline-block">
-                    CURRICULUM IN DEVELOPMENT
-                </span>
+
+                <!-- Vertical Stack of Wide Course Cards -->
+                <div class="flex flex-col gap-5" id="all-course-grid">
+                    @foreach($allCourses->sortByDesc('created_at') as $course)
+                        <div class="course-card-wrapper" data-category="{{ $course->category }}">
+                            <x-course.card :course="$course" :featured="$course->featured" :enrollment="$userEnrollments->get($course->id)" />
+                        </div>
+                    @endforeach
+                </div>
             </div>
 
-            <div class="bg-amber-50/70 border border-amber-200/80 rounded-2xl p-4 sm:p-5 mb-6 text-amber-950 font-sans text-xs sm:text-sm leading-relaxed flex items-start gap-3">
-                <span class="material-symbols-outlined text-[20px] text-amber-600 shrink-0 mt-0.5">info</span>
-                <p>
-                    <strong>Academy Transparency Notice:</strong> The courses below are roadmap candidates undergoing faculty curriculum design and enterprise sandbox provisioning. They are not yet open for paid enrollment. You can register your email or phone to receive syllabus brochures once batches are announced.
-                </p>
-            </div>
-
-            <!-- Vertical Stack of Wide Course Cards Matching the Screenshot -->
-            <div class="flex flex-col gap-5" id="planned-course-grid">
-                @foreach($allCourses->where('status', 'planned') as $course)
-                    <div class="course-card-wrapper" data-category="{{ $course->category }}" data-status="{{ $course->status }}">
-                        <x-course.card :course="$course" :enrollment="$userEnrollments->get($course->id)" />
-                    </div>
-                @endforeach
-            </div>
-        </div>
-
-        @if ($courses->hasPages())
-            <div class="my-8 flex justify-center">
-                {{ $courses->links() }}
-            </div>
+            @if ($courses->hasPages())
+                <div class="my-8 flex justify-center">
+                    {{ $courses->links() }}
+                </div>
+            @endif
         @endif
 
         <!-- ACADEMY ADVISORY CTA BANNER -->
         <x-course.cta />
+
+        <!-- VERIFIED STUDENT REVIEWS SECTION -->
+        <div class="mt-16 pt-12 border-t border-slate-200" data-reveal id="reviews">
+            <x-home.verified-reviews />
+        </div>
 
         <!-- COURSE CATALOG FAQS -->
         <div class="mt-16 pt-12 border-t border-slate-200" data-reveal>
@@ -420,12 +414,12 @@
                     <summary class="flex items-center justify-between font-heading text-base sm:text-lg font-bold uppercase text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors list-none tracking-tight">
                         <div class="flex items-center gap-3">
                             <span class="font-mono text-xs font-bold text-slate-400 group-open:text-[#FB6221]">02</span>
-                            <span>What is the difference between Available, Upcoming, and Roadmap courses?</span>
+                            <span>How are live cohorts structured and scheduled?</span>
                         </div>
                         <span class="material-symbols-outlined text-[20px] text-slate-400 group-open:rotate-180 group-open:text-[#FB6221] transition-transform">expand_more</span>
                     </summary>
                     <div class="mt-3 pl-7 max-w-4xl font-sans text-xs sm:text-sm text-slate-600 leading-relaxed">
-                        <strong>Available Now</strong> indicates active live cohorts currently enrolling with published tuition fees and confirmed batch schedules. <strong>Upcoming Batches</strong> are confirmed offerings where curriculum and trainers are set, and pre-registrations for demo classes are open. <strong>Roadmap Candidates</strong> are advanced modules under academic development.
+                        Cohorts are held in small, interactive batches of up to 25 students. Classes run on flexible weekend and weekday evening schedules, complete with instructor-led doubt clearing sessions, session recordings, and practical sandbox practice.
                     </div>
                 </details>
 
@@ -480,7 +474,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const categoriesData = @json(\App\Models\Course::CATEGORIES);
     const catButtons = document.querySelectorAll('#category-filter-group button');
-    const statButtons = document.querySelectorAll('#status-filter-group button');
     const cards = document.querySelectorAll('.course-card-wrapper');
     const countDisplay = document.getElementById('filter-result-count');
 
@@ -490,7 +483,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const bannerReviews = document.getElementById('category-banner-reviews');
 
     let currentCat = '{{ $activeCategory }}';
-    let currentStat = '{{ $activeStatus }}';
 
     function updateBanner(catSlug) {
         if (!bannerTitle) return;
@@ -513,16 +505,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         cards.forEach(card => {
             const cardCat = card.getAttribute('data-category');
-            const cardStat = card.getAttribute('data-status');
 
             // Category match logic:
             const catMatch = (currentCat === 'all')
                 || (cardCat === currentCat)
                 || (currentCat === 'sap-erp' && ['functional', 'technical', 'cloud_specialized', 'sap-erp'].includes(cardCat));
 
-            const statMatch = (currentStat === 'all') || (cardStat === currentStat);
-
-            if (catMatch && statMatch) {
+            if (catMatch) {
                 card.style.display = '';
                 visibleCount++;
             } else {
@@ -533,15 +522,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (countDisplay) {
             countDisplay.textContent = `Showing ${visibleCount} of ${cards.length} courses`;
         }
-
-        // Toggle section headers if all cards inside are hidden
-        ['available', 'upcoming', 'planned'].forEach(sec => {
-            const secEl = document.getElementById(`section-${sec}`);
-            if (secEl) {
-                const hasVisible = secEl.querySelectorAll('.course-card-wrapper:not([style*="display: none"])').length > 0;
-                secEl.style.display = hasVisible ? '' : 'none';
-            }
-        });
 
         updateBanner(currentCat);
     }
@@ -560,22 +540,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    statButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            statButtons.forEach(b => {
-                b.classList.remove('bg-orange-50', 'text-[#FB6221]', 'border', 'border-orange-200', 'font-bold');
-                b.classList.add('text-slate-600');
-            });
-            btn.classList.remove('text-slate-600');
-            btn.classList.add('bg-orange-50', 'text-[#FB6221]', 'border', 'border-orange-200', 'font-bold');
-
-            currentStat = btn.getAttribute('data-filter-status');
-            applyFilters();
-        });
-    });
-
     // Run initial filter check
-    if (currentCat !== 'all' || currentStat !== 'all') {
+    if (currentCat !== 'all') {
         applyFilters();
     }
 });

@@ -18,26 +18,40 @@ class CourseCmsService
      */
     public function resolveRedirect(string $slug): ?string
     {
-        return Cache::remember("zeblearn_slug_redirect_{$slug}", 3600, function () use ($slug) {
-            $redirect = CourseSlugRedirect::where('old_slug', $slug)->first();
+        $cleanSlug = trim($slug, "/ \t\n\r\0\x0B");
+
+        if (empty($cleanSlug)) {
+            return null;
+        }
+
+        return Cache::remember("zeblearn_slug_redirect_{$cleanSlug}", 3600, function () use ($cleanSlug) {
+            $redirect = CourseSlugRedirect::where('old_slug', $cleanSlug)->first();
 
             if (! $redirect) {
                 return null;
             }
 
             // Follow chain if any (up to 3 hops safety)
-            $target = $redirect->new_slug;
+            $target = trim($redirect->new_slug, "/ \t\n\r\0\x0B");
+            if ($target === $cleanSlug) {
+                return null;
+            }
+
             $hops = 0;
             while ($hops < 3) {
                 $next = CourseSlugRedirect::where('old_slug', $target)->first();
-                if (! $next || $next->new_slug === $target) {
+                if (! $next) {
                     break;
                 }
-                $target = $next->new_slug;
+                $nextTarget = trim($next->new_slug, "/ \t\n\r\0\x0B");
+                if ($nextTarget === $target || $nextTarget === $cleanSlug) {
+                    break;
+                }
+                $target = $nextTarget;
                 $hops++;
             }
 
-            return $target;
+            return $target === $cleanSlug ? null : $target;
         });
     }
 
@@ -46,36 +60,39 @@ class CourseCmsService
      */
     public function recordSlugChange(Course $course, string $oldSlug, string $newSlug): void
     {
-        if ($oldSlug === $newSlug || empty($oldSlug) || empty($newSlug)) {
+        $cleanOld = trim($oldSlug, "/ \t\n\r\0\x0B");
+        $cleanNew = trim($newSlug, "/ \t\n\r\0\x0B");
+
+        if ($cleanOld === $cleanNew || empty($cleanOld) || empty($cleanNew)) {
             return;
         }
 
-        DB::transaction(function () use ($course, $oldSlug, $newSlug) {
-            // Delete any existing redirect that had old_slug == new_slug (prevents loop)
-            CourseSlugRedirect::where('old_slug', $newSlug)->delete();
+        DB::transaction(function () use ($course, $cleanOld, $cleanNew) {
+            // Delete any existing redirect that had old_slug == cleanNew (prevents loop)
+            CourseSlugRedirect::where('old_slug', $cleanNew)->delete();
 
-            // Find and clear cache for all previous redirects pointing to $oldSlug
-            $pointingToOld = CourseSlugRedirect::where('new_slug', $oldSlug)->get();
+            // Find and clear cache for all previous redirects pointing to $cleanOld
+            $pointingToOld = CourseSlugRedirect::where('new_slug', $cleanOld)->get();
             foreach ($pointingToOld as $prevRedirect) {
                 Cache::forget("zeblearn_slug_redirect_{$prevRedirect->old_slug}");
             }
 
             // Update existing redirects that pointed to the old slug so they point directly to the new slug
-            CourseSlugRedirect::where('new_slug', $oldSlug)->update(['new_slug' => $newSlug]);
+            CourseSlugRedirect::where('new_slug', $cleanOld)->update(['new_slug' => $cleanNew]);
 
             // Create or update the redirect record
             CourseSlugRedirect::updateOrCreate(
-                ['old_slug' => $oldSlug],
+                ['old_slug' => $cleanOld],
                 [
                     'course_id' => $course->id,
-                    'new_slug' => $newSlug,
+                    'new_slug' => $cleanNew,
                     'http_code' => 301,
                 ]
             );
 
             // Invalidate redirect cache
-            Cache::forget("zeblearn_slug_redirect_{$oldSlug}");
-            Cache::forget("zeblearn_slug_redirect_{$newSlug}");
+            Cache::forget("zeblearn_slug_redirect_{$cleanOld}");
+            Cache::forget("zeblearn_slug_redirect_{$cleanNew}");
         });
     }
 

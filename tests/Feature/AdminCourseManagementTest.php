@@ -310,6 +310,11 @@ test('admin can safely delete standard course', function () {
 });
 
 test('public course pages continue operating with zero regressions', function () {
+    Course::factory()->published()->create([
+        'name' => 'SAP FICO Training',
+        'slug' => 'sap-fico-training',
+    ]);
+
     // Flagship marketing course page
     $this->get('/courses/sap-fico-training')->assertOk();
 

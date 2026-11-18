@@ -2,6 +2,12 @@
 
 use App\Http\Controllers\Admin\AdminAnalyticsController;
 use App\Http\Controllers\Admin\AdminAssignmentController;
+use App\Http\Controllers\Admin\AdminBlogCategoryController;
+use App\Http\Controllers\Admin\AdminBlogController;
+use App\Http\Controllers\Admin\AdminBlogDashboardController;
+use App\Http\Controllers\Admin\AdminBlogMigrationController;
+use App\Http\Controllers\Admin\AdminBlogTagController;
+use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminCertificateController;
 use App\Http\Controllers\Admin\AdminCourseController;
 use App\Http\Controllers\Admin\AdminCurriculumController;
@@ -11,9 +17,11 @@ use App\Http\Controllers\Admin\AdminInstructorController;
 use App\Http\Controllers\Admin\AdminPaymentController;
 use App\Http\Controllers\Admin\AdminQuizController;
 use App\Http\Controllers\Admin\AdminQuizQuestionController;
+use App\Http\Controllers\Admin\AdminSeoSpiderController;
 use App\Http\Controllers\Admin\AdminSettingController;
 use App\Http\Controllers\Admin\AdminTrustItemController;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\CourseCsvImportController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
@@ -152,6 +160,24 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::get('/courses', [AdminCourseController::class, 'index'])->name('courses.index');
     Route::get('/courses/create', [AdminCourseController::class, 'create'])->name('courses.create');
     Route::post('/courses', [AdminCourseController::class, 'store'])->name('courses.store');
+
+    // Course Categories Management
+    Route::get('/categories', [AdminCategoryController::class, 'index'])->name('categories.index');
+    Route::post('/categories', [AdminCategoryController::class, 'store'])->name('categories.store');
+    Route::get('/categories/{category}/edit', [AdminCategoryController::class, 'edit'])->name('categories.edit');
+    Route::put('/categories/{category}', [AdminCategoryController::class, 'update'])->name('categories.update');
+    Route::delete('/categories/{category}', [AdminCategoryController::class, 'destroy'])->name('categories.destroy');
+
+    // Course CSV Import (Full Form Parity)
+    Route::get('/courses/import', [CourseCsvImportController::class, 'index'])->name('courses.import.index');
+    Route::get('/courses/import/template', [CourseCsvImportController::class, 'downloadTemplate'])->name('courses.import.template');
+    Route::get('/courses/import/guide', [CourseCsvImportController::class, 'guide'])->name('courses.import.guide');
+    Route::post('/courses/import/preview', [CourseCsvImportController::class, 'preview'])->name('courses.import.preview');
+    Route::post('/courses/import/process', [CourseCsvImportController::class, 'process'])->name('courses.import.process');
+    // Direct Course Publishing Controls
+    Route::patch('/courses/{course}/publish', [AdminCourseController::class, 'publish'])->name('courses.publish');
+    Route::patch('/courses/{course}/unpublish', [AdminCourseController::class, 'unpublish'])->name('courses.unpublish');
+
     Route::get('/courses/{course}/preview', [AdminCourseController::class, 'preview'])->name('courses.preview');
     Route::get('/courses/{course}/edit', [AdminCourseController::class, 'edit'])->name('courses.edit');
     Route::put('/courses/{course}', [AdminCourseController::class, 'update'])->name('courses.update');
@@ -177,6 +203,33 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::put('/trust/{trustItem}', [AdminTrustItemController::class, 'update'])->name('trust.update');
     Route::delete('/trust/{trustItem}', [AdminTrustItemController::class, 'destroy'])->name('trust.destroy');
     Route::patch('/trust/{trustItem}/toggle-status', [AdminTrustItemController::class, 'toggleStatus'])->name('trust.toggle-status');
+
+    // Blog CMS Management
+    Route::get('/blogs/dashboard', [AdminBlogDashboardController::class, 'index'])->name('blogs.dashboard');
+    Route::get('/blogs', [AdminBlogController::class, 'index'])->name('blogs.index');
+    Route::get('/blogs/create', [AdminBlogController::class, 'create'])->name('blogs.create');
+    Route::post('/blogs', [AdminBlogController::class, 'store'])->name('blogs.store');
+    Route::get('/blogs/{blog}/edit', [AdminBlogController::class, 'edit'])->name('blogs.edit');
+    Route::put('/blogs/{blog}', [AdminBlogController::class, 'update'])->name('blogs.update');
+    Route::delete('/blogs/{blog}', [AdminBlogController::class, 'destroy'])->name('blogs.destroy');
+    Route::get('/blogs/{blog}/preview', [AdminBlogController::class, 'preview'])->name('blogs.preview');
+    Route::patch('/blogs/{blog}/publish', [AdminBlogController::class, 'publish'])->name('blogs.publish');
+    Route::patch('/blogs/{blog}/unpublish', [AdminBlogController::class, 'unpublish'])->name('blogs.unpublish');
+
+    // Blog Categories & Tags
+    Route::get('/blogs/categories', [AdminBlogCategoryController::class, 'index'])->name('blogs.categories.index');
+    Route::post('/blogs/categories', [AdminBlogCategoryController::class, 'store'])->name('blogs.categories.store');
+    Route::put('/blogs/categories/{category}', [AdminBlogCategoryController::class, 'update'])->name('blogs.categories.update');
+    Route::delete('/blogs/categories/{category}', [AdminBlogCategoryController::class, 'destroy'])->name('blogs.categories.destroy');
+
+    Route::get('/blogs/tags', [AdminBlogTagController::class, 'index'])->name('blogs.tags.index');
+    Route::post('/blogs/tags', [AdminBlogTagController::class, 'store'])->name('blogs.tags.store');
+    Route::delete('/blogs/tags/{tag}', [AdminBlogTagController::class, 'destroy'])->name('blogs.tags.destroy');
+
+    // Blog Migration & Legacy Recovery Hub
+    Route::get('/blogs/migration', [AdminBlogMigrationController::class, 'index'])->name('blogs.migration.index');
+    Route::post('/blogs/migration/start', [AdminBlogMigrationController::class, 'start'])->name('blogs.migration.start');
+    Route::get('/blogs/migration/logs', [AdminBlogMigrationController::class, 'logs'])->name('blogs.migration.logs');
 
     // Student Enrollment Approvals & Management
     Route::get('/enrollments', [AdminEnrollmentController::class, 'index'])->name('enrollments.index');
@@ -254,4 +307,16 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     // System Settings & Platform Configuration
     Route::get('/settings', [AdminSettingController::class, 'index'])->name('settings.index');
     Route::put('/settings', [AdminSettingController::class, 'update'])->name('settings.update');
+
+    // SEO Spider Web & Internal Linking Engine
+    Route::get('/internal-linking', [AdminSeoSpiderController::class, 'index'])->name('seo.spider');
+    Route::post('/internal-linking/recalculate', [AdminSeoSpiderController::class, 'recalculate'])->name('seo.recalculate');
+    Route::post('/internal-linking/overrides', [AdminSeoSpiderController::class, 'storeOverride'])->name('seo.override.store');
+    Route::delete('/internal-linking/overrides/{override}', [AdminSeoSpiderController::class, 'destroyOverride'])->name('seo.override.destroy');
+
+    // SEO Spider Web & Internal Linking Engine
+    Route::get('/internal-linking', [AdminSeoSpiderController::class, 'index'])->name('seo.spider');
+    Route::post('/internal-linking/recalculate', [AdminSeoSpiderController::class, 'recalculate'])->name('seo.recalculate');
+    Route::post('/internal-linking/overrides', [AdminSeoSpiderController::class, 'storeOverride'])->name('seo.override.store');
+    Route::delete('/internal-linking/overrides/{override}', [AdminSeoSpiderController::class, 'destroyOverride'])->name('seo.override.destroy');
 });

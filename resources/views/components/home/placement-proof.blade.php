@@ -58,10 +58,6 @@
     <!-- Header -->
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10" data-reveal>
         <div class="max-w-2xl space-y-3">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200 text-[11px] font-mono font-bold uppercase tracking-wider text-[#FB6221]">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#FB6221]"></span>
-                <span>DON'T BELIEVE US? VERIFY EVERYTHING.</span>
-            </div>
             <h2 id="placement-proof-heading" class="font-heading text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-[#0A0A0A] tracking-tight leading-tight">
                Feedback from Our Students
             </h2>
@@ -71,7 +67,7 @@
         </div>
 
         <div class="flex items-center gap-3">
-         
+
         </div>
     </div>
 

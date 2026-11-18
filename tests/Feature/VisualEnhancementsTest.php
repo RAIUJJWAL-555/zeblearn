@@ -30,7 +30,7 @@ test('homepage renders simple demo form in hero, awards certificates after testi
     // 3b. About ZebLearn India section with 3D Infinite Spiral of SAP module cards
     $response->assertSee('id="about-institute"', false);
     $response->assertSee('id="infinite-spiral-root"', false);
-    $response->assertSee('ABOUT ZEBLEARN INDIA');
+    $response->assertSee('TRUSTED &amp; LEADING', false);
     $response->assertSee("INDIA'S", false);
     $response->assertSee('SAP TRAINING');
     $response->assertSee('BOOK FREE MASTER CLASS');

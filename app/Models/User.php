@@ -195,6 +195,11 @@ class User extends Authenticatable
         return $this->role === self::ROLE_ADMIN;
     }
 
+    public function isCourseEditor(): bool
+    {
+        return $this->isAdmin();
+    }
+
     /**
      * Check if the user is an instructor.
      */

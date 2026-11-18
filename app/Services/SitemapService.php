@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\Blog;
+use App\Models\BlogCategory;
 use App\Models\Course;
 use Illuminate\Support\Facades\Cache;
 
@@ -45,7 +47,7 @@ class SitemapService
 
             // Dynamic course landing pages
             foreach ($courses as $course) {
-                $url = $course->slug === 'sap-fico-training' ? route('courses.fico') : route('courses.show', $course->slug);
+                $url = $course->url;
                 $lastmod = ($course->updated_at ?? $course->published_at ?? now())->toAtomString();
 
                 $xml .= "  <url>\n";
@@ -53,6 +55,38 @@ class SitemapService
                 $xml .= '    <lastmod>'.$lastmod.'</lastmod>'."\n";
                 $xml .= "    <changefreq>weekly</changefreq>\n";
                 $xml .= "    <priority>0.8</priority>\n";
+                $xml .= "  </url>\n";
+            }
+
+            // Dynamic published blog articles
+            $blogs = Blog::published()
+                ->where('robots_index', true)
+                ->orderBy('updated_at', 'desc')
+                ->get();
+
+            foreach ($blogs as $blog) {
+                $url = $blog->effective_canonical_url;
+                $lastmod = ($blog->updated_at ?? $blog->published_at ?? now())->toAtomString();
+
+                $xml .= "  <url>\n";
+                $xml .= '    <loc>'.htmlspecialchars($url).'</loc>'."\n";
+                $xml .= '    <lastmod>'.$lastmod.'</lastmod>'."\n";
+                $xml .= "    <changefreq>weekly</changefreq>\n";
+                $xml .= "    <priority>0.8</priority>\n";
+                $xml .= "  </url>\n";
+            }
+
+            // Dynamic blog category archives
+            $categories = BlogCategory::active()->has('publishedBlogs')->get();
+            foreach ($categories as $cat) {
+                $url = route('blogs.category', $cat->slug);
+                $lastmod = ($cat->updated_at ?? now())->toAtomString();
+
+                $xml .= "  <url>\n";
+                $xml .= '    <loc>'.htmlspecialchars($url).'</loc>'."\n";
+                $xml .= '    <lastmod>'.$lastmod.'</lastmod>'."\n";
+                $xml .= "    <changefreq>weekly</changefreq>\n";
+                $xml .= "    <priority>0.7</priority>\n";
                 $xml .= "  </url>\n";
             }
 

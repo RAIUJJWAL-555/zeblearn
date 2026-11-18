@@ -58,10 +58,10 @@
                 ],
                 [
                     'label' => 'Categories',
-                    'route' => null,
-                    'url' => '#',
-                    'active' => false,
-                    'badge' => 'Upcoming',
+                    'route' => 'admin.categories.index',
+                    'url' => route('admin.categories.index'),
+                    'active' => request()->routeIs('admin.categories.*'),
+                    'badge' => null,
                     'icon' => '<svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>',
                 ],
                 [
@@ -79,6 +79,59 @@
                     'active' => false,
                     'badge' => 'Upcoming',
                     'icon' => '<svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>',
+                ],
+            ],
+        ],
+        [
+            'title' => 'Blog & Content CMS',
+            'items' => [
+                [
+                    'label' => 'Blog Dashboard',
+                    'route' => 'admin.blogs.dashboard',
+                    'url' => route('admin.blogs.dashboard'),
+                    'active' => request()->routeIs('admin.blogs.dashboard'),
+                    'badge' => null,
+                    'icon' => '<svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" /></svg>',
+                ],
+                [
+                    'label' => 'All Blogs',
+                    'route' => 'admin.blogs.index',
+                    'url' => route('admin.blogs.index'),
+                    'active' => request()->routeIs('admin.blogs.index', 'admin.blogs.create', 'admin.blogs.edit'),
+                    'badge' => null,
+                    'icon' => '<svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" /></svg>',
+                ],
+                [
+                    'label' => 'Categories',
+                    'route' => 'admin.blogs.categories.index',
+                    'url' => route('admin.blogs.categories.index'),
+                    'active' => request()->routeIs('admin.blogs.categories.*'),
+                    'badge' => null,
+                    'icon' => '<svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>',
+                ],
+                [
+                    'label' => 'Tags',
+                    'route' => 'admin.blogs.tags.index',
+                    'url' => route('admin.blogs.tags.index'),
+                    'active' => request()->routeIs('admin.blogs.tags.*'),
+                    'badge' => null,
+                    'icon' => '<svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14" /></svg>',
+                ],
+                [
+                    'label' => 'Legacy Migration',
+                    'route' => 'admin.blogs.migration.index',
+                    'url' => route('admin.blogs.migration.index'),
+                    'active' => request()->routeIs('admin.blogs.migration.*'),
+                    'badge' => 'WP Sync',
+                    'icon' => '<svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>',
+                ],
+                [
+                    'label' => 'SEO Spider Web',
+                    'route' => 'admin.seo.spider',
+                    'url' => route('admin.seo.spider'),
+                    'active' => request()->routeIs('admin.seo.*'),
+                    'badge' => 'Spider',
+                    'icon' => '<svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg>',
                 ],
             ],
         ],
@@ -181,7 +234,7 @@
 >
     {{-- Brand Header --}}
     <div class="h-16 flex items-center px-5 border-b border-white/10 overflow-hidden">
-        <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3 group focus:outline-hidden">
+        <a href="{{ route('home') }}" class="flex items-center gap-3 group focus:outline-hidden" title="Go to Website Homepage">
             <img
                 src="{{ asset('logo/logo2-400.webp') }}"
                 alt="ZebLearn LMS"
@@ -252,7 +305,7 @@
         @endforeach
     </nav>
 
-    {{-- Bottom Utility Link & Collapse Trigger --}}
+    {{-- Bottom Utility Link, Logout & Collapse Trigger --}}
     <div class="p-3 border-t border-white/10 space-y-1">
         <a
             href="{{ route('home') }}"
@@ -266,6 +319,22 @@
             </svg>
             <span x-show="sidebarOpen" class="truncate">Public Website</span>
         </a>
+
+        {{-- Direct Logout in Sidebar --}}
+        <form action="{{ route('logout') }}" method="POST" class="w-full">
+            @csrf
+            <button
+                type="submit"
+                class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-xs font-medium text-rose-400 hover:text-white hover:bg-rose-500/20 transition-all focus:outline-hidden cursor-pointer text-left"
+                :class="!sidebarOpen && 'justify-center px-0'"
+                title="Logout from Admin"
+            >
+                <svg class="w-4 h-4 shrink-0 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+                <span x-show="sidebarOpen" class="truncate font-semibold">Logout</span>
+            </button>
+        </form>
 
         <button
             type="button"
@@ -341,7 +410,7 @@
 
             {{-- Mobile Brand Header --}}
             <div class="h-16 flex items-center px-6 border-b border-white/10">
-                <a href="{{ route('admin.dashboard') }}" class="flex items-center gap-3">
+                <a href="{{ route('home') }}" class="flex items-center gap-3" title="Go to Website Homepage">
                     <img
                         src="{{ asset('logo/logo2-400.webp') }}"
                         alt="ZebLearn"
@@ -395,8 +464,8 @@
                 @endforeach
             </nav>
 
-            {{-- Bottom Mobile Link --}}
-            <div class="p-4 border-t border-white/10">
+            {{-- Bottom Mobile Links --}}
+            <div class="p-4 border-t border-white/10 space-y-2">
                 <a
                     href="{{ route('home') }}"
                     class="flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-xs font-semibold text-slate-300 bg-white/5 hover:bg-white/10 transition-colors"
@@ -406,8 +475,20 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
                 </a>
+
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button
+                        type="submit"
+                        class="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-xs font-bold text-rose-400 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/20 transition-colors cursor-pointer"
+                    >
+                        <svg class="w-4 h-4 text-rose-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                        </svg>
+                        <span>Logout</span>
+                    </button>
+                </form>
             </div>
         </div>
     </div>
 </div>
-

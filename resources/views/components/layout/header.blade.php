@@ -1,9 +1,6 @@
 @php
     $links = [
         ['label' => 'Courses', 'href' => route('courses.index')],
-        ['label' => 'Methodology', 'href' => url('/#method')],
-        ['label' => 'Stories', 'href' => url('/#stories')],
-        ['label' => 'Placements', 'href' => url('/#placements')],
         ['label' => 'Blog', 'href' => route('blogs')],
         ['label' => 'About', 'href' => route('about')],
         ['label' => 'Contact', 'href' => route('contact')],
@@ -51,7 +48,19 @@
         </nav>
 
         <!-- Right Action Bar -->
-        <div class="flex shrink-0 items-center gap-2.5">
+        <div class="flex shrink-0 items-center gap-2 sm:gap-2.5">
+            <!-- Course Search Trigger -->
+            <button
+                type="button"
+                @click="$dispatch('open-course-search')"
+                class="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-slate-100 hover:bg-white text-slate-700 hover:text-[#FB6221] text-xs font-semibold transition-all border border-slate-200/80 shadow-2xs cursor-pointer"
+                title="Search courses (Cmd+K)"
+                aria-label="Search courses"
+            >
+                <span class="material-symbols-outlined text-[16px] text-[#FB6221]">search</span>
+                <span class="hidden xl:inline text-[11px] font-mono uppercase">Search</span>
+            </button>
+
             @auth
                 <x-ui.notification-bell theme="light" />
                 <a
@@ -84,6 +93,14 @@
                     </svg>
                 </summary>
                 <nav aria-label="Mobile navigation" class="absolute right-0 top-12 z-50 w-64 rounded-2xl border border-white/70 p-3 shadow-[0_16px_40px_rgba(0,0,0,0.12),inset_0_1px_1px_rgba(255,255,255,0.9)] flex flex-col gap-1" style="background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(24px) saturate(190%); -webkit-backdrop-filter: blur(24px) saturate(190%);">
+                    <button
+                        type="button"
+                        @click="$dispatch('open-course-search')"
+                        class="w-full text-left rounded-xl px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-slate-800 hover:bg-white/80 hover:text-[#FB6221] transition-all flex items-center gap-2"
+                    >
+                        <span class="material-symbols-outlined text-[16px] text-[#FB6221]">search</span>
+                        <span>Search Courses</span>
+                    </button>
                     @foreach($links as $link)
                         <a href="{{ $link['href'] }}" class="rounded-xl px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-slate-800 hover:bg-white/80 hover:text-[#FB6221] transition-all">
                             {{ $link['label'] }}

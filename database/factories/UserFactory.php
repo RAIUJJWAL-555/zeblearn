@@ -101,4 +101,14 @@ class UserFactory extends Factory
             'status' => User::STATUS_SUSPENDED,
         ]);
     }
+
+    /**
+     * Assign specific review workflow permissions to the user.
+     */
+    public function withWorkflowPermissions(array $permissions): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'workflow_permissions' => $permissions,
+        ]);
+    }
 }

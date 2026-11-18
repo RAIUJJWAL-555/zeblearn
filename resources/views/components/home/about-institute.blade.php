@@ -1,6 +1,4 @@
-<!-- =========================================================================
-     ABOUT ZEBLEARN INDIA: TRUSTED & LEADING SAP TRAINING INSTITUTE (3D SPIRAL)
-     ========================================================================= -->
+{{-- ABOUT ZEBLEARN INSTITUTE --}}
 <section id="about-institute" class="w-full bg-[#0A0A0A] text-white py-16 lg:py-24 px-4 sm:px-6 lg:px-12 border-t border-slate-800 relative overflow-hidden" aria-labelledby="about-institute-heading">
     <!-- Ambient Technical Grid Pattern & Glows -->
     <div
@@ -14,12 +12,6 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             <!-- Left Column: Editorial Value Proposition -->
             <div class="lg:col-span-7 flex flex-col justify-center space-y-6" data-reveal>
-                <!-- Badge -->
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono font-bold uppercase tracking-wider text-amber-400 self-start">
-                    <span class="w-2 h-2 rounded-full bg-[#FB6221] shadow-[0_0_8px_#FB6221]"></span>
-                    <span>ABOUT ZEBLEARN INDIA</span>
-                </div>
-
                 <!-- Main Heading -->
                 <h2 id="about-institute-heading" class="font-heading text-4xl sm:text-5xl lg:text-[56px] font-black uppercase text-white tracking-tight leading-[1.04]">
                     INDIA'S<br>
@@ -95,4 +87,3 @@
         </div>
     </div>
 </section>
-

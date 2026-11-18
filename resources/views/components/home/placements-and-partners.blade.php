@@ -176,12 +176,12 @@
              ========================================================================= -->
         <div class="pt-12 border-t border-slate-200">
             <div class="mb-10">
-                
+
                 <h3 class="font-heading text-2xl sm:text-3xl font-black uppercase text-[#0A0A0A] tracking-tight">
                     EMPLOYERS &amp; INDUSTRY PARTNERS
                 </h3>
                 <p class="text-xs sm:text-sm text-slate-600 max-w-2xl mt-1 leading-relaxed">
-                    Clear categorization of our verified dedicated placement partner, documented alumni employers, and the wider enterprise SAP industry landscape.
+                    Clear categorization of our verified dedicated placement partner, documented alumni employers, and the wider enterprise SAP hiring ecosystem.
                 </p>
             </div>
 
@@ -190,7 +190,7 @@
                 <!-- CATEGORY A: Official Dedicated Placement Partner -->
                 <div class="bg-white rounded-3xl p-6 sm:p-8 border border-orange-200 shadow-sm flex flex-col justify-between">
                     <div>
-              
+
 
                         <!-- Original Colorful PlacementBaba Logo -->
                         <div class="my-4">
@@ -230,7 +230,7 @@
                 <!-- CATEGORY B: Verified Alumni Employer -->
                 <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm flex flex-col justify-between">
                     <div>
-                       
+
 
                         <!-- Original Colorful Accenture Logo -->
                         <div class="my-4">

@@ -257,3 +257,25 @@ test('existing public website routes still work', function () {
     $this->get('/blogs')
         ->assertOk();
 });
+
+test('admin portal topbar and sidebar render logout button and admin can log out', function () {
+    $admin = User::factory()->admin()->active()->create();
+
+    $response = $this->actingAs($admin)->get(route('admin.dashboard'));
+    $response->assertOk();
+    $response->assertSee(route('logout'));
+    $response->assertSee('Logout');
+
+    $logoutResponse = $this->actingAs($admin)->post(route('logout'));
+    $logoutResponse->assertRedirect(route('home'));
+    $this->assertGuest();
+});
+
+test('admin portal logo links directly to the public home page', function () {
+    $admin = User::factory()->admin()->active()->create();
+
+    $response = $this->actingAs($admin)->get(route('admin.dashboard'));
+    $response->assertOk();
+    // Brand link should point to home
+    $response->assertSee('href="'.route('home').'" class="flex items-center gap-3 group focus:outline-hidden"', false);
+});

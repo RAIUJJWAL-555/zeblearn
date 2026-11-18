@@ -110,10 +110,6 @@
         <!-- Section Header -->
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10" data-reveal>
             <div>
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FB6221]/15 border border-[#FB6221]/30 text-[11px] font-mono font-bold uppercase tracking-wider text-[#FB6221] mb-3">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#FB6221]"></span>
-                    <span>HEAR FROM OUR STUDENTS</span>
-                </div>
                 <h2 id="video-testimonials-heading" class="font-heading text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-white tracking-tight leading-tight">
                   FEEDBACK FROM <span class="text-[#FB6221]">OUR STUDENTS</span>
                 </h2>
@@ -264,5 +260,3 @@
         </div>
     </div>
 </div>
-
-

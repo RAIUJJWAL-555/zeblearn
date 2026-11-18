@@ -64,6 +64,22 @@
         {{-- Divider --}}
         <div class="h-6 w-px bg-slate-200 my-auto"></div>
 
+        {{-- Direct Quick Logout Button --}}
+        <form action="{{ route('logout') }}" method="POST" class="inline-flex">
+            @csrf
+            <button
+                type="submit"
+                title="Logout from Admin Console"
+                aria-label="Logout"
+                class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold text-slate-600 hover:text-rose-600 hover:bg-rose-50 border border-slate-200/80 hover:border-rose-200 transition-all cursor-pointer shadow-2xs"
+            >
+                <svg class="w-4 h-4 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+                <span>Logout</span>
+            </button>
+        </form>
+
         {{-- Admin Profile Dropdown (Alpine.js) --}}
         <div class="relative" x-data="{ open: false }" @click.outside="open = false">
             <button
@@ -156,4 +172,3 @@
         </div>
     </div>
 </header>
-

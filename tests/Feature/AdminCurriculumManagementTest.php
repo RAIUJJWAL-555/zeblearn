@@ -457,3 +457,148 @@ test('existing public course pages continue operating with zero regressions', fu
     $this->get('/courses/sap-fico-training')->assertOk();
     $this->get('/courses')->assertOk();
 });
+
+test('curriculum screen displays empty state when course has zero modules', function () {
+    $admin = User::factory()->admin()->active()->create();
+
+    $course = Course::create([
+        'name' => 'Empty Curriculum Course',
+        'slug' => 'empty-curriculum-course',
+        'category' => 'sap-erp',
+        'status' => 'available',
+        'short_description' => 'Course without any modules yet',
+        'fee' => 12000,
+    ]);
+
+    $response = $this->actingAs($admin)->get(route('admin.courses.curriculum', $course));
+
+    $response->assertOk();
+    $response->assertSee('Build Your Course Curriculum');
+    $response->assertSee('Create Your First Module');
+});
+
+test('curriculum screen displays complete overview stats, module cards, and all lesson content types', function () {
+    $admin = User::factory()->admin()->active()->create();
+
+    $course = Course::create([
+        'name' => 'Full Curriculum Showcase',
+        'slug' => 'full-curriculum-showcase',
+        'category' => 'sap-erp',
+        'status' => 'available',
+        'short_description' => 'Comprehensive syllabus test',
+        'fee' => 50000,
+    ]);
+
+    $module1 = $course->modules()->create([
+        'title' => 'Procurement & Inventory Basics',
+        'description' => 'Master essential MM configuration and purchasing.',
+        'status' => 'published',
+        'sort_order' => 1,
+    ]);
+
+    $module2 = $course->modules()->create([
+        'title' => 'Draft Advanced Logistics Module',
+        'description' => 'Logistics invoice verification and release procedures.',
+        'status' => 'draft',
+        'sort_order' => 2,
+    ]);
+
+    // Text Lesson
+    $module1->lessons()->create([
+        'title' => 'Vendor Master Setup',
+        'content_type' => 'text',
+        'content' => 'Create vendor account groups and assign number ranges.',
+        'duration_minutes' => 30,
+        'status' => 'published',
+        'sort_order' => 1,
+    ]);
+
+    // Video Lesson
+    $module1->lessons()->create([
+        'title' => 'Purchase Order Workflow Video',
+        'content_type' => 'video',
+        'video_url' => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        'duration_minutes' => 45,
+        'status' => 'published',
+        'sort_order' => 2,
+    ]);
+
+    // Resource Lesson
+    $module1->lessons()->create([
+        'title' => 'SAP MM Sandbox Lab Guide',
+        'content_type' => 'resource',
+        'resource_url' => 'https://sandbox.sap.zeblearn.com/guide.pdf',
+        'duration_minutes' => 60,
+        'status' => 'draft',
+        'sort_order' => 3,
+    ]);
+
+    $response = $this->actingAs($admin)->get(route('admin.courses.curriculum', $course));
+
+    $response->assertOk();
+
+    // Verify 5 stats cards metrics
+    $response->assertSee('Total Modules');
+    $response->assertSee('Total Lessons');
+    $response->assertSee('Total Duration');
+    $response->assertSee('Draft Modules');
+
+    // Verify Module details
+    $response->assertSee('Procurement & Inventory Basics');
+    $response->assertSee('Draft Advanced Logistics Module');
+    $response->assertSee('MODULE 01');
+    $response->assertSee('MODULE 02');
+
+    // Verify Lessons
+    $response->assertSee('Vendor Master Setup');
+    $response->assertSee('Text Lesson');
+    $response->assertSee('Purchase Order Workflow Video');
+    $response->assertSee('Video Lesson');
+    $response->assertSee('SAP MM Sandbox Lab Guide');
+    $response->assertSee('Resource Link');
+
+    // Verify empty state inside module 2
+    $response->assertSee('No lessons in this module yet');
+});
+
+test('admin can quickly toggle module publishing status between published and draft', function () {
+    $admin = User::factory()->admin()->active()->create();
+
+    $course = Course::create([
+        'name' => 'Toggle Status Course',
+        'slug' => 'toggle-status-course',
+        'category' => 'sap-erp',
+        'status' => 'available',
+        'short_description' => 'Test toggling',
+        'fee' => 10000,
+    ]);
+
+    $module = $course->modules()->create([
+        'title' => 'Toggleable Module',
+        'description' => 'Module to test quick unpublish/publish',
+        'status' => 'published',
+        'sort_order' => 1,
+    ]);
+
+    // Unpublish
+    $response = $this->actingAs($admin)->put(route('admin.courses.modules.update', [$course, $module]), [
+        'title' => $module->title,
+        'description' => $module->description,
+        'status' => 'draft',
+    ]);
+
+    $response->assertRedirect();
+    $module->refresh();
+    expect($module->status)->toBe('draft');
+
+    // Re-publish
+    $response = $this->actingAs($admin)->put(route('admin.courses.modules.update', [$course, $module]), [
+        'title' => $module->title,
+        'description' => $module->description,
+        'status' => 'published',
+    ]);
+
+    $response->assertRedirect();
+    $module->refresh();
+    expect($module->status)->toBe('published');
+});

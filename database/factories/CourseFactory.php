@@ -40,6 +40,9 @@ class CourseFactory extends Factory
             'fee' => 25000,
             'featured' => false,
             'learner_count' => fake()->numberBetween(500, 2000),
+            'rating' => 4.9,
+            'ratings_count' => 13952,
+            'reviews_count' => 11440,
             'badge_label' => null,
             'highlights' => ['Live Sandbox', 'Mock Interviews', 'Placement Assistance'],
             'target_audience' => ['Freshers', 'Domain Professionals'],
@@ -93,6 +96,26 @@ class CourseFactory extends Factory
     {
         return $this->state(fn (array $attributes) => [
             'featured' => true,
+        ]);
+    }
+
+    /**
+     * Indicate that the course is in draft (unpublished).
+     */
+    public function draft(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'published_at' => null,
+        ]);
+    }
+
+    /**
+     * Indicate that the course is published.
+     */
+    public function published(): static
+    {
+        return $this->state(fn (array $attributes) => [
+            'published_at' => now(),
         ]);
     }
 }

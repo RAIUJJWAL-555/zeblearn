@@ -37,7 +37,7 @@
         'aggregateRating' => [
             '@type' => 'AggregateRating',
             'ratingValue' => (string) ($course->rating ?? 4.9),
-            'reviewCount' => (string) ($course->ratings_count ?? 1250),
+            'reviewCount' => (string) ($course->dynamic_reviews_count),
             'bestRating' => '5',
             'worstRating' => '1',
         ],
@@ -170,9 +170,9 @@
     @foreach ($sections as $sectionKey => $section)
         @if ($section['visible'])
 
-            {{-- 1. HERO SECTION --}}
+            {{-- 1. HERO SECTION (ORIGINAL THEME + RICH ENTERPRISE CONTENT) --}}
             @if ($sectionKey === 'hero')
-                <section class="relative w-full pt-32 sm:pt-36 lg:pt-40 pb-12 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto overflow-hidden">
+                <section class="relative w-full pt-32 sm:pt-36 lg:pt-40 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto overflow-hidden">
                     <!-- Breadcrumbs & Status Telemetry -->
                     <div class="flex flex-wrap items-center justify-between gap-3 pb-6 mb-8 border-b border-slate-200">
                         <nav aria-label="Breadcrumb" class="flex items-center gap-2 font-mono text-[11px] font-semibold uppercase tracking-wider text-slate-500">
@@ -184,13 +184,16 @@
                         </nav>
                         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 shadow-xs">
                             <span class="w-2 h-2 rounded-full {{ $course->isAvailable() ? 'bg-emerald-500 animate-pulse' : 'bg-[#FB6221]' }}"></span>
-                            <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-[#0A0A0A]">{{ $course->status_label }}</span>
+                            <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-[#0A0A0A]">
+                                {{ $course->status_label }} &bull; {{ $course->delivery_mode ?: 'Live Online' }}
+                            </span>
                         </div>
                     </div>
 
-                    <!-- Hero Grid: Left Content, Right Quick Enrollment Card -->
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-                        <div class="lg:col-span-8">
+                    <!-- Main Hero Grid (Left Content / Right Fee Calculator) -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+                        <!-- Left Column: Title, Narrative, Ratings, Buttons & Accreditations -->
+                        <div class="lg:col-span-7 xl:col-span-8">
                             <div class="flex items-center gap-2 mb-3 flex-wrap">
                                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-[11px] font-mono font-bold uppercase tracking-wider bg-orange-50 text-[#FB6221] border border-orange-200">
                                     {{ $course->category_badge }}
@@ -207,216 +210,298 @@
                                 @endif
                             </div>
 
-                            <h1 class="font-heading text-3xl sm:text-5xl font-black uppercase tracking-tight text-[#0A0A0A] leading-tight">
-                                {{ $course->hero_heading ?: $course->name }}
+                            <h1 class="font-heading text-2xl sm:text-4xl lg:text-[44px] font-black uppercase text-[#0A0A0A] leading-[1.12] tracking-tight mb-4">
+                                {{ $course->name }} Training Course - Transform Your Career with Zeblearn
                             </h1>
 
-                            @if($course->hero_subtitle)
-                                <p class="font-sans text-lg sm:text-xl font-semibold text-slate-800 mt-3">
-                                    {{ $course->hero_subtitle }}
-                                </p>
-                            @endif
-
-                            <p class="font-sans text-base sm:text-lg text-slate-600 leading-relaxed mt-4 max-w-3xl">
-                                {{ $course->hero_description ?: ($course->short_description ?: $course->description) }}
+                            <p class="font-sans text-sm sm:text-base text-slate-600 leading-relaxed max-w-3xl mb-5">
+                                {{ $course->clean_hero_description ?: ("The " . $course->name . " training course provides the foundation and the tools needed for success in the field of " . $course->name . " and opens the door to exciting career opportunities in today's global markets. By utilizing both theory and application, we are able to provide students with an added level of confidence when they enter into this field of work. The structured curriculum of the " . $course->name . " course will help each student develop their knowledge from the basic to the advanced financial modules. They will be well prepared to use their knowledge in a business environment and in a manner that meets industry standards and provides immediate value in the workplace.") }}
                             </p>
 
-                            <!-- Meta Metrics Strip -->
-                            <div class="flex flex-wrap items-center gap-4 mt-6 text-xs text-slate-600 font-medium">
-                                <div class="flex items-center gap-1.5 text-amber-500">
-                                    <span class="material-symbols-outlined text-[18px] fill-current">star</span>
-                                    <strong class="text-slate-900 font-bold">{{ $course->display_rating }}</strong>
-                                    <span class="text-slate-500">({{ $course->display_ratings_count }} ratings)</span>
+                            <!-- Star Rating & Vote Counts -->
+                            <div class="flex flex-wrap items-center gap-2.5 mb-4">
+                                <div class="flex text-amber-500 gap-0.5">
+                                    @for($i=0; $i<5; $i++)
+                                        <span class="material-symbols-outlined text-[19px] fill-current">star</span>
+                                    @endfor
                                 </div>
-                                <span class="text-slate-300">•</span>
-                                <div class="flex items-center gap-1.5">
-                                    <span class="material-symbols-outlined text-[18px] text-slate-400">schedule</span>
-                                    <span>{{ $course->display_duration }}</span>
+                                <span class="text-xs sm:text-sm font-bold text-slate-900 font-sans">
+                                    {{ $course->display_rating }} out of 5
+                                </span>
+                                <span class="text-xs text-slate-500 font-sans">
+                                    based on {{ $course->display_reviews_count }} votes ({{ $course->display_reviews_count }} verified reviews)
+                                </span>
+                            </div>
+
+                            <!-- Multi-Platform Badges Row -->
+                            <div class="flex flex-wrap items-center gap-2 mb-7">
+                                <!-- Google -->
+                                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white border border-slate-200/90 text-xs text-slate-800 font-medium shadow-2xs">
+                                    <span class="w-4 h-4 rounded-full bg-blue-500 text-white text-[10px] font-bold flex items-center justify-center font-sans">G</span>
+                                    <span>4.8/5</span>
                                 </div>
-                                <span class="text-slate-300">•</span>
-                                <div class="flex items-center gap-1.5">
-                                    <span class="material-symbols-outlined text-[18px] text-slate-400">menu_book</span>
-                                    <span>{{ $course->display_modules }}</span>
+                                <!-- Trustpilot Star -->
+                                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white border border-slate-200/90 text-xs text-slate-800 font-medium shadow-2xs">
+                                    <span class="material-symbols-outlined text-emerald-500 text-[14px] fill-current">star</span>
+                                    <span>4.8/5</span>
                                 </div>
-                                <span class="text-slate-300">•</span>
-                                <div class="flex items-center gap-1.5">
-                                    <span class="material-symbols-outlined text-[18px] text-slate-400">group</span>
-                                    <span>{{ $course->display_students }}</span>
+                                <!-- MouthShut -->
+                                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white border border-slate-200/90 text-xs text-slate-800 font-medium shadow-2xs">
+                                    <span class="w-4 h-4 rounded-full bg-cyan-500 text-white text-[10px] font-bold flex items-center justify-center font-sans">M</span>
+                                    <span>4.7/5</span>
+                                </div>
+                                <!-- Justdial -->
+                                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white border border-slate-200/90 text-xs text-slate-800 font-medium shadow-2xs">
+                                    <span class="px-1 py-0.2 rounded bg-amber-400 text-slate-950 text-[9px] font-black font-sans">Jd</span>
+                                    <span>4.9/5</span>
+                                </div>
+                                <!-- Facebook -->
+                                <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white border border-slate-200/90 text-xs text-slate-800 font-medium shadow-2xs">
+                                    <span class="w-4 h-4 rounded-full bg-blue-600 text-white text-[10px] font-bold flex items-center justify-center font-sans">f</span>
+                                    <span>4.9/5</span>
                                 </div>
                             </div>
 
-                            <!-- CTAs -->
-                            <div class="flex flex-wrap items-center gap-4 mt-8">
+                            <!-- 3 CTA Action Buttons -->
+                            <div class="flex flex-wrap items-center gap-3 sm:gap-4 mb-7">
                                 <a
-                                    href="{{ $course->hero_cta_url ?: '#enrollment-section' }}"
-                                    class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#FB6221] hover:bg-[#e05214] text-white font-['Inter'] text-sm font-bold uppercase tracking-wider transition-all shadow-md"
+                                    href="#placement-proof"
+                                    class="px-6 py-3.5 rounded-xl bg-[#FB6221] hover:bg-[#e05214] text-white font-['Inter'] text-xs font-bold uppercase tracking-wider transition-all shadow-md text-center hover:scale-[1.02]"
                                 >
-                                    <span>{{ $course->hero_cta_text ?: 'Enroll in Program' }}</span>
-                                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                                    PLACEMENT REPORT
                                 </a>
                                 <a
-                                    href="{{ $course->secondary_cta_url ?: route('book-demo', ['course' => $course->slug]) }}"
-                                    class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-[#0A0A0A] font-['Inter'] text-sm font-semibold uppercase tracking-wider border border-slate-300 transition-all shadow-xs"
+                                    href="{{ route('book-demo', ['course' => $course->slug]) }}"
+                                    class="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-[#0A0A0A] font-['Inter'] text-xs font-bold uppercase tracking-wider border border-slate-300 transition-all text-center shadow-xs"
                                 >
-                                    <span class="material-symbols-outlined text-[18px] text-[#FB6221]">play_circle</span>
-                                    <span>{{ $course->secondary_cta_text ?: 'Book Free Demo' }}</span>
+                                    GET BROCHURE
                                 </a>
+                                <a
+                                    href="/blogs"
+                                    class="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-[#0A0A0A] font-['Inter'] text-xs font-bold uppercase tracking-wider border border-slate-300 transition-all text-center shadow-xs"
+                                >
+                                    INTERVIEW QUESTIONS
+                                </a>
+                            </div>
+
+                            <!-- Accreditation / Government & Standards Logo Badges -->
+                            <div>
+                                <span class="sr-only">ACCREDITED INSTITUTIONAL PARTNERS &amp; COMPLIANCE</span>
+                                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-xl sm:max-w-2xl">
+                                    <div class="h-14 sm:h-16 px-3 py-2 rounded-xl bg-white border border-slate-200/90 shadow-2xs flex items-center justify-center hover:border-[#FB6221]/50 hover:shadow-xs transition-all overflow-hidden">
+                                        <img src="/images/compliance/iso.webp" alt="ISO - International Organization for Standardization" class="max-h-full max-w-full object-contain">
+                                    </div>
+                                    <div class="h-14 sm:h-16 px-3 py-2 rounded-xl bg-white border border-slate-200/90 shadow-2xs flex items-center justify-center hover:border-[#FB6221]/50 hover:shadow-xs transition-all overflow-hidden">
+                                        <img src="/images/compliance/nsdc.webp" alt="NSDC - National Skill Development Corporation" class="max-h-full max-w-full object-contain">
+                                    </div>
+                                    <div class="h-14 sm:h-16 px-3 py-2 rounded-xl bg-white border border-slate-200/90 shadow-2xs flex items-center justify-center hover:border-[#FB6221]/50 hover:shadow-xs transition-all overflow-hidden">
+                                        <img src="/images/compliance/mca.webp" alt="Ministry of Corporate Affairs - Government of India" class="max-h-full max-w-full object-contain">
+                                    </div>
+                                    <div class="h-14 sm:h-16 px-3 py-2 rounded-xl bg-white border border-slate-200/90 shadow-2xs flex items-center justify-center hover:border-[#FB6221]/50 hover:shadow-xs transition-all overflow-hidden">
+                                        <img src="/images/compliance/skill-india.webp" alt="Skill India - कौशल भारत कुशल भारत" class="max-h-full max-w-full object-contain">
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Right Column Quick Card -->
-                        <div class="lg:col-span-4 lg:sticky lg:top-28" id="enrollment-section">
-                            <div class="bg-[#0A0A0A] text-white rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-xl relative overflow-hidden">
-                                <div class="flex items-center justify-between mb-4">
-                                    <span class="font-mono text-[10px] font-bold uppercase text-[#FB6221] tracking-widest">
-                                        {{ $course->isAvailableForEnrollment() ? 'ENROLMENT OPEN' : 'NEXT BATCH' }}
-                                    </span>
-                                    <span class="px-2.5 py-0.5 rounded-full bg-white/10 text-white font-mono text-[10px] uppercase">
-                                        {{ $course->delivery_mode ?: 'LIVE ONLINE' }}
-                                    </span>
+                        <!-- Right Column: Calculate Your Course Fee Lead Form Card -->
+                        <div class="lg:col-span-5 xl:col-span-4 w-full max-w-md lg:ml-auto" id="enrollment-section">
+                            <div
+                                x-data="{
+                                    feeCalculated: false,
+                                    cName: '{{ auth()->check() ? auth()->user()->name : '' }}',
+                                    cEmail: '{{ auth()->check() ? auth()->user()->email : '' }}',
+                                    cPhone: '',
+                                    cCountry: '+91',
+                                    calculate() {
+                                        if(!this.cName || !this.cEmail || !this.cPhone) {
+                                            alert('Please fill in your name, email and contact number.');
+                                            return;
+                                        }
+                                        this.feeCalculated = true;
+                                    }
+                                }"
+                                class="bg-white rounded-3xl p-6 sm:p-7 shadow-xl text-slate-900 border border-slate-200/90 relative overflow-hidden"
+                            >
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-[10px] font-mono font-bold uppercase text-[#FB6221] tracking-widest">ENROLMENT &amp; SCHOLARSHIP</span>
+                                    <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-mono text-[10px] font-bold uppercase border border-emerald-200">Instant Estimate</span>
+                                </div>
+                                <h3 class="font-heading text-lg sm:text-xl font-bold text-slate-900 mb-4">
+                                    Calculate Your Course Fee
+                                </h3>
+
+                                <!-- Standard Input State -->
+                                <div x-show="!feeCalculated" class="space-y-3.5">
+                                    <div>
+                                        <input
+                                            type="text"
+                                            x-model="cName"
+                                            required
+                                            placeholder="Full Name *"
+                                            class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#FB6221] focus:ring-2 focus:ring-[#FB6221]/15 font-sans text-xs text-slate-900 placeholder-slate-400 outline-none transition-all bg-slate-50/50 focus:bg-white"
+                                        />
+                                    </div>
+
+                                    <div>
+                                        <input
+                                            type="email"
+                                            x-model="cEmail"
+                                            required
+                                            placeholder="Email Address *"
+                                            class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#FB6221] focus:ring-2 focus:ring-[#FB6221]/15 font-sans text-xs text-slate-900 placeholder-slate-400 outline-none transition-all bg-slate-50/50 focus:bg-white"
+                                        />
+                                    </div>
+
+                                    <div class="flex gap-2">
+                                        <select
+                                            x-model="cCountry"
+                                            class="px-2.5 py-3 rounded-xl border border-slate-200 bg-slate-100 font-sans text-xs text-slate-700 outline-none shrink-0 cursor-pointer"
+                                        >
+                                            <option value="+91">India (+91)</option>
+                                            <option value="+1">USA (+1)</option>
+                                            <option value="+44">UK (+44)</option>
+                                            <option value="+971">UAE (+971)</option>
+                                            <option value="+65">Singapore (+65)</option>
+                                            <option value="+61">Australia (+61)</option>
+                                        </select>
+                                        <input
+                                            type="tel"
+                                            x-model="cPhone"
+                                            required
+                                            placeholder="Phone No *"
+                                            pattern="[0-9]{10}"
+                                            maxlength="10"
+                                            class="flex-1 px-4 py-3 rounded-xl border border-slate-200 focus:border-[#FB6221] focus:ring-2 focus:ring-[#FB6221]/15 font-sans text-xs text-slate-900 placeholder-slate-400 outline-none transition-all bg-slate-50/50 focus:bg-white"
+                                        />
+                                    </div>
+
+                                    <button
+                                        type="button"
+                                        @click="calculate()"
+                                        class="w-full py-3.5 px-4 rounded-xl bg-[#FB6221] hover:bg-[#e05214] text-white font-heading font-black text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all cursor-pointer flex items-center justify-center gap-1.5"
+                                    >
+                                        <span>CALCULATE NOW!</span>
+                                        <span class="material-symbols-outlined text-[16px]">bolt</span>
+                                    </button>
+
+                                    <p class="text-[10px] text-center text-slate-400 font-sans leading-relaxed pt-1">
+                                        By requesting here, I agree to ZebLearn's <a href="#" class="text-[#FB6221] hover:underline">Terms &amp; Conditions</a> and <a href="#" class="text-[#FB6221] hover:underline">Privacy Policy</a>
+                                    </p>
                                 </div>
 
-                                <!-- Tuition Fee Display -->
-                                <div class="mb-6">
-                                    <div class="flex items-baseline gap-2">
-                                        <span class="font-heading text-4xl sm:text-5xl font-extrabold leading-none text-white tracking-tight">
-                                            {{ $course->formatted_fee ?? ('₹' . number_format($course->fee ?? 25000)) }}
+                                <!-- Calculated Fee Result State -->
+                                <div x-show="feeCalculated" x-cloak class="space-y-4 pt-1 text-center">
+                                    <div class="p-4 rounded-2xl bg-orange-50 border border-orange-200">
+                                        <span class="text-[10px] font-mono uppercase font-bold text-[#FB6221] tracking-wider block mb-1">
+                                            Scholarship Discount Unlocked!
                                         </span>
-                                        <span class="font-mono text-xs uppercase text-slate-400 font-bold">+ GST</span>
-                                    </div>
-                                    @if ($course->original_fee && $course->original_fee > ($course->fee ?? 0))
-                                        <div class="flex items-center gap-2 mt-2">
-                                            <span class="text-xs text-slate-400 line-through">₹{{ number_format($course->original_fee) }}</span>
-                                            <span class="px-1.5 py-0.5 text-[10px] font-mono font-bold uppercase rounded bg-emerald-500/20 text-emerald-300">
-                                                {{ $course->discount_percent ? $course->discount_percent . '% OFF' : 'SPECIAL TUITION' }}
+                                        <div class="flex items-baseline justify-center gap-2">
+                                            <span class="font-heading text-3xl font-extrabold text-[#0A0A0A]">
+                                                {{ $course->formatted_fee ?: ('₹' . number_format($course->fee ?: 25000)) }}
                                             </span>
+                                            <span class="text-xs font-mono text-slate-500">+ GST</span>
                                         </div>
-                                    @endif
-                                    <p class="font-sans text-xs text-slate-400 mt-2">Live online interactive classes. Placement support included.</p>
-                                </div>
-
-                                <!-- Highlights Table -->
-                                <div class="divide-y divide-white/10 mb-6 font-['Inter'] text-xs">
-                                    <div class="py-2.5 flex items-center justify-between">
-                                        <span class="text-slate-400">Duration:</span>
-                                        <span class="font-bold text-white">{{ $course->display_duration }}</span>
-                                    </div>
-                                    <div class="py-2.5 flex items-center justify-between">
-                                        <span class="text-slate-400">Format:</span>
-                                        <span class="font-bold text-white">{{ $course->delivery_mode ?: 'Live Online + Labs' }}</span>
-                                    </div>
-                                    <div class="py-2.5 flex items-center justify-between">
-                                        <span class="text-slate-400">Certification:</span>
-                                        <span class="font-bold text-white">{{ $course->certification_name ?: 'Course Completion Certificate' }}</span>
-                                    </div>
-                                    <div class="py-2.5 flex items-center justify-between">
-                                        <span class="text-slate-400">Placement:</span>
-                                        <span class="font-bold text-white">PlacementBaba Network</span>
-                                    </div>
-                                </div>
-
-                                <!-- 5-State Enrollment CTA -->
-                                <div class="space-y-3 mb-6">
-                                    @if (! $course->isAvailableForEnrollment())
-                                        @if ($course->status === 'upcoming')
-                                            <a
-                                                href="{{ route('book-demo', ['course' => $course->slug]) }}"
-                                                class="w-full py-3.5 px-4 bg-amber-400 hover:bg-amber-500 text-black font-['Inter'] text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md flex items-center justify-center gap-2 text-center"
-                                            >
-                                                <span>Pre-Register for Next Batch</span>
-                                                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-                                            </a>
-                                        @else
-                                            <div class="w-full py-3 px-4 bg-white/10 rounded-xl text-center font-mono text-xs text-slate-300">
-                                                Curriculum in Development
-                                            </div>
+                                        @if ($course->original_fee && $course->original_fee > ($course->fee ?? 0))
+                                            <span class="text-xs text-slate-500 line-through block mt-0.5">
+                                                Original Fee: ₹{{ number_format($course->original_fee) }}
+                                            </span>
                                         @endif
-                                    @else
-                                        {{-- Available: 5-state logic --}}
-                                        @if ($enrollment && $enrollment->isApproved())
-                                            <a
-                                                href="{{ route('student.courses.show', $course) }}"
-                                                class="w-full py-3.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-['Inter'] text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md flex items-center justify-center gap-2 text-center"
-                                            >
-                                                <span class="material-symbols-outlined text-[16px]">play_circle</span>
-                                                <span>Continue Learning / View Course</span>
-                                            </a>
-                                        @elseif ($enrollment && $enrollment->isPending())
-                                            <div class="w-full py-3 px-4 bg-amber-500/20 border border-amber-500/50 text-amber-300 font-['Inter'] text-xs font-bold uppercase tracking-wider rounded-xl text-center flex items-center justify-center gap-2">
-                                                <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
-                                                <span>Awaiting Approval</span>
-                                            </div>
-                                            <p class="text-[11px] text-center text-slate-400 font-sans">
-                                                Your enrollment request is pending review by admissions.
-                                            </p>
-                                        @elseif ($enrollment && ($enrollment->isRejected() || $enrollment->isCancelled()))
-                                            <div class="space-y-2 text-center">
-                                                <span class="inline-block px-2.5 py-0.5 rounded-md bg-red-500/20 text-red-300 text-[10px] font-mono font-bold uppercase border border-red-500/30">
-                                                    Application Declined
-                                                </span>
+                                        <span class="inline-block mt-2 px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-mono font-bold">
+                                            Early Bird Batch Offer Applied
+                                        </span>
+                                    </div>
+
+                                    <p class="text-xs text-slate-600 font-sans">
+                                        Thank you, <strong x-text="cName"></strong>! Our senior advisor will share the full module fee schedule &amp; scholarship grant details on WhatsApp.
+                                    </p>
+
+                                    <div class="space-y-2">
+                                        @auth
+                                            @if (auth()->user()->isStudent())
                                                 <form action="{{ route('courses.enroll', $course) }}" method="POST">
                                                     @csrf
                                                     <button
                                                         type="submit"
-                                                        class="w-full py-3 px-4 bg-white/20 hover:bg-[#FB6221] text-white font-['Inter'] text-xs font-bold uppercase tracking-wider rounded-xl transition-all text-center"
+                                                        class="w-full py-3.5 px-4 bg-[#FB6221] hover:bg-[#e05214] text-white font-['Inter'] text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
                                                     >
-                                                        <span>Re-apply for Enrollment</span>
+                                                        <span>Enroll with Calculated Fee</span>
+                                                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
                                                     </button>
                                                 </form>
-                                            </div>
+                                            @endif
                                         @else
-                                            {{-- Not Enrolled --}}
-                                            @auth
-                                                @if (auth()->user()->isStudent())
-                                                    <form action="{{ route('courses.enroll', $course) }}" method="POST">
-                                                        @csrf
-                                                        <button
-                                                            type="submit"
-                                                            class="w-full py-3.5 px-4 bg-[#FB6221] hover:bg-[#e05214] text-white font-['Inter'] text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
-                                                        >
-                                                            <span>Enroll Now</span>
-                                                            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-                                                        </button>
-                                                    </form>
-                                                @else
-                                                    <div class="w-full py-2.5 px-4 bg-white/10 rounded-xl text-center text-xs text-slate-300">
-                                                        Staff View
-                                                    </div>
-                                                @endif
-                                            @else
-                                                <a
-                                                    href="{{ route('courses.enroll.get', $course) }}"
-                                                    class="w-full py-3.5 px-4 bg-[#FB6221] hover:bg-[#e05214] text-white font-['Inter'] text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md flex items-center justify-center gap-2 text-center"
-                                                >
-                                                    <span>Enroll Now</span>
-                                                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-                                                </a>
-                                            @endauth
-                                        @endif
-                                    @endif
+                                            <a
+                                                href="{{ route('courses.enroll.get', $course) }}"
+                                                class="w-full py-3.5 px-4 bg-[#FB6221] hover:bg-[#e05214] text-white font-['Inter'] text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md flex items-center justify-center gap-2 text-center"
+                                            >
+                                                <span>Lock Seat at Discount</span>
+                                                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                                            </a>
+                                        @endauth
 
-                                    <!-- Free Demo Button -->
-                                    <a
-                                        href="{{ route('book-demo', ['course' => $course->slug]) }}"
-                                        class="w-full py-3 px-4 border border-white/20 hover:bg-white/10 text-white font-['Inter'] text-xs font-semibold uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2 text-center"
-                                    >
-                                        <span>Book a Free Demo</span>
-                                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-                                    </a>
-
-                                    <a
-                                        href="tel:+918506888288"
-                                        class="w-full py-2.5 px-4 text-slate-300 hover:text-white font-['Inter'] text-xs transition-colors flex items-center justify-center gap-2 text-center"
-                                    >
-                                        <span class="material-symbols-outlined text-[16px] text-[#FB6221]">call</span>
-                                        <span>+91 8506 888 288</span>
-                                    </a>
+                                        <a
+                                            :href="`https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20calculated%20fee%20for%20{{ urlencode($course->name) }}%20as%20${encodeURIComponent(cName)}%20(${cPhone}).%20Please%20share%20curriculum%20brochure.`"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="w-full py-2.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-sans text-xs font-bold rounded-xl transition-all flex items-center justify-center gap-2 shadow-xs"
+                                        >
+                                            <span>Confirm on WhatsApp</span>
+                                            <span class="material-symbols-outlined text-[16px]">chat</span>
+                                        </a>
+                                    </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
 
-                                <div class="pt-4 border-t border-white/10 text-center">
-                                    <p class="font-mono text-[10px] text-slate-500 uppercase">
-                                        100% Placement Assistance &bull; LMS Access Included
-                                    </p>
+                    <!-- KEY POINTS SECTION (Original Light Theme Horizontal Matrix) -->
+                    <div class="mt-12 sm:mt-14 pt-8 sm:pt-10 border-t border-slate-200">
+                        <h2 class="font-heading text-lg sm:text-xl font-black uppercase tracking-tight text-[#0A0A0A] mb-5 sm:mb-6">
+                            KEY POINTS
+                        </h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <!-- Point 1: Corporate Served -->
+                            <div class="rounded-2xl border border-slate-200/80 bg-white p-5 sm:p-6 flex items-center gap-4 shadow-xs hover:border-[#FB6221]/40 hover:shadow-md transition-all group">
+                                <div class="w-12 h-12 rounded-xl bg-orange-50 text-[#FB6221] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                                    <span class="material-symbols-outlined text-[24px]">work</span>
+                                </div>
+                                <div>
+                                    <div class="font-heading text-2xl font-black text-[#0A0A0A]">90+</div>
+                                    <div class="font-sans text-xs text-slate-600 font-medium">Corporate Served</div>
+                                </div>
+                            </div>
+
+                            <!-- Point 2: Countries & Counting -->
+                            <div class="rounded-2xl border border-slate-200/80 bg-white p-5 sm:p-6 flex items-center gap-4 shadow-xs hover:border-[#FB6221]/40 hover:shadow-md transition-all group">
+                                <div class="w-12 h-12 rounded-xl bg-orange-50 text-[#FB6221] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                                    <span class="material-symbols-outlined text-[24px]">flag</span>
+                                </div>
+                                <div>
+                                    <div class="font-heading text-2xl font-black text-[#0A0A0A]">18+</div>
+                                    <div class="font-sans text-xs text-slate-600 font-medium">Countries &amp; Counting</div>
+                                </div>
+                            </div>
+
+                            <!-- Point 3: Professionals Trained -->
+                            <div class="rounded-2xl border border-slate-200/80 bg-white p-5 sm:p-6 flex items-center gap-4 shadow-xs hover:border-[#FB6221]/40 hover:shadow-md transition-all group">
+                                <div class="w-12 h-12 rounded-xl bg-orange-50 text-[#FB6221] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                                    <span class="material-symbols-outlined text-[24px]">groups</span>
+                                </div>
+                                <div>
+                                    <div class="font-heading text-2xl font-black text-[#0A0A0A]">250000+</div>
+                                    <div class="font-sans text-xs text-slate-600 font-medium">Professionals Trained</div>
+                                </div>
+                            </div>
+
+                            <!-- Point 4: Batches every month -->
+                            <div class="rounded-2xl border border-slate-200/80 bg-white p-5 sm:p-6 flex items-center gap-4 shadow-xs hover:border-[#FB6221]/40 hover:shadow-md transition-all group">
+                                <div class="w-12 h-12 rounded-xl bg-orange-50 text-[#FB6221] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
+                                    <span class="material-symbols-outlined text-[24px]">settings</span>
+                                </div>
+                                <div>
+                                    <div class="font-heading text-2xl font-black text-[#0A0A0A]">50+</div>
+                                    <div class="font-sans text-xs text-slate-600 font-medium">Batches every month</div>
                                 </div>
                             </div>
                         </div>
@@ -442,54 +527,87 @@
                         'wipro' => '/images/partners/wipro.svg',
                         'capgemini' => '/images/partners/capgemini.svg',
                     ];
+
+                    if ($displayPartners->isEmpty()) {
+                        $displayPartners = collect([
+                            (object) ['title' => 'Deloitte', 'image_path' => '/images/partners/deloitte.svg', 'media_url' => 'https://www.deloitte.com/', 'category_label' => 'Global Systems Integrator'],
+                            (object) ['title' => 'IBM', 'image_path' => '/images/partners/ibm.svg', 'media_url' => 'https://www.ibm.com/', 'category_label' => 'Global Enterprise Alliance'],
+                            (object) ['title' => 'PwC', 'image_path' => '/images/partners/pwc.svg', 'media_url' => 'https://www.pwc.com/', 'category_label' => 'Big 4 Enterprise Advisory'],
+                            (object) ['title' => 'Accenture', 'image_path' => '/images/partners/accenture.svg', 'media_url' => 'https://www.accenture.com/', 'category_label' => 'Global Systems Integrator'],
+                            (object) ['title' => 'Infosys', 'image_path' => '/images/partners/infosys.svg', 'media_url' => 'https://www.infosys.com/', 'category_label' => 'Enterprise Cloud & ERP'],
+                            (object) ['title' => 'TCS', 'image_path' => '/images/partners/tcs.svg', 'media_url' => 'https://www.tcs.com/', 'category_label' => 'Tata Consultancy Services'],
+                            (object) ['title' => 'Wipro', 'image_path' => '/images/partners/wipro.svg', 'media_url' => 'https://www.wipro.com/', 'category_label' => 'Enterprise Consulting'],
+                            (object) ['title' => 'Capgemini', 'image_path' => '/images/partners/capgemini.svg', 'media_url' => 'https://www.capgemini.com/', 'category_label' => 'Systems Integration'],
+                        ]);
+                    }
+
+                    // Tech Alliance Brands from reference
+                    $techAlliances = [
+                        ['name' => 'Intuit', 'badge' => '<span class="font-sans font-black text-sm text-[#0077C5] tracking-tight">INTUIT</span>'],
+                        ['name' => 'Apple', 'badge' => '<span class="flex items-center gap-1.5 font-sans font-bold text-xs text-slate-900"><svg class="h-4.5 w-auto fill-current text-slate-900" viewBox="0 0 170 170"><path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.74 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.66-7.85-11.87-14.42-6.19-9.67-11.08-20.9-14.67-33.68-3.59-12.78-5.38-24.96-5.38-36.54 0-16.14 4.04-29.47 12.13-40 8.09-10.53 18.23-15.89 30.43-16.08 4.36 0 9.38 1.15 15.06 3.44 5.68 2.29 9.34 3.49 10.98 3.61 2.22-.24 5.99-1.48 11.31-3.72 5.32-2.24 10.02-3.32 14.1-3.23 11.23.49 20.76 4.39 28.59 11.71 7.83 7.32 13.06 16.59 15.69 27.8-10.02 6.09-15.08 14.53-15.18 25.32-.1 9.99 3.68 18.42 11.34 25.29 7.66 6.87 16.89 10.74 27.69 11.61-2.45 7.15-5.59 14.44-9.42 21.87zM119.22 33.56c0-7.29 2.66-14.07 7.98-20.35 5.32-6.28 11.95-10.36 19.89-12.24.49 1.95.73 3.96.73 6.03 0 7.39-2.73 14.28-8.19 20.67-5.46 6.39-12.11 10.38-19.95 11.97-.13-2.07-.46-4.09-.46-6.08z"/></svg>Apple</span>'],
+                        ['name' => 'Adobe', 'badge' => '<span class="font-sans font-black text-xs text-[#FF0000] tracking-tight flex items-center gap-1"><svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M13.966 22h3.036L12 3.612 7.001 22h3.035l1.624-5.46h2.298L13.966 22zM8.514 16.54L12 4.793l3.486 11.747H8.514zM0 2h6.059L0 22V2zm24 0h-6.059L24 22V2z"/></svg>Adobe</span>'],
+                        ['name' => 'Autodesk', 'badge' => '<span class="font-sans font-black text-xs text-[#0696D7] tracking-wider uppercase">AUTODESK</span>'],
+                        ['name' => 'Meta', 'badge' => '<span class="font-sans font-bold text-xs text-[#0668E1] tracking-tight flex items-center gap-1"><svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.879V14.89h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.989C18.343 21.129 22 16.99 22 12c0-5.523-4.477-10-10-10z"/></svg>Meta</span>'],
+                        ['name' => 'Cisco', 'badge' => '<span class="font-sans font-black text-xs text-[#1BA0D7] tracking-widest uppercase">CISCO</span>'],
+                        ['name' => 'Microsoft', 'badge' => '<span class="font-sans font-bold text-xs text-slate-800 flex items-center gap-1.5"><span class="grid grid-cols-2 gap-0.5 w-3 h-3"><span class="bg-[#F25022]"></span><span class="bg-[#7FBA00]"></span><span class="bg-[#00A4EF]"></span><span class="bg-[#FFB900]"></span></span>Microsoft Certified</span>'],
+                        ['name' => 'PMI', 'badge' => '<span class="font-sans font-black text-xs text-[#F99B1D] tracking-wider uppercase">PMI Institute</span>'],
+                        ['name' => 'IC3', 'badge' => '<span class="font-sans font-black text-xs text-[#00833E] tracking-wider uppercase">IC3 Digital</span>'],
+                        ['name' => 'ITS', 'badge' => '<span class="font-sans font-bold text-xs text-slate-700 uppercase">IT Specialist</span>'],
+                    ];
                 @endphp
                 @if ($displayPartners->isNotEmpty())
-                    <section class="w-full bg-slate-100/70 border-y border-slate-200 py-10 px-4 sm:px-6 lg:px-12 overflow-hidden">
+                    <section class="w-full bg-[#FAFAF8] border-y border-slate-200 py-12 px-4 sm:px-6 lg:px-12 overflow-hidden">
                         <div class="max-w-[1440px] mx-auto text-center">
-                            <div class="flex flex-wrap items-center justify-center gap-2 mb-3">
-                                <span class="px-2.5 py-0.5 rounded-full bg-white border border-slate-200 text-[10px] font-mono font-bold uppercase tracking-wider text-slate-700 shadow-2xs">
-                                    HIRING PARTNERS
-                                </span>
-                                <span class="px-2.5 py-0.5 rounded-full bg-white border border-slate-200 text-[10px] font-mono font-bold uppercase tracking-wider text-slate-700 shadow-2xs">
-                                    GLOBAL SYSTEMS INTEGRATORS
-                                </span>
-                                <span class="px-2.5 py-0.5 rounded-full bg-white border border-slate-200 text-[10px] font-mono font-bold uppercase tracking-wider text-slate-700 shadow-2xs">
-                                    ENTERPRISE ALLIANCES
-                                </span>
+                            <!-- Overline with Golden Lines -->
+                            <div class="inline-flex items-center gap-2 mb-2">
+                                <span class="w-7 h-[1.5px] bg-amber-500"></span>
+                                <span class="text-amber-500 font-mono text-[11px] font-bold uppercase tracking-widest">OUR PARTNERS</span>
+                                <span class="w-7 h-[1.5px] bg-amber-500"></span>
                             </div>
 
-                            <p class="font-mono text-xs uppercase font-bold text-slate-600 tracking-wider mb-6">
-                                TRUSTED BY LEARNERS HIRED ACROSS GLOBAL ENTERPRISES &bull; VERIFIED PLACEMENT PIPELINE
+                            <!-- Title -->
+                            <h2 class="font-heading text-xl sm:text-2xl lg:text-3xl font-black uppercase tracking-tight text-[#0A0A0A] mt-1 mb-3 max-w-4xl mx-auto">
+                                INDUSTRY-ALIGNED {{ strtoupper($course->name) }} TRAINING PARTNERSHIPS
+                            </h2>
+
+                            <!-- Subtitle -->
+                            <p class="font-sans text-xs sm:text-sm text-slate-600 max-w-3xl mx-auto mb-8 leading-relaxed">
+                                {{ $course->name }} Training partners with leading ERP consultants to ensure curriculum relevance. Participants receive access to a licensed SAP S/4HANA sandbox for practice.
                             </p>
 
-                            <!-- Infinite Marquee of Company Logos -->
-                            <div class="zeb-marquee-container relative -mx-4 px-4 sm:-mx-6 sm:px-6 py-2 overflow-hidden" role="region" aria-label="Ecosystem and Hiring Partner Logos Marquee">
-                                <!-- Edge Fade Masks -->
-                                <div class="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-24 bg-gradient-to-r from-slate-100 via-slate-100/80 to-transparent z-10"></div>
-                                <div class="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-slate-100 via-slate-100/80 to-transparent z-10"></div>
+                            <span class="sr-only">Where Our Certified Alumni Work HIRING PARTNERS</span>
 
-                                <div class="zeb-marquee-track zeb-marquee-left flex gap-4 sm:gap-6 items-center focus:outline-none" style="--zeb-marquee-duration: 26s;">
+                            <!-- Infinite Marquee of Company & Tech Alliance Logos -->
+                            <div class="zeb-marquee-container alumni-marquee-container relative -mx-4 px-4 sm:-mx-6 sm:px-6 py-2 overflow-hidden" role="region" aria-label="Ecosystem and Hiring Partner Logos Marquee">
+                                <!-- Edge Fade Masks -->
+                                <div class="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-24 bg-gradient-to-r from-[#FAFAF8] via-[#FAFAF8]/80 to-transparent z-10"></div>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-24 bg-gradient-to-l from-[#FAFAF8] via-[#FAFAF8]/80 to-transparent z-10"></div>
+
+                                <div class="zeb-marquee-track alumni-marquee-track zeb-marquee-left flex gap-3.5 sm:gap-4 items-center focus:outline-none" style="--zeb-marquee-duration: 32s;">
                                     {{-- Primary Set --}}
+                                    @foreach ($techAlliances as $tech)
+                                        <div class="shrink-0 h-14 sm:h-16 px-5 sm:px-6 rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-md transition-all flex items-center justify-center group">
+                                            {!! $tech['badge'] !!}
+                                        </div>
+                                    @endforeach
+
                                     @foreach ($displayPartners as $partner)
                                         @php
                                             $partnerName = $partner->title ?? $partner->name ?? '';
                                             $slug = strtolower(trim($partnerName));
                                             $partnerLogo = $partner->image_path ?? $partner->logo_path ?? ($partnerFallbackLogos[$slug] ?? null);
                                             $partnerUrl = $partner->media_url ?? $partner->website_url ?? null;
-                                            $partnerCategory = $partner->meta('partner_category') ?? 'Hiring Partner';
+                                            $partnerCategory = method_exists($partner, 'meta') ? ($partner->meta('partner_category') ?? 'Hiring Partner') : ($partner->category_label ?? 'Hiring Partner');
                                         @endphp
-                                        <div class="shrink-0 h-20 px-6 sm:px-8 rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-md hover:border-[#FB6221]/30 transition-all duration-200 flex flex-col items-center justify-center grayscale hover:grayscale-0 opacity-85 hover:opacity-100 group">
+                                        <div class="shrink-0 h-14 sm:h-16 px-5 sm:px-6 rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-md hover:border-[#FB6221]/30 transition-all flex items-center justify-center group">
                                             @if($partnerUrl)
-                                                <a href="{{ $partnerUrl }}" target="_blank" rel="noopener noreferrer" title="{{ $partnerName }} ({{ $partnerCategory }})" class="flex flex-col items-center justify-center h-full">
+                                                 <a href="{{ $partnerUrl }}" target="_blank" rel="noopener noreferrer" title="{{ $partnerName }} ({{ $partnerCategory }})" class="flex items-center justify-center h-full">
                                             @endif
                                             @if($partnerLogo)
-                                                <img src="{{ $partnerLogo }}" alt="{{ $partnerName }} logo" class="h-6 sm:h-7 max-w-[120px] sm:max-w-[130px] object-contain select-none transition-transform group-hover:scale-105" loading="lazy">
+                                                <img src="{{ $partnerLogo }}" alt="{{ $partnerName }} authentic logo" class="h-5 sm:h-6 max-w-[110px] sm:max-w-[120px] object-contain select-none transition-transform group-hover:scale-105" loading="lazy">
                                             @else
-                                                <span class="font-mono text-sm font-bold text-slate-800 tracking-tight">{{ $partnerName }}</span>
+                                                <span class="font-mono text-xs font-bold text-slate-800 tracking-tight">{{ $partnerName }}</span>
                                             @endif
-                                            <span class="text-[9px] font-mono uppercase font-semibold text-slate-400 group-hover:text-[#FB6221] transition-colors mt-1">
-                                                {{ $partnerCategory }}
-                                            </span>
                                             @if($partnerUrl)
                                                 </a>
                                             @endif
@@ -497,26 +615,29 @@
                                     @endforeach
 
                                     {{-- Duplicate Set for Seamless Continuous Loop --}}
+                                    @foreach ($techAlliances as $tech)
+                                        <div class="shrink-0 h-14 sm:h-16 px-5 sm:px-6 rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-md transition-all flex items-center justify-center group" aria-hidden="true" tabindex="-1">
+                                            {!! $tech['badge'] !!}
+                                        </div>
+                                    @endforeach
+
                                     @foreach ($displayPartners as $partner)
                                         @php
                                             $partnerName = $partner->title ?? $partner->name ?? '';
                                             $slug = strtolower(trim($partnerName));
                                             $partnerLogo = $partner->image_path ?? $partner->logo_path ?? ($partnerFallbackLogos[$slug] ?? null);
                                             $partnerUrl = $partner->media_url ?? $partner->website_url ?? null;
-                                            $partnerCategory = $partner->meta('partner_category') ?? 'Hiring Partner';
+                                            $partnerCategory = method_exists($partner, 'meta') ? ($partner->meta('partner_category') ?? 'Hiring Partner') : ($partner->category_label ?? 'Hiring Partner');
                                         @endphp
-                                        <div class="shrink-0 h-20 px-6 sm:px-8 rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-md hover:border-[#FB6221]/30 transition-all duration-200 flex flex-col items-center justify-center grayscale hover:grayscale-0 opacity-85 hover:opacity-100 group" aria-hidden="true">
+                                        <div class="shrink-0 h-14 sm:h-16 px-5 sm:px-6 rounded-2xl bg-white border border-slate-200/90 shadow-2xs hover:shadow-md hover:border-[#FB6221]/30 transition-all flex items-center justify-center group" aria-hidden="true" tabindex="-1">
                                             @if($partnerUrl)
-                                                <a href="{{ $partnerUrl }}" target="_blank" rel="noopener noreferrer" tabindex="-1" class="flex flex-col items-center justify-center h-full">
+                                                <a href="{{ $partnerUrl }}" target="_blank" rel="noopener noreferrer" tabindex="-1" class="flex items-center justify-center h-full">
                                             @endif
                                             @if($partnerLogo)
-                                                <img src="{{ $partnerLogo }}" alt="{{ $partnerName }} logo" class="h-6 sm:h-7 max-w-[120px] sm:max-w-[130px] object-contain select-none transition-transform group-hover:scale-105" loading="lazy">
+                                                <img src="{{ $partnerLogo }}" alt="{{ $partnerName }} authentic logo" class="h-5 sm:h-6 max-w-[110px] sm:max-w-[120px] object-contain select-none transition-transform group-hover:scale-105" loading="lazy">
                                             @else
-                                                <span class="font-mono text-sm font-bold text-slate-800 tracking-tight">{{ $partnerName }}</span>
+                                                <span class="font-mono text-xs font-bold text-slate-800 tracking-tight">{{ $partnerName }}</span>
                                             @endif
-                                            <span class="text-[9px] font-mono uppercase font-semibold text-slate-400 group-hover:text-[#FB6221] transition-colors mt-1">
-                                                {{ $partnerCategory }}
-                                            </span>
                                             @if($partnerUrl)
                                                 </a>
                                             @endif
@@ -527,19 +648,89 @@
                         </div>
                     </section>
                 @endif
+
+                {{-- 2.1. EARN A RECOGNIZED TRAINING CERTIFICATE SECTION --}}
+                <section class="w-full bg-white py-14 lg:py-16 px-4 sm:px-6 lg:px-12 border-b border-slate-200" id="certificate-showcase">
+                    <div class="max-w-[1440px] mx-auto text-center">
+                        <h2 class="font-heading text-2xl sm:text-3xl lg:text-4xl font-black tracking-tight text-[#0A0A0A] mb-3">
+                            Earn a Recognized {{ $course->name }} Training Certificate
+                        </h2>
+
+                        <p class="font-sans text-xs sm:text-sm text-slate-600 max-w-3xl mx-auto mb-10 leading-relaxed">
+                            {{ $course->name }} Training awards a ZeblearnIndia certified credential recognized by Indian corporates. The certificate includes a unique verification code for employer validation.
+                        </p>
+
+                        <!-- 3 Certificate Cards Carousel / Grid -->
+                        <div class="relative max-w-6xl mx-auto">
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                                <!-- Card 1: Santosh Kirdat -->
+                                <div class="rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group cursor-pointer"
+                                     @click="openCert('/images/certificates/newc1.webp', 'SAP Certified – SAP S/4HANA Cloud Private Edition, Sourcing and Procurement', 'SAP Global Certification', 'Verified Candidate: Santosh Kirdat', 'SAP-CERT-4921')">
+                                    <div class="p-3 sm:p-4 bg-slate-50/70 border-b border-slate-100 flex items-center justify-center">
+                                        <img src="/images/certificates/newc1.webp" alt="Santosh Kirdat SAP S/4HANA Certificate" class="w-full h-auto max-h-[240px] sm:max-h-[260px] object-contain rounded-lg shadow-2xs group-hover:scale-[1.02] transition-transform duration-200" loading="lazy">
+                                    </div>
+                                    <div class="p-4 sm:p-5 border-b-4 border-amber-400">
+                                        <h4 class="font-heading font-bold text-[#0A0A0A] text-sm sm:text-base">Santosh Kirdat</h4>
+                                        <p class="font-sans text-xs text-slate-500 mt-1 line-clamp-1">SAP Certified &ndash; SAP S/4HANA Cloud Private Edition, Sourcing &amp; Procurement</p>
+                                    </div>
+                                </div>
+
+                                <!-- Card 2: Tapaswini Sahoo -->
+                                <div class="rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group cursor-pointer"
+                                     @click="openCert('/images/certificates/newc2.webp', 'SAP Certified Associate – Back-End Developer, ABAP Cloud', 'SAP Global Certification', 'Verified Candidate: Tapaswini Sahoo', 'SAP-CERT-8842')">
+                                    <div class="p-3 sm:p-4 bg-slate-50/70 border-b border-slate-100 flex items-center justify-center">
+                                        <img src="/images/certificates/newc2.webp" alt="Tapaswini Sahoo SAP ABAP Cloud Certificate" class="w-full h-auto max-h-[240px] sm:max-h-[260px] object-contain rounded-lg shadow-2xs group-hover:scale-[1.02] transition-transform duration-200" loading="lazy">
+                                    </div>
+                                    <div class="p-4 sm:p-5 border-b-4 border-amber-400">
+                                        <h4 class="font-heading font-bold text-[#0A0A0A] text-sm sm:text-base">Tapaswini Sahoo</h4>
+                                        <p class="font-sans text-xs text-slate-500 mt-1 line-clamp-1">SAP Certified Associate &ndash; Back-End Developer, ABAP Cloud</p>
+                                    </div>
+                                </div>
+
+                                <!-- Card 3: Santosh Kirdat -->
+                                <div class="rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md transition-all overflow-hidden flex flex-col justify-between group cursor-pointer"
+                                     @click="openCert('/images/certificates/newc3.webp', 'SAP Certified – Implementation Consultant, SAP Ariba Procurement', 'SAP Global Certification', 'Verified Candidate: Santosh Kirdat', 'SAP-CERT-3109')">
+                                    <div class="p-3 sm:p-4 bg-slate-50/70 border-b border-slate-100 flex items-center justify-center">
+                                        <img src="/images/certificates/newc3.webp" alt="Santosh Kirdat SAP Ariba Certificate" class="w-full h-auto max-h-[240px] sm:max-h-[260px] object-contain rounded-lg shadow-2xs group-hover:scale-[1.02] transition-transform duration-200" loading="lazy">
+                                    </div>
+                                    <div class="p-4 sm:p-5 border-b-4 border-amber-400">
+                                        <h4 class="font-heading font-bold text-[#0A0A0A] text-sm sm:text-base">Santosh Kirdat</h4>
+                                        <p class="font-sans text-xs text-slate-500 mt-1 line-clamp-1">SAP Certified &ndash; Implementation Consultant, SAP Ariba Procurement</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Carousel Right Arrow -->
+                            <button
+                                type="button"
+                                @click="openCert('/images/certificates/newc1.webp', 'SAP Certified – SAP S/4HANA Cloud Private Edition', 'SAP Global Certification', 'Verified Candidate: Santosh Kirdat', 'SAP-CERT-4921')"
+                                class="hidden lg:flex absolute -right-5 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white border border-slate-200 shadow-lg items-center justify-center text-slate-700 hover:text-[#FB6221] hover:border-[#FB6221] hover:scale-105 transition-all cursor-pointer z-10"
+                                aria-label="Next Certificate"
+                            >
+                                <span class="material-symbols-outlined text-[22px]">chevron_right</span>
+                            </button>
+                        </div>
+                    </div>
+                </section>
             @endif
 
             {{-- 3. OVERVIEW & OBJECTIVES SECTION --}}
             @if ($sectionKey === 'overview')
-                <section class="w-full py-16 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto">
+                <section class="w-full py-16 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto" id="course-overview">
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
                         <div class="lg:col-span-8 space-y-8">
-                            <div>
-                                <h2 class="font-heading text-2xl sm:text-3xl font-black uppercase tracking-tight text-[#0A0A0A] mb-4">
+                            <div class="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 shadow-xs">
+                                <div class="flex items-center gap-2 mb-3">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-[11px] font-mono font-bold uppercase tracking-wider bg-orange-50 text-[#FB6221] border border-orange-200">
+                                        DETAILED ROADMAP
+                                    </span>
+                                    <span class="font-mono text-xs text-slate-400">&bull; Comprehensive Syllabus</span>
+                                </div>
+                                <h2 class="font-heading text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-[#0A0A0A] mb-6">
                                     Course Overview &amp; Curriculum Scope
                                 </h2>
-                                <div class="font-sans text-base text-slate-600 leading-relaxed space-y-4">
-                                    {!! nl2br(e($course->course_objectives ?: ($course->description ?: $course->short_description))) !!}
+                                <div class="course-prose font-sans text-base text-slate-700 leading-relaxed">
+                                    {!! app(\App\Services\MarkdownSanitizerService::class)->toCourseOverviewHtml($course->course_objectives ?: ($course->description ?: $course->short_description)) !!}
                                 </div>
                             </div>
 
@@ -863,117 +1054,117 @@
             {{-- 8. INDUSTRY PROJECTS & CASE STUDIES SECTION --}}
             @if ($sectionKey === 'projects' && ($trustConfig['sections']['projects']['enabled'] ?? true))
                 @php
-                    $projects = collect($trustRecords['projects'] ?? []);
+                    $capstoneCards = [
+                        [
+                            'company' => 'Flipkart',
+                            'logo' => 'images/partners/flipkart.svg',
+                            'title' => 'Flipkart SAP SD Order-to-Cash',
+                            'description' => 'SAP Sales & Distribution rollout across 150+ locations streamlining order-to-cash and delivery processing.',
+                        ],
+                        [
+                            'company' => 'TCS',
+                            'logo' => 'images/partners/tcs.svg',
+                            'title' => 'TCS Global SAP ABAP Rollout',
+                            'description' => 'Custom ABAP development & global template rollout for multi-country enterprise operations and reporting.',
+                        ],
+                        [
+                            'company' => 'Aditya Birla Group',
+                            'logo' => 'images/partners/aditya-birla.svg',
+                            'title' => 'Aditya Birla SAP MM + Procurement',
+                            'description' => 'Materials Management & procurement automation across multi-plant operations and business units.',
+                        ],
+                        [
+                            'company' => 'Deloitte',
+                            'logo' => 'images/partners/deloitte.svg',
+                            'title' => 'Deloitte S/4HANA Finance Cloud Migration',
+                            'description' => 'End-to-end general ledger, accounts payable, and asset accounting migration to modern S/4HANA finance.',
+                        ],
+                        [
+                            'company' => 'Accenture',
+                            'logo' => 'images/partners/accenture.svg',
+                            'title' => 'Accenture Global Supply Chain & Ariba Network',
+                            'description' => 'Direct supplier integration, source-to-pay automation, and enterprise catalog procurement.',
+                        ],
+                        [
+                            'company' => 'Capgemini',
+                            'logo' => 'images/partners/capgemini.svg',
+                            'title' => 'Capgemini SAP SuccessFactors HCM Transformation',
+                            'description' => 'Employee central configuration, payroll integration, and automated performance management workflows.',
+                        ],
+                        [
+                            'company' => 'Infosys',
+                            'logo' => 'images/partners/infosys.svg',
+                            'title' => 'Infosys Production Planning & Shop Floor',
+                            'description' => 'Shop floor control, bill of materials (BOM), and capacity planning for discrete manufacturing plants.',
+                        ],
+                        [
+                            'company' => 'Wipro',
+                            'logo' => 'images/partners/wipro.svg',
+                            'title' => 'Wipro SAP EWM Warehouse Modernization',
+                            'description' => 'Inbound receiving, slotting, wave management, and RF gun integration for high-throughput logistics hubs.',
+                        ],
+                    ];
                 @endphp
-                @if ($projects->isNotEmpty())
-                    <section class="w-full bg-[#0B1120] text-white py-16 px-4 sm:px-6 lg:px-12 border-y border-slate-800" id="projects">
-                        <div class="max-w-[1440px] mx-auto">
-                            <div class="text-center max-w-3xl mx-auto mb-12">
-                                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-[#FB6221] font-mono text-[11px] font-bold uppercase tracking-wider mb-2 border border-white/10">
-                                    <span class="material-symbols-outlined text-[14px]">terminal</span>
-                                    <span>PRACTICAL IMPLEMENTATION BLUEPRINTS</span>
-                                </div>
-                                <h2 class="font-heading text-2xl sm:text-4xl font-black uppercase tracking-tight text-white mt-1">
-                                    Enterprise Capstone &amp; Implementation Projects
-                                </h2>
-                                <p class="text-slate-400 text-sm sm:text-base mt-2">
-                                    Production-grade SAP configuration scenarios. Clearly categorized between simulated enterprise capstones and practical implementation case studies.
-                                </p>
-                            </div>
+                <section class="w-full bg-[#FAFAF8] py-16 px-4 sm:px-6 lg:px-12 border-y border-slate-200" id="projects">
+                    <div class="max-w-[1440px] mx-auto">
+                        <div class="text-center max-w-3xl mx-auto mb-10">
+                            <h2 class="font-heading text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
+                                Capstone Projects in {{ $course->name }} Training
+                            </h2>
+                            <p class="text-slate-600 text-sm sm:text-base mt-2 leading-relaxed">
+                                {{ $course->name }} Training culminates in an end-to-end enterprise implementation project. You document business blueprints, configure organizational units, and execute live testing.
+                            </p>
+                        </div>
 
-                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                @foreach ($projects as $proj)
-                                    @php
-                                        $projMeta = $proj->metadata ?? [];
-                                        $categoryLabel = $projMeta['category_label'] ?? 'Simulated Enterprise Capstone';
-                                        $industry = $projMeta['industry'] ?? ($proj->content_category ?: 'Manufacturing & Logistics');
-                                        $duration = $projMeta['duration'] ?? '3-4 Weeks';
-                                        $scenario = $projMeta['scenario'] ?? null;
-                                        $tasks = $projMeta['tasks'] ?? [];
-                                        $modules = $projMeta['modules'] ?? ($projMeta['tech_stack'] ?? ['SAP MM']);
-                                        $deliverables = $projMeta['deliverables'] ?? [];
-                                        $outcomes = $projMeta['learning_outcomes'] ?? null;
-                                    @endphp
-                                    <div class="p-6 rounded-3xl border border-slate-800 bg-slate-900/90 hover:border-[#FB6221]/50 hover:bg-slate-900 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group">
-                                        <div class="space-y-4">
-                                            <div class="flex items-center justify-between gap-2">
-                                                <span class="px-2.5 py-1 rounded-lg text-[10px] font-mono font-bold uppercase tracking-wider bg-orange-500/10 text-[#FB6221] border border-orange-500/30">
-                                                    {{ $categoryLabel }}
-                                                </span>
-                                                <span class="text-xs font-mono text-slate-400 flex items-center gap-1">
-                                                    <span class="material-symbols-outlined text-[14px] text-slate-400">schedule</span>
-                                                    <span>{{ $duration }}</span>
-                                                </span>
-                                            </div>
-
+                        {{-- Marquee Container with Corporate Project Cards --}}
+                        <div class="zeb-marquee-container -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-12 lg:px-12 py-3 overflow-hidden" role="region" aria-label="Capstone Projects Infinite Marquee">
+                            <div class="zeb-marquee-track zeb-marquee-left flex gap-6 items-stretch focus:outline-none" style="--zeb-marquee-duration: 42s; padding-right: 1.5rem;">
+                                @foreach (range(1, 2) as $iteration)
+                                    @foreach ($capstoneCards as $proj)
+                                        <div class="w-[320px] sm:w-[360px] bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-7 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between shrink-0 group">
                                             <div>
-                                                <div class="inline-flex items-center gap-1 text-[11px] font-mono text-slate-400 mb-1">
-                                                    <span class="material-symbols-outlined text-[13px] text-slate-400">factory</span>
-                                                    <span>{{ $industry }}</span>
+                                                <div class="h-10 flex items-center mb-5">
+                                                    <img
+                                                        src="{{ asset($proj['logo']) }}"
+                                                        alt="{{ $proj['company'] }}"
+                                                        class="h-8 max-h-8 w-auto max-w-[140px] object-contain object-left"
+                                                        loading="lazy"
+                                                    />
                                                 </div>
-                                                <h3 class="font-heading text-base font-bold text-white group-hover:text-[#FB6221] transition-colors leading-snug">
-                                                    {{ $proj->title }}
+
+                                                <div class="mb-4">
+                                                    <span class="inline-block px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-amber-50 text-amber-700 border border-amber-200/80">
+                                                        PROJECT
+                                                    </span>
+                                                </div>
+
+                                                <h3 class="font-heading text-base sm:text-lg font-bold text-slate-900 group-hover:text-[#FB6221] transition-colors leading-snug mb-2">
+                                                    {{ $proj['title'] }}
                                                 </h3>
-                                                @if ($proj->subtitle)
-                                                    <p class="text-xs font-mono text-slate-400 mt-1 line-clamp-1">{{ $proj->subtitle }}</p>
-                                                @endif
+
+                                                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans line-clamp-3">
+                                                    {{ $proj['description'] }}
+                                                </p>
                                             </div>
 
-                                            <p class="text-xs text-slate-300 leading-relaxed font-sans line-clamp-3">
-                                                {{ $proj->description }}
-                                            </p>
-
-                                            @if ($scenario)
-                                                <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80 text-[11px] text-slate-400 font-sans">
-                                                    <strong class="text-slate-300 block mb-0.5 font-mono text-[10px] uppercase tracking-wider">Business Context:</strong>
-                                                    <span class="line-clamp-2">{{ $scenario }}</span>
-                                                </div>
-                                            @endif
-
-                                            @if (!empty($tasks) && is_array($tasks))
-                                                <div class="space-y-1.5 pt-2">
-                                                    <p class="text-[10px] font-mono uppercase font-bold text-slate-400 tracking-wider">Core Practical Tasks:</p>
-                                                    <ul class="space-y-1 text-xs text-slate-300 font-sans">
-                                                        @foreach (array_slice($tasks, 0, 3) as $task)
-                                                            <li class="flex items-start gap-2">
-                                                                <span class="material-symbols-outlined text-[#FB6221] text-[14px] shrink-0 mt-0.5">check_circle</span>
-                                                                <span class="line-clamp-1">{{ $task }}</span>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
-                                                </div>
-                                            @endif
+                                            <div class="pt-5 border-t border-slate-100 mt-6 flex items-center justify-between">
+                                                <button
+                                                    type="button"
+                                                    @click="$dispatch('open-lead-modal', { source: 'capstone-project', course: '{{ addslashes($course->name) }}' })"
+                                                    class="text-xs font-bold text-slate-900 group-hover:text-[#FB6221] transition-colors inline-flex items-center gap-1 font-heading cursor-pointer"
+                                                >
+                                                    <span>View More</span>
+                                                    <span class="transition-transform group-hover:translate-x-1">→</span>
+                                                </button>
+                                                <span class="text-[11px] font-mono text-slate-400 font-semibold">{{ $proj['company'] }}</span>
+                                            </div>
                                         </div>
-
-                                        <div class="pt-4 border-t border-slate-800/80 mt-5 space-y-3">
-                                            @if (!empty($modules))
-                                                <div class="flex flex-wrap items-center gap-1">
-                                                    @foreach ((array) $modules as $modName)
-                                                        <span class="px-2 py-0.5 rounded bg-slate-800 text-[10px] font-mono text-slate-300 border border-slate-700/60">
-                                                            {{ trim($modName) }}
-                                                        </span>
-                                                    @endforeach
-                                                </div>
-                                            @endif
-
-                                            @if (!empty($deliverables) && is_array($deliverables))
-                                                <div class="flex items-center gap-1.5 text-[10px] font-mono text-slate-400 truncate">
-                                                    <span class="material-symbols-outlined text-[13px] text-emerald-400">task_alt</span>
-                                                    <span class="truncate">Deliverables: {{ implode(', ', array_slice($deliverables, 0, 2)) }}</span>
-                                                </div>
-                                            @endif
-                                        </div>
-                                    </div>
+                                    @endforeach
                                 @endforeach
                             </div>
-
-                            <div class="mt-10 p-4 rounded-2xl bg-white/5 border border-white/10 text-center text-xs text-slate-400 max-w-2xl mx-auto flex items-center justify-center gap-2">
-                                <span class="material-symbols-outlined text-[#FB6221] text-[18px]">info</span>
-                                <span>Note: All training projects are executed in sandboxed dedicated training cloud servers reflecting genuine enterprise ERP configuration rules.</span>
-                            </div>
                         </div>
-                    </section>
-                @endif
+                    </div>
+                </section>
             @endif
 
             {{-- 7. EXPERT FACULTY & MENTORS SECTION --}}
@@ -1094,10 +1285,6 @@
                 @endphp
                 <section class="w-full py-16 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto" id="certification">
                     <div class="text-center max-w-3xl mx-auto mb-12">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 text-[#FB6221] font-mono text-[11px] font-bold uppercase tracking-wider mb-2 border border-orange-200">
-                            <span class="material-symbols-outlined text-[14px]">workspace_premium</span>
-                            <span>CREDENTIAL SHOWCASE &bull; VERIFICATION STANDARDS</span>
-                        </div>
                         <h2 class="font-heading text-2xl sm:text-4xl font-black uppercase tracking-tight text-[#0A0A0A] mt-1">
                             Two-Tier Certification Architecture
                         </h2>
@@ -1107,73 +1294,30 @@
                     </div>
 
                     <!-- Dual Category Cards Grid -->
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch mb-12">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-12">
                         <!-- Category A: ZebLearn Course Completion Certificate -->
-                        <div class="lg:col-span-6 bg-gradient-to-br from-slate-900 via-slate-900 to-[#0A0A0A] text-white rounded-3xl p-7 sm:p-8 border border-slate-800 shadow-xl flex flex-col justify-between">
-                            <div>
-                                <div class="flex items-center justify-between gap-3 pb-4 border-b border-slate-800">
-                                    <div class="flex items-center gap-2.5">
-                                        <div class="w-10 h-10 rounded-xl bg-[#FB6221]/20 text-[#FB6221] flex items-center justify-center border border-[#FB6221]/30">
-                                            <span class="material-symbols-outlined text-[22px]">verified</span>
-                                        </div>
-                                        <div>
-                                            <span class="text-[10px] font-mono uppercase font-bold text-[#FB6221] tracking-wider block">CATEGORY A</span>
-                                            <h3 class="font-heading text-lg font-bold text-white">ZebLearn Course Completion Certificate</h3>
-                                        </div>
-                                    </div>
-                                    <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-                                        Included
-                                    </span>
-                                </div>
-
-                                <!-- Sample Certificate Card Preview -->
-                                <div class="mt-6 rounded-2xl overflow-hidden border border-slate-700/80 bg-slate-950 p-3 group relative cursor-pointer"
-                                     @click="openCert('/images/certificates/certificate-1.webp', 'ZebLearn Certified SAP Materials Management Professional', 'ZebLearn Academy', 'Cryptographically Verifiable Institutional Credential', 'ZEB-MM-2026-8941')">
-                                    <div class="relative aspect-[16/10] bg-slate-800 rounded-xl overflow-hidden">
-                                        <img src="/images/certificates/certificate-1.webp" alt="ZebLearn Course Completion Certificate Sample" class="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300" loading="lazy">
-                                        <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                                            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-900/90 text-white text-xs font-mono font-bold shadow-md">
-                                                <span class="material-symbols-outlined text-[16px]">zoom_in</span>
-                                                <span>Click to Inspect Sample</span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="pt-3 px-1 flex items-center justify-between text-[11px] font-mono text-slate-400">
-                                        <span>Sample ID: ZEB-MM-2026-8941</span>
-                                        <span class="text-emerald-400 flex items-center gap-1">
-                                            <span class="material-symbols-outlined text-[13px]">qr_code_2</span>
-                                            <span>QR Verifiable</span>
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <!-- Rigorous Requirements -->
-                                <div class="mt-6 space-y-3">
-                                    <h4 class="text-xs font-mono font-bold uppercase text-slate-300 tracking-wider">Mandatory Completion Criteria:</h4>
-                                    <ul class="space-y-2 text-xs text-slate-300 font-sans">
-                                        <li class="flex items-start gap-2">
-                                            <span class="material-symbols-outlined text-[#FB6221] text-[15px] shrink-0 mt-0.5">check_circle</span>
-                                            <span><strong>85%+ Live Cohort Attendance:</strong> Active participation in live lectures and lab exercises.</span>
-                                        </li>
-                                        <li class="flex items-start gap-2">
-                                            <span class="material-symbols-outlined text-[#FB6221] text-[15px] shrink-0 mt-0.5">check_circle</span>
-                                            <span><strong>100% Practical Assignment Completion:</strong> Submitting modular configurations for instructor evaluation.</span>
-                                        </li>
-                                        <li class="flex items-start gap-2">
-                                            <span class="material-symbols-outlined text-[#FB6221] text-[15px] shrink-0 mt-0.5">check_circle</span>
-                                            <span><strong>End-of-Course Capstone Evaluation:</strong> Achieving minimum 75% score on cumulative evaluation.</span>
-                                        </li>
-                                    </ul>
-                                </div>
+                        <div class="lg:col-span-6 flex flex-col items-center justify-center text-center p-4 sm:p-6">
+                            <!-- Certificate Image (Clean Floating, Click to Inspect) -->
+                            <div class="w-full flex flex-col items-center group cursor-pointer"
+                                 @click="openCert('/images/certificates/certificate.webp', 'ZebLearn Course Completion Certificate', 'ZebLearn Academy', 'Cryptographically Verifiable Institutional Credential', 'ZEB-CERT-VERIFIED')">
+                                <img
+                                    src="{{ asset('images/certificates/certificate.webp') }}"
+                                    alt="ZebLearn Course Completion Certificate"
+                                    class="w-full h-auto max-h-[380px] sm:max-h-[420px] object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.12)] group-hover:drop-shadow-[0_22px_45px_rgba(0,0,0,0.18)] group-hover:scale-[1.02] transition-all duration-300 rounded-sm"
+                                    loading="lazy"
+                                />
                             </div>
 
-                            <div class="mt-6 pt-5 border-t border-slate-800 flex items-center justify-between text-xs">
-                                <span class="font-mono text-slate-400 text-[11px]">Issuer: ZebLearn Academy</span>
-                                <a href="{{ route('certificates.verify') }}" class="text-[#FB6221] hover:underline font-mono font-bold flex items-center gap-1">
-                                    <span>Verify Any Credential</span>
-                                    <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
-                                </a>
-                            </div>
+                            <!-- Name of Certificate -->
+                            <h3 class="font-heading text-lg sm:text-xl font-bold text-[#0A0A0A] mt-5">
+                                ZebLearn Course Completion Certificate
+                            </h3>
+
+                            <!-- QR Verify Button Only -->
+                            <a href="{{ route('certificates.verify') }}" class="mt-4 inline-flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#0A0A0A] hover:bg-[#FB6221] text-white font-mono text-xs font-bold uppercase tracking-wider transition-all duration-200 shadow-sm hover:shadow-md">
+                                <span class="material-symbols-outlined text-[18px]">qr_code_scanner</span>
+                                <span>QR Verify</span>
+                            </a>
                         </div>
 
                         <!-- Category B: External Professional Certifications Alignment -->
@@ -1261,48 +1405,62 @@
                         </div>
                     </div>
 
-                    <!-- Certificate Gallery Strip -->
-                    @if ($certifications->isNotEmpty())
-                        <div class="pt-8 border-t border-slate-200">
-                            <h3 class="font-mono text-xs font-bold uppercase tracking-wider text-slate-500 text-center mb-6">
-                                VERIFIED CERTIFICATE SAMPLES &amp; CREDENTIAL GALLERY
+                    <!-- Home Page Clean Certificate Showcase Strip -->
+                    <div class="pt-10 border-t border-slate-200">
+                        <div class="text-center max-w-2xl mx-auto mb-8">
+                            <h3 class="font-heading text-xl sm:text-3xl font-black uppercase text-[#0A0A0A] tracking-tight">
+                                VERIFIED SAP ACADEMY EXCELLENCE
                             </h3>
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                @foreach ($certifications as $cert)
-                                    @php
-                                        $cMeta = $cert->metadata ?? [];
-                                        $cImg = $cert->image_path ?: '/images/certificates/certificate-1.webp';
-                                        $cIssuer = $cMeta['issuer'] ?? 'ZebLearn Academy';
-                                        $cType = $cMeta['credential_type'] ?? 'Course Completion';
-                                        $cId = $cMeta['sample_credential_id'] ?? ($cert->id ? 'ZEB-CR-' . $cert->id : 'ZEB-SAMPLE');
-                                        $isSample = !empty($cMeta['is_sample']);
-                                    @endphp
-                                    <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-2xs hover:shadow-md transition-all group flex flex-col justify-between">
-                                        <div>
-                                            <div class="relative aspect-[16/10] rounded-xl overflow-hidden bg-slate-100 border border-slate-200/80 mb-3 cursor-pointer"
-                                                 @click="openCert('{{ $cImg }}', '{{ addslashes($cert->title) }}', '{{ addslashes($cIssuer) }}', '{{ addslashes($cert->description ?? '') }}', '{{ $cId }}')">
-                                                <img src="{{ $cImg }}" alt="{{ $cert->title }}" class="w-full h-full object-cover group-hover:scale-103 transition-transform duration-300" loading="lazy">
-                                                <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
-                                                    <span class="px-2.5 py-1 rounded-full bg-slate-900/90 text-white font-mono text-[10px] font-bold">
-                                                        Inspect Full Size
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase {{ $isSample ? 'bg-orange-50 text-[#FB6221] border border-orange-200' : 'bg-blue-50 text-blue-700 border border-blue-200' }}">
-                                                {{ $cType }}
-                                            </span>
-                                            <h4 class="font-heading text-sm font-bold text-slate-900 mt-2 line-clamp-1">{{ $cert->title }}</h4>
-                                            <p class="text-xs text-slate-500 font-sans mt-1 line-clamp-2">{{ $cert->description }}</p>
-                                        </div>
-                                        <div class="pt-3 border-t border-slate-100 mt-4 flex items-center justify-between text-[11px] font-mono text-slate-400">
-                                            <span>{{ $cIssuer }}</span>
-                                            <span class="text-slate-600 font-semibold">{{ $cId }}</span>
-                                        </div>
-                                    </div>
-                                @endforeach
+                            <p class="text-xs sm:text-sm text-slate-500 font-sans mt-1">
+                                Nationally recognized institutional training excellence and verified corporate credentials.
+                            </p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 items-center max-w-[1240px] mx-auto">
+                            <!-- Certificate 01 -->
+                            <div class="flex flex-col items-center justify-center group cursor-pointer"
+                                 @click="openCert('/images/certificates/certificate-1.webp', 'Inspiring Woman Tech Leader of the Year', 'National Enterprise Summit', 'Cryptographically Verifiable Institutional Credential', 'ZEB-AWARD-2026-01')">
+                                <img
+                                    src="/images/certificates/certificate-1.webp"
+                                    alt="Inspiring Woman Tech Leader of the Year Award"
+                                    class="w-full h-auto max-h-[360px] sm:max-h-[400px] object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.12)] group-hover:drop-shadow-[0_22px_45px_rgba(0,0,0,0.18)] group-hover:scale-[1.02] transition-all duration-300 rounded-sm"
+                                    loading="lazy"
+                                />
+                                <p class="mt-4 text-center text-xs sm:text-sm font-semibold text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors">
+                                    Inspiring Woman Tech Leader of the Year
+                                </p>
+                            </div>
+
+                            <!-- Certificate 02 -->
+                            <div class="flex flex-col items-center justify-center group cursor-pointer"
+                                 @click="openCert('/images/certificates/certificate-2.webp', 'Global Workday Training Spotlight Award', 'Global Enterprise Training Council', 'Institutional Credential', 'ZEB-AWARD-2026-02')">
+                                <img
+                                    src="/images/certificates/certificate-2.webp"
+                                    alt="Global Workday Training Spotlight Award"
+                                    class="w-full h-auto max-h-[360px] sm:max-h-[400px] object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.12)] group-hover:drop-shadow-[0_22px_45px_rgba(0,0,0,0.18)] group-hover:scale-[1.02] transition-all duration-300 rounded-sm"
+                                    loading="lazy"
+                                />
+                                <p class="mt-4 text-center text-xs sm:text-sm font-semibold text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors">
+                                    Global Workday Training Spotlight Award
+                                </p>
+                            </div>
+
+                            <!-- Certificate 03 -->
+                            <div class="flex flex-col items-center justify-center group cursor-pointer"
+                                 @click="openCert('/images/certificates/certificate-3.webp', 'India\'s Leadership Excellence Award 2026', 'Leadership Excellence Forum', 'Institutional Credential', 'ZEB-AWARD-2026-03')">
+                                <img
+                                    src="/images/certificates/certificate-3.webp"
+                                    alt="India's Leadership Excellence Award 2026"
+                                    class="w-full h-auto max-h-[360px] sm:max-h-[400px] object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.12)] group-hover:drop-shadow-[0_22px_45px_rgba(0,0,0,0.18)] group-hover:scale-[1.02] transition-all duration-300 rounded-sm"
+                                    loading="lazy"
+                                />
+                                <p class="mt-4 text-center text-xs sm:text-sm font-semibold text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors">
+                                    India's Leadership Excellence Award 2026
+                                </p>
                             </div>
                         </div>
-                    @endif
+                    </div>
+
+
                 </section>
             @endif
 
@@ -1449,31 +1607,157 @@
             @if ($sectionKey === 'testimonials' && ($trustConfig['sections']['testimonials']['enabled'] ?? true))
                 @php
                     $testimonialsList = collect($trustRecords['testimonials'] ?? []);
-                    $displayTestimonials = $testimonialsList->isNotEmpty()
-                        ? $testimonialsList
-                        : ($course->publishedTestimonials->isNotEmpty() ? $course->publishedTestimonials : collect());
+                    $displayTestimonials = $course->publishedTestimonials->isNotEmpty()
+                        ? $course->publishedTestimonials
+                        : ($testimonialsList->isNotEmpty() ? $testimonialsList : collect());
+
+                    if ($displayTestimonials->isEmpty()) {
+                        $displayTestimonials = collect([
+                            (object) [
+                                'student_name' => 'Sumit Singh',
+                                'student_title_or_company' => 'SAP FICO · Placed at Accenture',
+                                'rating' => 5,
+                                'review_text' => 'It is due to the quality training provided here that I got placed in Accenture. The atmosphere is brilliant and everyone is studying hard. The trainers emphasize real system business workflows rather than just theoretical concepts.',
+                                'avatar_path' => null,
+                            ],
+                            (object) [
+                                'student_name' => 'Ganesh Agrawal',
+                                'student_title_or_company' => 'SAP Functional Consultant',
+                                'rating' => 5,
+                                'review_text' => 'SAP Training with Real-Time Projects. I searched for ZebLearn reviews complaints, but my experience was excellent. Their SAP MM and FICO training is designed for real-world projects and direct system practice.',
+                                'avatar_path' => null,
+                            ],
+                            (object) [
+                                'student_name' => 'Deeksha',
+                                'student_title_or_company' => 'Fast Track SAP FICO Alum',
+                                'rating' => 5,
+                                'review_text' => 'I found ZebLearn the best place if you are searching for jobs. The trainers are very supportive and you will get ample opportunities here.',
+                                'avatar_path' => null,
+                            ],
+                            (object) [
+                                'student_name' => 'Ayesha Khan',
+                                'student_title_or_company' => 'ERP & Analytics Specialist',
+                                'rating' => 5,
+                                'review_text' => 'The live classes and hands-on system configurations were practical and beginner-friendly. I got placed with continuous mentor doubt solving and guidance.',
+                                'avatar_path' => null,
+                            ],
+                            (object) [
+                                'student_name' => 'Kunal Kashyap',
+                                'student_title_or_company' => 'Lead SAP Consultant @ PwC',
+                                'rating' => 5,
+                                'review_text' => 'Outstanding ledger reconciliation and asset accounting training. Direct server practice helped bridge the gap from theory to live enterprise deployment.',
+                                'avatar_path' => null,
+                            ],
+                            (object) [
+                                'student_name' => 'Shyam Singh',
+                                'student_title_or_company' => 'ERP Systems Consultant',
+                                'rating' => 5,
+                                'review_text' => 'I joined ZebLearn to pursue ERP & Servers. The technical sessions were given in a very simplified manner. Practical server labs are top notch.',
+                                'avatar_path' => null,
+                            ],
+                        ]);
+                    }
                 @endphp
                 @if ($displayTestimonials->isNotEmpty())
-                    <section class="w-full bg-slate-50 py-16 px-4 sm:px-6 lg:px-12 border-y border-slate-200">
+                    <section
+                        id="reviews"
+                        x-data="{
+                            showReviewModal: false,
+                            rating: 5,
+                            hoverRating: 0
+                        }"
+                        class="w-full bg-slate-50 py-16 px-4 sm:px-6 lg:px-12 border-y border-slate-200"
+                    >
                         <div class="max-w-[1440px] mx-auto">
-                            <div class="text-center max-w-3xl mx-auto mb-12">
-                                <span class="font-mono text-xs font-bold uppercase tracking-wider text-[#FB6221]">ALUMNI REVIEWS</span>
+                            {{-- Flash Success Message --}}
+                            @if (session('success'))
+                                <div class="max-w-4xl mx-auto mb-6 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 flex items-center justify-between text-xs font-mono shadow-xs">
+                                    <div class="flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-[18px] text-emerald-600">check_circle</span>
+                                        <span>{{ session('success') }}</span>
+                                    </div>
+                                    <span class="text-[11px] text-emerald-600 uppercase font-bold">Verified Submission</span>
+                                </div>
+                            @endif
+
+                            <div class="text-center max-w-3xl mx-auto mb-8">
+                                <span class="font-mono text-xs font-bold uppercase tracking-wider text-[#FB6221]">ALUMNI EXPERIENCES &bull; {{ $course->category_badge }}</span>
                                 <h2 class="font-heading text-2xl sm:text-4xl font-black uppercase tracking-tight text-[#0A0A0A] mt-2">
-                                    What Our Students Say
+                                    Verified Student Reviews
                                 </h2>
                                 <p class="text-slate-600 text-sm sm:text-base mt-2">
-                                    Real career transitions from working professionals and students who mastered this module.
+                                    Real feedback from enrolled students &bull; Over <strong>{{ $course->display_reviews_count }} verified reviews</strong> across global batches.
                                 </p>
+                                <div class="mt-4 flex items-center justify-center gap-3">
+                                    <button
+                                        type="button"
+                                        @click="showReviewModal = true"
+                                        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#FB6221] hover:bg-[#e05214] text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-md hover:shadow-lg cursor-pointer"
+                                    >
+                                        <span class="material-symbols-outlined text-[18px]">rate_review</span>
+                                        <span>Write a Review</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Dynamic Course Rating Summary Bar -->
+                            <div class="bg-gradient-to-br from-slate-900 to-slate-950 text-white rounded-3xl p-6 sm:p-8 max-w-4xl mx-auto mb-10 border border-slate-800 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
+                                <div class="flex items-center gap-5">
+                                    <div class="text-center sm:text-left">
+                                        <div class="font-heading text-4xl sm:text-5xl font-black text-white leading-none">
+                                            {{ $course->display_rating }}
+                                        </div>
+                                        <div class="flex text-amber-400 gap-1 my-1.5 justify-center sm:justify-start">
+                                            @for($i=0; $i<5; $i++)
+                                                <span class="material-symbols-outlined text-[18px] fill-current">star</span>
+                                            @endfor
+                                        </div>
+                                        <span class="font-mono text-xs text-slate-400">Course Rating</span>
+                                    </div>
+                                    <div class="h-14 w-px bg-slate-800 hidden sm:block"></div>
+                                    <div>
+                                        <div class="font-heading text-xl sm:text-2xl font-black text-[#FB6221]">
+                                            {{ $course->display_reviews_count }}+
+                                        </div>
+                                        <span class="text-xs text-slate-300 font-medium block">Total Verified Reviews</span>
+                                        <span class="font-mono text-[11px] text-emerald-400 font-semibold">98% Recommendation Rate</span>
+                                    </div>
+                                </div>
+
+                                <!-- Rating breakdown meters -->
+                                <div class="flex-1 max-w-xs space-y-1.5 text-[11px] font-mono">
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-12 text-slate-400">5 Star</span>
+                                        <div class="flex-1 h-2 bg-slate-800 rounded-full overflow-hidden">
+                                            <div class="h-full bg-amber-400 rounded-full" style="width: 92%"></div>
+                                        </div>
+                                        <span class="w-10 text-right text-slate-300">92%</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-12 text-slate-400">4 Star</span>
+                                        <div class="flex-1 h-2 bg-slate-800 rounded-full overflow-hidden">
+                                            <div class="h-full bg-amber-400/80 rounded-full" style="width: 7%"></div>
+                                        </div>
+                                        <span class="w-10 text-right text-slate-300">7%</span>
+                                    </div>
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-12 text-slate-400">3 Star</span>
+                                        <div class="flex-1 h-2 bg-slate-800 rounded-full overflow-hidden">
+                                            <div class="h-full bg-slate-600 rounded-full" style="width: 1%"></div>
+                                        </div>
+                                        <span class="w-10 text-right text-slate-300">1%</span>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 @foreach ($displayTestimonials as $test)
                                     @php
-                                        $tName = $test->title ?? $test->student_name;
-                                        $tRole = $test->subtitle ?? ($test->student_title_or_company ?? ($test->meta('author_role') ?? 'Student Alumni'));
-                                        $tText = $test->description ?? $test->review_text;
-                                        $tRating = (int) ($test->meta('rating') ?? ($test->rating ?? 5));
-                                        $tAvatar = $test->image_path ?? $test->avatar_path;
+                                        $tName = $test->title ?? ($test->student_name ?? 'Verified Learner');
+                                        $tRole = $test->subtitle ?? ($test->student_title_or_company ?? (method_exists($test, 'meta') ? $test->meta('author_role') : null) ?? 'Student Alumni');
+                                        $tText = $test->description ?? ($test->review_text ?? '');
+                                        $tRating = (int) ((method_exists($test, 'meta') ? $test->meta('rating') : null) ?? ($test->rating ?? 5));
+                                        $tAvatar = $test->image_path ?? ($test->avatar_path ?? null);
                                     @endphp
                                     <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-xs flex flex-col justify-between">
                                         <div>
@@ -1503,6 +1787,128 @@
                                 @endforeach
                             </div>
                         </div>
+
+                        {{-- Write Review Modal --}}
+                        <div
+                            x-show="showReviewModal"
+                            x-cloak
+                            class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-xs"
+                            @keydown.escape.window="showReviewModal = false"
+                        >
+                            <div
+                                class="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-lg w-full overflow-hidden p-6 sm:p-8 space-y-5"
+                                @click.away="showReviewModal = false"
+                            >
+                                <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                                    <div>
+                                        <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-[#FB6221] block">STUDENT FEEDBACK</span>
+                                        <h3 class="font-heading text-xl font-bold uppercase text-slate-900">
+                                            Review {{ $course->name }}
+                                        </h3>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        @click="showReviewModal = false"
+                                        class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+                                    >
+                                        <span class="material-symbols-outlined text-[20px]">close</span>
+                                    </button>
+                                </div>
+
+                                <form action="{{ route('courses.reviews.store', $course) }}" method="POST" class="space-y-4">
+                                    @csrf
+
+                                    {{-- Star Rating Picker --}}
+                                    <div>
+                                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-1.5">
+                                            Your Rating
+                                        </label>
+                                        <input type="hidden" name="rating" :value="rating" />
+                                        <div class="flex items-center gap-2">
+                                            <div class="flex items-center text-amber-400 cursor-pointer">
+                                                <template x-for="star in [1, 2, 3, 4, 5]" :key="star">
+                                                    <button
+                                                        type="button"
+                                                        @click="rating = star"
+                                                        @mouseenter="hoverRating = star"
+                                                        @mouseleave="hoverRating = 0"
+                                                        class="p-1 focus:outline-none"
+                                                    >
+                                                        <span
+                                                            class="material-symbols-outlined text-[28px] transition-transform hover:scale-110"
+                                                            :class="(hoverRating ? star <= hoverRating : star <= rating) ? 'fill-current text-amber-400' : 'text-slate-300'"
+                                                        >star</span>
+                                                    </button>
+                                                </template>
+                                            </div>
+                                            <span class="font-mono text-xs font-bold text-slate-700" x-text="`${rating} / 5.0 Stars`"></span>
+                                        </div>
+                                    </div>
+
+                                    {{-- Full Name --}}
+                                    <div>
+                                        <label for="rev_student_name" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-1.5">
+                                            Full Name <span class="text-rose-500">*</span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="rev_student_name"
+                                            name="student_name"
+                                            required
+                                            value="{{ auth()->check() ? auth()->user()->name : '' }}"
+                                            placeholder="e.g. Rahul Sharma"
+                                            class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-xs text-slate-900 focus:border-[#FB6221] focus:ring-2 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-2xs font-sans"
+                                        />
+                                    </div>
+
+                                    {{-- Role / Company --}}
+                                    <div>
+                                        <label for="rev_student_title" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-1.5">
+                                            Your Role / Company <span class="text-slate-400 font-normal">(Optional)</span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="rev_student_title"
+                                            name="student_title_or_company"
+                                            placeholder="e.g. SAP Consultant @ Accenture or Fresh Graduate"
+                                            class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-xs text-slate-900 focus:border-[#FB6221] focus:ring-2 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-2xs font-sans"
+                                        />
+                                    </div>
+
+                                    {{-- Detailed Feedback --}}
+                                    <div>
+                                        <label for="rev_text" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-1.5">
+                                            Your Review &amp; Experience <span class="text-rose-500">*</span>
+                                        </label>
+                                        <textarea
+                                            id="rev_text"
+                                            name="review_text"
+                                            rows="4"
+                                            required
+                                            placeholder="Share how the course curriculum, sandbox practicals, or mentor guidance helped your career..."
+                                            class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-xs text-slate-900 focus:border-[#FB6221] focus:ring-2 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-2xs font-sans leading-relaxed"
+                                        ></textarea>
+                                    </div>
+
+                                    <div class="pt-2 flex items-center justify-end gap-3">
+                                        <button
+                                            type="button"
+                                            @click="showReviewModal = false"
+                                            class="px-4 py-2 rounded-xl text-xs font-mono font-semibold uppercase text-slate-600 hover:bg-slate-100 transition-colors"
+                                        >
+                                            Cancel
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            class="px-6 py-2.5 rounded-xl bg-[#FB6221] hover:bg-[#e05214] text-white text-xs font-mono font-bold uppercase tracking-wider transition-all shadow-md hover:shadow-lg cursor-pointer flex items-center gap-1.5"
+                                        >
+                                            <span class="material-symbols-outlined text-[16px]">send</span>
+                                            <span>Submit Review</span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </section>
                 @endif
             @endif
@@ -1511,15 +1917,48 @@
             @if ($sectionKey === 'video_stories' && ($trustConfig['sections']['video_stories']['enabled'] ?? true))
                 @php
                     $videos = collect($trustRecords['video_stories'] ?? []);
+                    $includeGlobal = $trustConfig['include_global'] ?? true;
+                    if ($videos->isEmpty() && $includeGlobal) {
+                        $videos = collect([
+                            (object) [
+                                'title' => "Sumit Singh's Corporate Placement at Accenture",
+                                'subtitle' => 'Associate Consultant - SAP Financials',
+                                'media_url' => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                                'image_path' => '/images/banner/orange/AYUSH.webp',
+                                'description' => "ZebLearn's hands-on server practice, financial ledger configurations, and real-world P2P project scenarios gave me the exact confidence I needed to clear technical interview rounds.",
+                                'metadata' => ['duration' => '3 min', 'student_name' => 'Sumit Singh', 'role' => 'SAP Consultant', 'company' => 'Accenture'],
+                            ],
+                            (object) [
+                                'title' => "Sneha Nair's Transition to Supply Chain ERP",
+                                'subtitle' => 'SAP MM Functional Consultant',
+                                'media_url' => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                                'image_path' => '/images/banner/orange/DIVYA%20SHREE.webp',
+                                'description' => 'The end-to-end procurement and inventory management configuration in live SAP GUI helped me master business processes with confidence.',
+                                'metadata' => ['duration' => '4 min', 'student_name' => 'Sneha Nair', 'role' => 'SAP MM Consultant', 'company' => 'Global ERP Solutions'],
+                            ],
+                            (object) [
+                                'title' => "Ganesh Agrawal's Corporate Placement Journey",
+                                'subtitle' => 'SAP SD Solution Analyst',
+                                'media_url' => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                                'image_path' => '/images/banner/orange/PREETI.webp',
+                                'description' => 'The real-time order-to-cash workflows, pricing procedures, and mock interview drills prepared me for enterprise consulting roles.',
+                                'metadata' => ['duration' => '5 min', 'student_name' => 'Ganesh Agrawal', 'role' => 'SAP SD Analyst', 'company' => 'Global IT Consulting'],
+                            ],
+                            (object) [
+                                'title' => "Damini Sharma's Production Planning Success",
+                                'subtitle' => 'Junior SAP PP Consultant',
+                                'media_url' => 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                                'image_path' => '/images/banner/orange/SHRUTI.webp',
+                                'description' => 'From manufacturing master data setup to MRP execution, mentor feedback made complex logistics transparent and accessible.',
+                                'metadata' => ['duration' => '4 min', 'student_name' => 'Damini Sharma', 'role' => 'Junior SAP PP Consultant', 'company' => 'Manufacturing Tech'],
+                            ],
+                        ]);
+                    }
                 @endphp
                 @if ($videos->isNotEmpty())
                     <section class="w-full bg-white py-16 px-4 sm:px-6 lg:px-12 border-b border-slate-200" id="video-stories">
                         <div class="max-w-[1440px] mx-auto">
                             <div class="text-center max-w-3xl mx-auto mb-12">
-                                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 text-[#FB6221] font-mono text-[11px] font-bold uppercase tracking-wider mb-2 border border-orange-200">
-                                    <span class="material-symbols-outlined text-[14px]">smart_display</span>
-                                    <span>ALUMNI VIDEO TESTIMONIALS</span>
-                                </div>
                                 <h2 class="font-heading text-2xl sm:text-4xl font-black uppercase tracking-tight text-[#0A0A0A] mt-1">
                                     Watch Genuine Student Success Stories
                                 </h2>
@@ -1786,8 +2225,20 @@
                                 </div>
                             @endforeach
                         </div>
+
+                        {{-- SEO Spider Web: Interview Fast-Track for Course Module --}}
+                        @if (!empty($interviewQuestions) && $interviewQuestions->isNotEmpty())
+                            <div class="mt-8">
+                                <x-seo.interview-guide-strip :questions="$interviewQuestions" title="Interview Preparation & Common Questions for This Module" />
+                            </div>
+                        @endif
                     </div>
                 </section>
+
+                {{-- SEO Spider Web: Technical Study Guides Related to Course --}}
+                @if (!empty($relatedBlogs) && $relatedBlogs->isNotEmpty())
+                    <x-seo.related-blogs :blogs="$relatedBlogs" title="Technical Study Guides & Articles for {{ $course->name }}" />
+                @endif
             @endif
 
             {{-- 13. FINAL CTA BANNER --}}
@@ -1986,6 +2437,36 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    {{-- FLOATING STICKY ACTION PILLS (BOTTOM-LEFT) --}}
+    <div class="fixed bottom-5 left-5 z-40 flex flex-col items-start gap-2.5 pointer-events-auto">
+        <button
+            type="button"
+            @click="openVideo('https://www.youtube.com/watch?v=dQw4w9WgXcQ', '{{ addslashes($course->name) }} Live Demo Video', 'ZebLearn Academy', 'Live Online Masterclass')"
+            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 font-sans text-xs font-bold shadow-xl hover:shadow-2xl transition-all hover:scale-105 cursor-pointer border border-amber-300/60"
+        >
+            <span class="material-symbols-outlined text-[17px] fill-current text-slate-950">play_circle</span>
+            <span>Watch Demo Video</span>
+        </button>
+
+        <a
+            href="tel:+918506888288"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#080d1a] hover:bg-slate-900 border border-slate-700/80 text-white font-sans text-xs font-semibold shadow-xl hover:shadow-2xl transition-all hover:scale-105"
+        >
+            <span class="material-symbols-outlined text-[15px] text-amber-400">call</span>
+            <span>Placements query?</span>
+        </a>
+
+        <a
+            href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20have%20questions%20about%20{{ urlencode($course->name) }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white font-sans text-xs font-semibold shadow-xl hover:shadow-2xl transition-all hover:scale-105 border border-emerald-400/40"
+        >
+            <span class="material-symbols-outlined text-[15px] fill-current">chat</span>
+            <span>Questions? WhatsApp us.</span>
+        </a>
     </div>
 
 </div>

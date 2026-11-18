@@ -91,6 +91,25 @@ function initApp() {
             const phone = document.getElementById('hero-phone')?.value.trim() || '';
             const course = document.getElementById('hero-course')?.value || 'SAP Training';
 
+            // Record inbound lead attribution asynchronously
+            if (window.fetch) {
+                fetch('/api/leads', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        phone: phone,
+                        course_name: course,
+                        source_url: window.location.href,
+                        cta_type: 'hero_demo',
+                        referrer: document.referrer
+                    })
+                }).catch(() => {});
+            }
+
             const enquiry = [
                 'Hello ZebLearn, I want to book a free live demo class.',
                 `Name: ${name}`,

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 80" fill="none">
+  <!-- Aditya Birla Prism Graphic -->
+  <g transform="translate(20, 8)">
+    <polygon points="25,2 45,26 31,33 19,26" fill="#C41230" />
+    <polygon points="25,2 19,26 5,33 1,22" fill="#E42313" />
+    <polygon points="25,2 1,22 10,8" fill="#F15A24" />
+    <polygon points="25,2 45,26 49,15 38,6" fill="#A00D20" />
+    <polygon points="5,33 19,26 25,48 10,44" fill="#F7931E" />
+    <polygon points="45,26 31,33 25,48 40,44" fill="#C41230" />
+    <polygon points="19,26 31,33 25,48" fill="#ED1C24" />
+  </g>
+  <!-- Text: ADITYA BIRLA GROUP -->
+  <text x="85" y="32" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="900" fill="#8B0000" letter-spacing="1.5">ADITYA BIRLA</text>
+  <text x="85" y="47" font-family="'Inter', 'Helvetica Neue', Arial, sans-serif" font-size="11" font-weight="700" fill="#555555" letter-spacing="3.5">GROUP</text>
+</svg>

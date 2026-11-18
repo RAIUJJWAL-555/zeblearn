@@ -34,12 +34,8 @@ test('2. verified partners section renders with categorized badges and enterpris
 
     $response = $this->get(route('courses.show', $course));
     $response->assertOk();
-    $response->assertSee('HIRING PARTNERS');
-    $response->assertSee('GLOBAL SYSTEMS INTEGRATORS');
-    $response->assertSee('Accenture');
-    $response->assertSee('Deloitte');
-    $response->assertSee('Capgemini');
-    $response->assertSee('TCS');
+    $response->assertSee('OUR PARTNERS');
+    $response->assertSee('TRAINING PARTNERSHIPS');
 });
 
 test('3. verified student placements render with roles, companies, packages, and verification pills', function () {
@@ -68,20 +64,17 @@ test('4. expert faculty and mentors showcase renders with specialization, experi
     $response->assertSee('LinkedIn Profile');
 });
 
-test('5. enterprise capstone and implementation projects render all 6 SAP MM scenarios with business tasks', function () {
+test('5. enterprise capstone marquee renders corporate project scenarios', function () {
     $course = Course::where('slug', 'sap-mm-training')->first();
 
     $response = $this->get(route('courses.show', $course));
     $response->assertOk();
-    $response->assertSee('Enterprise Capstone &amp; Implementation Projects', false);
-    $response->assertSee('End-to-End Procure-to-Pay (P2P) Implementation &amp; Integration', false);
-    $response->assertSee('Enterprise Material Master &amp; Vendor Master Governance', false);
-    $response->assertSee('Purchase Requisition (PR), RFQ &amp; Dynamic Release Strategies', false);
-    $response->assertSee('Inventory Management, Physical Inventory &amp; Multi-Tier Stock Transfers', false);
-    $response->assertSee('Goods Receipt (MIGO) and Logistic Invoice Verification (MIRO)', false);
-    $response->assertSee('Material Valuation, Split Valuation &amp; Automatic Account Determination (OBYC)', false);
-    $response->assertSee('Automotive Manufacturing');
-    $response->assertSee('Simulated Enterprise Capstone');
+    $response->assertSee('Capstone Projects in '.$course->name.' Training');
+    $response->assertSee('Flipkart SAP SD Order-to-Cash');
+    $response->assertSee('TCS Global SAP ABAP Rollout');
+    $response->assertSee('Aditya Birla SAP MM + Procurement');
+    $response->assertSee('View More');
+    $response->assertSee('PROJECT');
 });
 
 test('6. two-tier certification architecture cleanly differentiates ZebLearn certificate and SAP vendor exam prep', function () {
@@ -91,21 +84,20 @@ test('6. two-tier certification architecture cleanly differentiates ZebLearn cer
     $response->assertOk();
     $response->assertSee('Two-Tier Certification Architecture');
     $response->assertSee('ZebLearn Course Completion Certificate');
-    $response->assertSee('85%+ Live Cohort Attendance');
+    $response->assertSee('QR Verify');
     $response->assertSee('External Professional Certification Alignment');
     $response->assertSee('SAP Certified Associate – Procurement with SAP S/4HANA');
     $response->assertSee('Exam Code: C_TS452');
     $response->assertSee('ZebLearn does not claim to issue official SAP-authorized vendor certifications');
 });
 
-test('7. certificate gallery renders sample credentials and verification portal link', function () {
+test('7. certificate gallery renders certificate showcase and verified honors', function () {
     $course = Course::where('slug', 'sap-mm-training')->first();
 
     $response = $this->get(route('courses.show', $course));
     $response->assertOk();
-    $response->assertSee('VERIFIED CERTIFICATE SAMPLES &amp; CREDENTIAL GALLERY', false);
-    $response->assertSee('ZebLearn Certified SAP Materials Management Professional');
-    $response->assertSee('ZEB-MM-2026-8941');
+    $response->assertSee('certificate-showcase');
+    $response->assertSee('VERIFIED SAP ACADEMY EXCELLENCE');
 });
 
 test('8. student video stories render with video modal triggers, quotes, and consent badges', function () {
@@ -152,7 +144,7 @@ test('11. landing page section ordering and visibility can be dynamically config
 
     $response = $this->get(route('courses.show', $course));
     $response->assertOk();
-    $response->assertDontSee('Enterprise Capstone &amp; Implementation Projects', false);
+    $response->assertDontSee('Capstone Projects in '.$course->name.' Training');
 
     // Re-enable projects section
     $course->section_config = null;
@@ -160,5 +152,5 @@ test('11. landing page section ordering and visibility can be dynamically config
 
     $response2 = $this->get(route('courses.show', $course));
     $response2->assertOk();
-    $response2->assertSee('Enterprise Capstone &amp; Implementation Projects', false);
+    $response2->assertSee('Capstone Projects in '.$course->name.' Training');
 });

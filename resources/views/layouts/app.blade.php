@@ -22,6 +22,13 @@
         content="{{ $pageDesc }}"
     >
 
+    @hasSection('keywords')
+    <meta
+        name="keywords"
+        content="@yield('keywords')"
+    >
+    @endif
+
     <meta
         name="robots"
         content="@yield('robots', 'index, follow, max-image-preview:large')"
@@ -117,6 +124,9 @@
 
     {{-- Shared Footer --}}
     <x-layout.footer />
+
+    {{-- Global Course Search Modal --}}
+    <x-course.search-modal />
 
     {{-- Page-specific JavaScript --}}
     @stack('scripts')

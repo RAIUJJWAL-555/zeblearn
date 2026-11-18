@@ -323,6 +323,71 @@
                 </label>
             </div>
         </div>
+
+        {{-- Dynamic Review & Performance Metrics Row --}}
+        <div class="pt-5 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div>
+                <label for="rating" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                    Star Rating (1.0 to 5.0)
+                </label>
+                <input
+                    type="number"
+                    step="0.1"
+                    min="1.0"
+                    max="5.0"
+                    id="rating"
+                    name="rating"
+                    placeholder="4.9"
+                    value="{{ old('rating', $course->rating ?? 4.9) }}"
+                    class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-mono text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs"
+                />
+            </div>
+
+            <div>
+                <label for="reviews_count" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                    Total Reviews Count (DB)
+                </label>
+                <input
+                    type="number"
+                    min="0"
+                    id="reviews_count"
+                    name="reviews_count"
+                    placeholder="14250"
+                    value="{{ old('reviews_count', $course->reviews_count ?? $course->dynamic_reviews_count) }}"
+                    class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-mono text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs"
+                />
+            </div>
+
+            <div>
+                <label for="ratings_count" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                    Total Ratings Count
+                </label>
+                <input
+                    type="number"
+                    min="0"
+                    id="ratings_count"
+                    name="ratings_count"
+                    placeholder="18500"
+                    value="{{ old('ratings_count', $course->ratings_count ?? 13952) }}"
+                    class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-mono text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs"
+                />
+            </div>
+
+            <div>
+                <label for="learner_count" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
+                    Enrolled Students Count
+                </label>
+                <input
+                    type="number"
+                    min="0"
+                    id="learner_count"
+                    name="learner_count"
+                    placeholder="8500"
+                    value="{{ old('learner_count', $course->learner_count ?? 8500) }}"
+                    class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-mono text-slate-900 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs"
+                />
+            </div>
+        </div>
     </x-ui.card>
 
     {{-- SECTION 3: DESCRIPTIONS & HIGHLIGHTS --}}
@@ -350,18 +415,81 @@
                 @enderror
             </div>
 
-            {{-- Full Description --}}
-            <div>
-                <label for="description" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono mb-2">
-                    Detailed Course Overview
-                </label>
-                <textarea
-                    id="description"
-                    name="description"
-                    rows="5"
-                    placeholder="Comprehensive course outline, methodology, and learning expectations..."
-                    class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs"
-                >{{ old('description', $course->description) }}</textarea>
+            {{-- Full Description with Markdown Toolbar and Preview --}}
+            <div x-data="{
+                tab: 'write',
+                content: @js(old('description', $course->description ?? '')),
+                insertMarkdown(prefix, suffix = '', defaultText = '') {
+                    const textarea = this.$refs.descTextarea;
+                    if (!textarea) return;
+                    const start = textarea.selectionStart;
+                    const end = textarea.selectionEnd;
+                    const selected = textarea.value.substring(start, end) || defaultText;
+                    const replacement = prefix + selected + suffix;
+                    textarea.setRangeText(replacement, start, end, 'select');
+                    this.content = textarea.value;
+                    textarea.focus();
+                },
+                get renderedHtml() {
+                    if (!this.content || !this.content.trim()) return '<p class=\'text-slate-400 italic\'>Nothing to preview yet.</p>';
+                    let html = this.content
+                        .replace(/&/g, '&amp;')
+                        .replace(/</g, '&lt;')
+                        .replace(/>/g, '&gt;');
+                    html = html.replace(/^### (.*$)/gim, '<h3 class=\'font-bold text-base text-slate-800 mt-3 mb-1\'>$1</h3>');
+                    html = html.replace(/^## (.*$)/gim, '<h2 class=\'font-extrabold text-lg text-slate-900 mt-4 mb-1\'>$1</h2>');
+                    html = html.replace(/^# (.*$)/gim, '<h2 class=\'font-extrabold text-lg text-slate-900 mt-4 mb-1\'>$1</h2>');
+                    html = html.replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>');
+                    html = html.replace(/\*(.*?)\*/gim, '<em>$1</em>');
+                    html = html.replace(/^\- (.*$)/gim, '<ul><li>$1</li></ul>');
+                    html = html.replace(/<\/ul>\s*<ul>/gim, '');
+                    html = html.replace(/^\d+\. (.*$)/gim, '<li class=\'ml-4 list-decimal text-slate-700\'>$1</li>');
+                    html = html.replace(/\n\n/gim, '</p><p class=\'mt-2 mb-2 text-slate-700\'>');
+                    return '<div class=\'course-prose text-sm\'>' + html + '</div>';
+                }
+            }">
+                <div class="flex items-center justify-between mb-2">
+                    <label for="description" class="block text-xs font-semibold uppercase tracking-wider text-slate-700 font-mono">
+                        Detailed Course Overview <span class="text-[#FB6221] lowercase font-normal">(markdown supported)</span>
+                    </label>
+                    <div class="flex items-center rounded-lg bg-slate-100 p-0.5 text-xs font-semibold">
+                        <button type="button" @click="tab = 'write'" :class="tab === 'write' ? 'bg-white shadow-xs text-slate-900' : 'text-slate-500 hover:text-slate-800'" class="px-2.5 py-1 rounded-md transition-all">
+                            Write
+                        </button>
+                        <button type="button" @click="tab = 'preview'" :class="tab === 'preview' ? 'bg-white shadow-xs text-slate-900' : 'text-slate-500 hover:text-slate-800'" class="px-2.5 py-1 rounded-md transition-all">
+                            Preview
+                        </button>
+                    </div>
+                </div>
+
+                {{-- Toolbar (visible in write mode) --}}
+                <div x-show="tab === 'write'" class="flex flex-wrap items-center gap-1 p-1.5 bg-slate-50 border border-b-0 border-slate-300 rounded-t-xl text-xs text-slate-600">
+                    <button type="button" @click="insertMarkdown('**', '**', 'bold text')" class="px-2 py-1 rounded hover:bg-white hover:shadow-xs font-bold" title="Bold">B</button>
+                    <button type="button" @click="insertMarkdown('*', '*', 'italic text')" class="px-2 py-1 rounded hover:bg-white hover:shadow-xs italic" title="Italic">I</button>
+                    <span class="text-slate-300">|</span>
+                    <button type="button" @click="insertMarkdown('## ', '', 'Heading 2')" class="px-2 py-1 rounded hover:bg-white hover:shadow-xs font-semibold" title="Heading 2">H2</button>
+                    <button type="button" @click="insertMarkdown('### ', '', 'Heading 3')" class="px-2 py-1 rounded hover:bg-white hover:shadow-xs font-semibold" title="Heading 3">H3</button>
+                    <span class="text-slate-300">|</span>
+                    <button type="button" @click="insertMarkdown('- ', '', 'List item')" class="px-2 py-1 rounded hover:bg-white hover:shadow-xs" title="Bullet List">• List</button>
+                    <button type="button" @click="insertMarkdown('1. ', '', 'First item')" class="px-2 py-1 rounded hover:bg-white hover:shadow-xs" title="Numbered List">1. List</button>
+                    <span class="text-slate-300">|</span>
+                    <button type="button" @click="insertMarkdown('[', '](https://example.com)', 'Link title')" class="px-2 py-1 rounded hover:bg-white hover:shadow-xs" title="Link">🔗 Link</button>
+                </div>
+
+                <div x-show="tab === 'write'">
+                    <textarea
+                        x-ref="descTextarea"
+                        x-model="content"
+                        id="description"
+                        name="description"
+                        rows="8"
+                        placeholder="Comprehensive course outline, methodology, and learning expectations (supports ## headings, **bold**, and bullet lists)..."
+                        class="w-full rounded-b-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#FB6221] focus:ring-4 focus:ring-[#FB6221]/15 transition-all outline-hidden shadow-xs font-sans"
+                    >{{ old('description', $course->description) }}</textarea>
+                </div>
+
+                <div x-show="tab === 'preview'" class="min-h-[200px] max-h-[360px] overflow-y-auto p-4 bg-slate-50 border border-slate-300 rounded-xl" x-html="renderedHtml"></div>
+                <p class="mt-1.5 text-xs text-slate-500">Supports standard Markdown (e.g., <code>## Section</code>, <code>### Subtopic</code>, <code>**bold**</code>, <code>- bullet</code>). Renders with clean responsive typography on the public course page.</p>
             </div>
 
             {{-- Key Highlights --}}
