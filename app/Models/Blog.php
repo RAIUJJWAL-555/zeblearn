@@ -7,11 +7,24 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class Blog extends Model
 {
     use HasFactory;
+
+    protected static function booted(): void
+    {
+        static::saved(function () {
+            Cache::forget('blog_active_categories_with_count');
+            Cache::forget('search_default_top_blogs');
+        });
+        static::deleted(function () {
+            Cache::forget('blog_active_categories_with_count');
+            Cache::forget('search_default_top_blogs');
+        });
+    }
 
     public const STATUS_DRAFT = 'draft';
 

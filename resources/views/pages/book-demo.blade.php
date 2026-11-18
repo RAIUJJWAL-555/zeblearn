@@ -164,6 +164,10 @@
 
             <!-- RIGHT 7 COLUMNS: WHITE BOOKING ENGINE FORM -->
             <form class="lg:col-span-7 bg-white rounded-2xl p-6 sm:p-10 border border-slate-200/80 shadow-md text-[#0A0A0A] flex flex-col justify-between" id="demoForm" data-reveal>
+                @csrf
+                {{-- Anti-spam honeypot fields --}}
+                <input type="text" name="website_url_hp" tabindex="-1" autocomplete="off" class="hidden" style="display:none !important;" aria-hidden="true" />
+                <input type="text" name="b_fax_hp" tabindex="-1" autocomplete="off" class="hidden" style="display:none !important;" aria-hidden="true" />
                 <div>
                     <!-- Header -->
                     <div class="flex items-center justify-between pb-4 mb-6 border-b border-slate-100">
@@ -421,15 +425,48 @@
     form.addEventListener('submit', function(e){
       e.preventDefault();
       var sel = document.getElementById('course-select'),
-          course = sel.options[sel.selectedIndex].text;
+          course = sel ? sel.options[sel.selectedIndex].text : '';
       var name = document.getElementById('full-name').value.trim(),
           phone = document.getElementById('phone-number').value.trim(),
           email = document.getElementById('email-address').value.trim();
-      var msg = 'Hello ZebLearn, I want to book a free demo.\nName: '+name+'\nPhone: +91 '+phone+(email?'\nEmail: '+email:'')+'\nCourse: '+course+'\nBackground: '+bgVal+'\nPreferred date: '+dateVals[selDate]+'\nPreferred time: '+selSlot;
+      var hp1 = form.elements.website_url_hp ? form.elements.website_url_hp.value : '';
+      var hp2 = form.elements.b_fax_hp ? form.elements.b_fax_hp.value : '';
+      var preferredDate = dateVals && dateVals[selDate] ? dateVals[selDate] : '';
+      var preferredTime = selSlot || '';
+
+      // Persist to centralized database asynchronously
+      if (window.fetch) {
+        fetch('/forms/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
+          },
+          body: JSON.stringify({
+            form_type: 'book_demo',
+            name: name,
+            phone: phone,
+            email: email,
+            course_name: course,
+            background: bgVal,
+            preferred_date: preferredDate,
+            preferred_time: preferredTime,
+            website_url_hp: hp1,
+            b_fax_hp: hp2,
+            source_url: window.location.href,
+            referrer: document.referrer
+          })
+        }).catch(function(err){
+          console.warn('Demo booking persistence notice:', err);
+        });
+      }
+
+      var msg = 'Hello ZebLearn, I want to book a free demo.\nName: '+name+'\nPhone: +91 '+phone+(email?'\nEmail: '+email:'')+'\nCourse: '+course+'\nBackground: '+bgVal+'\nPreferred date: '+preferredDate+'\nPreferred time: '+preferredTime;
       
       window.open('https://wa.me/917277877778?text=' + encodeURIComponent(msg), '_blank');
       setTimeout(function(){
-        location.href = '/book-demo/thank-you?module=' + encodeURIComponent(course) + '&date=' + encodeURIComponent(dateVals[selDate]) + '&time=' + encodeURIComponent(selSlot);
+        location.href = '/book-demo/thank-you?module=' + encodeURIComponent(course) + '&date=' + encodeURIComponent(preferredDate) + '&time=' + encodeURIComponent(preferredTime);
       }, 600);
     });
   }

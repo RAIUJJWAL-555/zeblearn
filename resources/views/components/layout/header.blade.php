@@ -7,7 +7,7 @@
     ];
 @endphp
 
-<header class="fixed inset-x-0 top-4 sm:top-5 z-50 px-4 sm:px-6 pointer-events-none">
+<header x-data="{}" class="fixed inset-x-0 top-4 sm:top-5 z-50 px-4 sm:px-6 pointer-events-none">
     <div class="max-w-7xl mx-auto pointer-events-auto rounded-full px-5 py-2 sm:px-7 sm:py-2.5 flex items-center justify-between transition-all duration-300 border border-white/60 shadow-[0_8px_32px_rgba(10,10,10,0.08),inset_0_1px_1px_rgba(255,255,255,0.9)]" style="background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(20px) saturate(190%); -webkit-backdrop-filter: blur(20px) saturate(190%);">
         <!-- Brand Logo with Reserved Bounding Dimensions for Zero CLS -->
         <a href="{{ url('/') }}" aria-label="ZebLearn Home" class="flex shrink-0 items-center h-8 sm:h-9 w-[102px] sm:w-[114px] overflow-hidden group">
@@ -18,8 +18,8 @@
                     alt="ZebLearn"
                     width="400"
                     height="126"
-                    fetchpriority="high"
-                    decoding="sync"
+                    loading="eager"
+                    decoding="async"
                     style="aspect-ratio: 1000/315;"
                     class="h-8 sm:h-9 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
                 />
@@ -52,12 +52,14 @@
             <!-- Course Search Trigger -->
             <button
                 type="button"
+                data-search-trigger
                 @click="$dispatch('open-course-search')"
+                onclick="window.dispatchEvent(new CustomEvent('open-course-search'))"
                 class="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-slate-100 hover:bg-white text-slate-700 hover:text-[#FB6221] text-xs font-semibold transition-all border border-slate-200/80 shadow-2xs cursor-pointer"
                 title="Search courses (Cmd+K)"
                 aria-label="Search courses"
             >
-                <span class="material-symbols-outlined text-[16px] text-[#FB6221]">search</span>
+                <x-ui.icon name="search" size="xs" class="text-[#FB6221] shrink-0" />
                 <span class="hidden xl:inline text-[11px] font-mono uppercase">Search</span>
             </button>
 
@@ -80,7 +82,7 @@
                 <span>+91 8506 888 288</span>
             </a>
 
-            <a href="{{ route('book-demo') }}" class="inline-flex items-center gap-1.5 rounded-full bg-[#FB6221] hover:bg-[#e05214] px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white shadow-[0_4px_16px_rgba(251,98,33,0.3)] hover:shadow-[0_6px_20px_rgba(251,98,33,0.4)] transition-all duration-200 hover:scale-[1.02]">
+            <a href="{{ route('book-demo') }}" class="inline-flex items-center gap-1.5 rounded-full bg-[#c2410c] hover:bg-[#9a3412] px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white shadow-[0_4px_16px_rgba(194,65,12,0.3)] hover:shadow-[0_6px_20px_rgba(194,65,12,0.4)] transition-all duration-200 hover:scale-[1.02]">
                 <span>Book Free Demo</span>
                 <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
             </a>
@@ -95,10 +97,12 @@
                 <nav aria-label="Mobile navigation" class="absolute right-0 top-12 z-50 w-64 rounded-2xl border border-white/70 p-3 shadow-[0_16px_40px_rgba(0,0,0,0.12),inset_0_1px_1px_rgba(255,255,255,0.9)] flex flex-col gap-1" style="background: rgba(255, 255, 255, 0.82); backdrop-filter: blur(24px) saturate(190%); -webkit-backdrop-filter: blur(24px) saturate(190%);">
                     <button
                         type="button"
+                        data-search-trigger
                         @click="$dispatch('open-course-search')"
-                        class="w-full text-left rounded-xl px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-slate-800 hover:bg-white/80 hover:text-[#FB6221] transition-all flex items-center gap-2"
+                        onclick="window.dispatchEvent(new CustomEvent('open-course-search'))"
+                        class="w-full text-left rounded-xl px-4 py-2.5 text-xs font-semibold uppercase tracking-wider text-slate-800 hover:bg-white/80 hover:text-[#FB6221] transition-all flex items-center gap-2 cursor-pointer"
                     >
-                        <span class="material-symbols-outlined text-[16px] text-[#FB6221]">search</span>
+                        <x-ui.icon name="search" size="xs" class="text-[#FB6221] shrink-0" />
                         <span>Search Courses</span>
                     </button>
                     @foreach($links as $link)

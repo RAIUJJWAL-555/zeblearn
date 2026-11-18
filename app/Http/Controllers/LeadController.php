@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Lead;
+use App\Services\FormSubmissionService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class LeadController extends Controller
 {
+    public function __construct(
+        protected FormSubmissionService $submissionService
+    ) {}
+
     /**
-     * Store an inbound lead with attribution data.
+     * Store an inbound lead with attribution data and sync to FormSubmission.
      */
     public function store(Request $request): JsonResponse
     {
@@ -43,6 +48,26 @@ class LeadController extends Controller
             'referrer' => $validated['referrer'] ?? $request->header('referer'),
             'status' => 'new',
         ]);
+
+        // Centralized Form Submission synchronization
+        $this->submissionService->submit([
+            'form_type' => $validated['cta_type'] ?? 'lead',
+            'form_name' => 'Inbound Attribution Lead ('.($validated['cta_type'] ?? 'lead').')',
+            'name' => $validated['name'] ?? null,
+            'phone' => $validated['phone'] ?? null,
+            'email' => $validated['email'] ?? null,
+            'course_id' => $courseId,
+            'course_name' => $validated['course_name'] ?? null,
+            'page_url' => $validated['source_url'] ?? $request->fullUrl(),
+            'source' => $validated['cta_type'] ?? 'api_lead',
+            'utm_source' => $validated['utm_source'] ?? null,
+            'utm_medium' => $validated['utm_medium'] ?? null,
+            'utm_campaign' => $validated['utm_campaign'] ?? null,
+            'additional_data' => [
+                'destination_url' => $validated['destination_url'] ?? null,
+                'referrer' => $validated['referrer'] ?? $request->header('referer'),
+            ],
+        ], $request);
 
         return response()->json([
             'status' => 'success',

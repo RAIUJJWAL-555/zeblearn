@@ -1,10 +1,6 @@
 {{-- ABOUT ZEBLEARN INSTITUTE --}}
 <section id="about-institute" class="w-full bg-[#0A0A0A] text-white py-16 lg:py-24 px-4 sm:px-6 lg:px-12 border-t border-slate-800 relative overflow-hidden" aria-labelledby="about-institute-heading">
-    <!-- Ambient Technical Grid Pattern & Glows -->
-    <div
-        class="absolute inset-0 pointer-events-none opacity-40 -z-0"
-        style="background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px); background-size: 32px 32px;"
-    ></div>
+    <!-- Ambient Glows (No Grid) -->
     <div class="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-[#FB6221]/10 blur-3xl pointer-events-none -z-0"></div>
     <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-blue-600/10 blur-3xl pointer-events-none -z-0"></div>
 

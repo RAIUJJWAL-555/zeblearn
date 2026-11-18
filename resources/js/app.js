@@ -1,14 +1,36 @@
 
 import Alpine from 'alpinejs';
-import { initLaserFlow } from './laserflow';
-import { initDitherVeil } from './ditherveil';
-import { initCertificateShowcase } from './certificate-showcase';
-import { initFlexCarousel } from './flex-carousel';
-import { initInfiniteSpiral } from './infinite-spiral';
 import { initMarquees } from './marquee';
 
 window.Alpine = Alpine;
 Alpine.start();
+
+/**
+ * High-performance viewport observer for lazy loading heavy 3D/WebGL modules
+ * Default rootMargin of 50px ensures heavy modules are only loaded when approaching the viewport,
+ * preventing unused JavaScript from degrading initial page load and First Contentful Paint.
+ */
+function onVisible(elementId, callback, rootMargin = '50px') {
+    const el = document.getElementById(elementId);
+    if (!el) return;
+
+    if (!('IntersectionObserver' in window)) {
+        callback(el);
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        for (const entry of entries) {
+            if (entry.isIntersecting) {
+                obs.disconnect();
+                callback(entry.target);
+                break;
+            }
+        }
+    }, { rootMargin });
+
+    observer.observe(el);
+}
 
 function initApp() {
     // Mobile navigation
@@ -125,6 +147,15 @@ function initApp() {
             }, 600);
         });
     }
+
+    // Global Course Search Modal Trigger Delegation
+    document.addEventListener('click', (event) => {
+        const trigger = event.target.closest('[data-search-trigger], button[aria-label="Search courses"]');
+        if (trigger) {
+            event.preventDefault();
+            window.dispatchEvent(new CustomEvent('open-course-search'));
+        }
+    });
 
     // 3. Progressive Scroll Reveal (Shared Single IntersectionObserver)
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -268,94 +299,62 @@ function initApp() {
         });
     }
 
-    // 6. LaserFlow WebGL2 Footer Simulation
-    try {
-        const laserflowContainer = document.getElementById('laserflow-container');
-        const laserflowCard = document.getElementById('laserflow-card');
+    // 6. LaserFlow WebGL2 Footer Simulation (Lazy loaded on viewport scroll)
+    onVisible('laserflow-container', (container) => {
+        import('./laserflow').then(({ initLaserFlow }) => {
+            const laserflowCard = document.getElementById('laserflow-card');
+            if (container && laserflowCard) {
+                initLaserFlow(container, laserflowCard, {
+                    beamPosition: 0.6,
+                    color: '#f97316',
+                    intensity: 1.8,
+                    flare: 1.5,
+                    spread: 1.5,
+                    spill: 1,
+                    fog: 0.2,
+                    dust: 1.6,
+                    revealImage: '/images/hero-3d-sculpture.webp',
+                    revealRadius: 220,
+                    revealOpacity: 0.6,
+                    beamWidth: 1.5,
+                    streaks: 1.5,
+                    dots: 1,
+                    pulse: 1.5,
+                    speed: 1.5,
+                    seed: 3,
+                    mouseInteraction: true,
+                    intro: true,
+                });
+            }
+        }).catch(err => console.error('[LaserFlow] Lazy load failed:', err));
+    });
 
-        if (laserflowContainer && laserflowCard) {
-            initLaserFlow(laserflowContainer, laserflowCard, {
-                beamPosition: 0.6,
-                color: '#f97316',
-                intensity: 1.8,
-                flare: 1.5,
-                spread: 1.5,
-                spill: 1,
-                fog: 0.2,
-                dust: 1.6,
-                revealImage: '/images/hero-3d-sculpture.webp',
-                revealRadius: 220,
-                revealOpacity: 0.6,
-                beamWidth: 1.5,
-                streaks: 1.5,
-                dots: 1,
-                pulse: 1.5,
-                speed: 1.5,
-                seed: 3,
-                mouseInteraction: true,
-                intro: true,
-            });
-        }
-    } catch (err) {
-        console.error('[LaserFlow] Init failed:', err);
-    }
+    // 7. Awards & Recognition Certificate Showcase (Lazy loaded on viewport scroll)
+    onVisible('certificate-showcase', () => {
+        import('./certificate-showcase').then(({ initCertificateShowcase }) => {
+            initCertificateShowcase();
+        }).catch(err => console.error('[CertificateShowcase] Lazy load failed:', err));
+    });
 
-    // 7. Awards & Recognition Certificate Showcase
-    try {
-        initCertificateShowcase();
-    } catch (err) {
-        console.error('[CertificateShowcase] Init failed:', err);
-    }
+    // 7B. FlexCarousel 3D WebGL Liquid Experience (Lazy loaded on viewport scroll)
+    onVisible('flex-carousel-root', () => {
+        import('./flex-carousel').then(({ initFlexCarousel }) => {
+            initFlexCarousel();
+        }).catch(err => console.error('[FlexCarousel] Lazy load failed:', err));
+    });
 
-    // 7B. FlexCarousel 3D WebGL Liquid Experience
-    try {
-        initFlexCarousel();
-    } catch (err) {
-        console.error('[FlexCarousel] Init failed:', err);
-    }
+    // 7C. InfiniteSpiral 3D Interactive SAP Module Helix (Lazy loaded on viewport scroll)
+    onVisible('infinite-spiral-root', () => {
+        import('./infinite-spiral').then(({ initInfiniteSpiral }) => {
+            initInfiniteSpiral();
+        }).catch(err => console.error('[InfiniteSpiral] Lazy load failed:', err));
+    });
 
-    // 7C. InfiniteSpiral 3D Interactive SAP Module Helix
-    try {
-        initInfiniteSpiral();
-    } catch (err) {
-        console.error('[InfiniteSpiral] Init failed:', err);
-    }
-
-    // 7D. Bulletproof Continuous Infinite Marquee Engine
+    // 7D. Continuous Infinite Marquee Engine
     try {
         initMarquees();
     } catch (err) {
         console.error('[Marquees] Init failed:', err);
-    }
-
-    // 8. DitherVeil WebGL2 Simulation (if container present)
-    const ditherveilContainer = document.getElementById('ditherveil-container');
-
-    if (ditherveilContainer) {
-        try {
-            initDitherVeil(ditherveilContainer, {
-                src: 'https://images.unsplash.com/photo-1737071371043-761e02b1ef95?q=80&w=1400&auto=format&fit=crop',
-                pattern: 'floyd',
-                pixelSize: 2,
-                inkColor: '#FAFAF8',
-                paperColor: '#120f17',
-                revealRadius: 200,
-                softness: 0.6,
-                linger: 1,
-                fit: 'contain',
-                rimColor: '#FB6221',
-                palette: 'duotone',
-                levels: 2,
-                contrast: 1.15,
-                brightness: 0,
-                rim: 0,
-                reverse: false,
-                wander: false,
-                clickBurst: true,
-            });
-        } catch (err) {
-            console.error('[DitherVeil] Init failed:', err);
-        }
     }
 }
 

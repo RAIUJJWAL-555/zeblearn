@@ -28,14 +28,7 @@
         color: white;
     }
 
-    .zeb-footer-grid {
-        background-image:
-            linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-        background-size: 48px 48px;
-        mask-image: linear-gradient(to bottom, black, transparent 90%);
-        pointer-events: none;
-    }
+
 
     .zeb-glass {
         background: linear-gradient(
@@ -125,7 +118,7 @@
 <footer id="contact" class="zeb-footer">
 
     <!-- Ambient Background -->
-    <div class="zeb-footer-grid absolute inset-0 -z-10"></div>
+    <div class="absolute inset-0 -z-10 bg-radial from-slate-900/40 via-transparent to-transparent pointer-events-none"></div>
 
     <div class="zeb-glow absolute -top-40 -left-32 -z-10 h-96 w-96 rounded-full bg-[#FB6221]/15 blur-[110px]"></div>
     <div class="zeb-glow absolute top-1/2 -right-40 -z-10 h-[450px] w-[450px] rounded-full bg-orange-500/10 blur-[130px]" style="animation-delay:2s"></div>
@@ -156,7 +149,7 @@
                 <div class="space-y-3">
                     <div class="flex items-center justify-between border-b border-white/10 pb-2.5 font-mono text-[10px] text-white/60">
                         <span class="uppercase tracking-wider font-semibold text-[#FB6221]">ZEBLEARN SAP ACADEMY</span>
-                        <span class="text-white/40">FICO • MM • SD • PP</span>
+                        <span class="text-white/70">FICO • MM • SD • PP</span>
                     </div>
 
                     <h2 class="font-heading text-2xl sm:text-3xl lg:text-4xl font-black uppercase leading-[1.05] tracking-tight text-white">

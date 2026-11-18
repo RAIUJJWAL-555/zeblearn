@@ -9,6 +9,7 @@ use App\Observers\BlogSpiderObserver;
 use App\Observers\CourseSpiderObserver;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -26,6 +27,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Enforce compiled production assets when running production or VITE_USE_BUILD is set
+        if (config('app.env') === 'production' || env('VITE_USE_BUILD', false) || request()->has('prod')) {
+            Vite::useHotFile(storage_path('framework/non-existent-hot-file'));
+        }
+
         // Explicit route model binding for instructor parameter
         Route::model('instructor', User::class);
 

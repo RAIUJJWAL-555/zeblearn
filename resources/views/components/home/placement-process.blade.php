@@ -115,7 +115,7 @@
                             <div class="absolute -top-10 -right-10 w-28 h-28 rounded-full blur-2xl pointer-events-none opacity-40" style="background-color: {{ $item['glow_color'] }};"></div>
 
                             <!-- Huge Faint Watermark Number -->
-                            <span class="absolute right-3 -bottom-2 font-heading text-7xl font-black text-white/[0.04] pointer-events-none select-none">
+                            <span class="absolute right-3 -bottom-2 font-heading text-7xl font-black text-white/[0.04] pointer-events-none select-none" aria-hidden="true">
                                 {{ $item['step'] }}
                             </span>
 
@@ -168,7 +168,7 @@
                             <div class="absolute -top-10 -right-10 w-28 h-28 rounded-full blur-2xl pointer-events-none opacity-40" style="background-color: {{ $item['glow_color'] }};"></div>
 
                             <!-- Huge Faint Watermark Number -->
-                            <span class="absolute right-3 -bottom-2 font-heading text-7xl font-black text-white/[0.04] pointer-events-none select-none">
+                            <span class="absolute right-3 -bottom-2 font-heading text-7xl font-black text-white/[0.04] pointer-events-none select-none" aria-hidden="true">
                                 {{ $item['step'] }}
                             </span>
 
@@ -206,7 +206,7 @@
                             <div class="absolute -top-10 -right-10 w-28 h-28 rounded-full blur-2xl pointer-events-none opacity-40" style="background-color: {{ $item['glow_color'] }};"></div>
 
                             <!-- Huge Faint Watermark Number -->
-                            <span class="absolute right-3 -bottom-2 font-heading text-7xl font-black text-white/[0.04] pointer-events-none select-none">
+                            <span class="absolute right-3 -bottom-2 font-heading text-7xl font-black text-white/[0.04] pointer-events-none select-none" aria-hidden="true">
                                 {{ $item['step'] }}
                             </span>
 
@@ -258,7 +258,7 @@
                             <div class="absolute -top-10 -right-10 w-28 h-28 rounded-full blur-2xl pointer-events-none opacity-40" style="background-color: {{ $item['glow_color'] }};"></div>
 
                             <!-- Huge Faint Watermark Number -->
-                            <span class="absolute right-3 -bottom-2 font-heading text-7xl font-black text-white/[0.04] pointer-events-none select-none">
+                            <span class="absolute right-3 -bottom-2 font-heading text-7xl font-black text-white/[0.04] pointer-events-none select-none" aria-hidden="true">
                                 {{ $item['step'] }}
                             </span>
 

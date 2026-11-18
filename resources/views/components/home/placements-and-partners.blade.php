@@ -220,7 +220,7 @@
                             href="https://www.placementbaba.com/"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="inline-flex items-center gap-1 text-xs font-bold text-[#FB6221] hover:underline uppercase">
+                            class="inline-flex items-center gap-1 text-xs font-bold text-[#c2410c] hover:underline uppercase">
                             <span>Visit Portal</span>
                             <span class="material-symbols-outlined text-[14px]">open_in_new</span>
                         </a>

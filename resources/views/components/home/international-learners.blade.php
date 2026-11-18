@@ -149,7 +149,7 @@
                             </div>
                         </div>
 
-                        <span class="font-mono text-xs font-bold text-[#FB6221] bg-orange-50 px-3 py-1 rounded-full border border-orange-200/60 shrink-0 text-right">
+                        <span class="font-mono text-xs font-bold text-[#c2410c] bg-orange-50 px-3 py-1 rounded-full border border-orange-200/60 shrink-0 text-right">
                             {{ $learner['course'] }}
                         </span>
                     </div>
@@ -193,7 +193,7 @@
                             </div>
                         </div>
 
-                        <span class="font-mono text-xs font-bold text-[#FB6221] bg-orange-50 px-3 py-1 rounded-full border border-orange-200/60 shrink-0 text-right">
+                        <span class="font-mono text-xs font-bold text-[#c2410c] bg-orange-50 px-3 py-1 rounded-full border border-orange-200/60 shrink-0 text-right">
                             {{ $learner['course'] }}
                         </span>
                     </div>

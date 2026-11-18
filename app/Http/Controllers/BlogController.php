@@ -11,6 +11,7 @@ use App\Services\InternalLinkingService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
 class BlogController extends Controller
@@ -62,11 +63,7 @@ class BlogController extends Controller
         // Consistent database-level ordering: newest published first
         $blogs = $query->newestPublished()->paginate(12)->withQueryString();
 
-        $categories = BlogCategory::active()
-            ->withCount(['blogs' => function ($q) {
-                $q->published();
-            }])
-            ->get();
+        $categories = $this->getCachedCategories();
 
         return view('pages.blog.index', compact('blogs', 'categories', 'activeCategory', 'activeTag', 'featuredBlog'));
     }
@@ -83,11 +80,7 @@ class BlogController extends Controller
             ->with(['categories', 'author'])
             ->paginate(12);
 
-        $categories = BlogCategory::active()
-            ->withCount(['blogs' => function ($q) {
-                $q->published();
-            }])
-            ->get();
+        $categories = $this->getCachedCategories();
 
         return view('pages.blog.category', compact('category', 'blogs', 'categories'));
     }
@@ -104,13 +97,23 @@ class BlogController extends Controller
             ->with(['categories', 'author'])
             ->paginate(12);
 
-        $categories = BlogCategory::active()
-            ->withCount(['blogs' => function ($q) {
-                $q->published();
-            }])
-            ->get();
+        $categories = $this->getCachedCategories();
 
         return view('pages.blog.tag', compact('tag', 'blogs', 'categories'));
+    }
+
+    /**
+     * Get active blog categories with published counts from cache (10-minute TTL).
+     */
+    protected function getCachedCategories()
+    {
+        return Cache::remember('blog_active_categories_with_count', 600, function () {
+            return BlogCategory::active()
+                ->withCount(['blogs' => function ($q) {
+                    $q->published();
+                }])
+                ->get();
+        });
     }
 
     /**

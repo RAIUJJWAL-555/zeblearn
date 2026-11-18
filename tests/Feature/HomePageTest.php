@@ -7,6 +7,8 @@ test('homepage returns HTTP 200 on GET request', function () {
 
     $response->assertOk();
     $response->assertSee('LEARN SAP ONLINE');
+    $response->assertSee('GET HIRED');
+    $response->assertSee('BOOK YOUR FREE LIVE DEMO');
 });
 
 test('homepage returns HTTP 200 on HEAD request', function () {

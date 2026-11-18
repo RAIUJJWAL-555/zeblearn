@@ -244,6 +244,10 @@
             <!-- Right Column: Interactive Form (7 cols) -->
             <div class="lg:col-span-7">
                 <form class="space-y-4" id="contactForm">
+                    @csrf
+                    {{-- Anti-spam honeypot fields --}}
+                    <input type="text" name="website_url_hp" tabindex="-1" autocomplete="off" class="hidden" style="display:none !important;" aria-hidden="true" />
+                    <input type="text" name="b_fax_hp" tabindex="-1" autocomplete="off" class="hidden" style="display:none !important;" aria-hidden="true" />
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <!-- Full Name -->
                         <div class="flex flex-col gap-1.5">
@@ -488,7 +492,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // 2. Contact Form WhatsApp Submission
+    // 2. Contact Form WhatsApp & Centralized DB Submission
     const contactForm = document.getElementById('contactForm');
     if (!contactForm) return;
 
@@ -500,6 +504,34 @@ document.addEventListener('DOMContentLoaded', function () {
         const email = contactForm.elements.email.value.trim();
         const course = contactForm.elements.course.value;
         const message = contactForm.elements.message.value.trim();
+        const hp1 = contactForm.elements.website_url_hp ? contactForm.elements.website_url_hp.value : '';
+        const hp2 = contactForm.elements.b_fax_hp ? contactForm.elements.b_fax_hp.value : '';
+
+        // Persist to centralized database asynchronously
+        if (window.fetch) {
+            fetch('/forms/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
+                },
+                body: JSON.stringify({
+                    form_type: 'contact',
+                    name: name,
+                    phone: phone,
+                    email: email,
+                    course_name: course,
+                    message: message,
+                    website_url_hp: hp1,
+                    b_fax_hp: hp2,
+                    source_url: window.location.href,
+                    referrer: document.referrer
+                })
+            }).catch(function(err) {
+                console.warn('Form persistence notice:', err);
+            });
+        }
 
         const enquiry = [
             'Hello ZebLearn, I have an enquiry.',

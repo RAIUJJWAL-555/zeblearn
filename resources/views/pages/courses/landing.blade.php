@@ -289,16 +289,16 @@
                                 <span class="sr-only">ACCREDITED INSTITUTIONAL PARTNERS &amp; COMPLIANCE</span>
                                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-xl sm:max-w-2xl">
                                     <div class="h-14 sm:h-16 px-3 py-2 rounded-xl bg-white border border-slate-200/90 shadow-2xs flex items-center justify-center hover:border-[#FB6221]/50 hover:shadow-xs transition-all overflow-hidden">
-                                        <img src="/images/compliance/iso.webp" alt="ISO - International Organization for Standardization" class="max-h-full max-w-full object-contain">
+                                        <img src="/images/compliance/iso.webp" alt="ISO - International Organization for Standardization" class="max-h-full max-w-full object-contain" width="120" height="40" loading="lazy" decoding="async">
                                     </div>
                                     <div class="h-14 sm:h-16 px-3 py-2 rounded-xl bg-white border border-slate-200/90 shadow-2xs flex items-center justify-center hover:border-[#FB6221]/50 hover:shadow-xs transition-all overflow-hidden">
-                                        <img src="/images/compliance/nsdc.webp" alt="NSDC - National Skill Development Corporation" class="max-h-full max-w-full object-contain">
+                                        <img src="/images/compliance/nsdc.webp" alt="NSDC - National Skill Development Corporation" class="max-h-full max-w-full object-contain" width="120" height="40" loading="lazy" decoding="async">
                                     </div>
                                     <div class="h-14 sm:h-16 px-3 py-2 rounded-xl bg-white border border-slate-200/90 shadow-2xs flex items-center justify-center hover:border-[#FB6221]/50 hover:shadow-xs transition-all overflow-hidden">
-                                        <img src="/images/compliance/mca.webp" alt="Ministry of Corporate Affairs - Government of India" class="max-h-full max-w-full object-contain">
+                                        <img src="/images/compliance/mca.webp" alt="Ministry of Corporate Affairs - Government of India" class="max-h-full max-w-full object-contain" width="120" height="40" loading="lazy" decoding="async">
                                     </div>
                                     <div class="h-14 sm:h-16 px-3 py-2 rounded-xl bg-white border border-slate-200/90 shadow-2xs flex items-center justify-center hover:border-[#FB6221]/50 hover:shadow-xs transition-all overflow-hidden">
-                                        <img src="/images/compliance/skill-india.webp" alt="Skill India - कौशल भारत कुशल भारत" class="max-h-full max-w-full object-contain">
+                                        <img src="/images/compliance/skill-india.webp" alt="Skill India - कौशल भारत कुशल भारत" class="max-h-full max-w-full object-contain" width="120" height="40" loading="lazy" decoding="async">
                                     </div>
                                 </div>
                             </div>
@@ -319,6 +319,30 @@
                                             return;
                                         }
                                         this.feeCalculated = true;
+                                        if(window.fetch) {
+                                            fetch('/forms/submit', {
+                                                method: 'POST',
+                                                headers: {
+                                                    'Content-Type': 'application/json',
+                                                    'Accept': 'application/json',
+                                                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
+                                                },
+                                                body: JSON.stringify({
+                                                    form_type: 'course_enquiry',
+                                                    name: this.cName,
+                                                    email: this.cEmail,
+                                                    phone: (this.cCountry || '+91') + ' ' + this.cPhone,
+                                                    course_id: {{ $course->id }},
+                                                    course_name: '{{ addslashes($course->name) }}',
+                                                    source_url: window.location.href,
+                                                    referrer: document.referrer,
+                                                    additional_data: {
+                                                        calculated_fee: '{{ $course->formatted_fee ?: ("₹" . number_format($course->fee ?: 25000)) }}',
+                                                        delivery_mode: '{{ addslashes($course->delivery_mode ?? "Online Live") }}'
+                                                    }
+                                                })
+                                            }).catch(function(err){ console.warn('Fee enquiry persistence notice:', err); });
+                                        }
                                     }
                                 }"
                                 class="bg-white rounded-3xl p-6 sm:p-7 shadow-xl text-slate-900 border border-slate-200/90 relative overflow-hidden"
@@ -958,7 +982,7 @@
 
             {{-- 5. COMPREHENSIVE CURRICULUM ACCORDION --}}
             @if ($sectionKey === 'curriculum')
-                <section class="w-full py-16 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto" id="curriculum">
+                <section class="w-full py-16 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto content-auto" id="curriculum">
                     <div class="flex flex-wrap items-end justify-between gap-4 mb-8">
                         <div>
                             <span class="font-mono text-xs font-bold uppercase tracking-wider text-[#FB6221]">SYLLABUS &amp; LESSONS</span>
@@ -1105,7 +1129,7 @@
                         ],
                     ];
                 @endphp
-                <section class="w-full bg-[#FAFAF8] py-16 px-4 sm:px-6 lg:px-12 border-y border-slate-200" id="projects">
+                <section class="w-full bg-[#FAFAF8] py-16 px-4 sm:px-6 lg:px-12 border-y border-slate-200 content-auto" id="projects">
                     <div class="max-w-[1440px] mx-auto">
                         <div class="text-center max-w-3xl mx-auto mb-10">
                             <h2 class="font-heading text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 tracking-tight">
@@ -1176,7 +1200,7 @@
                         : ($course->instructors->isNotEmpty() ? $course->instructors : collect());
                 @endphp
                 @if ($displayFaculty->isNotEmpty())
-                    <section class="w-full bg-white py-16 px-4 sm:px-6 lg:px-12 border-y border-slate-200" id="faculty">
+                    <section class="w-full bg-white py-16 px-4 sm:px-6 lg:px-12 border-y border-slate-200 content-auto" id="faculty">
                         <div class="max-w-[1440px] mx-auto">
                             <div class="text-center max-w-3xl mx-auto mb-12">
                                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 text-[#FB6221] font-mono text-[11px] font-bold uppercase tracking-wider mb-2 border border-orange-200">
@@ -1466,7 +1490,7 @@
 
             {{-- 8. UPCOMING BATCHES SECTION --}}
             @if ($sectionKey === 'batches')
-                <section class="w-full bg-white py-16 px-4 sm:px-6 lg:px-12 border-y border-slate-200" id="batches">
+                <section class="w-full bg-white py-16 px-4 sm:px-6 lg:px-12 border-y border-slate-200 content-auto" id="batches">
                     <div class="max-w-[1440px] mx-auto">
                         <div class="flex flex-wrap items-end justify-between gap-4 mb-8">
                             <div>
@@ -1773,7 +1797,7 @@
                                         <div class="pt-4 border-t border-slate-100 mt-4 flex items-center gap-3">
                                             <div class="w-9 h-9 rounded-full bg-orange-100 text-[#FB6221] font-bold text-xs flex items-center justify-center shrink-0 uppercase">
                                                 @if($tAvatar)
-                                                    <img src="{{ $tAvatar }}" alt="{{ $tName }}" class="w-full h-full object-cover rounded-full">
+                                                    <img src="{{ $tAvatar }}" alt="{{ $tName }}" class="w-full h-full object-cover rounded-full" loading="lazy" decoding="async" width="48" height="48">
                                                 @else
                                                     {{ substr($tName, 0, 2) }}
                                                 @endif
@@ -1956,7 +1980,7 @@
                     }
                 @endphp
                 @if ($videos->isNotEmpty())
-                    <section class="w-full bg-white py-16 px-4 sm:px-6 lg:px-12 border-b border-slate-200" id="video-stories">
+                    <section class="w-full bg-white py-16 px-4 sm:px-6 lg:px-12 border-b border-slate-200 content-auto" id="video-stories">
                         <div class="max-w-[1440px] mx-auto">
                             <div class="text-center max-w-3xl mx-auto mb-12">
                                 <h2 class="font-heading text-2xl sm:text-4xl font-black uppercase tracking-tight text-[#0A0A0A] mt-1">
@@ -2047,7 +2071,7 @@
 
             {{-- 11. FAQS ACCORDION SECTION --}}
             @if ($sectionKey === 'faqs')
-                <section class="w-full py-16 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto" id="faqs">
+                <section class="w-full py-16 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto content-auto" id="faqs">
                     <div class="text-center max-w-3xl mx-auto mb-12">
                         <span class="font-mono text-xs font-bold uppercase tracking-wider text-[#FB6221]">GOT QUESTIONS?</span>
                         <h2 class="font-heading text-2xl sm:text-4xl font-black uppercase tracking-tight text-[#0A0A0A] mt-2">

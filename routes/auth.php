@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\AdminCourseController;
 use App\Http\Controllers\Admin\AdminCurriculumController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminEnrollmentController;
+use App\Http\Controllers\Admin\AdminFormSubmissionController;
 use App\Http\Controllers\Admin\AdminInstructorController;
 use App\Http\Controllers\Admin\AdminPaymentController;
 use App\Http\Controllers\Admin\AdminQuizController;
@@ -314,9 +315,11 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::post('/internal-linking/overrides', [AdminSeoSpiderController::class, 'storeOverride'])->name('seo.override.store');
     Route::delete('/internal-linking/overrides/{override}', [AdminSeoSpiderController::class, 'destroyOverride'])->name('seo.override.destroy');
 
-    // SEO Spider Web & Internal Linking Engine
-    Route::get('/internal-linking', [AdminSeoSpiderController::class, 'index'])->name('seo.spider');
-    Route::post('/internal-linking/recalculate', [AdminSeoSpiderController::class, 'recalculate'])->name('seo.recalculate');
-    Route::post('/internal-linking/overrides', [AdminSeoSpiderController::class, 'storeOverride'])->name('seo.override.store');
-    Route::delete('/internal-linking/overrides/{override}', [AdminSeoSpiderController::class, 'destroyOverride'])->name('seo.override.destroy');
+    // Centralized Form Submissions Management
+    Route::get('/form-submissions', [AdminFormSubmissionController::class, 'index'])->name('form-submissions.index');
+    Route::get('/form-submissions/export', [AdminFormSubmissionController::class, 'export'])->name('form-submissions.export');
+    Route::get('/form-submissions/{formSubmission}', [AdminFormSubmissionController::class, 'show'])->name('form-submissions.show');
+    Route::patch('/form-submissions/{formSubmission}/status', [AdminFormSubmissionController::class, 'updateStatus'])->name('form-submissions.status');
+    Route::patch('/form-submissions/{formSubmission}/notes', [AdminFormSubmissionController::class, 'updateNotes'])->name('form-submissions.notes');
+    Route::delete('/form-submissions/{formSubmission}', [AdminFormSubmissionController::class, 'destroy'])->name('form-submissions.destroy');
 });

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class BlogCategory extends Model
@@ -36,6 +37,9 @@ class BlogCategory extends Model
                 $category->slug = Str::slug($category->name);
             }
         });
+
+        static::saved(fn () => Cache::forget('blog_active_categories_with_count'));
+        static::deleted(fn () => Cache::forget('blog_active_categories_with_count'));
     }
 
     /**

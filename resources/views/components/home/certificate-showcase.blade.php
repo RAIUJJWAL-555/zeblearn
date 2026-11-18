@@ -18,6 +18,9 @@
                 alt="Inspiring Woman Tech Leader of the Year Award"
                 class="w-full h-auto max-h-[420px] sm:max-h-[460px] object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.12)] group-hover:drop-shadow-[0_22px_45px_rgba(0,0,0,0.18)] group-hover:scale-[1.02] transition-all duration-300 rounded-sm"
                 loading="lazy"
+                decoding="async"
+                width="600"
+                height="424"
             />
             <p class="mt-4 text-center text-xs sm:text-sm font-semibold text-[#0A0A0A]">
                 Inspiring Woman Tech Leader of the Year
@@ -31,6 +34,9 @@
                 alt="Global Workday Training Spotlight Award"
                 class="w-full h-auto max-h-[420px] sm:max-h-[460px] object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.12)] group-hover:drop-shadow-[0_22px_45px_rgba(0,0,0,0.18)] group-hover:scale-[1.02] transition-all duration-300 rounded-sm"
                 loading="lazy"
+                decoding="async"
+                width="600"
+                height="424"
             />
             <p class="mt-4 text-center text-xs sm:text-sm font-semibold text-[#0A0A0A]">
                 Global Workday Training Spotlight Award
@@ -44,6 +50,9 @@
                 alt="India's Leadership Excellence Award 2026"
                 class="w-full h-auto max-h-[420px] sm:max-h-[460px] object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.12)] group-hover:drop-shadow-[0_22px_45px_rgba(0,0,0,0.18)] group-hover:scale-[1.02] transition-all duration-300 rounded-sm"
                 loading="lazy"
+                decoding="async"
+                width="600"
+                height="424"
             />
             <p class="mt-4 text-center text-xs sm:text-sm font-semibold text-[#0A0A0A]">
                 India's Leadership Excellence Award 2026

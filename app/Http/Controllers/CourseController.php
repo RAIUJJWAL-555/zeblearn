@@ -10,6 +10,7 @@ use App\Services\TrustProofService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
 class CourseController extends Controller
@@ -224,20 +225,24 @@ class CourseController extends Controller
         $search = trim($request->input('q', $request->input('search', '')));
 
         if (empty($search)) {
-            // Return top recently added courses
-            $courses = Course::query()
-                ->published()
-                ->orderBy('created_at', 'desc')
-                ->orderBy('id', 'desc')
-                ->limit(6)
-                ->get();
+            // Return top recently added courses (cached 5 minutes)
+            $courses = Cache::remember('search_default_top_courses', 300, function () {
+                return Course::query()
+                    ->published()
+                    ->orderBy('created_at', 'desc')
+                    ->orderBy('id', 'desc')
+                    ->limit(6)
+                    ->get();
+            });
 
-            // Return latest published blogs
-            $blogs = Blog::query()
-                ->newestPublished()
-                ->with('categories')
-                ->limit(4)
-                ->get();
+            // Return latest published blogs (cached 5 minutes)
+            $blogs = Cache::remember('search_default_top_blogs', 300, function () {
+                return Blog::query()
+                    ->newestPublished()
+                    ->with('categories')
+                    ->limit(4)
+                    ->get();
+            });
         } else {
             $courses = Course::query()
                 ->published()

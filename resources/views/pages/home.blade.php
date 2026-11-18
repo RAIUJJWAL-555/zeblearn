@@ -12,6 +12,7 @@
 @section('robots', 'index, follow, max-image-preview:large')
 
 @push('head')
+<link rel="preload" as="image" href="{{ asset('images/hero/corporate_training_hero.webp') }}" type="image/webp" fetchpriority="high">
 <style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{width:10px;}::-webkit-scrollbar-thumb{background:#b9bec5;border-radius:999px;}</style>
 @verbatim
 <script type="application/ld+json">
@@ -34,74 +35,161 @@
 <!-- =========================================================================
      1. HERO SECTION: COMMANDING ENTERPRISE EDUCATION HEADLINE & CREDIBILITY
      ========================================================================= -->
-<section class="relative w-full min-h-screen lg:min-h-[100dvh] flex flex-col justify-between pt-32 sm:pt-36 lg:pt-36 pb-12 sm:pb-16 lg:pb-20 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto overflow-hidden">
-    <!-- Top Telemetry Track -->
-
-
-    <!-- Editorial Hero Headlines, Narrative & Premium Abstract 3D Hero Sculpture -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center my-auto py-4 lg:py-8 mb-8 lg:mb-10">
-        <div class="lg:col-span-7 flex flex-col justify-center space-y-6">
-            <h1 class="font-heading text-5xl sm:text-7xl lg:text-[76px] font-black uppercase tracking-tight text-[#0A0A0A] leading-[0.98] select-none animate-hero-title">
-                LEARN SAP ONLINE.
-                <span class="block text-[#FB6221]">GET HIRED.</span>
-            </h1>
-            <p class="font-sans text-base sm:text-lg text-slate-700 leading-relaxed font-normal animate-hero-desc max-w-xl">
-                Live SAP training in <strong>FICO, MM, SD, and PP</strong> with real system access, module-wise practical assignments, mock interviews, and dedicated placement support.
-            </p>
-            <div class="flex flex-wrap items-center gap-3 pt-1 animate-hero-cta">
-                <a href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20book%20a%20free%20demo." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#FB6221] hover:bg-[#e05214] text-white font-sans text-xs font-semibold uppercase tracking-wider shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02] zeb-btn-cta">
-                    <span>Book a Free Demo</span>
-                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-                </a>
-                <a href="#course-deck" class="inline-flex items-center gap-2 px-5 py-3.5 rounded-full bg-white hover:bg-slate-100 border border-slate-300 text-slate-900 font-sans text-xs font-semibold uppercase tracking-wider transition-colors shadow-xs zeb-btn-cta">
-                    <span>Explore Courses</span>
-                    <span class="material-symbols-outlined text-[16px]">expand_more</span>
-                </a>
-            </div>
-        </div>
-
-        <div class="lg:col-span-5 flex justify-center lg:justify-end animate-hero-assembly">
-            <x-home.hero-lead-form />
-        </div>
+<section class="relative w-full min-h-screen lg:min-h-[100dvh] bg-[#060B13] text-white flex flex-col justify-between pt-32 sm:pt-36 lg:pt-36 pb-12 sm:pb-16 lg:pb-20 px-4 sm:px-6 lg:px-12 overflow-hidden">
+    <!-- Full Bleed Hero Cinematic Background Image (Enterprise Training Classroom) -->
+    <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
+        <picture>
+            <source srcset="{{ asset('images/hero/corporate_training_hero.webp') }}" type="image/webp">
+            <img
+                src="{{ asset('images/hero/corporate_training_hero.jpg') }}"
+                alt="Corporate Enterprise SAP Training Classroom at ZebLearn"
+                class="w-full h-full object-cover object-center lg:object-[68%_center]"
+                width="1376"
+                height="768"
+                fetchpriority="high"
+                decoding="async"
+            />
+        </picture>
+        <!-- Studio Directional Overlays: Left dark scrim for crystal-clear headline legibility; right subtle fade to reveal classroom & students -->
+        <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(90deg, rgba(6, 11, 19, 0.94) 0%, rgba(6, 11, 19, 0.82) 42%, rgba(6, 11, 19, 0.25) 100%);"></div>
+        <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(180deg, rgba(6, 11, 19, 0.75) 0%, transparent 35%, rgba(6, 11, 19, 0.85) 100%);"></div>
     </div>
 
-    <!-- Hero Credibility Matrix (4 Precision Pillars) -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 animate-hero-assembly mt-auto">
-        <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between zeb-card-interactive">
-            <div class="flex items-center justify-between mb-4">
+    <!-- Inner Constrained Content Container -->
+    <div class="w-full max-w-[1440px] mx-auto flex flex-col justify-between flex-1">
+        <!-- Editorial Hero Headlines, Narrative, Social Proof & Registration Card -->
+        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center my-auto py-4 lg:py-6 mb-8 lg:mb-10">
+            <div class="lg:col-span-7 flex flex-col justify-center space-y-5">
+                <!-- Eyebrow Pill -->
+                <div class="inline-flex items-center px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[11px] font-mono font-bold uppercase tracking-wider text-slate-200 w-fit shadow-xs">
+                    TRANSFORM YOUR CAREER WITH THE BEST
+                </div>
 
-                <span class="material-symbols-outlined text-slate-400 text-[20px]">laptop_mac</span>
+                <!-- Primary Headline -->
+                <h1 class="font-heading text-5xl sm:text-7xl lg:text-[76px] font-black uppercase tracking-tight text-white leading-[0.98] select-none">
+                    LEARN SAP ONLINE.
+                    <span class="block text-[#FB6221] drop-shadow-[0_2px_15px_rgba(251,98,33,0.35)]">GET HIRED.</span>
+                </h1>
+
+                <!-- Narrative Paragraph -->
+                <p class="font-sans text-base sm:text-lg text-slate-300 leading-relaxed font-normal max-w-xl">
+                    Live SAP training in <strong class="text-white font-semibold">FICO, MM, SD, and PP</strong> with real system access, module-wise practical assignments, mock interviews, and dedicated placement support.
+                </p>
+
+                <!-- Social Proof & Live Training Pulse Badge -->
+                <div class="flex flex-wrap items-center gap-3.5 pt-1 pb-1 font-sans text-xs">
+                    <div class="flex items-center gap-2">
+                        <span class="font-medium text-slate-300">Over <strong class="text-white font-bold">10,000+</strong> students trained</span>
+                        <div class="flex -space-x-2 overflow-hidden">
+                            <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-800 text-white font-bold text-[10px] ring-2 ring-slate-900">ZB</span>
+                            <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#c2410c] text-white font-bold text-[10px] ring-2 ring-slate-900">AK</span>
+                            <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-600 text-white font-bold text-[10px] ring-2 ring-slate-900">RS</span>
+                        </div>
+                    </div>
+
+                    <!-- Green Live Status Badge -->
+                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 font-mono text-[10px] font-bold uppercase shadow-2xs backdrop-blur-xs">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                        </span>
+                        <span>LIVE Now</span>
+                    </div>
+
+                    <span class="hidden sm:inline text-slate-600">|</span>
+
+                    <!-- Placement & Practice Signal -->
+                    <div class="flex items-center gap-2 text-slate-300">
+                        <div class="flex flex-col leading-tight">
+                            <span class="font-bold text-white text-xs">100% Placement Support</span>
+                            <span class="text-[11px] text-slate-400 font-mono">Real-time Practice</span>
+                        </div>
+                        <svg class="w-4 h-4 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.348 14.652a3.75 3.75 0 010-5.304m5.304 0a3.75 3.75 0 010 5.304m-7.425 2.121a6.75 6.75 0 010-9.546m9.546 0a6.75 6.75 0 010 9.546M12 12h.008v.008H12V12z" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Action CTAs -->
+                <div class="flex flex-wrap items-center gap-3 pt-2">
+                    <a href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20book%20a%20free%20demo." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#FB6221] to-[#e85315] hover:from-[#ff7336] hover:to-[#f05c1e] text-white font-sans text-xs font-bold uppercase tracking-wider shadow-[0_6px_25px_rgba(251,98,33,0.45)] hover:shadow-[0_8px_30px_rgba(251,98,33,0.6)] transition-all duration-200 hover:scale-[1.02] active:scale-[0.99] zeb-btn-cta group">
+                        <span>Book a Free Demo</span>
+                        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                        </svg>
+                    </a>
+                    <div class="flex flex-col items-center">
+                        <a href="#course-deck" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 text-white font-sans text-xs font-bold uppercase tracking-wider transition-all backdrop-blur-sm shadow-xs hover:shadow-sm zeb-btn-cta">
+                            <span>Explore Courses</span>
+                            <svg class="w-4 h-4 text-[#FB6221]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div>
-                <span class="font-heading text-xl font-bold uppercase tracking-tight text-[#0A0A0A] block mb-1">Live Online Batches</span>
-                <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">Instructor-led interactive sessions with real-time doubt clearing and session recordings.</p>
+
+            <div class="lg:col-span-5 flex justify-center lg:justify-end">
+                <x-home.hero-lead-form />
             </div>
         </div>
 
-        <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between zeb-card-interactive">
-
-            <div>
-                <span class="font-heading text-xl font-bold uppercase tracking-tight text-[#0A0A0A] block mb-1">Real SAP System Practice</span>
-                <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">Direct sandbox access to configure enterprise structures, transactions, and end-to-end flows.</p>
+        <!-- Hero Credibility Matrix (4 Precision Pillars - Matches Production UI) -->
+        <div class="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-auto">
+            <!-- Card 1: Elevated & Highlighted with Active Live Dot -->
+            <div class="bg-[#0B1324]/80 backdrop-blur-md rounded-2xl p-6 border-2 border-[#FB6221] shadow-[0_10px_30px_rgba(251,98,33,0.15)] flex flex-col justify-between -translate-y-1 transition-all zeb-card-interactive">
+                <div class="flex items-center justify-between mb-4">
+                    <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <div class="relative flex items-center justify-center w-3 h-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]"></span>
+                    </div>
+                </div>
+                <div>
+                    <span class="font-heading text-lg font-bold uppercase tracking-tight text-white block mb-1">Live Online Batches</span>
+                    <p class="font-sans text-xs text-slate-300 leading-relaxed font-normal">Instructor-led interactive sessions with real-time doubt clearing and session recordings.</p>
+                </div>
             </div>
-        </div>
 
-        <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between zeb-card-interactive">
-
-            <div>
-                <span class="font-heading text-xl font-bold uppercase tracking-tight text-[#0A0A0A] block mb-1">Mock Interviews</span>
-                <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">Resume preparation, scenario questions, and technical interview simulations with feedback.</p>
+            <!-- Card 2: Real SAP System Practice -->
+            <div class="bg-[#0B1324]/60 backdrop-blur-md hover:bg-[#0B1324]/80 rounded-2xl p-6 border border-white/10 hover:border-white/25 shadow-xs hover:shadow-md transition-all flex flex-col justify-between zeb-card-interactive">
+                <div class="flex items-center justify-between mb-4">
+                    <svg class="w-5 h-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+                    </svg>
+                </div>
+                <div>
+                    <span class="font-heading text-lg font-bold uppercase tracking-tight text-white block mb-1">Real SAP System Practice</span>
+                    <p class="font-sans text-xs text-slate-300 leading-relaxed font-normal">Direct sandbox access to configure enterprise structures, transactions, and end-to-end flows.</p>
+                </div>
             </div>
-        </div>
 
-        <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs flex flex-col justify-between zeb-card-interactive">
-            <div class="flex items-center justify-between mb-4">
-
-                <span class="material-symbols-outlined text-slate-400 text-[20px]">handshake</span>
+            <!-- Card 3: Mock Interviews -->
+            <div class="bg-[#0B1324]/60 backdrop-blur-md hover:bg-[#0B1324]/80 rounded-2xl p-6 border border-white/10 hover:border-white/25 shadow-xs hover:shadow-md transition-all flex flex-col justify-between zeb-card-interactive">
+                <div class="flex items-center justify-between mb-4">
+                    <svg class="w-5 h-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z" />
+                    </svg>
+                </div>
+                <div>
+                    <span class="font-heading text-lg font-bold uppercase tracking-tight text-white block mb-1">Mock Interviews</span>
+                    <p class="font-sans text-xs text-slate-300 leading-relaxed font-normal">Resume preparation, scenario questions, and technical interview simulations with feedback.</p>
+                </div>
             </div>
-            <div>
-                <span class="font-heading text-xl font-bold uppercase tracking-tight text-[#0A0A0A] block mb-1">Placement Partner</span>
-                <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">Job portal referrals and openings via our placement partner <strong>PlacementBaba</strong>.</p>
+
+            <!-- Card 4: Placement Partner -->
+            <div class="bg-[#0B1324]/60 backdrop-blur-md hover:bg-[#0B1324]/80 rounded-2xl p-6 border border-white/10 hover:border-white/25 shadow-xs hover:shadow-md transition-all flex flex-col justify-between zeb-card-interactive">
+                <div class="flex items-center justify-between mb-4">
+                    <svg class="w-5 h-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <div>
+                    <span class="font-heading text-lg font-bold uppercase tracking-tight text-white block mb-1">Placement Partner</span>
+                    <p class="font-sans text-xs text-slate-300 leading-relaxed font-normal">Job portal referrals and openings via our placement partner <strong class="text-white font-semibold">PlacementBaba</strong>.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -252,7 +340,7 @@
 <!-- =========================================================================
      3. SECTION 3: COURSES DIRECTORY (INTERACTIVE STACKED MODULE CARDS)
      ========================================================================= -->
-<section id="course-deck" class="w-full py-16 lg:py-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto border-t border-slate-200">
+<section id="course-deck" class="w-full py-16 lg:py-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto border-t border-slate-200 content-auto">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12" data-reveal>
         <div>
             <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-[#0A0A0A] tracking-tight leading-tight">
@@ -315,7 +403,7 @@
                     <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-[#FB6221]">terminal</span><span>REAL SAP SYSTEM PRACTICE</span></div>
                 </div>
                 <div class="lg:col-span-2">
-                    <span class="font-mono text-[10px] text-slate-500 uppercase tracking-widest block mb-0.5">TUITION (3 MONTHS)</span>
+                    <span class="font-mono text-[10px] text-slate-600 uppercase tracking-widest block mb-0.5">TUITION (3 MONTHS)</span>
                     <div class="font-heading text-2xl sm:text-3xl font-extrabold text-[#0A0A0A]">₹25,000<span class="text-xs font-mono font-normal lowercase opacity-80"> + GST</span></div>
 
                 </div>
@@ -352,7 +440,7 @@
                     <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-amber-500">warehouse</span><span>INVENTORY SANDBOX LABS</span></div>
                 </div>
                 <div class="lg:col-span-2">
-                    <span class="font-mono text-[10px] text-slate-500 uppercase tracking-widest block mb-0.5">STATUS</span>
+                    <span class="font-mono text-[10px] text-slate-600 uppercase tracking-widest block mb-0.5">STATUS</span>
                     <div class="font-heading text-xl sm:text-2xl font-bold uppercase text-[#0A0A0A]">UPCOMING BATCH</div>
                 </div>
                 <div class="lg:col-span-2 flex flex-col sm:flex-row lg:flex-col gap-2 justify-start lg:justify-end">
@@ -388,7 +476,7 @@
                     <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-amber-500">local_shipping</span><span>LOGISTICS SIMULATION LAB</span></div>
                 </div>
                 <div class="lg:col-span-2">
-                    <span class="font-mono text-[10px] text-slate-500 uppercase tracking-widest block mb-0.5">STATUS</span>
+                    <span class="font-mono text-[10px] text-slate-600 uppercase tracking-widest block mb-0.5">STATUS</span>
                     <div class="font-heading text-xl sm:text-2xl font-bold uppercase text-[#0A0A0A]">UPCOMING BATCH</div>
                 </div>
                 <div class="lg:col-span-2 flex flex-col sm:flex-row lg:flex-col gap-2 justify-start lg:justify-end">
@@ -424,7 +512,7 @@
                     <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-amber-500">precision_manufacturing</span><span>MRP EXECUTION ENGINE</span></div>
                 </div>
                 <div class="lg:col-span-2">
-                    <span class="font-mono text-[10px] text-slate-500 uppercase tracking-widest block mb-0.5">STATUS</span>
+                    <span class="font-mono text-[10px] text-slate-600 uppercase tracking-widest block mb-0.5">STATUS</span>
                     <div class="font-heading text-xl sm:text-2xl font-bold uppercase text-[#0A0A0A]">UPCOMING BATCH</div>
                 </div>
                 <div class="lg:col-span-2 flex flex-col sm:flex-row lg:flex-col gap-2 justify-start lg:justify-end">
@@ -464,7 +552,7 @@
 <!-- =========================================================================
      4. SECTION 4: POWER USER MONOLITH (BLACK CONTRAST INVERTED BLOCK)
      ========================================================================= -->
-<section class="w-full py-16 lg:py-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto" data-reveal>
+<section class="w-full py-16 lg:py-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto content-auto" data-reveal>
     <div class="bg-[#0A0A0A] text-white rounded-3xl p-8 sm:p-12 lg:p-16 relative overflow-hidden shadow-2xl">
         <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div class="lg:col-span-7 space-y-6">
@@ -521,7 +609,7 @@
 <!-- =========================================================================
      5. SECTION 5: WHY ZEBLEARN (THE INDUSTRY METHOD / LEARNING JOURNEY)
      ========================================================================= -->
-<section id="method" class="w-full py-16 lg:py-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto border-t border-slate-200">
+<section id="method" class="w-full py-16 lg:py-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto border-t border-slate-200 content-auto">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8" data-reveal>
         <div>
 
@@ -548,7 +636,7 @@
                     01
                 </div>
                 <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-[#0A0A0A] mt-2">01. LEARN</span>
-                <span class="font-sans text-[10px] text-slate-500">Live Online Classes</span>
+                <span class="font-sans text-[10px] text-slate-600">Live Online Classes</span>
             </div>
 
             <!-- Step 2 Node -->
@@ -557,7 +645,7 @@
                     02
                 </div>
                 <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-600 mt-2">02. PRACTICE</span>
-                <span class="font-sans text-[10px] text-slate-500">SAP Sandbox Labs</span>
+                <span class="font-sans text-[10px] text-slate-600">SAP Sandbox Labs</span>
             </div>
 
             <!-- Step 3 Node -->
@@ -566,7 +654,7 @@
                     03
                 </div>
                 <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-600 mt-2">03. BUILD SKILLS</span>
-                <span class="font-sans text-[10px] text-slate-500">Mock Simulations</span>
+                <span class="font-sans text-[10px] text-slate-600">Mock Simulations</span>
             </div>
 
             <!-- Step 4 Node -->
@@ -575,7 +663,7 @@
                     04
                 </div>
                 <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-slate-600 mt-2">04. CAREER</span>
-                <span class="font-sans text-[10px] text-slate-500">PlacementBaba</span>
+                <span class="font-sans text-[10px] text-slate-600">PlacementBaba</span>
             </div>
         </div>
     </div>
@@ -595,7 +683,7 @@
                 <h3 class="font-heading text-lg sm:text-xl font-bold uppercase text-[#0A0A0A] mb-2 leading-snug">LIVE CLASSES ON A REAL SAP SYSTEM</h3>
                 <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">Interactive live sessions on a real SAP system, with doubts solved as you practise.</p>
             </div>
-            <div class="pt-4 border-t border-slate-100 font-mono text-[10px] text-slate-400 uppercase tracking-widest flex items-center justify-between">
+            <div class="pt-4 border-t border-slate-100 font-mono text-[10px] text-slate-600 uppercase tracking-widest flex items-center justify-between">
                 <span>NO RECORDED MONOLOGUES</span>
                 <span class="font-bold text-[#FB6221]">01/04</span>
             </div>
@@ -615,7 +703,7 @@
                 <h3 class="font-heading text-lg sm:text-xl font-bold uppercase text-[#0A0A0A] mb-2 leading-snug">ASSIGNMENTS AFTER EVERY MODULE</h3>
                 <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">Practice assignments after every module so you apply each topic straight away.</p>
             </div>
-            <div class="pt-4 border-t border-slate-100 font-mono text-[10px] text-slate-400 uppercase tracking-widest flex items-center justify-between">
+            <div class="pt-4 border-t border-slate-100 font-mono text-[10px] text-slate-600 uppercase tracking-widest flex items-center justify-between">
                 <span>HANDS-ON PRACTICE</span>
                 <span class="font-bold text-[#FB6221]">02/04</span>
             </div>
@@ -635,7 +723,7 @@
                 <h3 class="font-heading text-lg sm:text-xl font-bold uppercase text-[#0A0A0A] mb-2 leading-snug">MOCK INTERVIEWS AND RESUME SUPPORT</h3>
                 <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">Interview preparation and resume support to get you ready for the real SAP interview.</p>
             </div>
-            <div class="pt-4 border-t border-slate-100 font-mono text-[10px] text-slate-400 uppercase tracking-widest flex items-center justify-between">
+            <div class="pt-4 border-t border-slate-100 font-mono text-[10px] text-slate-600 uppercase tracking-widest flex items-center justify-between">
                 <span>INTERVIEW READINESS</span>
                 <span class="font-bold text-[#FB6221]">03/04</span>
             </div>
@@ -655,7 +743,7 @@
                 <h3 class="font-heading text-lg sm:text-xl font-bold uppercase text-[#0A0A0A] mb-2 leading-snug">PLACEMENT SUPPORT THROUGH PLACEMENTBABA</h3>
                 <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">Job support through our placement partner PlacementBaba.</p>
             </div>
-            <div class="pt-4 border-t border-slate-100 font-mono text-[10px] text-slate-400 uppercase tracking-widest flex items-center justify-between">
+            <div class="pt-4 border-t border-slate-100 font-mono text-[10px] text-slate-600 uppercase tracking-widest flex items-center justify-between">
                 <span>JOB PIPELINE SUPPORT</span>
                 <span class="font-bold text-emerald-600">04/04</span>
             </div>
@@ -699,7 +787,7 @@
 <!-- =========================================================================
      8. SECTION 8: FROM THE BLOG / INSIGHTS
      ========================================================================= -->
-<section id="blog" class="w-full py-16 lg:py-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto border-t border-slate-200">
+<section id="blog" class="w-full py-16 lg:py-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto border-t border-slate-200 content-auto">
     <div class="flex items-center justify-between mb-12" data-reveal>
         <div>
 
@@ -725,7 +813,7 @@
                     Performing a system copy in SAP involves duplicating an existing SAP system to create a new system. Read the interview questions and answers.
                 </p>
             </div>
-            <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between font-mono text-[11px] text-slate-500">
+            <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between font-mono text-[11px] text-slate-600">
                 <span>BY ZEBLEARN</span>
                 <span class="material-symbols-outlined text-[18px] text-[#0A0A0A] group-hover:translate-x-1 transition-transform">arrow_forward</span>
             </div>
@@ -742,7 +830,7 @@
                     Interview questions and answers on SAP ECC, HANA and the SAP Power User certification.
                 </p>
             </div>
-            <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between font-mono text-[11px] text-slate-500">
+            <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between font-mono text-[11px] text-slate-600">
                 <span>BY ZEBLEARN</span>
                 <span class="material-symbols-outlined text-[18px] text-[#0A0A0A] group-hover:translate-x-1 transition-transform">arrow_forward</span>
             </div>
@@ -759,7 +847,7 @@
                     Answers to the top 50 SAP EWM (Extended Warehouse Management) interview questions.
                 </p>
             </div>
-            <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between font-mono text-[11px] text-slate-500">
+            <div class="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between font-mono text-[11px] text-slate-600">
                 <span>BY ZEBLEARN</span>
                 <span class="material-symbols-outlined text-[18px] text-[#0A0A0A] group-hover:translate-x-1 transition-transform">arrow_forward</span>
             </div>
@@ -770,7 +858,7 @@
 <!-- =========================================================================
      9. SECTION 9: SAP COURSE FAQS
      ========================================================================= -->
-<section id="faq" class="w-full py-16 lg:py-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto border-t border-slate-200">
+<section id="faq" class="w-full py-16 lg:py-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto border-t border-slate-200 content-auto">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12" data-reveal>
         <div>
 
@@ -814,7 +902,7 @@
 <!-- =========================================================================
      10. SECTION 10: FINAL MASSIVE CALL TO ACTION
      ========================================================================= -->
-<section class="w-full py-16 lg:py-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto" data-reveal>
+<section class="w-full py-16 lg:py-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto content-auto" data-reveal>
     <div class="bg-white border border-slate-200 rounded-3xl p-8 sm:p-14 lg:p-20 text-center shadow-lg relative overflow-hidden zeb-card-interactive">
         <div class="max-w-3xl mx-auto space-y-6 relative z-10">
 

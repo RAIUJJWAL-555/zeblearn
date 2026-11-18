@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\FormSubmissionController;
 use App\Http\Controllers\LeadController;
 use App\Http\Controllers\PaymentWebhookController;
 use App\Http\Controllers\PublicCertificateController;
@@ -54,11 +55,15 @@ Route::post('/webhooks/razorpay', [PaymentWebhookController::class, 'handle'])->
 // Inbound Lead Attribution Webhook / API
 Route::post('/api/leads', [LeadController::class, 'store'])->name('leads.store');
 
+// Centralized Form Submissions (Public endpoints)
+Route::post('/forms/submit', [FormSubmissionController::class, 'store'])->name('forms.submit');
+Route::post('/api/form-submissions', [FormSubmissionController::class, 'store'])->name('api.forms.submit');
+
 require __DIR__.'/auth.php';
 
 // Category-based Course Landing Page Route (e.g. /sap-functional/sap-fico-on-s-4-hana/)
 Route::get('/{category}/{course}', [CourseController::class, 'showByCategory'])
-    ->where('category', '^(?!admin|instructor|student|learning|checkout|verify-certificate|webhooks|blogs|category|tag|about|contact|book-demo|sitemap.xml|login|register|logout|forgot-password|reset-password).*$')
+    ->where('category', '^(?!admin|instructor|student|learning|checkout|verify-certificate|webhooks|forms|form-submissions|blogs|category|tag|about|contact|book-demo|sitemap.xml|login|register|logout|forgot-password|reset-password).*$')
     ->name('courses.category.show');
 
 // Exact Legacy WordPress URL fallback (e.g. /sap-sd-power-user-certificate/)

@@ -10,11 +10,18 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 
 class Course extends Model
 {
     use HasFactory;
+
+    protected static function booted(): void
+    {
+        static::saved(fn () => Cache::forget('search_default_top_courses'));
+        static::deleted(fn () => Cache::forget('search_default_top_courses'));
+    }
 
     /**
      * The all supported academy categories taxonomy.

@@ -33,7 +33,7 @@
     @keydown.escape.window="open = false"
     x-show="open"
     x-cloak
-    class="fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-xs flex items-start justify-center p-4 sm:p-6 sm:pt-20"
+    class="fixed inset-0 z-[100] overflow-y-auto bg-slate-900/60 backdrop-blur-xs flex items-start justify-center p-4 sm:p-6 sm:pt-20"
 >
     <!-- Modal Card -->
     <div
