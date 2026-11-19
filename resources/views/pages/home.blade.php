@@ -12,7 +12,8 @@
 @section('robots', 'index, follow, max-image-preview:large')
 
 @push('head')
-<link rel="preload" as="image" href="{{ asset('images/hero/corporate_training_hero.webp') }}" type="image/webp" fetchpriority="high">
+<link rel="preload" as="image" href="{{ asset('images/hero/corporate_training_hero-mobile.webp') }}" type="image/webp" media="(max-width: 767px)" fetchpriority="high">
+<link rel="preload" as="image" href="{{ asset('images/hero/corporate_training_hero.webp') }}" type="image/webp" media="(min-width: 768px)" fetchpriority="high">
 <style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{width:10px;}::-webkit-scrollbar-thumb{background:#b9bec5;border-radius:999px;}</style>
 @verbatim
 <script type="application/ld+json">
@@ -39,9 +40,10 @@
     <!-- Full Bleed Hero Cinematic Background Image (Enterprise Training Classroom) -->
     <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none">
         <picture>
-            <source srcset="{{ asset('images/hero/corporate_training_hero.webp') }}" type="image/webp">
+            <source media="(max-width: 767px)" srcset="{{ asset('images/hero/corporate_training_hero-mobile.webp') }}" type="image/webp" width="640" height="357">
+            <source media="(min-width: 768px)" srcset="{{ asset('images/hero/corporate_training_hero.webp') }}" type="image/webp" width="1376" height="768">
             <img
-                src="{{ asset('images/hero/corporate_training_hero.jpg') }}"
+                src="{{ asset('images/hero/corporate_training_hero.webp') }}"
                 alt="Corporate Enterprise SAP Training Classroom at ZebLearn"
                 class="w-full h-full object-cover object-center lg:object-[68%_center]"
                 width="1376"
@@ -142,10 +144,7 @@
                     <svg class="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
-                    <div class="relative flex items-center justify-center w-3 h-3">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.8)]"></span>
-                    </div>
+                
                 </div>
                 <div>
                     <span class="font-heading text-lg font-bold uppercase tracking-tight text-white block mb-1">Live Online Batches</span>
@@ -204,6 +203,11 @@
 <section class="w-full py-16 lg:py-20 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto border-t border-slate-200">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12" data-reveal>
         <div>
+            <!-- Eyebrow Tag -->
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 font-mono text-[11px] font-bold uppercase tracking-wider text-[#c2410c] mb-3 shadow-2xs">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#FB6221]"></span>
+                <span>TARGETED CAREER PATHWAYS</span>
+            </div>
 
             <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-[#0A0A0A] tracking-tight leading-tight">
                 STRUCTURED TRAINING FOR EVERY CAREER STAGE
@@ -343,6 +347,12 @@
 <section id="course-deck" class="w-full py-16 lg:py-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto border-t border-slate-200 content-auto">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12" data-reveal>
         <div>
+            <!-- Eyebrow Tag -->
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 font-mono text-[11px] font-bold uppercase tracking-wider text-[#c2410c] mb-3 shadow-2xs">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#FB6221]"></span>
+                <span>SAP ACADEMY CURRICULUM</span>
+            </div>
+
             <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-[#0A0A0A] tracking-tight leading-tight">
                 SAP COURSES: FEATURED &amp; UPCOMING COHORTS
             </h2>
@@ -382,147 +392,234 @@
 
     <div class="space-y-4">
         <!-- Module 1: SAP FICO (Confirmed Available) -->
-        <div class="group bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border-2 border-[#FB6221]/30 hover:border-[#FB6221] transition-all duration-300 shadow-sm hover:shadow-xl relative overflow-hidden zeb-card-interactive" data-reveal>
+        <div class="group bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border-2 border-[#FB6221]/30 hover:border-[#FB6221] transition-all duration-300 shadow-sm hover:shadow-xl relative overflow-hidden focus-within:ring-2 focus-within:ring-[#FB6221] focus-within:outline-hidden zeb-card-interactive" data-reveal>
             <div class="absolute top-0 right-0 w-32 h-32 bg-[#FB6221]/5 rounded-bl-full pointer-events-none"></div>
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-                <div class="lg:col-span-5 flex items-start gap-4">
-                    <x-course.module-art module="fico" class="w-14 h-14 hidden sm:flex shrink-0 mt-1" />
-                    <div class="space-y-2">
-
-                        <h3 class="font-heading text-2xl sm:text-3xl font-bold uppercase text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors leading-snug">
-                            SAP FICO COURSE
-                        </h3>
-                        <p class="font-sans text-sm text-slate-600 leading-relaxed font-normal">
-                            Finance &amp; Controlling: General Ledger, AP, AR, Asset Accounting, Cost Center &amp; Profit Center Analysis with direct S/4HANA Finance system practice.
-                        </p>
+                <!-- 3D Module Visual Frame -->
+                <div class="lg:col-span-3">
+                    <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-50 border border-slate-200/80 shadow-2xs group/img shrink-0">
+                        <img
+                            src="{{ asset('images/courses/sap-fico.webp') }}"
+                            alt="SAP FICO Financial Accounting and Controlling 3D Module Artwork"
+                            width="800"
+                            height="450"
+                            loading="lazy"
+                            decoding="async"
+                            class="w-full h-full object-cover object-center group-hover:scale-105 motion-reduce:transform-none transition-transform duration-500 ease-out"
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent pointer-events-none"></div>
+                        <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-md bg-white/95 backdrop-blur-xs font-mono text-[9px] font-bold uppercase tracking-wider text-[#0A0A0A] border border-white/60 shadow-2xs">
+                            FINANCE // CORE ERP
+                        </span>
                     </div>
                 </div>
+
+                <!-- Course Title & Description -->
+                <div class="lg:col-span-4 space-y-2">
+                    <h3 class="font-heading text-2xl sm:text-3xl font-bold uppercase text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors leading-snug">
+                        SAP FICO COURSE
+                    </h3>
+                    <p class="font-sans text-sm text-slate-600 leading-relaxed font-normal">
+                        Finance &amp; Controlling: General Ledger, AP, AR, Asset Accounting, Cost Center &amp; Profit Center Analysis with direct S/4HANA Finance system practice.
+                    </p>
+                </div>
+
+                <!-- Key Meta Badges -->
                 <div class="lg:col-span-3 space-y-2 font-mono text-xs text-slate-600">
                     <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-[#FB6221]">group</span><span>1,850+ LEARNERS</span></div>
                     <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-[#FB6221]">schedule</span><span>3 MONTHS, LIVE ONLINE</span></div>
                     <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-[#FB6221]">terminal</span><span>REAL SAP SYSTEM PRACTICE</span></div>
                 </div>
-                <div class="lg:col-span-2">
-                    <span class="font-mono text-[10px] text-slate-600 uppercase tracking-widest block mb-0.5">TUITION (3 MONTHS)</span>
-                    <div class="font-heading text-2xl sm:text-3xl font-extrabold text-[#0A0A0A]">₹25,000<span class="text-xs font-mono font-normal lowercase opacity-80"> + GST</span></div>
 
-                </div>
-                <div class="lg:col-span-2 flex flex-col sm:flex-row lg:flex-col gap-2 justify-start lg:justify-end">
-                    <a class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#FB6221] hover:bg-[#e05214] text-white font-sans text-xs font-semibold uppercase tracking-wider transition-all duration-200 shadow-sm zeb-btn-cta" href="{{ route('courses.fico') }}" title="View SAP FICO course details">
-                        <span>Course Details</span>
-                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-                    </a>
-                    <a class="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-sans text-xs font-semibold uppercase tracking-wider transition-colors" href="{{ route('book-demo', ['course' => 'sap-fico']) }}">
-                        <span>Book Demo</span>
-                    </a>
+                <!-- Tuition & CTAs -->
+                <div class="lg:col-span-2 flex flex-col justify-center gap-3">
+                    <div>
+                        <span class="font-mono text-[10px] text-slate-600 uppercase tracking-widest block mb-0.5">TUITION (3 MONTHS)</span>
+                        <div class="font-heading text-2xl sm:text-3xl font-extrabold text-[#0A0A0A]">₹25,000<span class="text-xs font-mono font-normal lowercase opacity-80"> + GST</span></div>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <a class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#FB6221] hover:bg-[#e05214] text-white font-sans text-xs font-semibold uppercase tracking-wider transition-all duration-200 shadow-sm zeb-btn-cta" href="{{ route('courses.fico') }}" title="View SAP FICO course details">
+                            <span>Course Details</span>
+                            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                        </a>
+                        <a class="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-sans text-xs font-semibold uppercase tracking-wider transition-colors" href="{{ route('book-demo', ['course' => 'sap-fico']) }}">
+                            <span>Book Demo</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Module 2: SAP MM (Upcoming Batch) -->
-        <div class="group bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 hover:border-amber-400 transition-all duration-300 shadow-xs hover:shadow-xl zeb-card-interactive" data-reveal>
+        <div class="group bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 hover:border-amber-400 transition-all duration-300 shadow-xs hover:shadow-xl focus-within:ring-2 focus-within:ring-amber-400 focus-within:outline-hidden zeb-card-interactive" data-reveal>
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-                <div class="lg:col-span-5 flex items-start gap-4">
-                    <x-course.module-art module="mm" class="w-14 h-14 hidden sm:flex shrink-0 mt-1" />
-                    <div class="space-y-2">
-
-                        <h3 class="font-heading text-2xl sm:text-3xl font-bold uppercase text-[#0A0A0A] group-hover:text-amber-600 transition-colors leading-snug">
-                            SAP MM COURSE
-                        </h3>
-                        <p class="font-sans text-sm text-slate-600 leading-relaxed font-normal">
-                            Materials Management: Master Data, Purchasing Life Cycle, Inventory Management, Physical Inventory &amp; Logistics Invoice Verification (LIV).
-                        </p>
+                <!-- 3D Module Visual Frame -->
+                <div class="lg:col-span-3">
+                    <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-50 border border-slate-200/80 shadow-2xs group/img shrink-0">
+                        <img
+                            src="{{ asset('images/courses/sap-mm.webp') }}"
+                            alt="SAP MM Materials Management and Logistics 3D Module Artwork"
+                            width="800"
+                            height="450"
+                            loading="lazy"
+                            decoding="async"
+                            class="w-full h-full object-cover object-center group-hover:scale-105 motion-reduce:transform-none transition-transform duration-500 ease-out"
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent pointer-events-none"></div>
+                        <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-md bg-white/95 backdrop-blur-xs font-mono text-[9px] font-bold uppercase tracking-wider text-[#0A0A0A] border border-white/60 shadow-2xs">
+                            LOGISTICS // SCM
+                        </span>
                     </div>
                 </div>
+
+                <!-- Course Title & Description -->
+                <div class="lg:col-span-4 space-y-2">
+                    <h3 class="font-heading text-2xl sm:text-3xl font-bold uppercase text-[#0A0A0A] group-hover:text-amber-600 transition-colors leading-snug">
+                        SAP MM COURSE
+                    </h3>
+                    <p class="font-sans text-sm text-slate-600 leading-relaxed font-normal">
+                        Materials Management: Master Data, Purchasing Life Cycle, Inventory Management, Physical Inventory &amp; Logistics Invoice Verification (LIV).
+                    </p>
+                </div>
+
+                <!-- Key Meta Badges -->
                 <div class="lg:col-span-3 space-y-2 font-mono text-xs text-slate-600">
                     <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-amber-500">group</span><span>1,650+ ALUMNI</span></div>
                     <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-amber-500">event</span><span>NEXT COHORT STARTING SOON</span></div>
                     <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-amber-500">warehouse</span><span>INVENTORY SANDBOX LABS</span></div>
                 </div>
-                <div class="lg:col-span-2">
-                    <span class="font-mono text-[10px] text-slate-600 uppercase tracking-widest block mb-0.5">STATUS</span>
-                    <div class="font-heading text-xl sm:text-2xl font-bold uppercase text-[#0A0A0A]">UPCOMING BATCH</div>
-                </div>
-                <div class="lg:col-span-2 flex flex-col sm:flex-row lg:flex-col gap-2 justify-start lg:justify-end">
-                    <a class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#0A0A0A] hover:bg-[#FB6221] text-white font-sans text-xs font-semibold uppercase tracking-wider transition-all duration-200 shadow-sm zeb-btn-cta" href="{{ route('book-demo', ['course' => 'sap-mm']) }}" title="Pre-register for SAP MM batch">
-                        <span>Pre-Register Demo</span>
-                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-                    </a>
-                    <a class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-slate-200 hover:border-slate-400 text-slate-700 font-sans text-xs font-medium tracking-wider transition-colors" href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20know%20more%20about%20the%20upcoming%20SAP%20MM%20training%20batch." target="_blank" rel="noopener">
-                        <span>Inquire on WhatsApp</span>
-                    </a>
+
+                <!-- Status & CTAs -->
+                <div class="lg:col-span-2 flex flex-col justify-center gap-3">
+                    <div>
+                        <span class="font-mono text-[10px] text-slate-600 uppercase tracking-widest block mb-0.5">STATUS</span>
+                        <div class="font-heading text-xl sm:text-2xl font-bold uppercase text-[#0A0A0A]">UPCOMING BATCH</div>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <a class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#0A0A0A] hover:bg-[#FB6221] text-white font-sans text-xs font-semibold uppercase tracking-wider transition-all duration-200 shadow-sm zeb-btn-cta" href="{{ route('book-demo', ['course' => 'sap-mm']) }}" title="Pre-register for SAP MM batch">
+                            <span>Pre-Register Demo</span>
+                            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                        </a>
+                        <a class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-slate-200 hover:border-slate-400 text-slate-700 font-sans text-xs font-medium tracking-wider transition-colors" href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20know%20more%20about%20the%20upcoming%20SAP%20MM%20training%20batch." target="_blank" rel="noopener">
+                            <span>Inquire on WhatsApp</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Module 3: SAP SD (Upcoming Batch) -->
-        <div class="group bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 hover:border-amber-400 transition-all duration-300 shadow-xs hover:shadow-xl zeb-card-interactive" data-reveal>
+        <div class="group bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 hover:border-amber-400 transition-all duration-300 shadow-xs hover:shadow-xl focus-within:ring-2 focus-within:ring-amber-400 focus-within:outline-hidden zeb-card-interactive" data-reveal>
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-                <div class="lg:col-span-5 flex items-start gap-4">
-                    <x-course.module-art module="sd" class="w-14 h-14 hidden sm:flex shrink-0 mt-1" />
-                    <div class="space-y-2">
-
-                        <h3 class="font-heading text-2xl sm:text-3xl font-bold uppercase text-[#0A0A0A] group-hover:text-amber-600 transition-colors leading-snug">
-                            SAP SD COURSE
-                        </h3>
-                        <p class="font-sans text-sm text-slate-600 leading-relaxed font-normal">
-                            Sales &amp; Distribution: Enterprise Structure, Pricing Procedures, Credit Management, Billing, Shipping, and Availability Check (ATP).
-                        </p>
+                <!-- 3D Module Visual Frame -->
+                <div class="lg:col-span-3">
+                    <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-50 border border-slate-200/80 shadow-2xs group/img shrink-0">
+                        <img
+                            src="{{ asset('images/courses/sap-sd.webp') }}"
+                            alt="SAP SD Sales and Distribution 3D Module Artwork"
+                            width="800"
+                            height="450"
+                            loading="lazy"
+                            decoding="async"
+                            class="w-full h-full object-cover object-center group-hover:scale-105 motion-reduce:transform-none transition-transform duration-500 ease-out"
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent pointer-events-none"></div>
+                        <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-md bg-white/95 backdrop-blur-xs font-mono text-[9px] font-bold uppercase tracking-wider text-[#0A0A0A] border border-white/60 shadow-2xs">
+                            ORDER-TO-CASH // SALES
+                        </span>
                     </div>
                 </div>
+
+                <!-- Course Title & Description -->
+                <div class="lg:col-span-4 space-y-2">
+                    <h3 class="font-heading text-2xl sm:text-3xl font-bold uppercase text-[#0A0A0A] group-hover:text-amber-600 transition-colors leading-snug">
+                        SAP SD COURSE
+                    </h3>
+                    <p class="font-sans text-sm text-slate-600 leading-relaxed font-normal">
+                        Sales &amp; Distribution: Enterprise Structure, Pricing Procedures, Credit Management, Billing, Shipping, and Availability Check (ATP).
+                    </p>
+                </div>
+
+                <!-- Key Meta Badges -->
                 <div class="lg:col-span-3 space-y-2 font-mono text-xs text-slate-600">
                     <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-amber-500">group</span><span>1,057+ ALUMNI</span></div>
                     <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-amber-500">event</span><span>NEXT COHORT STARTING SOON</span></div>
                     <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-amber-500">local_shipping</span><span>LOGISTICS SIMULATION LAB</span></div>
                 </div>
-                <div class="lg:col-span-2">
-                    <span class="font-mono text-[10px] text-slate-600 uppercase tracking-widest block mb-0.5">STATUS</span>
-                    <div class="font-heading text-xl sm:text-2xl font-bold uppercase text-[#0A0A0A]">UPCOMING BATCH</div>
-                </div>
-                <div class="lg:col-span-2 flex flex-col sm:flex-row lg:flex-col gap-2 justify-start lg:justify-end">
-                    <a class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#0A0A0A] hover:bg-[#FB6221] text-white font-sans text-xs font-semibold uppercase tracking-wider transition-all duration-200 shadow-sm zeb-btn-cta" href="{{ route('book-demo', ['course' => 'sap-sd']) }}" title="Pre-register for SAP SD batch">
-                        <span>Pre-Register Demo</span>
-                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-                    </a>
-                    <a class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-slate-200 hover:border-slate-400 text-slate-700 font-sans text-xs font-medium tracking-wider transition-colors" href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20know%20more%20about%20the%20upcoming%20SAP%20SD%20training%20batch." target="_blank" rel="noopener">
-                        <span>Inquire on WhatsApp</span>
-                    </a>
+
+                <!-- Status & CTAs -->
+                <div class="lg:col-span-2 flex flex-col justify-center gap-3">
+                    <div>
+                        <span class="font-mono text-[10px] text-slate-600 uppercase tracking-widest block mb-0.5">STATUS</span>
+                        <div class="font-heading text-xl sm:text-2xl font-bold uppercase text-[#0A0A0A]">UPCOMING BATCH</div>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <a class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#0A0A0A] hover:bg-[#FB6221] text-white font-sans text-xs font-semibold uppercase tracking-wider transition-all duration-200 shadow-sm zeb-btn-cta" href="{{ route('book-demo', ['course' => 'sap-sd']) }}" title="Pre-register for SAP SD batch">
+                            <span>Pre-Register Demo</span>
+                            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                        </a>
+                        <a class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-slate-200 hover:border-slate-400 text-slate-700 font-sans text-xs font-medium tracking-wider transition-colors" href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20know%20more%20about%20the%20upcoming%20SAP%20SD%20training%20batch." target="_blank" rel="noopener">
+                            <span>Inquire on WhatsApp</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
 
         <!-- Module 4: SAP PP (Upcoming Batch) -->
-        <div class="group bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 hover:border-amber-400 transition-all duration-300 shadow-xs hover:shadow-xl zeb-card-interactive" data-reveal>
+        <div class="group bg-white rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/90 hover:border-amber-400 transition-all duration-300 shadow-xs hover:shadow-xl focus-within:ring-2 focus-within:ring-amber-400 focus-within:outline-hidden zeb-card-interactive" data-reveal>
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-                <div class="lg:col-span-5 flex items-start gap-4">
-                    <x-course.module-art module="pp" class="w-14 h-14 hidden sm:flex shrink-0 mt-1" />
-                    <div class="space-y-2">
-
-                        <h3 class="font-heading text-2xl sm:text-3xl font-bold uppercase text-[#0A0A0A] group-hover:text-amber-600 transition-colors leading-snug">
-                            SAP PP COURSE
-                        </h3>
-                        <p class="font-sans text-sm text-slate-600 leading-relaxed font-normal">
-                            Production Planning: BOM, Work Centers, Routing, Material Requirement Planning (MRP-II), Capacity Planning and Shop Floor Execution.
-                        </p>
+                <!-- 3D Module Visual Frame -->
+                <div class="lg:col-span-3">
+                    <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-50 border border-slate-200/80 shadow-2xs group/img shrink-0">
+                        <img
+                            src="{{ asset('images/courses/sap-pp.webp') }}"
+                            alt="SAP PP Production Planning and Manufacturing 3D Module Artwork"
+                            width="800"
+                            height="450"
+                            loading="lazy"
+                            decoding="async"
+                            class="w-full h-full object-cover object-center group-hover:scale-105 motion-reduce:transform-none transition-transform duration-500 ease-out"
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent pointer-events-none"></div>
+                        <span class="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-md bg-white/95 backdrop-blur-xs font-mono text-[9px] font-bold uppercase tracking-wider text-[#0A0A0A] border border-white/60 shadow-2xs">
+                            MANUFACTURING // MRP
+                        </span>
                     </div>
                 </div>
+
+                <!-- Course Title & Description -->
+                <div class="lg:col-span-4 space-y-2">
+                    <h3 class="font-heading text-2xl sm:text-3xl font-bold uppercase text-[#0A0A0A] group-hover:text-amber-600 transition-colors leading-snug">
+                        SAP PP COURSE
+                    </h3>
+                    <p class="font-sans text-sm text-slate-600 leading-relaxed font-normal">
+                        Production Planning: BOM, Work Centers, Routing, Material Requirement Planning (MRP-II), Capacity Planning and Shop Floor Execution.
+                    </p>
+                </div>
+
+                <!-- Key Meta Badges -->
                 <div class="lg:col-span-3 space-y-2 font-mono text-xs text-slate-600">
                     <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-amber-500">group</span><span>974+ ALUMNI</span></div>
                     <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-amber-500">event</span><span>NEXT COHORT STARTING SOON</span></div>
                     <div class="flex items-center gap-2"><span class="material-symbols-outlined text-[18px] text-amber-500">precision_manufacturing</span><span>MRP EXECUTION ENGINE</span></div>
                 </div>
-                <div class="lg:col-span-2">
-                    <span class="font-mono text-[10px] text-slate-600 uppercase tracking-widest block mb-0.5">STATUS</span>
-                    <div class="font-heading text-xl sm:text-2xl font-bold uppercase text-[#0A0A0A]">UPCOMING BATCH</div>
-                </div>
-                <div class="lg:col-span-2 flex flex-col sm:flex-row lg:flex-col gap-2 justify-start lg:justify-end">
-                    <a class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#0A0A0A] hover:bg-[#FB6221] text-white font-sans text-xs font-semibold uppercase tracking-wider transition-all duration-200 shadow-sm zeb-btn-cta" href="{{ route('book-demo', ['course' => 'sap-pp']) }}" title="Pre-register for SAP PP batch">
-                        <span>Pre-Register Demo</span>
-                        <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-                    </a>
-                    <a class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-slate-200 hover:border-slate-400 text-slate-700 font-sans text-xs font-medium tracking-wider transition-colors" href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20know%20more%20about%20the%20upcoming%20SAP%20PP%20training%20batch." target="_blank" rel="noopener">
-                        <span>Inquire on WhatsApp</span>
-                    </a>
+
+                <!-- Status & CTAs -->
+                <div class="lg:col-span-2 flex flex-col justify-center gap-3">
+                    <div>
+                        <span class="font-mono text-[10px] text-slate-600 uppercase tracking-widest block mb-0.5">STATUS</span>
+                        <div class="font-heading text-xl sm:text-2xl font-bold uppercase text-[#0A0A0A]">UPCOMING BATCH</div>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <a class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-[#0A0A0A] hover:bg-[#FB6221] text-white font-sans text-xs font-semibold uppercase tracking-wider transition-all duration-200 shadow-sm zeb-btn-cta" href="{{ route('book-demo', ['course' => 'sap-pp']) }}" title="Pre-register for SAP PP batch">
+                            <span>Pre-Register Demo</span>
+                            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                        </a>
+                        <a class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full border border-slate-200 hover:border-slate-400 text-slate-700 font-sans text-xs font-medium tracking-wider transition-colors" href="https://wa.me/917277877778?text=Hello%20ZebLearn%2C%20I%20want%20to%20know%20more%20about%20the%20upcoming%20SAP%20PP%20training%20batch." target="_blank" rel="noopener">
+                            <span>Inquire on WhatsApp</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -556,6 +653,11 @@
     <div class="bg-[#0A0A0A] text-white rounded-3xl p-8 sm:p-12 lg:p-16 relative overflow-hidden shadow-2xl">
         <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div class="lg:col-span-7 space-y-6">
+                <!-- Eyebrow Tag -->
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[11px] font-mono font-bold uppercase tracking-wider text-orange-400 w-fit shadow-xs">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[#FB6221]"></span>
+                    <span>SELF-PACED OFFICIAL CERTIFICATION</span>
+                </div>
 
                 <h2 class="font-heading text-3xl sm:text-5xl font-bold uppercase text-white tracking-tight leading-tight">
                     SAP POWER USER CERTIFICATION COURSE
@@ -612,12 +714,17 @@
 <section id="method" class="w-full py-16 lg:py-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto border-t border-slate-200 content-auto">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8" data-reveal>
         <div>
+            <!-- Eyebrow Tag -->
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 font-mono text-[11px] font-bold uppercase tracking-wider text-[#c2410c] mb-3 shadow-2xs">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#FB6221]"></span>
+                <span>TRAINING EXPERIENCE &amp; METHODOLOGY</span>
+            </div>
 
             <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-[#0A0A0A] tracking-tight leading-tight">
                 WHAT YOU GET WITH OUR SAP TRAINING
             </h2>
         </div>
-        <p class="font-sans text-sm text-slate-600 max-w-md font-normal leading-relaxed">
+        <p class="font-sans text-sm sm:text-base text-slate-600 max-w-md font-normal leading-relaxed">
             Built to bridge the gap between textbook theory and what SAP enterprise projects actually demand on the job.
         </p>
     </div>
@@ -631,7 +738,7 @@
             </div>
 
             <!-- Step 1 Node -->
-            <div class="journey-node active relative z-10 flex flex-col items-center group cursor-pointer" data-step="1">
+            <div class="journey-node active relative z-10 flex flex-col items-center group cursor-pointer" data-step="1" tabindex="0" role="button" aria-label="Step 1: Learn Live Online Classes">
                 <div class="w-10 h-10 rounded-full bg-[#FB6221] text-white flex items-center justify-center font-mono text-xs font-bold shadow-md ring-4 ring-orange-100 transition-all duration-300 group-hover:scale-110">
                     01
                 </div>
@@ -640,7 +747,7 @@
             </div>
 
             <!-- Step 2 Node -->
-            <div class="journey-node relative z-10 flex flex-col items-center group cursor-pointer" data-step="2">
+            <div class="journey-node relative z-10 flex flex-col items-center group cursor-pointer" data-step="2" tabindex="0" role="button" aria-label="Step 2: Practice SAP Sandbox Labs">
                 <div class="w-10 h-10 rounded-full bg-white border-2 border-slate-300 text-slate-700 flex items-center justify-center font-mono text-xs font-bold transition-all duration-300 group-hover:border-[#FB6221] group-hover:text-[#FB6221] group-hover:scale-110">
                     02
                 </div>
@@ -649,7 +756,7 @@
             </div>
 
             <!-- Step 3 Node -->
-            <div class="journey-node relative z-10 flex flex-col items-center group cursor-pointer" data-step="3">
+            <div class="journey-node relative z-10 flex flex-col items-center group cursor-pointer" data-step="3" tabindex="0" role="button" aria-label="Step 3: Build Skills Mock Simulations">
                 <div class="w-10 h-10 rounded-full bg-white border-2 border-slate-300 text-slate-700 flex items-center justify-center font-mono text-xs font-bold transition-all duration-300 group-hover:border-[#FB6221] group-hover:text-[#FB6221] group-hover:scale-110">
                     03
                 </div>
@@ -658,7 +765,7 @@
             </div>
 
             <!-- Step 4 Node -->
-            <div class="journey-node relative z-10 flex flex-col items-center group cursor-pointer" data-step="4">
+            <div class="journey-node relative z-10 flex flex-col items-center group cursor-pointer" data-step="4" tabindex="0" role="button" aria-label="Step 4: Career Placement Support">
                 <div class="w-10 h-10 rounded-full bg-white border-2 border-slate-300 text-slate-700 flex items-center justify-center font-mono text-xs font-bold transition-all duration-300 group-hover:border-emerald-500 group-hover:text-emerald-600 group-hover:scale-110">
                     04
                 </div>
@@ -668,87 +775,190 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Pillar 01 -->
-        <div class="journey-card bg-white rounded-3xl p-8 border border-slate-200 shadow-xs flex flex-col justify-between min-h-[340px] group zeb-card-interactive" data-step="1" data-reveal data-reveal-delay="1">
+    <!-- 4 Interactive Training Pillars -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <!-- Pillar 01: LEARN -->
+        <div class="journey-card bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-[#FB6221]/50 focus-within:ring-2 focus-within:ring-[#FB6221] focus-within:outline-hidden transition-all duration-300 flex flex-col justify-between min-h-[420px] group zeb-card-interactive" data-step="1" data-reveal data-reveal-delay="1">
             <div>
-                <div class="flex items-center justify-between mb-4">
-
-                    <span class="material-symbols-outlined text-[22px] text-slate-500 group-hover:text-[#FB6221] transition-colors">desktop_windows</span>
+                <!-- Visual Container -->
+                <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-900 border border-slate-200/80 mb-5 shadow-2xs group-hover:shadow-md transition-all duration-300">
+                    <img
+                        src="{{ asset('images/training/live-classes.webp') }}"
+                        alt="Instructor-Led Live Online SAP S/4HANA Training Classroom with Students on Laptops"
+                        width="1280"
+                        height="720"
+                        loading="lazy"
+                        class="w-full h-full object-cover object-center group-hover:scale-105 motion-reduce:transform-none transition-transform duration-500 ease-out"
+                    >
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
+                    <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-white/95 backdrop-blur-xs font-mono text-[9px] font-bold uppercase tracking-wider text-[#0A0A0A] border border-white/60 shadow-2xs">
+                        STAGE 01 // LEARN
+                    </span>
+                    <span class="absolute bottom-2 right-2 px-1.5 py-0.5 rounded-sm bg-black/60 backdrop-blur-md text-[8px] font-mono font-medium text-white/80 border border-white/10 uppercase tracking-wider">
+                        Representative Classroom
+                    </span>
                 </div>
 
-                <!-- 2.5D Step Illustration -->
-                <x-visual.journey-step-art step="1" />
+                <div class="flex items-center justify-between mb-2">
+                    <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-[#FB6221]">01. LEARN</span>
+                    <span class="material-symbols-outlined text-[20px] text-slate-500 group-hover:text-[#FB6221] transition-colors">desktop_windows</span>
+                </div>
 
                 <h3 class="font-heading text-lg sm:text-xl font-bold uppercase text-[#0A0A0A] mb-2 leading-snug">LIVE CLASSES ON A REAL SAP SYSTEM</h3>
-                <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">Interactive live sessions on a real SAP system, with doubts solved as you practise.</p>
+                <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">Interactive live sessions on real SAP S/4HANA systems, with doubts resolved in real time as you configure business workflows.</p>
             </div>
-            <div class="pt-4 border-t border-slate-100 font-mono text-[10px] text-slate-600 uppercase tracking-widest flex items-center justify-between">
+            <div class="pt-4 mt-4 border-t border-slate-100 font-mono text-[10px] text-slate-600 uppercase tracking-widest flex items-center justify-between">
                 <span>NO RECORDED MONOLOGUES</span>
                 <span class="font-bold text-[#FB6221]">01/04</span>
             </div>
         </div>
 
-        <!-- Pillar 02 -->
-        <div class="journey-card bg-white rounded-3xl p-8 border border-slate-200 shadow-xs flex flex-col justify-between min-h-[340px] group zeb-card-interactive" data-step="2" data-reveal data-reveal-delay="2">
+        <!-- Pillar 02: PRACTICE -->
+        <div class="journey-card bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-[#FB6221]/50 focus-within:ring-2 focus-within:ring-[#FB6221] focus-within:outline-hidden transition-all duration-300 flex flex-col justify-between min-h-[420px] group zeb-card-interactive" data-step="2" data-reveal data-reveal-delay="2">
             <div>
-                <div class="flex items-center justify-between mb-4">
-
-                    <span class="material-symbols-outlined text-[22px] text-slate-500 group-hover:text-[#FB6221] transition-colors">dns</span>
+                <!-- Visual Container -->
+                <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-900 border border-slate-200/80 mb-5 shadow-2xs group-hover:shadow-md transition-all duration-300">
+                    <img
+                        src="{{ asset('images/training/sandbox-labs.webp') }}"
+                        alt="Hands-On SAP System Practice and Sandbox Labs on Laptops"
+                        width="1280"
+                        height="720"
+                        loading="lazy"
+                        class="w-full h-full object-cover object-center group-hover:scale-105 motion-reduce:transform-none transition-transform duration-500 ease-out"
+                    >
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
+                    <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-white/95 backdrop-blur-xs font-mono text-[9px] font-bold uppercase tracking-wider text-[#0A0A0A] border border-white/60 shadow-2xs">
+                        STAGE 02 // PRACTICE
+                    </span>
+                    <span class="absolute bottom-2 right-2 px-1.5 py-0.5 rounded-sm bg-black/60 backdrop-blur-md text-[8px] font-mono font-medium text-white/80 border border-white/10 uppercase tracking-wider">
+                        Representative Workspace
+                    </span>
                 </div>
 
-                <!-- 2.5D Step Illustration -->
-                <x-visual.journey-step-art step="2" />
+                <div class="flex items-center justify-between mb-2">
+                    <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-[#FB6221]">02. PRACTICE</span>
+                    <span class="material-symbols-outlined text-[20px] text-slate-500 group-hover:text-[#FB6221] transition-colors">dns</span>
+                </div>
 
                 <h3 class="font-heading text-lg sm:text-xl font-bold uppercase text-[#0A0A0A] mb-2 leading-snug">ASSIGNMENTS AFTER EVERY MODULE</h3>
-                <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">Practice assignments after every module so you apply each topic straight away.</p>
+                <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">Hands-on business case assignments after every module on dedicated server sandboxes so you apply each enterprise concept straight away.</p>
             </div>
-            <div class="pt-4 border-t border-slate-100 font-mono text-[10px] text-slate-600 uppercase tracking-widest flex items-center justify-between">
+            <div class="pt-4 mt-4 border-t border-slate-100 font-mono text-[10px] text-slate-600 uppercase tracking-widest flex items-center justify-between">
                 <span>HANDS-ON PRACTICE</span>
                 <span class="font-bold text-[#FB6221]">02/04</span>
             </div>
         </div>
 
-        <!-- Pillar 03 -->
-        <div class="journey-card bg-white rounded-3xl p-8 border border-slate-200 shadow-xs flex flex-col justify-between min-h-[340px] group zeb-card-interactive" data-step="3" data-reveal data-reveal-delay="3">
+        <!-- Pillar 03: BUILD SKILLS -->
+        <div class="journey-card bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-[#FB6221]/50 focus-within:ring-2 focus-within:ring-[#FB6221] focus-within:outline-hidden transition-all duration-300 flex flex-col justify-between min-h-[420px] group zeb-card-interactive" data-step="3" data-reveal data-reveal-delay="3">
             <div>
-                <div class="flex items-center justify-between mb-4">
-
-                    <span class="material-symbols-outlined text-[22px] text-slate-500 group-hover:text-[#FB6221] transition-colors">record_voice_over</span>
+                <!-- Visual Container -->
+                <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-900 border border-slate-200/80 mb-5 shadow-2xs group-hover:shadow-md transition-all duration-300">
+                    <img
+                        src="{{ asset('images/training/mock-interviews.webp') }}"
+                        alt="One-on-One Executive Mock Interviews and Resume Mentorship"
+                        width="1280"
+                        height="720"
+                        loading="lazy"
+                        class="w-full h-full object-cover object-center group-hover:scale-105 motion-reduce:transform-none transition-transform duration-500 ease-out"
+                    >
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
+                    <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-white/95 backdrop-blur-xs font-mono text-[9px] font-bold uppercase tracking-wider text-[#0A0A0A] border border-white/60 shadow-2xs">
+                        STAGE 03 // SKILLS
+                    </span>
+                    <span class="absolute bottom-2 right-2 px-1.5 py-0.5 rounded-sm bg-black/60 backdrop-blur-md text-[8px] font-mono font-medium text-white/80 border border-white/10 uppercase tracking-wider">
+                        Representative Mentorship
+                    </span>
                 </div>
 
-                <!-- 2.5D Step Illustration -->
-                <x-visual.journey-step-art step="3" />
+                <div class="flex items-center justify-between mb-2">
+                    <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-[#FB6221]">03. BUILD SKILLS</span>
+                    <span class="material-symbols-outlined text-[20px] text-slate-500 group-hover:text-[#FB6221] transition-colors">record_voice_over</span>
+                </div>
 
                 <h3 class="font-heading text-lg sm:text-xl font-bold uppercase text-[#0A0A0A] mb-2 leading-snug">MOCK INTERVIEWS AND RESUME SUPPORT</h3>
-                <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">Interview preparation and resume support to get you ready for the real SAP interview.</p>
+                <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">One-on-one interview preparation, resume engineering, and technical panel simulations to build complete confidence for MNC consulting rounds.</p>
             </div>
-            <div class="pt-4 border-t border-slate-100 font-mono text-[10px] text-slate-600 uppercase tracking-widest flex items-center justify-between">
+            <div class="pt-4 mt-4 border-t border-slate-100 font-mono text-[10px] text-slate-600 uppercase tracking-widest flex items-center justify-between">
                 <span>INTERVIEW READINESS</span>
                 <span class="font-bold text-[#FB6221]">03/04</span>
             </div>
         </div>
 
-        <!-- Pillar 04 -->
-        <div class="journey-card bg-white rounded-3xl p-8 border border-slate-200 shadow-xs flex flex-col justify-between min-h-[340px] group zeb-card-interactive" data-step="4" data-reveal data-reveal-delay="4">
+        <!-- Pillar 04: CAREER -->
+        <div class="journey-card bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-emerald-500/50 focus-within:ring-2 focus-within:ring-emerald-500 focus-within:outline-hidden transition-all duration-300 flex flex-col justify-between min-h-[420px] group zeb-card-interactive" data-step="4" data-reveal data-reveal-delay="4">
             <div>
-                <div class="flex items-center justify-between mb-4">
-
-                    <span class="material-symbols-outlined text-[22px] text-slate-500 group-hover:text-emerald-600 transition-colors">handshake</span>
+                <!-- Visual Container -->
+                <div class="relative w-full aspect-video rounded-2xl overflow-hidden bg-slate-900 border border-slate-200/80 mb-5 shadow-2xs group-hover:shadow-md transition-all duration-300">
+                    <img
+                        src="{{ asset('images/training/placement-support.webp') }}"
+                        alt="Corporate Placement Support and Hiring Pipelines through PlacementBaba"
+                        width="1280"
+                        height="720"
+                        loading="lazy"
+                        class="w-full h-full object-cover object-center group-hover:scale-105 motion-reduce:transform-none transition-transform duration-500 ease-out"
+                    >
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
+                    <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-white/95 backdrop-blur-xs font-mono text-[9px] font-bold uppercase tracking-wider text-[#0A0A0A] border border-white/60 shadow-2xs">
+                        STAGE 04 // CAREER
+                    </span>
+                    <span class="absolute bottom-2 right-2 px-1.5 py-0.5 rounded-sm bg-black/60 backdrop-blur-md text-[8px] font-mono font-medium text-white/80 border border-white/10 uppercase tracking-wider">
+                        Representative Enterprise
+                    </span>
                 </div>
 
-                <!-- 2.5D Step Illustration -->
-                <x-visual.journey-step-art step="4" />
+                <div class="flex items-center justify-between mb-2">
+                    <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-emerald-600">04. CAREER</span>
+                    <span class="material-symbols-outlined text-[20px] text-slate-500 group-hover:text-emerald-600 transition-colors">handshake</span>
+                </div>
 
                 <h3 class="font-heading text-lg sm:text-xl font-bold uppercase text-[#0A0A0A] mb-2 leading-snug">PLACEMENT SUPPORT THROUGH PLACEMENTBABA</h3>
-                <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">Job support through our placement partner PlacementBaba.</p>
+                <p class="font-sans text-xs text-slate-600 leading-relaxed font-normal">End-to-end placement pipeline through our dedicated career partner PlacementBaba, connecting you directly to active hiring drives.</p>
             </div>
-            <div class="pt-4 border-t border-slate-100 font-mono text-[10px] text-slate-600 uppercase tracking-widest flex items-center justify-between">
+            <div class="pt-4 mt-4 border-t border-slate-100 font-mono text-[10px] text-slate-600 uppercase tracking-widest flex items-center justify-between">
                 <span>JOB PIPELINE SUPPORT</span>
                 <span class="font-bold text-emerald-600">04/04</span>
             </div>
         </div>
     </div>
+
+    <!-- Practical Training Lab Ecosystem Feature Band -->
+    <div class="rounded-3xl bg-slate-900 text-white p-6 sm:p-8 lg:p-10 relative overflow-hidden shadow-xl" data-reveal>
+        <div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-[#FB6221]/15 blur-3xl pointer-events-none"></div>
+        <div class="absolute -left-20 -top-20 w-80 h-80 rounded-full bg-blue-500/10 blur-3xl pointer-events-none"></div>
+
+        <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+            <div class="max-w-xl space-y-3">
+                <span class="font-mono text-[11px] font-bold uppercase tracking-widest text-[#FB6221]">REAL SYSTEM INFRASTRUCTURE</span>
+                <h3 class="font-heading text-2xl sm:text-3xl font-bold uppercase tracking-tight text-white leading-snug">
+                    HANDS-ON ENTERPRISE LABS WITH NO SIMULATED DUMMIES
+                </h3>
+                <p class="font-sans text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    Learners receive direct server credentials to live SAP GUI &amp; SAP Fiori environments with real company code configurations, standard transaction codes, and full error log visibility.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 lg:gap-6 pt-2">
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-4 text-center backdrop-blur-xs">
+                    <span class="block font-heading text-xl sm:text-2xl font-black text-[#FB6221]">24/7</span>
+                    <span class="block font-mono text-[10px] text-slate-300 uppercase tracking-wider mt-1">Server Access</span>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-4 text-center backdrop-blur-xs">
+                    <span class="block font-heading text-xl sm:text-2xl font-black text-white">S/4HANA</span>
+                    <span class="block font-mono text-[10px] text-slate-300 uppercase tracking-wider mt-1">Cloud &amp; On-Prem</span>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-4 text-center backdrop-blur-xs">
+                    <span class="block font-heading text-xl sm:text-2xl font-black text-white">100%</span>
+                    <span class="block font-mono text-[10px] text-slate-300 uppercase tracking-wider mt-1">Live Mentorship</span>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-4 text-center backdrop-blur-xs">
+                    <span class="block font-heading text-xl sm:text-2xl font-black text-emerald-400">1-on-1</span>
+                    <span class="block font-mono text-[10px] text-slate-300 uppercase tracking-wider mt-1">Mock Panels</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 </section>
 
 <!-- =========================================================================
@@ -790,6 +1000,11 @@
 <section id="blog" class="w-full py-16 lg:py-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto border-t border-slate-200 content-auto">
     <div class="flex items-center justify-between mb-12" data-reveal>
         <div>
+            <!-- Eyebrow Tag -->
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 font-mono text-[11px] font-bold uppercase tracking-wider text-[#c2410c] mb-3 shadow-2xs">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#FB6221]"></span>
+                <span>INSIGHTS &amp; INTERVIEW PREP</span>
+            </div>
 
             <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-[#0A0A0A] tracking-tight leading-tight">
                 LATEST SAP INTERVIEW QUESTIONS AND CAREER GUIDES
@@ -861,6 +1076,11 @@
 <section id="faq" class="w-full py-16 lg:py-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto border-t border-slate-200 content-auto">
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12" data-reveal>
         <div>
+            <!-- Eyebrow Tag -->
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 font-mono text-[11px] font-bold uppercase tracking-wider text-[#c2410c] mb-3 shadow-2xs">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#FB6221]"></span>
+                <span>FREQUENTLY ASKED QUESTIONS</span>
+            </div>
 
             <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold uppercase text-[#0A0A0A] tracking-tight leading-tight">
                 SAP COURSE FAQS
@@ -905,6 +1125,11 @@
 <section class="w-full py-16 lg:py-24 px-4 sm:px-6 lg:px-12 max-w-[1440px] mx-auto content-auto" data-reveal>
     <div class="bg-white border border-slate-200 rounded-3xl p-8 sm:p-14 lg:p-20 text-center shadow-lg relative overflow-hidden zeb-card-interactive">
         <div class="max-w-3xl mx-auto space-y-6 relative z-10">
+            <!-- Eyebrow Tag -->
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 font-mono text-[11px] font-bold uppercase tracking-wider text-[#c2410c] mb-2 shadow-2xs">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#FB6221]"></span>
+                <span>ADMISSIONS &amp; ENROLLMENT</span>
+            </div>
 
             <h2 class="font-heading text-3xl sm:text-5xl lg:text-6xl font-bold uppercase text-[#0A0A0A] tracking-tight leading-tight">
                 START YOUR SAP CAREER WITH A FREE DEMO CLASS

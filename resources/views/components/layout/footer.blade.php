@@ -187,7 +187,7 @@
                     <picture>
                         <source srcset="{{ asset('logo/logo2-400.webp') }}" type="image/webp">
                         <img
-                            src="{{ asset('logo/logo2.png') }}"
+                            src="{{ asset('logo/logo2-400.webp') }}"
                             alt="ZebLearn"
                             width="400"
                             height="126"
@@ -359,7 +359,7 @@
                 <picture>
                     <source srcset="{{ asset('logo/logo2-400.webp') }}" type="image/webp">
                     <img
-                        src="{{ asset('logo/logo2.png') }}"
+                        src="{{ asset('logo/logo2-400.webp') }}"
                         alt="ZebLearn"
                         width="400"
                         height="126"

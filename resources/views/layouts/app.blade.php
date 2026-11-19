@@ -91,8 +91,10 @@
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet">
     </noscript>
 
-    {{-- Vite: React Fast Refresh + Tailwind CSS 4 + JavaScript --}}
-    @viteReactRefresh
+    {{-- Vite: React Fast Refresh (dev only when hot file exists) + Tailwind CSS 4 + JavaScript --}}
+    @if(app()->isLocal() && file_exists(public_path('hot')))
+        @viteReactRefresh
+    @endif
     @vite([
         'resources/css/app.css',
         'resources/js/app.js'

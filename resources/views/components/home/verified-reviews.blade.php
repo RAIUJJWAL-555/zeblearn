@@ -215,10 +215,10 @@
 
                     <!-- Footer: Verified Status + Google Review Tag -->
                     <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-                        <span class="font-semibold text-emerald-600 flex items-center gap-1">
+                        <span class="font-semibold text-emerald-700 flex items-center gap-1">
                             <span class="text-sm">✓</span> Verified
                         </span>
-                        <span class="text-slate-400 text-[11px] font-sans">
+                        <span class="text-slate-600 text-[11px] font-sans font-medium">
                             Google Review
                         </span>
                     </div>
@@ -271,10 +271,10 @@
 
                     <!-- Footer: Verified Status + Google Review Tag -->
                     <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-                        <span class="font-semibold text-emerald-600 flex items-center gap-1">
+                        <span class="font-semibold text-emerald-700 flex items-center gap-1">
                             <span class="text-sm">✓</span> Verified
                         </span>
-                        <span class="text-slate-400 text-[11px] font-sans">
+                        <span class="text-slate-600 text-[11px] font-sans font-medium">
                             Google Review
                         </span>
                     </div>

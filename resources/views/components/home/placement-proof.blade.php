@@ -58,11 +58,15 @@
     <!-- Header -->
     <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10" data-reveal>
         <div class="max-w-2xl space-y-3">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 font-mono text-[11px] font-bold uppercase tracking-wider text-[#c2410c] mb-1 shadow-2xs">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#FB6221]"></span>
+                <span>PLACEMENT VERIFICATION // OFFER ARCHIVE</span>
+            </div>
             <h2 id="placement-proof-heading" class="font-heading text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-[#0A0A0A] tracking-tight leading-tight">
-               Feedback from Our Students
+                DOCUMENTED PLACEMENT PROOF &amp; SELECTIONS
             </h2>
             <p class="font-sans text-sm sm:text-base text-slate-600 font-normal leading-relaxed">
-                 Watch how ZebLearn's programs helped students achieve their professional goals.
+                Verified Feedback from Our Students, candidate offer letters, and corporate interview selections from Accenture and leading enterprise consulting partners.
             </p>
         </div>
 

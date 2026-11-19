@@ -26,6 +26,25 @@ class SetCacheHeaders
             $response->headers->set('Vary', 'Accept-Encoding');
         }
 
+        // Enable transparent gzip compression for text/HTML responses in non-testing environments when supported by client
+        if (! app()->environment('testing') && $request->isMethod('GET') && ! $response->headers->has('Content-Encoding')) {
+            $acceptEncoding = (string) $request->header('Accept-Encoding', '');
+            if (str_contains($acceptEncoding, 'gzip') && function_exists('gzencode')) {
+                $contentType = (string) $response->headers->get('Content-Type', '');
+                if (str_contains($contentType, 'text/html') || str_contains($contentType, 'application/json')) {
+                    $content = $response->getContent();
+                    if ($content && strlen($content) > 1024) {
+                        $compressed = gzencode($content, 6);
+                        if ($compressed !== false) {
+                            $response->setContent($compressed);
+                            $response->headers->set('Content-Encoding', 'gzip');
+                            $response->headers->set('Content-Length', (string) strlen($compressed));
+                        }
+                    }
+                }
+            }
+        }
+
         return $response;
     }
 }

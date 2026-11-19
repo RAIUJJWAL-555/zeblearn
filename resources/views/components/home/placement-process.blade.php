@@ -54,7 +54,7 @@
             'step' => '06',
             'title' => 'INTERVIEW CALLS',
             'full_title' => 'Interview Preparation & Referrals',
-            'description' => 'Direct referrals to 500+ hiring partners. Our cell schedules and tracks every interview for you.',
+            'description' => 'Direct referrals to leading enterprise hiring partners. Our cell schedules and tracks every interview for you.',
             'card_bg' => 'bg-[#072027]',
             'card_border' => 'border-cyan-950/70',
             'badge_bg' => 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20',
@@ -115,9 +115,9 @@
                             <div class="absolute -top-10 -right-10 w-28 h-28 rounded-full blur-2xl pointer-events-none opacity-40" style="background-color: {{ $item['glow_color'] }};"></div>
 
                             <!-- Huge Faint Watermark Number -->
-                            <span class="absolute right-3 -bottom-2 font-heading text-7xl font-black text-white/[0.04] pointer-events-none select-none" aria-hidden="true">
-                                {{ $item['step'] }}
-                            </span>
+                            <svg class="absolute right-2 -bottom-2 w-28 h-20 text-white/[0.04] pointer-events-none select-none" viewBox="0 0 100 70" aria-hidden="true" role="presentation">
+                                <text x="20" y="60" font-family="'Inter', sans-serif" font-weight="900" font-size="64" fill="currentColor">{{ $item['step'] }}</text>
+                            </svg>
 
                             <div class="relative z-10">
                                 <span class="inline-block px-2.5 py-0.5 rounded-md border text-[10px] font-mono font-bold uppercase tracking-wider mb-2.5 {{ $item['badge_bg'] }}">
@@ -168,9 +168,9 @@
                             <div class="absolute -top-10 -right-10 w-28 h-28 rounded-full blur-2xl pointer-events-none opacity-40" style="background-color: {{ $item['glow_color'] }};"></div>
 
                             <!-- Huge Faint Watermark Number -->
-                            <span class="absolute right-3 -bottom-2 font-heading text-7xl font-black text-white/[0.04] pointer-events-none select-none" aria-hidden="true">
-                                {{ $item['step'] }}
-                            </span>
+                            <svg class="absolute right-2 -bottom-2 w-28 h-20 text-white/[0.04] pointer-events-none select-none" viewBox="0 0 100 70" aria-hidden="true" role="presentation">
+                                <text x="20" y="60" font-family="'Inter', sans-serif" font-weight="900" font-size="64" fill="currentColor">{{ $item['step'] }}</text>
+                            </svg>
 
                             <div class="relative z-10">
                                 <span class="inline-block px-2.5 py-0.5 rounded-md border text-[10px] font-mono font-bold uppercase tracking-wider mb-2.5 {{ $item['badge_bg'] }}">
@@ -206,9 +206,9 @@
                             <div class="absolute -top-10 -right-10 w-28 h-28 rounded-full blur-2xl pointer-events-none opacity-40" style="background-color: {{ $item['glow_color'] }};"></div>
 
                             <!-- Huge Faint Watermark Number -->
-                            <span class="absolute right-3 -bottom-2 font-heading text-7xl font-black text-white/[0.04] pointer-events-none select-none" aria-hidden="true">
-                                {{ $item['step'] }}
-                            </span>
+                            <svg class="absolute right-2 -bottom-2 w-28 h-20 text-white/[0.04] pointer-events-none select-none" viewBox="0 0 100 70" aria-hidden="true" role="presentation">
+                                <text x="20" y="60" font-family="'Inter', sans-serif" font-weight="900" font-size="64" fill="currentColor">{{ $item['step'] }}</text>
+                            </svg>
 
                             <div class="relative z-10">
                                 <span class="inline-block px-2.5 py-0.5 rounded-md border text-[10px] font-mono font-bold uppercase tracking-wider mb-2.5 {{ $item['badge_bg'] }}">
@@ -258,9 +258,9 @@
                             <div class="absolute -top-10 -right-10 w-28 h-28 rounded-full blur-2xl pointer-events-none opacity-40" style="background-color: {{ $item['glow_color'] }};"></div>
 
                             <!-- Huge Faint Watermark Number -->
-                            <span class="absolute right-3 -bottom-2 font-heading text-7xl font-black text-white/[0.04] pointer-events-none select-none" aria-hidden="true">
-                                {{ $item['step'] }}
-                            </span>
+                            <svg class="absolute right-2 -bottom-2 w-28 h-20 text-white/[0.04] pointer-events-none select-none" viewBox="0 0 100 70" aria-hidden="true" role="presentation">
+                                <text x="20" y="60" font-family="'Inter', sans-serif" font-weight="900" font-size="64" fill="currentColor">{{ $item['step'] }}</text>
+                            </svg>
 
                             <div class="relative z-10">
                                 <span class="inline-block px-2.5 py-0.5 rounded-md border text-[10px] font-mono font-bold uppercase tracking-wider mb-2.5 {{ $item['badge_bg'] }}">

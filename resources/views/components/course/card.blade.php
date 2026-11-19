@@ -6,78 +6,143 @@
 
 @php
     $enrollment = $enrollment ?? (auth()->check() ? auth()->user()->enrollments()->where('course_id', $course->id)->first() : null);
+    $slug = strtolower($course->slug ?? '');
+    $name = strtolower($course->name ?? '');
+    $text = $slug . ' ' . $name;
+
+    $moduleThumb = 'images/courses/sap-default.webp';
+    $moduleTag = 'ENTERPRISE ERP';
+
+    if (preg_match('/\b(fico|finance|financial)\b/i', $text)) {
+        $moduleThumb = 'images/courses/sap-fico.webp';
+        $moduleTag = 'FINANCE // CORE ERP';
+    } elseif (preg_match('/\b(ewm|warehouse)\b/i', $text)) {
+        $moduleThumb = 'images/courses/sap-ewm.webp';
+        $moduleTag = 'SMART LOGISTICS // EWM';
+    } elseif (preg_match('/\b(mm|materials?|procurement)\b/i', $text) || str_contains($slug, 'mm')) {
+        $moduleThumb = 'images/courses/sap-mm.webp';
+        $moduleTag = 'PROCUREMENT // SUPPLY';
+    } elseif (preg_match('/\b(sd|sales|distribution)\b/i', $text) || str_contains($slug, 'sd')) {
+        $moduleThumb = 'images/courses/sap-sd.webp';
+        $moduleTag = 'COMMERCE // ORDER-TO-CASH';
+    } elseif (preg_match('/\b(pp|production|manufacturing)\b/i', $text) || str_contains($slug, 'pp')) {
+        $moduleThumb = 'images/courses/sap-pp.webp';
+        $moduleTag = 'MANUFACTURING // MRP';
+    } elseif (preg_match('/\b(abap|developer|programming)\b/i', $text)) {
+        $moduleThumb = 'images/courses/sap-abap.webp';
+        $moduleTag = 'DEV // CLOUD ARCHITECTURE';
+    } elseif (preg_match('/\b(successfactors|sf)\b/i', $text)) {
+        $moduleThumb = 'images/courses/sap-successfactors.webp';
+        $moduleTag = 'CLOUD HCM // TALENT';
+    } elseif (preg_match('/\b(hcm|human\s*capital|hr)\b/i', $text)) {
+        $moduleThumb = 'images/courses/sap-hcm.webp';
+        $moduleTag = 'HUMAN CAPITAL // HR';
+    } elseif (preg_match('/\b(bw|bi|analytics)\b/i', $text)) {
+        $moduleThumb = 'images/courses/sap-bw.webp';
+        $moduleTag = 'ANALYTICS // BW ON HANA';
+    } elseif (preg_match('/\b(crm)\b/i', $text)) {
+        $moduleThumb = 'images/courses/sap-crm.webp';
+        $moduleTag = 'CUSTOMER EXPERIENCE // CRM';
+    } elseif (preg_match('/\b(mobility|mobile|fiori)\b/i', $text)) {
+        $moduleThumb = 'images/courses/sap-s4hana.webp';
+        $moduleTag = 'ENTERPRISE MOBILITY // FIORI';
+    } elseif (preg_match('/(s\/4|s-4|s4hana)/i', $text)) {
+        $moduleThumb = 'images/courses/sap-s4hana.webp';
+        $moduleTag = 'NEXT-GEN CLOUD ERP';
+    }
 @endphp
 
-<article class="group relative bg-white rounded-2xl sm:rounded-3xl border border-slate-200/90 hover:border-amber-400 p-5 sm:p-7 shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-l-4 sm:border-l-[6px] border-l-amber-400 select-none zeb-card-interactive" data-reveal>
+<article class="group relative bg-white rounded-2xl sm:rounded-3xl border border-slate-200/90 hover:border-[#FB6221]/50 p-5 sm:p-7 shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col lg:flex-row lg:items-center justify-between gap-6 border-l-4 sm:border-l-[6px] border-l-[#FB6221] select-none focus-within:ring-2 focus-within:ring-[#FB6221] focus-within:ring-offset-2 focus-within:outline-hidden overflow-hidden zeb-card-interactive" data-reveal>
+    <!-- Soft Ambient Warm Corner Accent -->
+    <div class="absolute top-0 right-0 w-36 h-36 bg-[#FB6221]/5 rounded-bl-full pointer-events-none -z-0"></div>
 
-    <!-- Left Column: Main Course Information -->
-    <div class="flex-1 min-w-0">
-        <!-- Top Meta Row: Category Badge + Tag Badge + Know More Link -->
-        <div class="flex items-center justify-between gap-3 mb-2.5">
-            <div class="flex items-center gap-2 flex-wrap">
-                <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-[11px] font-mono font-bold uppercase tracking-wider bg-blue-50 text-blue-600 border border-blue-200/70">
-                    {{ $course->category_badge }}
+    <!-- Left Column: 16:9 Visual Thumbnail + Course Narrative -->
+    <div class="flex-1 min-w-0 flex flex-col sm:flex-row items-start gap-5 relative z-10">
+        <!-- 16:9 Aspect Ratio Visual Artwork Frame -->
+        <div class="w-full sm:w-52 md:w-60 aspect-video rounded-2xl overflow-hidden bg-slate-100 border border-slate-200/80 shadow-2xs relative shrink-0 group/img">
+            <img
+                src="{{ asset($moduleThumb) }}"
+                alt="{{ $course->name }} — SAP Enterprise Module Artwork"
+                width="800"
+                height="450"
+                loading="lazy"
+                decoding="async"
+                class="w-full h-full object-cover object-center group-hover:scale-105 motion-reduce:transform-none transition-transform duration-500 ease-out"
+            >
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
+            <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-md bg-white/95 backdrop-blur-xs font-mono text-[9px] font-bold uppercase tracking-wider text-[#0A0A0A] border border-white/60 shadow-2xs">
+                {{ $moduleTag }}
+            </span>
+        </div>
+
+        <div class="flex-1 min-w-0">
+            <!-- Top Meta Row: Category Badge + Tag Badge + Know More Link -->
+            <div class="flex items-center justify-between gap-3 mb-2.5">
+                <div class="flex items-center gap-2 flex-wrap">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-[11px] font-mono font-bold uppercase tracking-wider bg-blue-50 text-blue-600 border border-blue-200/70">
+                        {{ $course->category_badge }}
+                    </span>
+
+                    @if($course->isRecentlyAdded())
+                        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-mono font-bold uppercase tracking-wider bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-2xs">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                            Recently Added
+                        </span>
+                    @endif
+
+                    @if($course->display_tag)
+                        <span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-mono font-black uppercase tracking-wider bg-amber-400 text-black shadow-2xs">
+                            {{ $course->display_tag }}
+                        </span>
+                    @endif
+                </div>
+
+                <a href="{{ $course->url }}" class="inline-flex items-center gap-1 text-xs font-bold text-amber-600 hover:text-[#FB6221] hover:underline uppercase tracking-wide shrink-0">
+                    <span>Know More</span>
+                    <span class="material-symbols-outlined text-[15px]">arrow_forward</span>
+                </a>
+            </div>
+
+            <!-- Course Title -->
+            <h3 class="font-heading text-xl sm:text-2xl font-black uppercase tracking-tight text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors leading-snug mb-2">
+                <a href="{{ $course->url }}">{{ $course->name }}</a>
+            </h3>
+
+            <!-- Short Description -->
+            <p class="font-sans text-xs sm:text-sm text-slate-600 leading-relaxed mb-3.5 line-clamp-2 max-w-3xl">
+                {{ $course->short_description }}
+            </p>
+
+            <!-- Star Rating & Dynamic Reviews Row -->
+            <div class="flex items-center gap-2 text-xs text-slate-600 font-medium mb-4">
+                <div class="flex items-center text-amber-400">
+                    <span class="material-symbols-outlined text-[16px] fill-current">star</span>
+                    <span class="material-symbols-outlined text-[16px] fill-current">star</span>
+                    <span class="material-symbols-outlined text-[16px] fill-current">star</span>
+                    <span class="material-symbols-outlined text-[16px] fill-current">star</span>
+                    <span class="material-symbols-outlined text-[16px] fill-current">star</span>
+                </div>
+                <span class="font-bold text-[#0A0A0A]">{{ $course->display_rating }}</span>
+                <span class="text-slate-500">({{ $course->display_reviews_count }} reviews)</span>
+            </div>
+
+            <!-- Bottom Detail Tags (Duration, Modules, Students) -->
+            <div class="flex flex-wrap items-center gap-2">
+                <span class="inline-flex items-center px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200/60 text-xs font-medium text-slate-700">
+                    {{ $course->display_duration }}
                 </span>
-
-                @if($course->isRecentlyAdded())
-                    <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[10px] font-mono font-bold uppercase tracking-wider bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-2xs">
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                        Recently Added
-                    </span>
-                @endif
-
-                @if($course->display_tag)
-                    <span class="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-mono font-black uppercase tracking-wider bg-amber-400 text-black shadow-2xs">
-                        {{ $course->display_tag }}
-                    </span>
-                @endif
+                <span class="inline-flex items-center px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200/60 text-xs font-medium text-slate-700">
+                    {{ $course->display_modules }}
+                </span>
+                <span class="inline-flex items-center px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200/60 text-xs font-medium text-slate-700">
+                    {{ $course->display_students }}
+                </span>
             </div>
-
-            <a href="{{ $course->url }}" class="inline-flex items-center gap-1 text-xs font-bold text-amber-600 hover:text-[#FB6221] hover:underline uppercase tracking-wide shrink-0">
-                <span>Know More</span>
-                <span class="material-symbols-outlined text-[15px]">arrow_forward</span>
-            </a>
-        </div>
-
-        <!-- Course Title -->
-        <h3 class="font-heading text-xl sm:text-2xl font-black uppercase tracking-tight text-[#0A0A0A] group-hover:text-[#FB6221] transition-colors leading-snug mb-2">
-            <a href="{{ $course->url }}">{{ $course->name }}</a>
-        </h3>
-
-        <!-- Short Description -->
-        <p class="font-sans text-xs sm:text-sm text-slate-600 leading-relaxed mb-3.5 line-clamp-2 max-w-3xl">
-            {{ $course->short_description }}
-        </p>
-
-        <!-- Star Rating & Dynamic Reviews Row -->
-        <div class="flex items-center gap-2 text-xs text-slate-600 font-medium mb-4">
-            <div class="flex items-center text-amber-400">
-                <span class="material-symbols-outlined text-[16px] fill-current">star</span>
-                <span class="material-symbols-outlined text-[16px] fill-current">star</span>
-                <span class="material-symbols-outlined text-[16px] fill-current">star</span>
-                <span class="material-symbols-outlined text-[16px] fill-current">star</span>
-                <span class="material-symbols-outlined text-[16px] fill-current">star</span>
-            </div>
-            <span class="font-bold text-[#0A0A0A]">{{ $course->display_rating }}</span>
-            <span class="text-slate-500">({{ $course->display_reviews_count }} reviews)</span>
-        </div>
-
-        <!-- Bottom Detail Tags (Duration, Modules, Students) -->
-        <div class="flex flex-wrap items-center gap-2">
-            <span class="inline-flex items-center px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200/60 text-xs font-medium text-slate-700">
-                {{ $course->display_duration }}
-            </span>
-            <span class="inline-flex items-center px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200/60 text-xs font-medium text-slate-700">
-                {{ $course->display_modules }}
-            </span>
-            <span class="inline-flex items-center px-3 py-1.5 rounded-lg bg-slate-100 border border-slate-200/60 text-xs font-medium text-slate-700">
-                {{ $course->display_students }}
-            </span>
         </div>
     </div>
 
     <!-- Right Column: Price & Enroll CTA -->
-    <div class="lg:w-60 lg:border-l lg:border-slate-100 lg:pl-8 flex flex-col lg:items-center justify-center shrink-0 pt-4 lg:pt-0 border-t border-slate-100 lg:border-t-0">
+    <div class="lg:w-60 lg:border-l lg:border-slate-100 lg:pl-8 flex flex-col lg:items-center justify-center shrink-0 pt-4 lg:pt-0 border-t border-slate-100 lg:border-t-0 relative z-10">
         <div class="text-left lg:text-center mb-3">
             <div class="font-heading text-2xl sm:text-3xl font-black text-[#0A0A0A] tracking-tight">
                 {{ $course->formatted_fee ?? ('₹' . number_format($course->fee ?? 75000)) }}

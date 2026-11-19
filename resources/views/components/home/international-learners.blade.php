@@ -85,6 +85,10 @@
     <!-- Header with Clean Title & Navigation Controls -->
     <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10" data-reveal>
         <div class="space-y-3 max-w-2xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 font-mono text-[11px] font-bold uppercase tracking-wider text-[#c2410c] mb-1 shadow-2xs">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#FB6221]"></span>
+                <span>GLOBAL ALUMNI REACH // TIMEZONE-ALIGNED BATCHES</span>
+            </div>
             <h2 id="intl-heading" class="font-heading text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-[#0A0A0A] tracking-tight leading-tight">
                 LEARNERS FROM AROUND THE WORLD
             </h2>

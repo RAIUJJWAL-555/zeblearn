@@ -110,6 +110,7 @@
         <!-- Section Header -->
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10" data-reveal>
             <div>
+                <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#FB6221] block mb-2">HEAR FROM OUR STUDENTS</span>
                 <h2 id="video-testimonials-heading" class="font-heading text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-white tracking-tight leading-tight">
                   FEEDBACK FROM <span class="text-[#FB6221]">OUR STUDENTS</span>
                 </h2>
@@ -167,7 +168,7 @@
                                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                                 <span>{{ $item['tag'] }}</span>
                             </span>
-                            <span class="text-slate-500">
+                            <span class="text-slate-400">
                                 {{ $item['location'] }}
                             </span>
                         </div>
@@ -213,7 +214,7 @@
                                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                                 <span>{{ $item['tag'] }}</span>
                             </span>
-                            <span class="text-slate-500">
+                            <span class="text-slate-400">
                                 {{ $item['location'] }}
                             </span>
                         </div>
